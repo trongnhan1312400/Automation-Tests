@@ -12,7 +12,7 @@ import time
 import os
 from indy import ledger, signus
 from indy.error import IndyError
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 from libraries.utils import *
 from libraries.constant import Colors, Constant, Roles
 from libraries.result import TestResult, Status

@@ -4,7 +4,7 @@ import logging
 import os
 import time
 from indy import pool, signus, wallet
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 from libraries.constant import Constant
 from libraries.result import TestResult, Status
 from libraries.common import Common

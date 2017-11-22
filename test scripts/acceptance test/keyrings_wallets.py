@@ -11,7 +11,7 @@ import logging
 import time
 from indy import signus
 from indy.error import IndyError
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 from libraries.utils import *
 from libraries.constant import Colors, Constant
 from libraries.common import Common

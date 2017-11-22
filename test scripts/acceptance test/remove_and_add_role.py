@@ -9,7 +9,7 @@ import os
 import time
 from indy import ledger, signus
 from indy.error import IndyError
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 from libraries.constant import Constant, Colors, Roles
 from libraries.result import TestResult, Status
 from libraries.common import Common
@@ -111,6 +111,7 @@ def check_role_in_retrieved_nym(retrieved_nym, role):
                 return True
     return False
 
+
 async def test_09_remove_and_add_role():
     """
     This function is the main part of test script.
@@ -137,78 +138,69 @@ async def test_09_remove_and_add_role():
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
+        (trustee1_did, trustee1_verkey) = None, None
         if len(result) == 2:
             (trustee1_did, trustee1_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
+        (trustee2_did, trustee2_verkey) = None, None
         if len(result) == 2:
             (trustee2_did, trustee2_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
+        (steward1_did, steward1_verkey) = None, None
         if len(result) == 2:
             (steward1_did, steward1_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
+        (steward2_did, steward2_verkey) = None, None
         if len(result) == 2:
             (steward2_did, steward2_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
+        (steward3_did, steward3_verkey) = None, None
         if len(result) == 2:
             (steward3_did, steward3_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
-        if len(result) == 2:
-            (tgb1_did, tgb1_verkey) = result
-
-        result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
-                                     Variables.wallet_handle, json.dumps({}))
+        (trustanchor1_did, trustanchor1_verkey) = None, None
         if len(result) == 2:
             (trustanchor1_did, trustanchor1_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
+        (trustanchor2_did, trustanchor2_verkey) = None, None
         if len(result) == 2:
             (trustanchor2_did, trustanchor2_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
+        (trustanchor3_did, trustanchor3_verkey) = None, None
         if len(result) == 2:
             (trustanchor3_did, trustanchor3_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
+        (user1_did, user1_verkey) = None, None
         if len(result) == 2:
             (user1_did, user1_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
-        if len(result) == 2:
-            (user2_did, user2_verkey) = result
-
-        result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
-                                     Variables.wallet_handle, json.dumps({}))
+        (user3_did, user3_verkey) = None, None
         if len(result) == 2:
             (user3_did, user3_verkey) = result
 
         result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
                                      Variables.wallet_handle, json.dumps({}))
+        (user4_did, user4_verkey) = None, None
         if len(result) == 2:
             (user4_did, user4_verkey) = result
-
-        result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
-                                     Variables.wallet_handle, json.dumps({}))
-        if len(result) == 2:
-            (user5_did, user5_verkey) = result
-
-        result = await utils.perform(Variables.steps[step], signus.create_and_store_my_did,
-                                     Variables.wallet_handle, json.dumps({}))
-        if len(result) == 2:
-            (user6_did, user6_verkey) = result
 
         # ==========================================================================================================
         # Test starts here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -332,7 +324,6 @@ async def test_09_remove_and_add_role():
         step = 20
         Variables.steps[step].set_name("Using default Trustee to remove new roles")
         message_20 = ""
-        result = False
         (temp, message) = await add_nym(Variables.steps[step], default_trustee_did, trustee1_did, trustee1_verkey,
                                         None, Roles.NONE)
         result = temp
@@ -407,7 +398,6 @@ async def test_09_remove_and_add_role():
         step = 21
         Variables.steps[step].set_name("Verify that removed Trustee1 cannot create Trustee or Steward")
         message_21 = ""
-        result = False
         (temp, message) = await add_nym(Variables.steps[step], trustee1_did, trustee2_did, trustee2_verkey,
                                         None, Roles.TRUSTEE, error_code=304)
         if temp:
@@ -545,11 +535,8 @@ async def test_09_remove_and_add_role():
         await utils.perform(Variables.steps[30], Common.clean_up_pool_and_wallet, Variables.pool_name,
                             Variables.pool_handle, Variables.wallet_name, Variables.wallet_handle)
 
-        for item in Variables.steps:
-            item.to_string()
 
-
-def test(folder_path=""):
+def test():
     # Set up the report
     begin_time = time.time()
 
