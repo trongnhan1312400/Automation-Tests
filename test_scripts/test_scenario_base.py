@@ -29,9 +29,9 @@ class TestScenarioBase(object):
     test_result = None
 
     def init_test_data(self, total_steps, test_name):
-        test_result = TestResult(test_name)
-        steps = create_step(total_steps)
-        logger = Logger(test_name)
+        self.test_result = TestResult(test_name)
+        self.steps = create_step(total_steps)
+        self.logger = Logger(test_name)
 
     def execute_precondition_steps(self):
         Common.clean_up_pool_and_wallet_folder(self.pool_name, self.wallet_name)
@@ -42,13 +42,14 @@ class TestScenarioBase(object):
     def execute_test_case(self):
         pass
 
-    def execute_scenario(self):
+    async def execute_scenario(self):
         begin_time = time.time()
         self.init_test_data()
         self.execute_precondition_steps()
-        self.execute_test_case()
+        Common.run_test_case(self.execute_test_case)
         self.execute_postcondition_steps()
-        Common.final_result(self.test_report, self.steps, begin_time, self.logger)
+#         Common.make_final_result(self.test_report, self.steps, begin_time, self.logger)
+
 
 if __name__ == '__main__':
     test_scenario = TestScenarioBase()
