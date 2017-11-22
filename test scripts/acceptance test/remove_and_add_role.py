@@ -43,7 +43,7 @@ def test_precondition():
 
 async def add_nym(step, submitter_did, target_did, ver_key, alias, role, error_code=None):
     """
-    Build a send NYM request and submit it
+    Build a send NYM request and submit it.
     :param step:
     :param submitter_did:
     :param target_did:
@@ -74,7 +74,7 @@ async def add_nym(step, submitter_did, target_did, ver_key, alias, role, error_c
 
 async def get_nym(step, submitter_did, target_did):
     """
-
+    Build and submit GET NYM request
     :param step:
     :param submitter_did:
     :param target_did:

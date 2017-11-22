@@ -153,6 +153,13 @@ class TestResult:
         """
         self.set_result(Status.PASSED)
 
+    def get_test_status(self) -> str:
+        """
+        Get the status of test
+        :return: test status
+        """
+        return self.__test_result[KeyWord.RESULT]
+
     @staticmethod
     def change_result_dir(new_dir: str):
         """

@@ -77,7 +77,7 @@ async def test_scenario_03_check_connection():
         logger.info("Test scenario 3 -> finished")
 
 
-def test(folder_path=""):
+def test():
     # Set up the report
     begin_time = time.time()
     Variables.test_result.setup_json_report()
