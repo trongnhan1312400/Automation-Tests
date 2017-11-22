@@ -6,7 +6,6 @@ Created on Nov 22, 2017
 import time
 import sys
 import os
-from indy.error import IndyError
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.utils import *
 from libraries.constant import Constant

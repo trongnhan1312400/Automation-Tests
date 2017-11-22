@@ -6,14 +6,16 @@ Created on Nov 8, 2017
 
 import json
 import os.path
-import logging
+import sys
 from indy import signus
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from test_scripts.test_scenario_base import TestScenarioBase
 
 
 class TestScenario04(TestScenarioBase):
-    
+
     def __init__(self):
-        super(TestScenarioBase, self).__init__()
+        super(TestScenarioBase, self).__init__(3, "test_scenario_04_keyrings_wallet")
 
     async def execute_test_case(self):
         print("Test Scenario 04 -> started")
@@ -38,7 +40,7 @@ class TestScenario04(TestScenarioBase):
             await perform(self.steps[3], signus.create_and_store_my_did,
                           wallet_handle, json.dumps({"seed": seed_default_trustee}))
         except IndyError as e:
-            print(Colors.FAIL + "Indy error: " + str(e) + Colors.ENDC)
+            print(Colors.FAIL + "Stop due to IndyError: " + str(e) + Colors.ENDC)
         except Exception as ex:
             print(Colors.FAIL + "Exception: " + str(ex) + Colors.ENDC)
 
