@@ -129,9 +129,9 @@ def get_version(program: str) -> str:
 class HTMLReport:
     __default_dir = os.path.join(os.path.dirname(__file__), "..")
 
-    __json_dir = __default_dir + "/test output/test results/"
+    __json_dir = __default_dir + "/test_output/test_results/"
 
-    __report_dir = __default_dir + "/reporter summary report/"
+    __report_dir = __default_dir + "/reporter_summary_report/"
 
     __head = """<html>
             <head>
