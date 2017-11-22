@@ -6,7 +6,6 @@ Created on Nov 22, 2017
 import time
 import sys
 import os
-from indy.error import IndyError
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.utils import *
 from libraries.constant import Colors, Constant
@@ -28,7 +27,7 @@ class TestScenarioBase(object):
     steps = None
     test_result = None
 
-    def init_test_data(self, total_steps, test_name):
+    def __init__(self, total_steps, test_name):
         self.test_result = TestResult(test_name)
         self.steps = create_step(total_steps)
         self.logger = Logger(test_name)
@@ -39,12 +38,12 @@ class TestScenarioBase(object):
     def execute_postcondition_steps(self):
         Common.clean_up_pool_and_wallet(self.pool_name, self.pool_handle, self.wallet_name, self.wallet_handle)
 
-    def execute_test_case(self):
+    async def execute_test_case(self):
         pass
 
-    async def execute_scenario(self):
+    def execute_scenario(self):
         begin_time = time.time()
-        self.init_test_data()
+#         self.init_test_data()
         self.execute_precondition_steps()
         Common.run_test_case(self.execute_test_case)
         self.execute_postcondition_steps()
