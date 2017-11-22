@@ -71,13 +71,13 @@ class Common():
                 print(Colors.FAIL + str(E) + Colors.ENDC)
 
     @staticmethod
-    def run(test_case):
+    def run_test_case(test_case):
         loop = asyncio.new_event_loop()
         loop.run_until_complete(test_case())
         loop.close()
 
     @staticmethod
-    def final_result(test_result, steps, begin_time, logger):
+    def make_final_result(test_result, steps, begin_time, logger):
         import time
         from libraries.result import Status
         for step in steps:
