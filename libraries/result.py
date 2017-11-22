@@ -7,8 +7,6 @@ Created on Nov 9, 2017
 import json
 import time
 import os
-import sys
-import logging
 
 
 class KeyWord:

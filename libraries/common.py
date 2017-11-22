@@ -71,9 +71,9 @@ class Common():
                 print(Colors.FAIL + str(E) + Colors.ENDC)
 
     @staticmethod
-    def run_test_case(test_case):
+    def run_async_method(method):
         loop = asyncio.new_event_loop()
-        loop.run_until_complete(test_case())
+        loop.run_until_complete(method())
         loop.close()
 
     @staticmethod
@@ -88,7 +88,7 @@ class Common():
 
         test_result.set_duration(time.time() - begin_time)
         test_result.write_result_to_file()
-        logger.save_log(test_result.get_status())
+        logger.save_log(test_result.get_test_status())
 
     @staticmethod
     async def build_and_send_nym_request(pool_handle, wallet_handle, submitter_did,

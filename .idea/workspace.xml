@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05ca301b-5283-430d-87b2-9897b9bb2706" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test_scripts/test_runner.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/common.py" afterPath="$PROJECT_DIR$/libraries/common.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/result.py" afterPath="$PROJECT_DIR$/libraries/result.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/reporter.py" afterPath="$PROJECT_DIR$/test_scripts/reporter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/test_scenario_base.py" afterPath="$PROJECT_DIR$/test_scripts/test_scenario_base.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,47 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="logger.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libraries/logger.py">
+      <file leaf-file-name="check_connection.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="52" column="50" lean-forward="false" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
-              <folding>
-                <element signature="e#55#65#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reporter.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test_scripts/reporter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-358">
-              <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#121#1515#0" expanded="false" />
-                <element signature="e#1544#3244#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libraries/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="constant.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libraries/constant.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="119">
+              <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -63,12 +32,101 @@
       <file leaf-file-name="result.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libraries/result.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-792">
-              <caret line="53" column="17" lean-forward="false" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+            <state relative-caret-position="340">
+              <caret line="30" column="30" lean-forward="false" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
               <folding>
-                <element signature="e#135#314#0" expanded="false" />
-                <element signature="e#335#374#0" expanded="false" />
+                <element signature="e#54#65#0" expanded="true" />
+                <element signature="e#109#288#0" expanded="false" />
+                <element signature="e#309#348#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libraries/common.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="64" column="34" lean-forward="true" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="remove_and_add_role.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+              <folding>
+                <element signature="e#53#64#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="keyrings_wallets.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/keyrings_wallets.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+              <folding>
+                <element signature="e#54#65#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="special_case_trust_anchor_role.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+              <folding>
+                <element signature="e#76#86#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="verify_messages_on_connection.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/verify_messages_on_connection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="731">
+              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="example.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/example.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_scenario_base.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_scripts/test_scenario_base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,11 +146,15 @@
       <find>TestReport</find>
       <find>test_report</find>
       <find>utils</find>
+      <find>Variables</find>
+      <find>TestScenario09.get_nym</find>
     </findStrings>
     <replaceStrings>
       <replace>TestResult</replace>
       <replace>test_result</replace>
       <replace>libraries</replace>
+      <replace>self</replace>
+      <replace>self.get_nym</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -110,7 +172,6 @@
         <option value="$PROJECT_DIR$/test scripts/acceptance test/test_scenario_09.py" />
         <option value="$PROJECT_DIR$/test scripts/reporter.py" />
         <option value="$PROJECT_DIR$/test scripts/acceptance test/verify_messages_on_connection.py" />
-        <option value="$PROJECT_DIR$/libraries/common.py" />
         <option value="$PROJECT_DIR$/libraries/step.py" />
         <option value="$PROJECT_DIR$/libraries/utils.py" />
         <option value="$PROJECT_DIR$/libraries/constant.py" />
@@ -121,12 +182,16 @@
         <option value="$PROJECT_DIR$/test scripts/acceptance test/example.py" />
         <option value="$PROJECT_DIR$/test scripts/test_scenario_base.py" />
         <option value="$PROJECT_DIR$/libraries/logger.py" />
-        <option value="$PROJECT_DIR$/libraries/result.py" />
         <option value="$PROJECT_DIR$/test_scripts/reporter.py" />
+        <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" />
+        <option value="$PROJECT_DIR$/libraries/result.py" />
+        <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
+        <option value="$PROJECT_DIR$/libraries/common.py" />
+        <option value="$PROJECT_DIR$/test_scripts/test_scenario_base.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1260" />
@@ -173,7 +238,11 @@
               <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
               <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
               <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="acceptance test" type="462c0819:PsiDirectoryNode" />
+              <item name="acceptance_tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -219,7 +288,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="7" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -247,7 +316,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -273,7 +342,7 @@
         <state relative-caret-position="646">
           <caret line="43" column="29" lean-forward="true" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
           <folding>
-            <element signature="e#55#65#0" expanded="true" />
+            <element signature="e#55#65#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -323,8 +392,9 @@
         <state relative-caret-position="1768">
           <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
-            <element signature="e#135#314#0" expanded="false" />
-            <element signature="e#335#374#0" expanded="false" />
+            <element signature="e#54#65#0" expanded="true" />
+            <element signature="e#109#288#0" expanded="false" />
+            <element signature="e#309#348#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -357,8 +427,9 @@
         <state relative-caret-position="969">
           <caret line="61" column="42" lean-forward="true" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
           <folding>
-            <element signature="e#135#314#0" expanded="false" />
-            <element signature="e#335#374#0" expanded="false" />
+            <element signature="e#54#65#0" expanded="true" />
+            <element signature="e#109#288#0" expanded="false" />
+            <element signature="e#309#348#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -384,13 +455,6 @@
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance test/test_scenario_04.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance test/test_scenario_09.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance test/test_scenario_11.py" />
-    <entry file="file://$PROJECT_DIR$/libraries/step.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance tests/__init__.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance tests/check_connection.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance tests/keyrings_wallets.py" />
@@ -400,13 +464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="74" column="39" lean-forward="false" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -436,14 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/constant.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -488,36 +537,160 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/result.py">
+    <entry file="file://$PROJECT_DIR$/test_scripts/reporter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-792">
-          <caret line="53" column="17" lean-forward="false" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+        <state relative-caret-position="1258">
+          <caret line="315" column="0" lean-forward="true" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
           <folding>
-            <element signature="e#135#314#0" expanded="false" />
-            <element signature="e#335#374#0" expanded="false" />
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#121#1515#0" expanded="false" />
+            <element signature="e#1544#3244#0" expanded="false" />
+            <element signature="e#3951#5968#0" expanded="false" />
+            <element signature="e#6072#6857#0" expanded="false" />
+            <element signature="e#6884#7384#0" expanded="false" />
+            <element signature="e#7419#7777#0" expanded="false" />
+            <element signature="e#7812#8198#0" expanded="false" />
+            <element signature="e#8221#8522#0" expanded="false" />
+            <element signature="e#8623#8723#0" expanded="false" />
+            <element signature="e#8964#9082#0" expanded="false" />
+            <element signature="e#9148#9284#0" expanded="false" />
+            <element signature="e#9310#9546#0" expanded="false" />
+            <element signature="e#9599#9885#0" expanded="false" />
+            <element signature="e#9933#10904#0" expanded="false" />
+            <element signature="e#10963#14526#0" expanded="false" />
+            <element signature="e#14596#18015#0" expanded="false" />
+            <element signature="e#18082#19040#0" expanded="false" />
+            <element signature="e#19074#19136#0" expanded="false" />
+            <element signature="e#19196#20433#0" expanded="false" />
+            <element signature="e#20515#20936#0" expanded="false" />
+            <element signature="e#20996#21198#0" expanded="false" />
+            <element signature="e#21223#21610#0" expanded="false" />
+            <element signature="e#21644#22077#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/constant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/step.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libraries/logger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="52" column="50" lean-forward="false" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
+        <state relative-caret-position="126">
+          <caret line="37" column="21" lean-forward="true" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/test_runner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
           <folding>
-            <element signature="e#55#65#0" expanded="true" />
+            <element signature="e#53#64#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/reporter.py">
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/keyrings_wallets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-358">
-          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#121#1515#0" expanded="false" />
-            <element signature="e#1544#3244#0" expanded="false" />
+            <element signature="e#54#65#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/verify_messages_on_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+          <folding>
+            <element signature="e#76#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/result.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="30" column="30" lean-forward="false" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding>
+            <element signature="e#54#65#0" expanded="true" />
+            <element signature="e#109#288#0" expanded="false" />
+            <element signature="e#309#348#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="64" column="34" lean-forward="true" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/test_scenario_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>

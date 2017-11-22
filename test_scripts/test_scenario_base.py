@@ -9,10 +9,10 @@ import os
 from indy.error import IndyError
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.utils import *
-from libraries.constant import Colors, Constant
+from libraries.constant import Constant
 from libraries.common import Common
 from libraries.logger import Logger
-from libraries.result import TestResult, Status
+from libraries.result import TestResult
 
 
 class TestScenarioBase(object):
@@ -28,7 +28,7 @@ class TestScenarioBase(object):
     steps = None
     test_result = None
 
-    def init_test_data(self, total_steps, test_name):
+    def __init__(self, total_steps, test_name):
         self.test_result = TestResult(test_name)
         self.steps = create_step(total_steps)
         self.logger = Logger(test_name)
@@ -36,21 +36,20 @@ class TestScenarioBase(object):
     def execute_precondition_steps(self):
         Common.clean_up_pool_and_wallet_folder(self.pool_name, self.wallet_name)
 
-    def execute_postcondition_steps(self):
-        Common.clean_up_pool_and_wallet(self.pool_name, self.pool_handle, self.wallet_name, self.wallet_handle)
+    async def execute_postcondition_steps(self):
+        await Common.clean_up_pool_and_wallet(self.pool_name, self.pool_handle, self.wallet_name, self.wallet_handle)
 
-    def execute_test_case(self):
+    async def execute_test_case(self):
         pass
 
-    async def execute_scenario(self):
+    def execute_scenario(self):
         begin_time = time.time()
-        self.init_test_data()
         self.execute_precondition_steps()
-        Common.run_test_case(self.execute_test_case)
-        self.execute_postcondition_steps()
-#         Common.make_final_result(self.test_report, self.steps, begin_time, self.logger)
+        Common.run_async_method(self.execute_test_case)
+        Common.run_async_method(self.execute_postcondition_steps)
+        Common.make_final_result(self.test_result, self.steps, begin_time, self.logger)
 
 
 if __name__ == '__main__':
-    test_scenario = TestScenarioBase()
+    test_scenario = TestScenarioBase(0, "test_base")
     test_scenario.execute_scenario()
