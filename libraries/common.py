@@ -77,17 +77,17 @@ class Common():
         loop.close()
 
     @staticmethod
-    def final_result(test_report, steps, begin_time):
+    def final_result(test_result, steps, begin_time):
         import time
-        from utils.report import Status
+        from libraries.result import Status
         for step in steps:
-            test_report.add_step(step)
+            test_result.add_step(step)
             if step.get_status() == Status.FAILED:
                 print('%s: ' % str(step.get_id()) + Colors.FAIL + 'failed\nMessage: ' + step.get_message() + Colors.ENDC)
-                test_report.set_test_failed()
+                test_result.set_test_failed()
 
-        test_report.set_duration(time.time() - begin_time)
-        test_report.write_result_to_file()
+        test_result.set_duration(time.time() - begin_time)
+        test_result.write_result_to_file()
 
     @staticmethod
     async def build_and_send_nym_request(pool_handle, wallet_handle, submitter_did,

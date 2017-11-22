@@ -24,7 +24,7 @@ from libraries.result import TestResult, Status
 
 class Variables:
     """  Needed some global variables. """
-    test_report = TestResult("Test_scenario_04_Keyrings_Wallets")
+    test_result = TestResult("Test_scenario_04_Keyrings_Wallets")
     pool_name = generate_random_string("test_pool")
     wallet_name = generate_random_string("test_wallet")
     debug = False
@@ -93,7 +93,7 @@ def test(folder_path=""):
 
     # Run test case and collect result
     Common.run(test_scenario_04_keyrings_wallets)
-    Common.final_result(Variables.test_report, Variables.steps, begin_time)
+    Common.final_result(Variables.test_result, Variables.steps, begin_time)
 
 
 if __name__ == '__main__':

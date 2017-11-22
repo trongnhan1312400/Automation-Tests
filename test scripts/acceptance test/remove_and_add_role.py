@@ -21,7 +21,7 @@ class Variables:
 
     # Data for creating test report
     test_name = "Test_Scenario_09_Remove_And_Add_Role"
-    test_report = TestResult(test_name)
+    test_result = TestResult(test_name)
 
     # Data for test case
     begin_time = 0
@@ -558,7 +558,7 @@ def test(folder_path=""):
 
     # Run test case and collect result
     Common.run(test_09_remove_and_add_role)
-    Common.final_result(Variables.test_report, Variables.steps, begin_time)
+    Common.final_result(Variables.test_result, Variables.steps, begin_time)
 
 
 if __name__ == '__main__':

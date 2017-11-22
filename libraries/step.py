@@ -7,7 +7,7 @@ Created on Nov 20, 2017
 
 class Step():
 
-    from utils.report import Status
+    from libraries.result import Status
 
     def __init__(self, step_id, name, status=Status.FAILED, message=""):
         self.__id = step_id
@@ -31,7 +31,7 @@ class Step():
         self.__status = status
 
     def set_name(self, name):
-        from utils.constant import Colors
+        from libraries.constant import Colors
         print(Colors.HEADER + "\n{0}. {1}\n".format(self.__id, name) + Colors.ENDC)
         self.__name = name
 

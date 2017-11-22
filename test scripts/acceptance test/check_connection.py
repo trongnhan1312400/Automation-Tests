@@ -14,7 +14,7 @@ from libraries.utils import *
 class Variables:
     # Data for generating report
     test_name = "Test_Scenario_03_Check_Connection"
-    test_report = TestResult(test_name)
+    test_result = TestResult(test_name)
 
     # Data using in testcase
     begin_time = 0
@@ -80,14 +80,14 @@ async def test_scenario_03_check_connection():
 def test(folder_path=""):
     # Set up the report
     begin_time = time.time()
-    Variables.test_report.setup_json_report()
+    Variables.test_result.setup_json_report()
 
     # Precondition
     test_precondition()
 
     # Run test case and collect result
     Common.run(test_scenario_03_check_connection)
-    Common.final_result(Variables.test_report, Variables.steps, begin_time)
+    Common.final_result(Variables.test_result, Variables.steps, begin_time)
 
 
 if __name__ == '__main__':

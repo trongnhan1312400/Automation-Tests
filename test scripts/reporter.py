@@ -525,7 +525,6 @@ class HTMLReport:
         self.__filter = None
         HTMLReport.__init_report_folder()
 
-
     def generate_report(self, file_filter: dict):
         print("Generating a html report...")
         self.__filter = FileNameFilter(file_filter)

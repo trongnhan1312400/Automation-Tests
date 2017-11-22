@@ -24,7 +24,7 @@ from libraries.common import Common
 # -----------------------------------------------------------------------------------------
 class Variables:
     """  Needed some global variables. """
-    test_report = TestResult("Test_Scenario_11_Special_Case_Trust_Anchor_Role")
+    test_result = TestResult("Test_Scenario_11_Special_Case_Trust_Anchor_Role")
     pool_name = generate_random_string("test_pool")
     wallet_name = generate_random_string("test_wallet")
     debug = False
@@ -197,14 +197,14 @@ async def test_scenario_11_special_case_trust_anchor_role():
 def test(folder_path=""):
     # Set up the report
     begin_time = time.time()
-    Variables.test_report.setup_json_report()
+    Variables.test_result.setup_json_report()
 
     # Precondition
     test_precondition()
 
     # Run test case and collect result
     Common.run(test_scenario_11_special_case_trust_anchor_role)
-    Common.final_result(Variables.test_report, Variables.steps, begin_time)
+    Common.final_result(Variables.test_result, Variables.steps, begin_time)
 
 
 if __name__ == '__main__':
