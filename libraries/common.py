@@ -77,7 +77,7 @@ class Common():
         loop.close()
 
     @staticmethod
-    def final_result(test_result, steps, begin_time):
+    def final_result(test_result, steps, begin_time, logger):
         import time
         from libraries.result import Status
         for step in steps:
@@ -88,6 +88,7 @@ class Common():
 
         test_result.set_duration(time.time() - begin_time)
         test_result.write_result_to_file()
+        logger.save_log(test_result.get_status())
 
     @staticmethod
     async def build_and_send_nym_request(pool_handle, wallet_handle, submitter_did,
