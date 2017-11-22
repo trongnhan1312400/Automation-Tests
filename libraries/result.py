@@ -7,6 +7,7 @@ Created on Nov 9, 2017
 import json
 import time
 import os
+from .constant import Colors
 
 
 class KeyWord:
@@ -63,8 +64,8 @@ class TestResult:
         self.__test_result[KeyWord.TEST_CASE] = test_case_name
         self.__test_result[KeyWord.RESULT] = Status.PASSED
         self.__test_result[KeyWord.START_TIME] = str(time.strftime("%Y-%m-%d_%H-%M-%S"))
-        self.__json_file_path = "{0}/{1}_{2}.json".format(TestResult.__json_dir, self.__test_result[KeyWord.TEST_CASE],
-                                                          self.__test_result[KeyWord.START_TIME])
+        self.__json_file_path = "{}{}_{}.json".format(TestResult.__json_dir, self.__test_result[KeyWord.TEST_CASE],
+                                                      self.__test_result[KeyWord.START_TIME])
 
     def set_result(self, result):
         """
@@ -111,6 +112,7 @@ class TestResult:
         self.__test_result[KeyWord.RUN] = self.__run
         with open(self.__json_file_path, "w+") as outfile:
             json.dump(self.__test_result, outfile, ensure_ascii=False, indent=2)
+            print(Colors.OKBLUE + "\nJson file has been written at: {}\n".format(self.__json_file_path) + Colors.ENDC)
 
     def set_test_failed(self):
         """

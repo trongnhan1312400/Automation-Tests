@@ -19,7 +19,7 @@ from test_scripts.test_scenario_base import TestScenarioBase
 class TestScenario09(TestScenarioBase):
 
     def __init__(self):
-        super().__init__(total_steps=31, test_name="test_scenario09_remove_and_add_role")
+        super().__init__(total_steps=29, test_name="test_scenario09_remove_and_add_role")
 
     async def execute_test_case(self):
         """
@@ -27,7 +27,7 @@ class TestScenario09(TestScenarioBase):
         There is a bug in this scenario (in step 22, 23 24) so we log a bug here.
         """
         # 1. Create and open wallet, pool ledger.
-        step = 1
+        step = 0
         self.steps[step].set_name("Create and open wallet, pool ledger")
         result = await utils.perform(self.steps[1], Common.prepare_pool_and_wallet,
                                      self.pool_name, self.wallet_name, Constant.pool_genesis_txn_file)
@@ -35,7 +35,7 @@ class TestScenario09(TestScenarioBase):
         (self.pool_handle, self.wallet_handle) = result
 
         # 2. Create DIDs.
-        step = 2
+        step = 1
         self.steps[step].set_name("Create DIDs")
 
         (default_trustee_did, default_trustee_verkey) = None, None
@@ -115,70 +115,70 @@ class TestScenario09(TestScenarioBase):
         # ==========================================================================================================
 
         # 3. Using default Trustee to create Trustee1.
-        step = 3
+        step = 2
         self.steps[step].set_name("Using default Trustee to create Trustee1")
         await self.add_nym(self.steps[step], default_trustee_did, trustee1_did, trustee1_verkey, None, Roles.TRUSTEE)
 
         # 4. Verify GET NYM - Trustee1.
-        step = 4
+        step = 3
         self.steps[step].set_name("Verify GET NYM - Trustee1")
         await self.get_nym(self.steps[step], default_trustee_did, trustee1_did)
 
         # 5. Using Trustee1 to create Steward1.
-        step = 5
+        step = 4
         self.steps[step].set_name("Using Trustee1 to create Steward1")
         await self.add_nym(self.steps[step], trustee1_did, steward1_did, steward1_verkey, None, Roles.STEWARD)
 
         # 6. Verify GET NYM - Steward1.
-        step = 6
+        step = 5
         self.steps[step].set_name("Verify GET NYM - Steward1")
         await self.get_nym(self.steps[step], trustee1_did, steward1_did)
 
         # 7. Add identity (no role) by Trustee1.
-        step = 7
+        step = 6
         self.steps[step].set_name("Add identity (no role) by Trustee1")
         await self.add_nym(self.steps[step], trustee1_did, user3_did, user3_verkey, None, None)
 
         # 8. Verify GET NYM - no role.
-        step = 8
+        step = 7
         self.steps[step].set_name("Verify GET NYM - no role")
         await self.get_nym(self.steps[step], trustee1_did, user3_did)
 
         # Role TGB is not exist so we do not execute step 9.
         # 9. Using Trustee1 to create a TGB role.
-        step = 9
+        step = 8
         self.steps[step].set_name("Using Trustee1 to create a TGB role (SKIP)")
         self.steps[step].set_status(Status.PASSED)
 
         # Role TGB is not exist so we do not execute step 12.
         # 10. Verify GET NYM - TGB1.
-        step = 10
+        step = 9
         self.steps[step].set_name("Verify GET NYM - TGB1 (SKIP)")
         self.steps[step].set_status(Status.PASSED)
 
         # 11. Using Steward1 to create TrustAnchor1.
-        step = 11
+        step = 10
         self.steps[step].set_name("Using Steward1 to create TrustAnchor1")
         await self.add_nym(self.steps[step], steward1_did, trustanchor1_did, trustanchor1_verkey,
                            None, Roles.TRUST_ANCHOR)
 
         # 12. Verify GET NYM - TrustAnchor1.
-        step = 12
+        step = 11
         self.steps[step].set_name("Verify GET NYM - TrustAnchor1")
         await self.get_nym(self.steps[step], steward1_did, trustanchor1_did)
 
         # 13. Verify add identity (no role) by Steward1.
-        step = 13
+        step = 12
         self.steps[step].set_name("Verify add identity (no role) by Steward1")
         await self.add_nym(self.steps[step], steward1_did, user4_did, user4_verkey, None, None)
 
         # 14. Verify GET NYM.
-        step = 14
+        step = 13
         self.steps[step].set_name("Verify GET NYM - no role")
         await self.get_nym(self.steps[step], steward1_did, user4_did)
 
         # 15. Verify that a Steward cannot create another Steward.
-        step = 15
+        step = 14
         self.steps[step].set_name("Verify that Steward cannot create another Steward")
         (temp, message) = await self.add_nym(self.steps[step], steward1_did, steward2_did, steward2_verkey, None,
                                              Roles.STEWARD, error_code=304)
@@ -191,7 +191,7 @@ class TestScenario09(TestScenarioBase):
             self.steps[step].set_message(message)
 
         # 16. Verify that a Steward cannot create a Trustee.
-        step = 16
+        step = 15
         self.steps[step].set_name("Verify that a Steward cannot create a Trustee")
         (temp, message) = await self.add_nym(self.steps[step], steward1_did, trustee1_did, trustee1_verkey,
                                              None, Roles.TRUSTEE, error_code=304)
@@ -204,17 +204,17 @@ class TestScenario09(TestScenarioBase):
             self.steps[step].set_message(message)
 
         # 17. Using TrustAnchor1 to add a NYM.
-        step = 17
+        step = 16
         self.steps[step].set_name("Using TrustAnchor1 to add a NYM")
         await self.add_nym(self.steps[step], trustanchor1_did, user1_did, user1_verkey, None, None)
 
         # 18. Verify GET NYM - User1.
-        step = 18
+        step = 17
         self.steps[step].set_name("Verify GET NYM - User1")
         await self.get_nym(self.steps[step], trustanchor1_did, user1_did)
 
         # 19. Verify that TrustAnchor cannot create another TrustAnchor.
-        step = 19
+        step = 18
         self.steps[step].set_name("Verify that TrustAnchor cannot create another TrustAnchor")
         (temp, message) = await self.add_nym(self.steps[step], trustanchor1_did, trustanchor2_did, trustanchor2_verkey,
                                              None, Roles.TRUST_ANCHOR, error_code=304)
@@ -228,7 +228,7 @@ class TestScenario09(TestScenarioBase):
 
         # 20. Using default Trustee to remove new roles.
         bug_is_430 = "Bug: https://jira.hyperledger.org/browse/IS-430"
-        step = 20
+        step = 19
         self.steps[step].set_name("Using default Trustee to remove new roles")
         message_20 = ""
         (temp, message) = await self.add_nym(self.steps[step], default_trustee_did, trustee1_did, trustee1_verkey,
@@ -303,7 +303,7 @@ class TestScenario09(TestScenarioBase):
             self.steps[step].set_status(Status.PASSED)
 
         # 21. Verify that removed Trustee1 cannot create Trustee or Steward.
-        step = 21
+        step = 20
         self.steps[step].set_name("Verify that removed Trustee1 cannot create Trustee or Steward")
         message_21 = ""
         (temp, message) = await self.add_nym(self.steps[step], trustee1_did, trustee2_did, trustee2_verkey,
@@ -336,7 +336,7 @@ class TestScenario09(TestScenarioBase):
             self.steps[step].set_status(Status.PASSED)
 
         # 22. Verify that removed Steward1 cannot create TrustAnchor.
-        step = 22
+        step = 21
         self.steps[step].set_name("Verify that removed Steward1 cannot create TrustAnchor")
         (temp, message) = await self.add_nym(self.steps[step], steward1_did, trustanchor2_did, trustanchor2_verkey,
                                              None, Roles.TRUST_ANCHOR, error_code=304)
@@ -349,12 +349,12 @@ class TestScenario09(TestScenarioBase):
             self.steps[step].set_message("{}\n{}".format(message, bug_is_430))
 
         # 23. Using default Trustee to create Trustee1.
-        step = 23
+        step = 22
         self.steps[step].set_name("Using default Trustee to create Trustee1")
         await self.add_nym(self.steps[step], default_trustee_did, trustee1_did, trustee1_verkey, None, Roles.TRUSTEE)
 
         # 24. Using Trustee1 to add Steward1 and TGB1.
-        step = 24
+        step = 23
         self.steps[step].set_name("Using Trustee1 to add Steward1 and TGB1")
         await self.add_nym(self.steps[step], trustee1_did, steward1_did, steward1_verkey, None, Roles.STEWARD)
 
@@ -365,7 +365,7 @@ class TestScenario09(TestScenarioBase):
         #     message_26 += "\nCannot use Trustee1 to add TGB1 - " + message
 
         # 25. Verify that Steward1 cannot add back a TrustAnchor removed by TrustTee.
-        step = 25
+        step = 24
         self.steps[step].set_name("Verify that Steward1 cannot add back a TrustAnchor removed by TrustTee")
         (temp, message) = await self.add_nym(self.steps[step], steward1_did, trustanchor1_did, trustanchor1_verkey,
                                              None, Roles.TRUST_ANCHOR, error_code=304)
@@ -379,7 +379,7 @@ class TestScenario09(TestScenarioBase):
             self.steps[step].set_message(message)
 
         # 26. Verify that Steward cannot remove a Trustee.
-        step = 26
+        step = 25
         self.steps[step].set_name("Verify that Steward cannot remove a Trustee")
         (temp, message) = await self.add_nym(self.steps[step], steward1_did, trustee1_did,
                                              trustee1_verkey, None, Roles.NONE, error_code=304)
@@ -391,7 +391,7 @@ class TestScenario09(TestScenarioBase):
             self.steps[step].set_message(message)
 
         # 27. Verify that Trustee can add new Steward.
-        step = 27
+        step = 26
         self.steps[step].set_name("Verify that Trustee can add new Steward")
         message_27 = ""
         (temp, message) = await self.add_nym(self.steps[step], trustee1_did, steward2_did,
@@ -413,7 +413,7 @@ class TestScenario09(TestScenarioBase):
             self.steps[step].set_status(Status.PASSED)
 
         # 28. Verify that Steward cannot remove another Steward.
-        step = 28
+        step = 27
         self.steps[step].set_name("Verify that Steward cannot remove another Steward")
         (temp, message) = await self.add_nym(self.steps[step], steward1_did, steward2_did,
                                              steward2_verkey, None, Roles.NONE, error_code=304)
@@ -425,7 +425,7 @@ class TestScenario09(TestScenarioBase):
                 self.steps[step].set_message(message)
 
         # 29. Verify Steward can add a TrustAnchor.
-        step = 29
+        step = 28
         self.steps[step].set_name("Verify Steward can add a TrustAnchor")
         await self.add_nym(self.steps[step], steward2_did, trustanchor3_did, trustanchor3_verkey,
                            None, Roles.TRUST_ANCHOR)
