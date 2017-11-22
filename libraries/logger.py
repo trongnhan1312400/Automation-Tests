@@ -39,7 +39,7 @@ class Printer(object):
 
 
 class Logger:
-    __log_dir = os.path.join(os.path.dirname(__file__), "..") + "/test output/log files/"
+    __log_dir = os.path.join(os.path.dirname(__file__), "..") + "/test_output/log_files/"
     __KEEP_LOG_FLAG = "-keeplog"
     __LOG_LVL = logging.DEBUG
 

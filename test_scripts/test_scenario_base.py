@@ -3,13 +3,15 @@ Created on Nov 22, 2017
 
 @author: tien.anh.nguyen
 '''
-
+import time
 import sys
 import os
+from indy.error import IndyError
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.utils import *
 from libraries.constant import Colors, Constant
 from libraries.common import Common
+from libraries.logger import Logger
 from libraries.result import TestResult, Status
 
 
@@ -33,7 +35,7 @@ class TestScenarioBase(object):
 
     def execute_precondition_steps(self):
         Common.clean_up_pool_and_wallet_folder(self.pool_name, self.wallet_name)
-    
+
     def execute_postcondition_steps(self):
         Common.clean_up_pool_and_wallet(self.pool_name, self.pool_handle, self.wallet_name, self.wallet_handle)
 

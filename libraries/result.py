@@ -52,9 +52,9 @@ class Printer(object):
 
 
 class TestResult:
-    __default_result_dir = os.path.join(os.path.dirname(__file__), "..") + "/test output/"
-    __json_dir = __default_result_dir + "test results/"
-    __log_dir = __default_result_dir + "log files/"
+    __default_result_dir = os.path.join(os.path.dirname(__file__), "..") + "/test_output/"
+    __json_dir = __default_result_dir + "test_results/"
+    __log_dir = __default_result_dir + "log_files/"
     __log_level = logging.DEBUG
 
     def __init__(self, test_case_name):
