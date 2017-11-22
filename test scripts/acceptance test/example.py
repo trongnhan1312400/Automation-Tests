@@ -3,7 +3,7 @@ Created on Nov 22, 2017
 
 @author: tien.anh.nguyen
 '''
-from test_scenarios.test_scenario_base import TestScenarioBase
+from
 class TestScenario1(TestScenarioBase):
     variable_2 = "abcd"
     def __init__(self):

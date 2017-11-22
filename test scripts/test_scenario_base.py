@@ -4,9 +4,12 @@ Created on Nov 22, 2017
 @author: tien.anh.nguyen
 '''
 
-from utils.utils import generate_random_string
-from utils.constant import Constant
-from utils.common import Common
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from libraries.utils import *
+from libraries.constant import Constant
+from libraries.common import Common
 
 
 class TestScenarioBase(object):
@@ -16,6 +19,12 @@ class TestScenarioBase(object):
     pool_name = generate_random_string("test_pool")
     wallet_name = generate_random_string("test_wallet")
     pool_genesis_txn_file = Constant.pool_genesis_txn_file
+    logger = None
+    steps = None
+    test_result = None
+
+    def init_test_data(self):
+        pass
 
     def execute_precondition_steps(self):
         Common.clean_up_pool_and_wallet_folder(self.pool_name, self.wallet_name)
@@ -24,6 +33,7 @@ class TestScenarioBase(object):
         pass
 
     def execute_scenario(self):
+        self.init_test_data()
         self.execute_precondition_steps()
         self.execute_test_case()
         '''
