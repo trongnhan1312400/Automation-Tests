@@ -16,10 +16,11 @@ original_pool_genesis_txn_file = Constant.original_pool_genesis_txn_file
 the_error_message = "the information needed to connect was not found"
 
 """ cmds """
-back_up_pool_genesis_file = 'cp ' + pool_genesis_txn_file + " " + original_pool_genesis_txn_file
+back_up_pool_genesis_file = 'sudo cp ' + pool_genesis_txn_file + " " + original_pool_genesis_txn_file
 exit_sovrin = 'exit'
-remove_pool_genesis_file = 'rm ' + pool_genesis_txn_file
-restore_pool_genesis_file = 'cp ' + original_pool_genesis_txn_file + " " + pool_genesis_txn_file
+remove_pool_genesis_file = 'sudo rm ' + pool_genesis_txn_file
+restore_pool_genesis_file = 'sudo cp ' + original_pool_genesis_txn_file + " " + pool_genesis_txn_file
+create_empty_pool_genesis_file = 'sudo touch ' + pool_genesis_txn_file
 
 
 class TestScenario02(TestScenarioBase):
@@ -27,9 +28,10 @@ class TestScenario02(TestScenarioBase):
     def __init__(self):
         super().__init__(test_name="test_scenario_02_verify_messages_on_connection")
 
-    def execute_precondition_steps(self):
+    async def execute_precondition_steps(self):
         os.system(back_up_pool_genesis_file)
-        open(pool_genesis_txn_file, 'w').close()
+        os.system(remove_pool_genesis_file)
+        os.system(create_empty_pool_genesis_file)
 
     async def execute_postcondition_steps(self):
         os.system(remove_pool_genesis_file)
