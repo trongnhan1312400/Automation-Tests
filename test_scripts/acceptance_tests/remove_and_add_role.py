@@ -188,7 +188,7 @@ class TestScenario09(TestScenarioBase):
 
         # 17. Using TrustAnchor1 to add a NYM.
         self.steps.add_step("Using TrustAnchor1 to add a NYM")
-        await self.add_nym(self.steps, trustanchor1_did, user1_did, user1_verkey, None, None)
+        await self.add_nym(trustanchor1_did, user1_did, user1_verkey, None, None)
 
         # 18. Verify GET NYM - User1.
         self.steps.add_step("Verify GET NYM - User1")

@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05ca301b-5283-430d-87b2-9897b9bb2706" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/common.py" afterPath="$PROJECT_DIR$/libraries/common.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/constant.py" afterPath="$PROJECT_DIR$/libraries/constant.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/logger.py" afterPath="$PROJECT_DIR$/libraries/logger.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/result.py" afterPath="$PROJECT_DIR$/libraries/result.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/step.py" afterPath="$PROJECT_DIR$/libraries/step.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/utils.py" afterPath="$PROJECT_DIR$/libraries/utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/reporter.py" afterPath="$PROJECT_DIR$/test_scripts/reporter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/test_scenario_base.py" afterPath="$PROJECT_DIR$/test_scripts/test_scenario_base.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="remove_and_add_role.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="remove_and_add_role.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="267" column="49" lean-forward="false" selection-start-line="267" selection-start-column="49" selection-end-line="267" selection-end-column="49" />
+            <state relative-caret-position="556">
+              <caret line="190" column="27" lean-forward="false" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
               <folding>
                 <element signature="e#53#64#0" expanded="true" />
               </folding>
@@ -79,10 +69,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="special_case_trust_anchor_role.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="special_case_trust_anchor_role.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="-1037">
               <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
               <folding />
             </state>
@@ -201,8 +191,8 @@
         <option value="$PROJECT_DIR$/test_scripts/test_scenario_base.py" />
         <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" />
         <option value="$PROJECT_DIR$/libraries/constant.py" />
-        <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
         <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py" />
+        <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
       </list>
     </option>
   </component>
@@ -508,16 +498,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="267" column="49" lean-forward="false" selection-start-line="267" selection-start-column="49" selection-end-line="267" selection-end-column="49" />
-          <folding>
-            <element signature="e#53#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/keyrings_wallets.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
@@ -540,9 +520,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="-1037">
           <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="190" column="27" lean-forward="false" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+          <folding>
+            <element signature="e#53#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
