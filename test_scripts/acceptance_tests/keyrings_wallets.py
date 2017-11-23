@@ -3,7 +3,7 @@ Created on Nov 8, 2017
 
 @author: khoi.ngo
 
-Contains test script of test scenario 04: keyrings wallets.
+Containing test script of test scenario 04: keyrings wallets.
 """
 
 import json

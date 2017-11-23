@@ -3,7 +3,7 @@ Created on Nov 10, 2017
 
 @author: nhan.nguyen
 
-Contains test script of test scenario 03: check connection.
+Containing test script of test scenario 03: check connection.
 """
 
 import json
