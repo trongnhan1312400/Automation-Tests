@@ -2,6 +2,8 @@
 Created on Nov 22, 2017
 
 @author: khoi.ngo
+
+
 """
 import time
 import sys
@@ -54,7 +56,7 @@ class TestScenarioBase(object):
         """
         await Common.clean_up_pool_and_wallet(self.pool_name, self.pool_handle, self.wallet_name, self.wallet_handle)
 
-    async def execute_test_case(self):
+    async def execute_test_steps(self):
         """
         The method where contain all main script of a test scenario.
         All test scenario inherit TestScenarioBase have to override this method.
@@ -71,7 +73,3 @@ class TestScenarioBase(object):
         Common.run_async_method(self.execute_postcondition_steps)
         Common.make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
 
-
-if __name__ == '__main__':
-    test_scenario = TestScenarioBase("test_base")
-    test_scenario.execute_scenario()

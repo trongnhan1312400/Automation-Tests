@@ -2,6 +2,8 @@
 Created on Nov 10, 2017
 
 @author: nhan.nguyen
+
+
 """
 
 import json
@@ -21,7 +23,7 @@ class TestScenario03(TestScenarioBase):
     def __init__(self):
         super().__init__(test_name="test_scenario_03_check_connection")
 
-    async def execute_test_case(self):
+    async def execute_test_steps(self):
         pool_config = json.dumps({"genesis_txn": str(Constant.pool_genesis_txn_file)})
         # 1. Create pool ledger
         self.steps.add_step("Create pool ledger")

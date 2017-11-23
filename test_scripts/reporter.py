@@ -1,3 +1,10 @@
+"""
+Created on Nov 12, 2017
+
+@author: nghia.huynh
+
+This file contains all function and class to make a HTML report
+"""
 import os
 import json
 import socket
