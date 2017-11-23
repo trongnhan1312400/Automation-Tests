@@ -6,7 +6,9 @@ Created on Nov 20, 2017
 
 
 class Step():
-
+    """
+    Class manage information of a test step.
+    """
     from libraries.result import Status
 
     def __init__(self, step_id, name, status=Status.FAILED, message=""):
