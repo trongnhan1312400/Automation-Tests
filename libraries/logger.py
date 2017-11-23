@@ -22,13 +22,13 @@ class Printer(object):
     def __init__(self, *files):
         self.files = files
 
-    def write(self, obj):
+    def write(self, content):
         """
         Write a content into several files.
-        :param obj: content you want to write.
+        :param content: (optional) content you want to write.
         """
         for f in self.files:
-            f.write(obj)
+            f.write(content)
             f.flush()  # Want this content is displayed immediately on file
 
     def flush(self):
@@ -40,6 +40,9 @@ class Printer(object):
 
 
 class Logger:
+    """
+    Catch the log written by Python on console.
+    """
     __log_dir = os.path.join(os.path.dirname(__file__), "..") + "/test_output/log_files/"
     __KEEP_LOG_FLAG = "-l"
     __LOG_LVL = logging.DEBUG
@@ -53,10 +56,10 @@ class Logger:
         sys.stdout = Printer(sys.stdout, self.__log)
         logging.basicConfig(stream=sys.stdout, level=Logger.__LOG_LVL)
 
-    def save_log(self, test_status: str):
+    def save_log(self, test_status: str = Status.FAILED):
         """
-        If "-keeplog" is exist in sys.argv or test_status is Failed then keeping the log file.
-        If test_status is Passed and missing "-keeplog" from sys.argv then deleting log file.
+        If "-l" is exist in sys.argv or test_status is Failed then keeping the log file.
+        If test_status is Passed and missing "-l" from sys.argv then deleting log file.
         :param test_status: Passed of Failed
         """
         self.__log.close()
@@ -72,6 +75,10 @@ class Logger:
 
     @staticmethod
     def __init_log_folder():
+        """
+        Create log_files folder if it is not exist
+        :return:
+        """
         try:
             os.makedirs(Logger.__log_dir)
         except OSError as e:

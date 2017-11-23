@@ -7,6 +7,7 @@ Created on Nov 9, 2017
 import json
 import time
 import os
+import errno
 from .constant import Colors
 
 
@@ -26,38 +27,13 @@ class Status:
     FAILED = "Failed"
 
 
-class Printer(object):
-    """
-    Class that write content to several file.
-    Use this class when you want to write log
-    not only on console but only on some other files.
-    """
-    def __init__(self, *files):
-        self.files = files
-
-    def write(self, obj):
-        """
-        Write a content into several files.
-
-        :param obj: content you want to write.
-        """
-        for f in self.files:
-            f.write(obj)
-            f.flush()  # Want this content is displayed immediately on file
-
-    def flush(self):
-        for f in self.files:
-            f.flush()
-
-
 class TestResult:
     __json_dir = os.path.join(os.path.dirname(__file__), "..") + "/test_output/test_results/"
 
     def __init__(self, test_case_name):
         """
         Constructor of a TestResult instance.
-
-        :param test_case_name:
+        :param test_case_name: (optional) name of test case
         """
         self.__test_result = {}  # Store information of a test case
         self.__run = []  # Store information of steps in test case
@@ -70,15 +46,13 @@ class TestResult:
     def set_result(self, result):
         """
         Set a result (PASSED or FAILED) for test case.
-
-        :param result:
+        :param result: (optional) result of test.
         """
         self.__test_result[KeyWord.RESULT] = result
 
     def set_duration(self, duration):
         """
         Set duration for test.
-
         :param duration: (second)
         """
         self.__test_result[KeyWord.DURATION] = round(duration * 1000)
@@ -86,9 +60,8 @@ class TestResult:
     def set_step_status(self, step_summary: str, status: str = Status.PASSED, message: str = None):
         """
         Set status and message for specify step.
-
-        :param step_summary: title of step.
-        :param status: PASSED or FAILED.
+        :param step_summary: (optional) title of step.
+        :param status: (optional) PASSED or FAILED.
         :param message: anything that involve to step like Exception, Log,...
         """
         temp = {KeyWord.STEP: step_summary, KeyWord.STATUS: status, KeyWord.MESSAGE: message}
@@ -97,8 +70,7 @@ class TestResult:
     def add_step(self, step):
         """
         Add a step to report
-        :param step:
-        :return:
+        :param step: (optional) a Step object in step.py
         """
         if not step:
             return
@@ -137,7 +109,9 @@ class TestResult:
     def __init_output_folder():
         """
         Create test_output directory if it not exist
-        :return:
         """
-        if not os.path.exists(TestResult.__json_dir):
+        try:
             os.makedirs(TestResult.__json_dir)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise e

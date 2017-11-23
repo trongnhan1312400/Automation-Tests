@@ -38,6 +38,7 @@ class Constant:
     import os
     work_dir = os.path.expanduser('~') + os.sep + ".indy"
     seed_default_trustee = "000000000000000000000000Trustee1"
+
     pool_genesis_txn_file = os.path.expanduser('~') + os.sep + ".sovrin/pool_transactions_sandbox_genesis"
     domain_transactions_sandbox_genesis = os.path.expanduser('~') + os.sep + ".sovrin/domain_transa" \
                                                                              "ctions_sandbox_genesis "
