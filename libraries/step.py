@@ -78,11 +78,5 @@ class Step():
     def set_status(self, status):
         self.__status = status
 
-#     @ObsoleteHeaderDefect
-#     def set_name(self, name):
-#         from libraries.constant import Colors
-#         print(Colors.HEADER + "\n{0}. {1}\n".format(self.__id, name) + Colors.ENDC)
-#         self.__name = name
-
     def set_message(self, message):
         self.__message = message
