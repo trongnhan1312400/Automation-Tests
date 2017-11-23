@@ -5,6 +5,7 @@ import platform
 import glob
 import sys
 import subprocess
+import errno
 
 
 class FileNameGetter:
@@ -73,23 +74,6 @@ class FileNameFilter:
     def get_filter(self):
         return self.__filter
 
-    def __parse_filter(self, arg: str):
-        """
-        Parse "arg" to list of filter
-        Now, just support "name" and "date"
-        :param arg:
-        :return:
-        """
-        if not arg:
-            return
-
-        list_filter = arg.split(FileNameFilter.__FILTER_REGEX)
-        for f in list_filter:
-            temp = f.split(FileNameFilter.__VALUE_REGEX)
-            if len(temp) == 2:
-                if temp[0] in FileNameFilter.__FILTER_SUPPORTED:
-                    self.__filter[temp[0]] = temp[1]
-
     def __check(self, file_name: str) -> bool:
         """
         Check if the file name satisfy the condition
@@ -126,7 +110,7 @@ def get_version(program: str) -> str:
     return "Cannot find version for '{}'".format(program)
 
 
-class HTMLReport:
+class HTMLReporter:
     __default_dir = os.path.join(os.path.dirname(__file__), "..")
 
     __json_dir = __default_dir + "/test_output/test_results/"
@@ -343,81 +327,6 @@ class HTMLReport:
         self.__configuration_table = self.__configuration_table.replace("v_anoncreds", get_version("indy-anoncreds"))
         self.__configuration_table = self.__configuration_table.replace("v_indynode", get_version("indy-node"))
         self.__configuration_table = self.__configuration_table.replace("v_sovrin", get_version("sovrin"))
-        # dpkg -l | grep 'indy-plenum'
-        # dpkg -l | grep 'indy-anoncreds'
-        # dpkg -l | grep 'indy-node'
-        # dpkg -l | grep 'sovrin'
-
-    def make_report_content(self, path_to_json):
-        """
-        Generating the report content by reading all json file within the inputted path
-        :param path_to_json:
-        """
-
-        # this finds our json files
-        json_files = [pos_json for pos_json in os.listdir(path_to_json) if pos_json.endswith('.json')]
-        passed = 0
-        failed = 0
-        total = 0
-
-        for index, js in enumerate(json_files):
-            with open(os.path.join(path_to_json, js)) as json_file:
-                json_text = json.load(json_file)
-
-                # summary item
-                testcase = json_text['testcase']
-                result = json_text['result']
-                starttime = json_text['starttime']
-                duration = json_text['duration']
-
-                # staticticTable items
-                total = total + int(duration)
-                if result == "Passed":
-                    passed = passed + 1
-
-                    temp_testcase = self.__passed_testcase_template
-                    temp_testcase = temp_testcase.replace("tc_name", testcase)
-                    temp_testcase = temp_testcase.replace("tc_starttime", starttime)
-                    temp_testcase = temp_testcase.replace("tc_duration", str(duration))
-                    # Add passed test case into  table
-                    self.__passed_testcase_table = self.__passed_testcase_table + temp_testcase
-
-                elif result == "Failed":
-                    failed = failed + 1
-
-                    temp_testcase = self.__failed_testcase_template
-                    temp_testcase = temp_testcase.replace("tc_name", testcase)
-                    temp_testcase = temp_testcase.replace("tc_starttime", starttime)
-                    temp_testcase = temp_testcase.replace("tc_duration", str(duration))
-                    temp_testcase = temp_testcase.replace("tc_link", testcase.replace(" ", ""))
-                    # Add failed test case into  table
-                    self.__failed_testcase_table = self.__failed_testcase_table + temp_testcase
-
-                    test_log = self.__table_test_log
-                    test_log = test_log.replace("test_name", testcase)
-                    test_log = test_log.replace("tc_link", testcase.replace(" ", ""))
-
-                    self.__table_test_log_content = self.__table_test_log_content + test_log
-
-                    # loop for each step
-                    for i in range(0, len(json_text['run'])):
-                        if json_text['run'][i]['status'] == "Passed":
-                            temp = self.__passed_test_log
-                        else:
-                            temp = self.__failed_test_log
-                            temp = temp.replace("error_message", json_text['run'][i]['message'])
-
-                        temp = temp.replace("step_num", str(i + 1))
-                        temp = temp.replace("step_name", json_text['run'][i]['step'])
-                        temp = temp.replace("step_status", json_text['run'][i]['status'])
-                        self.__table_test_log_content = self.__table_test_log_content + temp
-
-                    self.__table_test_log_content = self.__table_test_log_content + self.__end_table + self.__go_to_summary
-
-        self.__statictics_table = self.__statictics_table.replace("plan_name", str(passed))
-        self.__statictics_table = self.__statictics_table.replace("passed_num", str(passed))
-        self.__statictics_table = self.__statictics_table.replace("failed_num", str(failed))
-        self.__statictics_table = self.__statictics_table.replace("total_time", str(total))
 
     def make_report_content_by_list(self, list_json: list):
         """
@@ -441,7 +350,7 @@ class HTMLReport:
                 starttime = json_text['starttime']
                 duration = json_text['duration']
 
-                # staticticTable items
+                # statictic Table items
                 total = total + int(duration)
                 if result == "Passed":
                     passed = passed + 1
@@ -490,47 +399,16 @@ class HTMLReport:
         self.__statictics_table = self.__statictics_table.replace("failed_num", str(failed))
         self.__statictics_table = self.__statictics_table.replace("total_time", str(total))
 
-    def make_html_report(self, json_folder, suite_name):
-        """
-        Generating completely the report.
-        :param json_folder:
-        :param suite_name:
-        """
-
-        self.make_suite_name(suite_name)
-        self.make_configurate_table()
-        self.make_report_content(json_folder)
-
-        # Write to file.
-        print("Refer to " + json_folder + '/summary.html')
-        f = open(json_folder + '/summary.html', 'w')
-        f.write(
-            self.__head + self.__suite_name +
-            self.__configuration_table +
-            self.__statictics_table +
-            self.__summary_head +
-            self.__begin_summary_content +
-            self.__passed_testcase_table +
-            self.__end_summary_content +
-            self.__begin_summary_content +
-            self.__failed_testcase_table +
-            self.__end_summary_content +
-            self.__end_table +
-            self.__test_log_head +
-            self.__table_test_log_content + HTMLReport.__end_file)
-
-        f.close()
-
     def __init__(self):
         self.__filter = None
-        HTMLReport.__init_report_folder()
+        HTMLReporter.__init_report_folder()
 
     def generate_report(self, file_filter: dict):
         print("Generating a html report...")
         self.__filter = FileNameFilter(file_filter)
-        list_file_name = glob.glob(HTMLReport.__json_dir + "*.json")
+        list_file_name = glob.glob(HTMLReporter.__json_dir + "*.json")
         list_file_name = self.__filter.do_filter(list_file_name)
-        report_file_name = HTMLReport.__make_report_name(self.__filter.get_filter())
+        report_file_name = HTMLReporter.__make_report_name(self.__filter.get_filter())
         self.make_suite_name(report_file_name)
         self.make_configurate_table()
         self.make_report_content_by_list(list_file_name)
@@ -539,7 +417,7 @@ class HTMLReport:
         print(("Refer to " + self.__report_dir + "/{}.html").format(report_file_name))
         f = open((self.__report_dir + "/{}.html").format(report_file_name), 'w')
         f.write(
-            self.__head + HTMLReport.__suite_name +
+            self.__head + HTMLReporter.__suite_name +
             self.__configuration_table +
             self.__statictics_table +
             self.__summary_head +
@@ -581,10 +459,13 @@ class HTMLReport:
     def __init_report_folder():
         """
         Create reporter_summary_report directory if it not exist
-        :return:
+        :raise OSError
         """
-        if not os.path.exists(HTMLReport.__report_dir):
-            os.makedirs(HTMLReport.__report_dir)
+        try:
+            os.makedirs(HTMLReporter.__report_dir)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise e
 
 
 def print_help():
@@ -603,7 +484,8 @@ if __name__ == "__main__":
         print_help()
         exit(0)
 
-    reporter = HTMLReport()
+    # Get argument from sys.argv to make filters
+    reporter = HTMLReporter()
     json_filter = {}
     for key in __FILTER_SUPPORTED:
         if key in args:
@@ -611,4 +493,5 @@ if __name__ == "__main__":
             if index + 1 < len(args):
                 json_filter[__FILTER_SUPPORTED[key]] = args[index + 1]
 
+    # Generate a html report
     reporter.generate_report(json_filter)

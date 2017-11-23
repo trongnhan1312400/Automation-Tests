@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05ca301b-5283-430d-87b2-9897b9bb2706" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/common.py" afterPath="$PROJECT_DIR$/libraries/common.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/constant.py" afterPath="$PROJECT_DIR$/libraries/constant.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/logger.py" afterPath="$PROJECT_DIR$/libraries/logger.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/result.py" afterPath="$PROJECT_DIR$/libraries/result.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/step.py" afterPath="$PROJECT_DIR$/libraries/step.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/utils.py" afterPath="$PROJECT_DIR$/libraries/utils.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/reporter.py" afterPath="$PROJECT_DIR$/test_scripts/reporter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/test_scenario_base.py" afterPath="$PROJECT_DIR$/test_scripts/test_scenario_base.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,36 +26,10 @@
       <file leaf-file-name="check_connection.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="27" column="57" lean-forward="false" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
+            <state relative-caret-position="153">
+              <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
               <folding>
                 <element signature="e#55#66#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="result.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/libraries/result.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="59" column="30" lean-forward="true" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
-              <folding>
-                <element signature="e#54#65#0" expanded="true" />
-                <element signature="e#138#317#0" expanded="false" />
-                <element signature="e#338#377#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logger.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libraries/logger.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
-              <caret line="70" column="12" lean-forward="true" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="113" />
-              <folding>
-                <element signature="e#55#65#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,8 +38,8 @@
       <file leaf-file-name="common.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libraries/common.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="64" column="34" lean-forward="true" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+            <state relative-caret-position="455">
+              <caret line="114" column="47" lean-forward="false" selection-start-line="114" selection-start-column="47" selection-end-line="114" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -68,8 +48,8 @@
       <file leaf-file-name="remove_and_add_role.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7072">
-              <caret line="419" column="12" lean-forward="true" selection-start-line="419" selection-start-column="12" selection-end-line="419" selection-end-column="12" />
+            <state relative-caret-position="131">
+              <caret line="267" column="49" lean-forward="false" selection-start-line="267" selection-start-column="49" selection-end-line="267" selection-end-column="49" />
               <folding>
                 <element signature="e#53#64#0" expanded="true" />
               </folding>
@@ -80,24 +60,31 @@
       <file leaf-file-name="keyrings_wallets.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/keyrings_wallets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+            <state relative-caret-position="449">
+              <caret line="40" column="22" lean-forward="true" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
               <folding>
                 <element signature="e#54#65#0" expanded="true" />
-                <marker date="1511342099092" expanded="true" signature="1736:1918" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="special_case_trust_anchor_role.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libraries/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="special_case_trust_anchor_role.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
-              <folding>
-                <element signature="e#76#86#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,8 +92,8 @@
       <file leaf-file-name="verify_messages_on_connection.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/verify_messages_on_connection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -117,8 +104,8 @@
       <file leaf-file-name="constant.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libraries/constant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="731">
+              <caret line="43" column="37" lean-forward="false" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -127,10 +114,28 @@
       <file leaf-file-name="test_scenario_base.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_scripts/test_scenario_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+            <state relative-caret-position="585">
+              <caret line="71" column="63" lean-forward="true" selection-start-line="71" selection-start-column="63" selection-end-line="71" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reporter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/reporter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1214">
+              <caret line="443" column="17" lean-forward="true" selection-start-line="443" selection-start-column="17" selection-end-line="443" selection-end-column="17" />
               <folding>
-                <element signature="e#58#69#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#3443#5460#0" expanded="false" />
+                <element signature="e#5564#6349#0" expanded="false" />
+                <element signature="e#6376#6876#0" expanded="false" />
+                <element signature="e#6911#7269#0" expanded="false" />
+                <element signature="e#7304#7690#0" expanded="false" />
+                <element signature="e#7713#8014#0" expanded="false" />
+                <element signature="e#8115#8215#0" expanded="false" />
+                <element signature="e#10314#13734#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -153,6 +158,8 @@
       <find>utils</find>
       <find>Variables</find>
       <find>TestScenario09.get_nym</find>
+      <find>steps[step]</find>
+      <find>HTMLReport</find>
     </findStrings>
     <replaceStrings>
       <replace>TestResult</replace>
@@ -160,6 +167,8 @@
       <replace>libraries</replace>
       <replace>self</replace>
       <replace>self.get_nym</replace>
+      <replace>steps</replace>
+      <replace>HTMLReporter</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -177,22 +186,23 @@
         <option value="$PROJECT_DIR$/test scripts/acceptance test/test_scenario_09.py" />
         <option value="$PROJECT_DIR$/test scripts/reporter.py" />
         <option value="$PROJECT_DIR$/test scripts/acceptance test/verify_messages_on_connection.py" />
-        <option value="$PROJECT_DIR$/libraries/step.py" />
-        <option value="$PROJECT_DIR$/libraries/utils.py" />
-        <option value="$PROJECT_DIR$/libraries/constant.py" />
         <option value="$PROJECT_DIR$/test scripts/acceptance test/keyrings_wallets.py" />
         <option value="$PROJECT_DIR$/test scripts/acceptance test/special_case_trust_anchor_role.py" />
         <option value="$PROJECT_DIR$/test scripts/acceptance test/check_connection.py" />
         <option value="$PROJECT_DIR$/test scripts/acceptance test/remove_and_add_role.py" />
         <option value="$PROJECT_DIR$/test scripts/acceptance test/example.py" />
         <option value="$PROJECT_DIR$/test scripts/test_scenario_base.py" />
-        <option value="$PROJECT_DIR$/test_scripts/reporter.py" />
-        <option value="$PROJECT_DIR$/libraries/common.py" />
-        <option value="$PROJECT_DIR$/test_scripts/test_scenario_base.py" />
-        <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" />
-        <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
+        <option value="$PROJECT_DIR$/libraries/step.py" />
         <option value="$PROJECT_DIR$/libraries/logger.py" />
         <option value="$PROJECT_DIR$/libraries/result.py" />
+        <option value="$PROJECT_DIR$/test_scripts/reporter.py" />
+        <option value="$PROJECT_DIR$/libraries/common.py" />
+        <option value="$PROJECT_DIR$/libraries/utils.py" />
+        <option value="$PROJECT_DIR$/test_scripts/test_scenario_base.py" />
+        <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" />
+        <option value="$PROJECT_DIR$/libraries/constant.py" />
+        <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
+        <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py" />
       </list>
     </option>
   </component>
@@ -218,6 +228,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -254,7 +265,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -299,13 +309,13 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -362,8 +372,6 @@
           <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
             <element signature="e#54#65#0" expanded="true" />
-            <element signature="e#138#317#0" expanded="false" />
-            <element signature="e#338#377#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -377,8 +385,6 @@
           <caret line="61" column="42" lean-forward="true" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="42" />
           <folding>
             <element signature="e#54#65#0" expanded="true" />
-            <element signature="e#138#317#0" expanded="false" />
-            <element signature="e#338#377#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -400,40 +406,13 @@
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance test/check_connection.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance test/remove_and_add_role.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/reporter.py" />
-    <entry file="file://$PROJECT_DIR$/libraries/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance test/keyrings_wallets.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance test/special_case_trust_anchor_role.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance test/verify_messages_on_connection.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/acceptance test/example.py" />
     <entry file="file://$PROJECT_DIR$/test scripts/test_scenario_base.py" />
-    <entry file="file://$PROJECT_DIR$/test_scripts/reporter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="315" column="0" lean-forward="true" selection-start-line="315" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/step.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/test_runner.py" />
-    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/example.py" />
     <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -441,21 +420,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/keyrings_wallets.py">
+    <entry file="file://$PROJECT_DIR$/libraries/logger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+        <state relative-caret-position="619">
+          <caret line="79" column="22" lean-forward="false" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+          <folding>
+            <element signature="e#55#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/step.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/result.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="111" column="22" lean-forward="false" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
           <folding>
             <element signature="e#54#65#0" expanded="true" />
-            <marker date="1511342099092" expanded="true" signature="1736:1918" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/reporter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1214">
+          <caret line="443" column="17" lean-forward="true" selection-start-line="443" selection-start-column="17" selection-end-line="443" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#3443#5460#0" expanded="false" />
+            <element signature="e#5564#6349#0" expanded="false" />
+            <element signature="e#6376#6876#0" expanded="false" />
+            <element signature="e#6911#7269#0" expanded="false" />
+            <element signature="e#7304#7690#0" expanded="false" />
+            <element signature="e#7713#8014#0" expanded="false" />
+            <element signature="e#8115#8215#0" expanded="false" />
+            <element signature="e#10314#13734#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="114" column="47" lean-forward="false" selection-start-line="114" selection-start-column="47" selection-end-line="114" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/test_scenario_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="71" column="63" lean-forward="true" selection-start-line="71" selection-start-column="63" selection-end-line="71" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/constant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="37" lean-forward="false" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="267" column="49" lean-forward="false" selection-start-line="267" selection-start-column="49" selection-end-line="267" selection-end-column="49" />
+          <folding>
+            <element signature="e#53#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/keyrings_wallets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="40" column="22" lean-forward="true" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+          <folding>
+            <element signature="e#54#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/verify_messages_on_connection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -464,79 +540,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
-          <folding>
-            <element signature="e#76#86#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="64" column="34" lean-forward="true" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+        <state relative-caret-position="136">
+          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/test_scenario_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="30" column="48" lean-forward="true" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-          <folding>
-            <element signature="e#58#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7072">
-          <caret line="419" column="12" lean-forward="true" selection-start-line="419" selection-start-column="12" selection-end-line="419" selection-end-column="12" />
-          <folding>
-            <element signature="e#53#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/constant.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="27" column="57" lean-forward="false" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
-          <folding>
-            <element signature="e#55#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/logger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="70" column="12" lean-forward="true" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="113" />
-          <folding>
-            <element signature="e#55#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/result.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="59" column="30" lean-forward="true" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
-          <folding>
-            <element signature="e#54#65#0" expanded="true" />
-            <element signature="e#138#317#0" expanded="false" />
-            <element signature="e#338#377#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -39,6 +39,6 @@ class Constant:
     user_home = os.path.expanduser('~') + os.sep
     work_dir = user_home + ".indy"
     seed_default_trustee = "000000000000000000000000Trustee1"
-    pool_genesis_txn_file = user_home + "/var/lib/indy/sandbox/pool_transactions_sandbox_genesis"
-    domain_transactions_sandbox_genesis = user_home + "/var/lib/indy/sandbox/domain_transactions_sandbox_genesis"
-    original_pool_genesis_txn_file = user_home + "/var/lib/indy/sandbox/original_pool_transactions_sandbox_genesis"
+    pool_genesis_txn_file = "/var/lib/indy/sandbox/pool_transactions_sandbox_genesis"
+    domain_transactions_sandbox_genesis = "/var/lib/indy/sandbox/domain_transactions_sandbox_genesis"
+    original_pool_genesis_txn_file = "/var/lib/indy/sandbox/original_pool_transactions_sandbox_genesis"

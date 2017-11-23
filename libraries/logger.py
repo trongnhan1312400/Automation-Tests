@@ -77,7 +77,7 @@ class Logger:
     def __init_log_folder():
         """
         Create log_files folder if it is not exist
-        :return:
+        :raise OSError
         """
         try:
             os.makedirs(Logger.__log_dir)

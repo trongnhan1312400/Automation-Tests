@@ -27,15 +27,6 @@ def generate_random_string(prefix="", suffix="", size=20):
     return result
 
 
-# def create_step(size):
-#     from libraries.step import Step
-#     lst_step = []
-#     for i in range(0, size + 1):
-#         step = Step(i, "")
-#         lst_step.append(step)
-#     return lst_step
-
-
 def raise_if_exception(code):
     """
     If "code" is an exception then raise the "code".
@@ -51,9 +42,9 @@ def raise_if_exception(code):
 
 async def perform(steps, func, *agrs):
     """
-    Execute an function and set status, message for the test step
+    Execute an function and set status, message for the last test step
     depend on the result of the function.
-    :param step: (optional) test step involve with "func".
+    :param steps: (optional) list of test steps.
     :param func: (optional) executed function.
     :param agrs: argument of function.
     :return: the result of function of the exception that the function raise.
@@ -80,7 +71,7 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
     """
     Execute the "func" with expectation that the "func" raise an IndyError
     that IndyError.error_code = "expected_code".
-    :param step: (optional) test step involve with the "func".
+    :param steps: (optional) list of test steps.
     :param func: (optional) executed function.
     :param agrs: arguments of "func".
     :param expected_code: the error code that you expect in IndyError.

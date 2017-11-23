@@ -109,6 +109,7 @@ class TestResult:
     def __init_output_folder():
         """
         Create test_output directory if it not exist
+        :raise OSError
         """
         try:
             os.makedirs(TestResult.__json_dir)

@@ -72,12 +72,23 @@ class Common():
 
     @staticmethod
     def run_async_method(method):
+        """
+        Run async method until it complete.
+        :param method: (optional)
+        """
         loop = asyncio.new_event_loop()
         loop.run_until_complete(method())
         loop.close()
 
     @staticmethod
     def make_final_result(test_result, steps, begin_time, logger):
+        """
+        Making a test result.
+        :param test_result: (optional)
+        :param steps: (optional) list of steps
+        :param begin_time: (optional) time that the test begin
+        :param logger: (optional)
+        """
         import time
         from libraries.result import Status
         for step in steps:
@@ -95,14 +106,13 @@ class Common():
                                          target_did, target_verkey, alias, role):
         """
         Build a nym request and send it.
-
         :param pool_handle: pool handle returned by indy_open_pool_ledger.
         :param wallet_handle: wallet handle returned by indy_open_wallet.
         :param submitter_did: Id of Identity stored in secured Wallet.
         :param target_did: Id of Identity stored in secured Wallet.
-        :param target_verkey: verification key
-        :param alias: alias
-        :param role: Role of a user NYM record
+        :param target_verkey: verification key.
+        :param alias: alias.
+        :param role: Role of a user NYM record.
         :raise Exception if the method has error.
         """
         try:

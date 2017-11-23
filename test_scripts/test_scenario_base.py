@@ -35,14 +35,13 @@ class TestScenarioBase(object):
         """
         Init some specify data that is different among sub test classes.
         Should be called first by super().__init__ in all sub test classes.
-        :param total_steps: amount step of test case
-        :param test_name: name of test case
+        :param test_name: name of test case.
         """
         self.test_result = TestResult(test_name)
         self.steps = Steps()
         self.logger = Logger(test_name)
 
-    def execute_precondition_steps(self):
+    async def execute_precondition_steps(self):
         """
          Execute pre-condition of test scenario.
          If the test case need some extra step in
@@ -70,7 +69,7 @@ class TestScenarioBase(object):
         Execute the test scenario and control the work flow of this test scenario.
         """
         begin_time = time.time()
-        self.execute_precondition_steps()
+        Common.run_async_method(self.execute_precondition_steps)
         Common.run_async_method(self.execute_test_case)
         Common.run_async_method(self.execute_postcondition_steps)
         Common.make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)

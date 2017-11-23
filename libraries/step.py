@@ -16,14 +16,14 @@ class Steps():
 
     def get_last_step(self):
         """
-        return the last item of step.
+        :return the last item of step.
         """
         if len(self.__steps) != 0:
             return self.__steps[-1]
 
     def get_list_step(self):
         """
-        return the list of step.
+        :return the list of step.
         """
         return self.__steps
 

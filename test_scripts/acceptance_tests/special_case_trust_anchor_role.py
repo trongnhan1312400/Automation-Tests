@@ -13,7 +13,6 @@ from indy.error import IndyError
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.constant import Constant, Colors, Roles
-from libraries.result import Status
 from libraries.common import Common
 from libraries.utils import *
 from test_scripts.test_scenario_base import TestScenarioBase
