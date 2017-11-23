@@ -134,19 +134,10 @@ class Common:
         """
         print(Colors.HEADER + "\nCreate Ledger\n" + Colors.ENDC)
         pool_config = json.dumps({"genesis_txn": str(pool_genesis_txn_file)})
-        # Create pool
-        try:
-            await pool.create_pool_ledger_config(pool_name, pool_config)
-        except IndyError as E:
-            raise E
+        await pool.create_pool_ledger_config(pool_name, pool_config)
 
         print(Colors.HEADER + "\nOpen pool ledger\n" + Colors.ENDC)
-        # get pool handle
-        try:
-            pool_handle = await pool.open_pool_ledger(pool_name, None)
-        except IndyError as E:
-            raise E
-        await asyncio.sleep(0)
+        pool_handle = await pool.open_pool_ledger(pool_name, None)
         return pool_handle
 
     async def create_and_open_wallet(self, pool_name, wallet_name):
@@ -160,17 +151,10 @@ class Common:
         :return: The wallet handle was created.
         """
         print(Colors.HEADER + "\nCreate wallet\n" + Colors.ENDC)
-        try:
-            await wallet.create_wallet(pool_name, wallet_name, None, None, None)
-        except IndyError as E:
-            raise E
+        await wallet.create_wallet(pool_name, wallet_name, None, None, None)
 
         print(Colors.HEADER + "\nGet wallet handle\n" + Colors.ENDC)
-        try:
-            wallet_handle = await wallet.open_wallet(wallet_name, None, None)
-        except IndyError as E:
-            raise E
-        await asyncio.sleep(0)
+        wallet_handle = await wallet.open_wallet(wallet_name, None, None)
         return wallet_handle
 
     async def close_pool_and_wallet(self, pool_handle, wallet_handle):
@@ -182,17 +166,10 @@ class Common:
         :raise Exception if the method has error.
         """
         print(Colors.HEADER + "\nClose pool\n" + Colors.ENDC)
-        try:
-            await pool.close_pool_ledger(pool_handle)
-        except IndyError as E:
-            raise E
+        await pool.close_pool_ledger(pool_handle)
 
         print(Colors.HEADER + "\nClose wallet\n" + Colors.ENDC)
-        try:
-            await wallet.close_wallet(wallet_handle)
-        except IndyError as E:
-            raise E
-        await asyncio.sleep(0)
+        await wallet.close_wallet(wallet_handle)
 
     async def delete_pool_and_wallet(self, pool_name, wallet_name):
         """
@@ -203,14 +180,8 @@ class Common:
         :raise Exception if the method has error.
         """
         print(Colors.HEADER + "\nDelete pool\n" + Colors.ENDC)
-        try:
-            await pool.delete_pool_ledger_config(pool_name)
-        except IndyError as E:
-            raise E
+        await pool.delete_pool_ledger_config(pool_name)
 
         print(Colors.HEADER + "\nDelete wallet\n" + Colors.ENDC)
-        try:
-            await wallet.delete_wallet(wallet_name, None)
-        except IndyError as E:
-            raise E
+        await wallet.delete_wallet(wallet_name, None)
         await asyncio.sleep(0)
