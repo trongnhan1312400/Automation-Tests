@@ -4,11 +4,11 @@ Created on Nov 13, 2017
 @author: khoi.ngo
 """
 
-from .constant import Colors, Constant
 import asyncio
 import json
 from indy import wallet, pool, ledger
 from indy.error import IndyError
+from .constant import Colors, Constant
 
 
 class Common():

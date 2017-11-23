@@ -2,6 +2,8 @@
 Created on Nov 8, 2017
 
 @author: nhan.nguyen
+
+Contains test script of test scenario 09: remove and add role
 """
 import json
 import sys
@@ -376,6 +378,7 @@ class TestScenario09(TestScenarioBase):
     async def add_nym(self, submitter_did, target_did, ver_key, alias, role, error_code=None):
         """
         Build a send NYM request and submit it.
+
         :param submitter_did: (optional) DID of request submitter
         :param target_did: (optional) DID of request target
         :param ver_key: (optional) ver_key of request target

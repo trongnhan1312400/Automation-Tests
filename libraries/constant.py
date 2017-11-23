@@ -2,6 +2,8 @@
 Created on Nov 9, 2017
 
 @author: khoi.ngo
+
+Contains all constant that is necessary to execute test scenario.
 """
 
 
