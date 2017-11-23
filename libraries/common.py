@@ -2,6 +2,8 @@
 Created on Nov 13, 2017
 
 @author: khoi.ngo
+
+Containing all functions that is common among test scenarios.
 """
 
 import asyncio
@@ -67,39 +69,6 @@ class Common:
                 shutil.rmtree(work_dir + "/wallet/" + wallet_name)
             except IOError as E:
                 print(Colors.FAIL + str(E) + Colors.ENDC)
-
-    @staticmethod
-    def run_async_method(method):
-        """
-        Run async method until it complete.
-
-        :param method: (optional).
-        """
-        loop = asyncio.new_event_loop()
-        loop.run_until_complete(method())
-        loop.close()
-
-    @staticmethod
-    def make_final_result(test_result, steps, begin_time, logger):
-        """
-        Making a test result.
-
-        :param test_result: (optional).
-        :param steps: (optional) list of steps.
-        :param begin_time: (optional) time that the test begin.
-        :param logger: (optional).
-        """
-        import time
-        from libraries.result import Status
-        for step in steps:
-            test_result.add_step(step)
-            if step.get_status() == Status.FAILED:
-                print('%s: ' % str(step.get_id()) + Colors.FAIL + 'failed\nMessage: ' + step.get_message() + Colors.ENDC)
-                test_result.set_test_failed()
-
-        test_result.set_duration(time.time() - begin_time)
-        test_result.write_result_to_file()
-        logger.save_log(test_result.get_test_status())
 
     @staticmethod
     async def build_and_send_nym_request(pool_handle, wallet_handle, submitter_did,

@@ -3,7 +3,7 @@ Created on Nov 12, 2017
 
 @author: nghia.huynh
 
-Contains all functions and classes to make a HTML report.
+Containing all functions and classes to make a HTML report.
 """
 import os
 import json

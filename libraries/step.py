@@ -1,11 +1,13 @@
-'''
+"""
 Created on Nov 20, 2017
 
 @author: khoi.ngo
-'''
 
 
-class Steps():
+"""
+
+
+class Steps:
     """
     Class manage list of step.
     """
@@ -39,7 +41,7 @@ class Steps():
         self.__steps.append(new_step)
 
 
-class Step():
+class Step:
     """
     Class manage information of a test step.
     """

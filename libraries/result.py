@@ -2,6 +2,8 @@
 Created on Nov 9, 2017
 
 @author: nhan.nguyen
+
+Containing classes to make the test result as a json.
 """
 
 import json

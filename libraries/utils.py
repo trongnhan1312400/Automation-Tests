@@ -2,6 +2,8 @@
 Created on Nov 9, 2017
 
 @author: khoi.ngo
+
+Containing all functions used by several test steps on test scenarios.
 """
 
 
@@ -95,3 +97,38 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
     except Exception as Ex:
         print("Exception" + str(Ex))
         return Ex
+
+
+def run_async_method(method):
+    """
+    Run async method until it complete.
+
+    :param method: (optional).
+    """
+    import asyncio
+    loop = asyncio.new_event_loop()
+    loop.run_until_complete(method())
+    loop.close()
+
+
+def make_final_result(test_result, steps, begin_time, logger):
+    """
+    Making a test result.
+
+    :param test_result: (optional).
+    :param steps: (optional) list of steps.
+    :param begin_time: (optional) time that the test begin.
+    :param logger: (optional).
+    """
+    import time
+    from .constant import Colors
+    from libraries.result import Status
+    for step in steps:
+        test_result.add_step(step)
+        if step.get_status() == Status.FAILED:
+            print('%s: ' % str(step.get_id()) + Colors.FAIL + 'failed\nMessage: ' + step.get_message() + Colors.ENDC)
+            test_result.set_test_failed()
+
+    test_result.set_duration(time.time() - begin_time)
+    test_result.write_result_to_file()
+    logger.save_log(test_result.get_test_status())

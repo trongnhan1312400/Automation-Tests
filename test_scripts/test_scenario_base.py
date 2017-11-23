@@ -3,7 +3,7 @@ Created on Nov 22, 2017
 
 @author: khoi.ngo
 
-Containing the test base class
+Containing the test base class.
 """
 import time
 import sys
@@ -68,7 +68,7 @@ class TestScenarioBase(object):
         Execute the test scenario and control the work flow of this test scenario.
         """
         begin_time = time.time()
-        Common.run_async_method(self.execute_precondition_steps)
-        Common.run_async_method(self.execute_test_steps)
-        Common.run_async_method(self.execute_postcondition_steps)
-        Common.make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
+        run_async_method(self.execute_precondition_steps)
+        run_async_method(self.execute_test_steps)
+        run_async_method(self.execute_postcondition_steps)
+        make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
