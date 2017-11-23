@@ -32,7 +32,7 @@ def raise_if_exception(code):
     If "code" is an exception then raise the "code".
     Unless "code" is an exception then return the "code".
     :param code: (optional) code that you want to check.
-    :return: "code" if it is not an exception
+    :return: "code" if it is not an exception.
     """
     if isinstance(code, IndexError or Exception):
         raise code
@@ -42,8 +42,8 @@ def raise_if_exception(code):
 
 async def perform(steps, func, *agrs):
     """
-    Execute an function and set status, message for the last test step
-    depend on the result of the function.
+    Execute an function and set status, message for the last test step depend on the result of the function.
+
     :param steps: (optional) list of test steps.
     :param func: (optional) executed function.
     :param agrs: argument of function.
@@ -69,14 +69,14 @@ async def perform(steps, func, *agrs):
 
 async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
     """
-    Execute the "func" with expectation that the "func" raise an IndyError
-    that IndyError.error_code = "expected_code".
+    Execute the "func" with expectation that the "func" raise an IndyError that IndyError.error_code = "expected_code".
+
     :param steps: (optional) list of test steps.
     :param func: (optional) executed function.
     :param agrs: arguments of "func".
     :param expected_code: the error code that you expect in IndyError.
-    :return: exception if the "func" raise it without "expected_code"
-             'None' if the "func" run without any exception of the exception contain "expected_code"
+    :return: exception if the "func" raise it without "expected_code".
+             'None' if the "func" run without any exception of the exception contain "expected_code".
     """
     from indy.error import IndyError
     from libraries.result import Status

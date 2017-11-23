@@ -19,8 +19,7 @@ class TestScenarioBase(object):
     """
     Test base....
     All test scenario should inherit from this class.
-    This class control the work flow and hold some general
-    test data for test case that inherit it.
+    This class control the work flow and hold some general test data for test scenario that inherit it.
     """
     pool_name = generate_random_string("test_pool")
     wallet_name = generate_random_string("test_wallet")
@@ -44,16 +43,14 @@ class TestScenarioBase(object):
     async def execute_precondition_steps(self):
         """
          Execute pre-condition of test scenario.
-         If the test case need some extra step in
-         pre-condition then just override this method.
+         If the test case need some extra step in pre-condition then just override this method.
         """
         Common.clean_up_pool_and_wallet_folder(self.pool_name, self.wallet_name)
 
     async def execute_postcondition_steps(self):
         """
         Execute post-condition of test scenario.
-        If the test case need some extra step in
-        post-condition then just override this method.
+        If the test case need some extra step in post-condition then just override this method.
         """
         await Common.clean_up_pool_and_wallet(self.pool_name, self.pool_handle, self.wallet_name, self.wallet_handle)
 

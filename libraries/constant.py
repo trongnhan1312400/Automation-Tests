@@ -15,7 +15,7 @@ class Colors:
     OKGREEN = '\033[92m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
-    ENDC = '\033[0m'  # Normal default color
+    ENDC = '\033[0m'  # Normal default color.
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
@@ -27,7 +27,7 @@ class Roles:
     TRUSTEE = "TRUSTEE"
     STEWARD = "STEWARD"
     TRUST_ANCHOR = "TRUST_ANCHOR"
-    TGB = "TGB"  # obsolete
+    TGB = "TGB"  # obsolete.
     NONE = ""
 
 

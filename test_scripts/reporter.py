@@ -16,10 +16,11 @@ class FileNameGetter:
     @staticmethod
     def get(part: str, file_name: str) -> str:
         """
-        Get a specify part in file name
-        :param part: what part you want to get in file name
+        Get a specify part in file name.
+
+        :param part: what part you want to get in file name.
         :param file_name:
-        :return: the part in file name that you want
+        :return: the part in file name that you want.
         """
         if part in FileNameGetter.__FILE_NAME_GETTER:
             getter = getattr(FileNameGetter, FileNameGetter.__FILE_NAME_GETTER[part])
@@ -30,9 +31,10 @@ class FileNameGetter:
     @staticmethod
     def get_name(file_name: str) -> str:
         """
-        Get name of test from file name
+        Get name of test from file name.
+
         :param file_name:
-        :return: name of test
+        :return: name of test.
         """
         if file_name is None or len(file_name) < (FileNameGetter.__BEGIN_DATE_PART + 1):
             return ""
@@ -41,9 +43,10 @@ class FileNameGetter:
     @staticmethod
     def get_date(file_name: str) -> str:
         """
-        Get date of test from file name
+        Get date of test from file name.
+
         :param file_name:
-        :return: date of test
+        :return: date of test.
         """
         if file_name is None or len(file_name) < FileNameGetter.__BEGIN_DATE_PART:
             return ""
@@ -61,8 +64,8 @@ class FileNameFilter:
 
     def do_filter(self, list_file_name) -> list:
         """
-        :param list_file_name: list to filter
-        :return: list of file name that satisfy condition
+        :param list_file_name: list to filter.
+        :return: list of file name that satisfy condition.
         """
         result = []
         for file_name in list_file_name:
@@ -76,9 +79,11 @@ class FileNameFilter:
 
     def __check(self, file_name: str) -> bool:
         """
-        Check if the file name satisfy the condition
+        Check if the file name satisfy the condition.
+
         :param file_name:
-        :return:
+        :return: True if file_name satisfy all filters.
+                 False if file_name does not satisfy at least one filter.
         """
         temp = {}
         for f in FileNameFilter.__FILTER_SUPPORTED:
@@ -95,9 +100,10 @@ class FileNameFilter:
 
 def get_version(program: str) -> str:
     """
-    Return version of a program
+    Return version of a program.
+
     :param program:
-    :return: version
+    :return: version.
     """
     cmd = "dpkg -l | grep '{}'".format(program)
     process = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
@@ -310,7 +316,7 @@ class HTMLReporter:
     def make_suite_name(self, suite_name):
         # os.path.basename(__file__)
         """
-        Generating the statictics table
+        Generating the statistics table.
         :param suite_name:
         """
         self.__suite_name = self.__suite_name.replace("s_name", suite_name)
@@ -318,7 +324,7 @@ class HTMLReporter:
 
     def make_configurate_table(self):
         """
-        Generating the configuration table
+        Generating the configuration table.
         """
         self.__configuration_table = self.__configuration_table.replace("host_name", socket.gethostname())
         self.__configuration_table = self.__configuration_table.replace("os_name", os.name + platform.system() +
@@ -414,8 +420,8 @@ class HTMLReporter:
         self.make_report_content_by_list(list_file_name)
 
         # Write to file.
-        print(("Refer to " + self.__report_dir + "/{}.html").format(report_file_name))
-        f = open((self.__report_dir + "/{}.html").format(report_file_name), 'w')
+        print(("Refer to " + self.__report_dir + "{}.html").format(report_file_name))
+        f = open((self.__report_dir + "{}.html").format(report_file_name), 'w')
         f.write(
             self.__head + HTMLReporter.__suite_name +
             self.__configuration_table +
@@ -437,9 +443,9 @@ class HTMLReporter:
     @staticmethod
     def __make_report_name(json_filter: dict) -> str:
         """
-        Generate report name from filter
+        Generate report name from filter.
         :param json_filter:
-        :return:
+        :return: report name.
         """
         name = ""
         if "name" in json_filter:
@@ -458,8 +464,8 @@ class HTMLReporter:
     @staticmethod
     def __init_report_folder():
         """
-        Create reporter_summary_report directory if it not exist
-        :raise OSError
+        Create reporter_summary_report directory if it not exist.
+        :raise OSError.
         """
         try:
             os.makedirs(HTMLReporter.__report_dir)

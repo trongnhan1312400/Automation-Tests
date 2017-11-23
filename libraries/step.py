@@ -52,15 +52,27 @@ class Step():
         self.__message = message
 
     def get_id(self):
+        """
+        :return: step's id.
+        """
         return self.__id
 
     def get_name(self):
+        """
+        :return: step's name.
+        """
         return self.__name
 
     def get_status(self):
+        """
+        :return: step's status.
+        """
         return self.__status
 
     def get_message(self):
+        """
+        :return: return step's message.
+        """
         return self.__message
 
     def set_status(self, status):
@@ -75,7 +87,10 @@ class Step():
     def set_message(self, message):
         self.__message = message
 
-    def to_string(self):
+    def print(self):
+        """
+        Print step to console
+        """
         print("Step ID: " + str(self.__id))
         print("Step Name: " + str(self.__name))
         print("Step Status: " + str(self.__status))

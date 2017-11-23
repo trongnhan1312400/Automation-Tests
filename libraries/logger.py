@@ -16,8 +16,7 @@ from .constant import Colors
 class Printer(object):
     """
     Class that write content to several file.
-    Use this class when you want to write log
-    not only on console but only on some other files.
+    Use this class when you want to write log not only on console but only on some other files.
     """
     def __init__(self, *files):
         self.files = files
@@ -33,7 +32,7 @@ class Printer(object):
 
     def flush(self):
         """
-        Make the content in buffer display immediately on files
+        Make the content in buffer display immediately on files.
         """
         for f in self.files:
             f.flush()
@@ -60,7 +59,8 @@ class Logger:
         """
         If "-l" is exist in sys.argv or test_status is Failed then keeping the log file.
         If test_status is Passed and missing "-l" from sys.argv then deleting log file.
-        :param test_status: Passed of Failed
+
+        :param test_status: Passed of Failed.
         """
         self.__log.close()
         sys.stdout = self.__original_stdout
@@ -76,8 +76,9 @@ class Logger:
     @staticmethod
     def __init_log_folder():
         """
-        Create log_files folder if it is not exist
-        :raise OSError
+        Create log_files folder if it is not exist.
+
+        :raise OSError.
         """
         try:
             os.makedirs(Logger.__log_dir)

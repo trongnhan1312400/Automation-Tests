@@ -430,8 +430,9 @@ class TestScenario09(TestScenarioBase):
     async def get_nym(self, submitter_did, target_did):
         """
         Build and submit GET NYM request.
-        :param submitter_did: (optional) DID of request submitter
-        :param target_did: (optional) DID of request target
+
+        :param submitter_did: (optional) DID of request submitter.
+        :param target_did: (optional) DID of request target.
         :return: (True, message) if GET_NYM is sent successfully (message is result of GET_NYM).
                  (False, message) if GET_NYM cannot be sent (message is result of GET_NYM)
         """
@@ -448,6 +449,7 @@ class TestScenario09(TestScenarioBase):
     def check_role_in_retrieved_nym(retrieved_nym, role):
         """
         Check if the role in the GET NYM response is what we want.
+
         :param retrieved_nym:
         :param role: the role we want to check.
         :return: True if the role is what we want.

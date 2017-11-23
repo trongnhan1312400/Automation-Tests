@@ -33,7 +33,8 @@ class TestResult:
     def __init__(self, test_case_name):
         """
         Constructor of a TestResult instance.
-        :param test_case_name: (optional) name of test case
+
+        :param test_case_name: (optional) name of test case.
         """
         self.__test_result = {}  # Store information of a test case
         self.__run = []  # Store information of steps in test case
@@ -46,6 +47,7 @@ class TestResult:
     def set_result(self, result):
         """
         Set a result (PASSED or FAILED) for test case.
+
         :param result: (optional) result of test.
         """
         self.__test_result[KeyWord.RESULT] = result
@@ -53,13 +55,15 @@ class TestResult:
     def set_duration(self, duration):
         """
         Set duration for test.
-        :param duration: (second)
+
+        :param duration: (second).
         """
         self.__test_result[KeyWord.DURATION] = round(duration * 1000)
 
     def set_step_status(self, step_summary: str, status: str = Status.PASSED, message: str = None):
         """
         Set status and message for specify step.
+
         :param step_summary: (optional) title of step.
         :param status: (optional) PASSED or FAILED.
         :param message: anything that involve to step like Exception, Log,...
@@ -69,7 +73,8 @@ class TestResult:
 
     def add_step(self, step):
         """
-        Add a step to report
+        Add a step to report.
+
         :param step: (optional) a Step object in step.py
         """
         if not step:
@@ -100,16 +105,18 @@ class TestResult:
 
     def get_test_status(self) -> str:
         """
-        Get the status of test
-        :return: test status
+        Get the status of test.
+
+        :return: test status.
         """
         return self.__test_result[KeyWord.RESULT]
 
     @staticmethod
     def __init_output_folder():
         """
-        Create test_output directory if it not exist
-        :raise OSError
+        Create test_output directory if it not exist.
+
+        :raise OSError.
         """
         try:
             os.makedirs(TestResult.__json_dir)
