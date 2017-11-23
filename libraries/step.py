@@ -86,12 +86,3 @@ class Step():
 
     def set_message(self, message):
         self.__message = message
-
-    def print(self):
-        """
-        Print step to console
-        """
-        print("Step ID: " + str(self.__id))
-        print("Step Name: " + str(self.__name))
-        print("Step Status: " + str(self.__status))
-        print("Step Message: " + str(self.__message))

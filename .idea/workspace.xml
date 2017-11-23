@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05ca301b-5283-430d-87b2-9897b9bb2706" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/step.py" afterPath="$PROJECT_DIR$/libraries/step.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="step.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="step.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/libraries/step.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+            <state relative-caret-position="738">
+              <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="remove_and_add_role.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="remove_and_add_role.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="718">
+              <caret line="68" column="72" lean-forward="false" selection-start-line="68" selection-start-column="72" selection-end-line="68" selection-end-column="72" />
               <folding>
                 <element signature="e#53#64#0" expanded="true" />
               </folding>
@@ -185,7 +185,6 @@
         <option value="$PROJECT_DIR$/test scripts/test_scenario_base.py" />
         <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/check_connection.py" />
         <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/special_case_trust_anchor_role.py" />
-        <option value="$PROJECT_DIR$/libraries/step.py" />
         <option value="$PROJECT_DIR$/libraries/constant.py" />
         <option value="$PROJECT_DIR$/libraries/logger.py" />
         <option value="$PROJECT_DIR$/libraries/result.py" />
@@ -194,6 +193,7 @@
         <option value="$PROJECT_DIR$/libraries/utils.py" />
         <option value="$PROJECT_DIR$/libraries/common.py" />
         <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
+        <option value="$PROJECT_DIR$/libraries/step.py" />
       </list>
     </option>
   </component>
@@ -494,14 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/step.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libraries/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -530,11 +522,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state relative-caret-position="718">
+          <caret line="68" column="72" lean-forward="false" selection-start-line="68" selection-start-column="72" selection-end-line="68" selection-end-column="72" />
           <folding>
             <element signature="e#53#64#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/step.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
