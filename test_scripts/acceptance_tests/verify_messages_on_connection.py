@@ -1,3 +1,11 @@
+"""
+Created on Nov 8, 2017
+
+@author: khoi.ngo
+
+Contains test script of test scenario 02: verify messages on connection.
+"""
+
 import json
 import os.path
 import sys
@@ -37,7 +45,7 @@ class TestScenario02(TestScenarioBase):
         os.system(remove_pool_genesis_file)
         os.system(restore_pool_genesis_file)
 
-    async def execute_test_case(self):
+    async def execute_test_steps(self):
         print("Test Scenario 02 -> started")
         try:
             # 1. Create ledger config from genesis txn file  ---------------------------------------------------------

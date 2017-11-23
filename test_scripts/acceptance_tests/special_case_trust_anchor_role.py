@@ -2,6 +2,8 @@
 Created on Nov 8, 2017
 
 @author: khoi.ngo
+
+Contains test scripts of test scenario 11: special case for TrustAnchor role.
 """
 
 # /usr/bin/env python3.6
@@ -28,7 +30,7 @@ class TestScenario11(TestScenarioBase):
     def __init__(self):
         super().__init__(test_name="test_scenario_11_special_case_trust_anchor_role")
 
-    async def execute_test_case(self):
+    async def execute_test_steps(self):
         print("Test Scenario 11 -> started")
         # Declare all values use in the test
         seed_trustee1 = generate_random_string(prefix="Trustee1", size=32)

@@ -3,7 +3,7 @@ Created on Nov 8, 2017
 
 @author: nhan.nguyen
 
-Contains test script of test scenario 09: remove and add role
+Contains test script of test scenario 09: remove and add role.
 """
 import json
 import sys
@@ -23,7 +23,7 @@ class TestScenario09(TestScenarioBase):
     def __init__(self):
         super().__init__(test_name="test_scenario_09_remove_and_add_role")
 
-    async def execute_test_case(self):
+    async def execute_test_steps(self):
         """
         This function is the main part of test script.
         There is a bug in this scenario (in step 22, 23 24) so we log a bug here.

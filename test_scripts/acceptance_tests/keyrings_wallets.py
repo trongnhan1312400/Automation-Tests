@@ -1,7 +1,9 @@
 """
 Created on Nov 8, 2017
 
-@author: nhan.nguyen
+@author: khoi.ngo
+
+Contains test script of test scenario 04: keyrings wallets.
 """
 
 import json
@@ -23,7 +25,7 @@ class TestScenario04(TestScenarioBase):
     def __init__(self):
         super().__init__(test_name="test_scenario_04_keyrings_wallet")
 
-    async def execute_test_case(self):
+    async def execute_test_steps(self):
         print("Test Scenario 04 -> started")
         seed_default_trustee = "000000000000000000000000Trustee1"
         try:

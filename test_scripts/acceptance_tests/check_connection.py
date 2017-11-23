@@ -3,7 +3,7 @@ Created on Nov 10, 2017
 
 @author: nhan.nguyen
 
-
+Contains test script of test scenario 03: check connection.
 """
 
 import json
@@ -11,7 +11,6 @@ import sys
 import os
 from indy import pool, signus, wallet
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.constant import Constant
 from libraries.utils import *
 from test_scripts.test_scenario_base import TestScenarioBase

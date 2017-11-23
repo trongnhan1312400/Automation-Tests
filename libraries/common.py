@@ -11,9 +11,9 @@ from indy.error import IndyError
 from .constant import Colors, Constant
 
 
-class Common():
+class Common:
     """
-    Wrapper the common steps.
+    Wrapper common function for test scenario.
     """
 
     @staticmethod
