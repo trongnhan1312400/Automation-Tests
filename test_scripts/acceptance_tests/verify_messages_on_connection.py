@@ -17,17 +17,11 @@ from libraries.common import Common
 from libraries.utils import *
 from test_scripts.test_scenario_base import TestScenarioBase
 
-""" Global variables. """
-pool_genesis_txn_file = Constant.pool_genesis_txn_file
-original_pool_genesis_txn_file = Constant.original_pool_genesis_txn_file
-the_error_message = "the information needed to connect was not found"
-
 """ cmds """
-back_up_pool_genesis_file = 'sudo cp ' + pool_genesis_txn_file + " " + original_pool_genesis_txn_file
-exit_sovrin = 'exit'
-remove_pool_genesis_file = 'sudo rm ' + pool_genesis_txn_file
-restore_pool_genesis_file = 'sudo cp ' + original_pool_genesis_txn_file + " " + pool_genesis_txn_file
-create_empty_pool_genesis_file = 'sudo touch ' + pool_genesis_txn_file
+back_up_pool_genesis_file = 'sudo cp ' + Constant.pool_genesis_txn_file + " " + Constant.original_pool_genesis_txn_file
+remove_pool_genesis_file = 'sudo rm ' + Constant.pool_genesis_txn_file
+restore_pool_genesis_file = 'sudo cp ' + Constant.original_pool_genesis_txn_file + " " + Constant.pool_genesis_txn_file
+create_empty_pool_genesis_file = 'sudo touch ' + Constant.pool_genesis_txn_file
 
 
 class TestScenario02(TestScenarioBase):
