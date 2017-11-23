@@ -26,7 +26,6 @@ class TestScenario04(TestScenarioBase):
 
     async def execute_test_steps(self):
         print("Test Scenario 04 -> started")
-        seed_default_trustee = "000000000000000000000000Trustee1"
         try:
             # 1. Create and open pool Ledger  ---------------------------------------------------------
             self.steps.add_step("Create and open pool Ledger")
@@ -45,7 +44,7 @@ class TestScenario04(TestScenarioBase):
             # 3. create DID to check the new wallet work well.
             self.steps.add_step("Create DID to check the new wallet work well")
             await perform(self.steps, signus.create_and_store_my_did,
-                          self.wallet_handle, json.dumps({"seed": seed_default_trustee}))
+                          self.wallet_handle, json.dumps({"seed": Constant.seed_default_trustee}))
         except IndyError as e:
             print(Colors.FAIL + "Stop due to IndyError: " + str(e) + Colors.ENDC)
         except Exception as ex:
