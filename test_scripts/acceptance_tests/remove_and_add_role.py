@@ -36,77 +36,53 @@ class TestScenario09(TestScenarioBase):
         # 2. Create DIDs.
         self.steps.add_step("Create DIDs")
 
-        (default_trustee_did, default_trustee_verkey) = None, None
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({"seed": Constant.seed_default_trustee}))
-        if len(result) == 2:
-            (default_trustee_did, default_trustee_verkey) = result
+        (default_trustee_did, default_trustee_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (trustee1_did, trustee1_verkey) = None, None
-        if len(result) == 2:
-            (trustee1_did, trustee1_verkey) = result
+        (trustee1_did, trustee1_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (trustee2_did, trustee2_verkey) = None, None
-        if len(result) == 2:
-            (trustee2_did, trustee2_verkey) = result
+        (trustee2_did, trustee2_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (steward1_did, steward1_verkey) = None, None
-        if len(result) == 2:
-            (steward1_did, steward1_verkey) = result
+        (steward1_did, steward1_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (steward2_did, steward2_verkey) = None, None
-        if len(result) == 2:
-            (steward2_did, steward2_verkey) = result
+        (steward2_did, steward2_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (steward3_did, steward3_verkey) = None, None
-        if len(result) == 2:
-            (steward3_did, steward3_verkey) = result
+        (steward3_did, steward3_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (trustanchor1_did, trustanchor1_verkey) = None, None
-        if len(result) == 2:
-            (trustanchor1_did, trustanchor1_verkey) = result
+        (trustanchor1_did, trustanchor1_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (trustanchor2_did, trustanchor2_verkey) = None, None
-        if len(result) == 2:
-            (trustanchor2_did, trustanchor2_verkey) = result
+        (trustanchor2_did, trustanchor2_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (trustanchor3_did, trustanchor3_verkey) = None, None
-        if len(result) == 2:
-            (trustanchor3_did, trustanchor3_verkey) = result
+        (trustanchor3_did, trustanchor3_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (user1_did, user1_verkey) = None, None
-        if len(result) == 2:
-            (user1_did, user1_verkey) = result
+        (user1_did, user1_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (user3_did, user3_verkey) = None, None
-        if len(result) == 2:
-            (user3_did, user3_verkey) = result
+        (user3_did, user3_verkey) = result if len(result) == 2 else (None, None)
 
         result = await utils.perform(self.steps, signus.create_and_store_my_did,
                                      self.wallet_handle, json.dumps({}))
-        (user4_did, user4_verkey) = None, None
-        if len(result) == 2:
-            (user4_did, user4_verkey) = result
+        (user4_did, user4_verkey) = result if len(result) == 2 else (None, None)
 
         # ==========================================================================================================
         # Test starts here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
