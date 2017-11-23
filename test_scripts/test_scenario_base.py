@@ -12,6 +12,7 @@ from libraries.constant import Constant
 from libraries.common import Common
 from libraries.logger import Logger
 from libraries.result import TestResult
+from libraries.step import Steps
 
 
 class TestScenarioBase(object):
@@ -30,7 +31,7 @@ class TestScenarioBase(object):
     steps = None
     test_result = None
 
-    def __init__(self, total_steps, test_name):
+    def __init__(self, test_name):
         """
         Init some specify data that is different among sub test classes.
         Should be called first by super().__init__ in all sub test classes.
@@ -38,7 +39,7 @@ class TestScenarioBase(object):
         :param test_name: name of test case
         """
         self.test_result = TestResult(test_name)
-        self.steps = create_step(total_steps)
+        self.steps = Steps()
         self.logger = Logger(test_name)
 
     def execute_precondition_steps(self):
@@ -72,9 +73,9 @@ class TestScenarioBase(object):
         self.execute_precondition_steps()
         Common.run_async_method(self.execute_test_case)
         Common.run_async_method(self.execute_postcondition_steps)
-        Common.make_final_result(self.test_result, self.steps, begin_time, self.logger)
+        Common.make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
 
 
 if __name__ == '__main__':
-    test_scenario = TestScenarioBase(0, "test_base")
+    test_scenario = TestScenarioBase("test_base")
     test_scenario.execute_scenario()

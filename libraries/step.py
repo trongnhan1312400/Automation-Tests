@@ -5,6 +5,29 @@ Created on Nov 20, 2017
 '''
 
 
+class Steps():
+    """
+    """
+    __steps = []
+
+    def __init__(self):
+        pass
+
+    def get_last_step(self):
+        if len(self.__steps) != 0:
+            return self.__steps[-1]
+
+    def get_list_step(self):
+        return self.__steps
+
+    def add_step(self, name):
+        from libraries.constant import Colors
+        step_id = len(self.__steps)
+        print(Colors.HEADER + "\n{0}. {1}\n".format(step_id, name) + Colors.ENDC)
+        new_step = Step(step_id + 1, name)
+        self.__steps.append(new_step)
+
+
 class Step():
     """
     Class manage information of a test step.
@@ -32,10 +55,11 @@ class Step():
     def set_status(self, status):
         self.__status = status
 
-    def set_name(self, name):
-        from libraries.constant import Colors
-        print(Colors.HEADER + "\n{0}. {1}\n".format(self.__id, name) + Colors.ENDC)
-        self.__name = name
+#     @ObsoleteHeaderDefect
+#     def set_name(self, name):
+#         from libraries.constant import Colors
+#         print(Colors.HEADER + "\n{0}. {1}\n".format(self.__id, name) + Colors.ENDC)
+#         self.__name = name
 
     def set_message(self, message):
         self.__message = message

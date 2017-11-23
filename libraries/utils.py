@@ -3,6 +3,7 @@ Created on Nov 9, 2017
 
 @author: khoi.ngo
 '''
+from libraries import step
 
 
 def generate_random_string(prefix="", suffix="", size=20):
@@ -26,13 +27,13 @@ def generate_random_string(prefix="", suffix="", size=20):
     return result
 
 
-def create_step(size):
-    from libraries.step import Step
-    lst_step = []
-    for i in range(0, size):
-        step = Step(i, "")
-        lst_step.append(step)
-    return lst_step
+# def create_step(size):
+#     from libraries.step import Step
+#     lst_step = []
+#     for i in range(0, size + 1):
+#         step = Step(i, "")
+#         lst_step.append(step)
+#     return lst_step
 
 
 def raise_if_exception(code):
@@ -48,7 +49,7 @@ def raise_if_exception(code):
         return code
 
 
-async def perform(step, func, *agrs):
+async def perform(steps, func, *agrs):
     """
     Execute an function and set status, message for the test step
     depend on the result of the function.
@@ -61,21 +62,21 @@ async def perform(step, func, *agrs):
     from libraries.result import Status
     try:
         result = await func(*agrs)
-        step.set_status(Status.PASSED)
+        steps.get_last_step().set_status(Status.PASSED)
     except IndyError as E:
         print("Indy error" + str(E))
-        step.set_message(str(E))
-        step.set_status(Status.FAILED)
+        steps.get_last_step().set_message(str(E))
+        steps.get_last_step().set_status(Status.FAILED)
         return E
     except Exception as Ex:
         print("Exception" + str(Ex))
-        step.set_message(str(Ex))
-        step.set_status(Status.FAILED)
+        steps.get_last_step().set_message(str(Ex))
+        steps.get_last_step().set_status(Status.FAILED)
         return Ex
     return result
 
 
-async def perform_with_expected_code(step, func, *agrs, expected_code=0):
+async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
     """
     Execute the "func" with expectation that the "func" raise an IndyError
     that IndyError.error_code = "expected_code".
@@ -90,16 +91,16 @@ async def perform_with_expected_code(step, func, *agrs, expected_code=0):
     from libraries.result import Status
     try:
         await func(*agrs)
-        step.set_message("Can execute without exception.")
-        step.set_status(Status.FAILED)
+        steps.get_last_step().set_message("Can execute without exception.")
+        steps.get_last_step().set_status(Status.FAILED)
         return None
     except IndyError as E:
         if E.error_code == expected_code:
-            step.set_status(Status.PASSED)
+            steps.get_last_step().set_status(Status.PASSED)
             return None
         else:
             print("Indy error" + str(E))
-            step.set_message(str(E))
+            steps.get_last_step().set_message(str(E))
             return E
     except Exception as Ex:
         print("Exception" + str(Ex))

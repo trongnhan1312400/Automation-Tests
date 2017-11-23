@@ -21,29 +21,29 @@ from test_scripts.test_scenario_base import TestScenarioBase
 class TestScenario04(TestScenarioBase):
 
     def __init__(self):
-        super().__init__(total_steps=3, test_name="test_scenario_04_keyrings_wallet")
+        super().__init__(test_name="test_scenario_04_keyrings_wallet")
 
     async def execute_test_case(self):
         print("Test Scenario 04 -> started")
         seed_default_trustee = "000000000000000000000000Trustee1"
         try:
             # 1. Create and open pool Ledger  ---------------------------------------------------------
-            self.steps[0].set_name("Create and open pool Ledger")
-            returned_code = await perform(self.steps[0], Common.prepare_pool_and_wallet, self.pool_name,
+            self.steps.add_step("Create and open pool Ledger")
+            returned_code = await perform(self.steps, Common.prepare_pool_and_wallet, self.pool_name,
                                           self.wallet_name, self.pool_genesis_txn_file)
 
             self.pool_handle, self.wallet_handle = raise_if_exception(returned_code)
 
             # 2. verify wallet was created in .indy/wallet
-            self.steps[1].set_name("Verify wallet was created in .indy/wallet")
+            self.steps.add_step("Verify wallet was created in .indy/wallet")
             wallet_path = Constant.work_dir + "/wallet/" + self.wallet_name
             result = os.path.exists(wallet_path)
             if result:
-                self.steps[1].set_status(Status.PASSED)
+                self.steps.get_last_step().set_status(Status.PASSED)
 
             # 3. create DID to check the new wallet work well.
-            self.steps[2].set_name("Create DID to check the new wallet work well")
-            await perform(self.steps[2], signus.create_and_store_my_did,
+            self.steps.add_step("Create DID to check the new wallet work well")
+            await perform(self.steps, signus.create_and_store_my_did,
                           self.wallet_handle, json.dumps({"seed": seed_default_trustee}))
         except IndyError as e:
             print(Colors.FAIL + "Stop due to IndyError: " + str(e) + Colors.ENDC)
