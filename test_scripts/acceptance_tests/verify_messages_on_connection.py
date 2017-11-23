@@ -26,9 +26,6 @@ create_empty_pool_genesis_file = 'sudo touch ' + Constant.pool_genesis_txn_file
 
 class TestScenario02(TestScenarioBase):
 
-    def __init__(self):
-        super().__init__(test_name="test_scenario_02_verify_messages_on_connection")
-
     async def execute_precondition_steps(self):
         os.system(back_up_pool_genesis_file)
         os.system(remove_pool_genesis_file)

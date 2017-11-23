@@ -330,7 +330,6 @@ class HTMLReporter:
             """
 
     def make_suite_name(self, suite_name):
-        # os.path.basename(__file__)
         """
         Generating the statistics table.
         :param suite_name:
@@ -439,7 +438,8 @@ class HTMLReporter:
         print(("Refer to " + self.__report_dir + "{}.html").format(report_file_name))
         f = open((self.__report_dir + "{}.html").format(report_file_name), 'w')
         f.write(
-            self.__head + HTMLReporter.__suite_name +
+            self.__head +
+            self.__suite_name +
             self.__configuration_table +
             self.__statictics_table +
             self.__summary_head +

@@ -26,9 +26,6 @@ from test_scripts.test_scenario_base import TestScenarioBase
 
 class TestScenario11(TestScenarioBase):
 
-    def __init__(self):
-        super().__init__(test_name="test_scenario_11_special_case_trust_anchor_role")
-
     async def execute_test_steps(self):
         print("Test Scenario 11 -> started")
         # Declare all values use in the test

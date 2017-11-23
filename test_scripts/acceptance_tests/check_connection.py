@@ -19,9 +19,6 @@ from test_scripts.test_scenario_base import TestScenarioBase
 class TestScenario03(TestScenarioBase):
     seed_steward01 = "000000000000000000000000Steward1"
 
-    def __init__(self):
-        super().__init__(test_name="test_scenario_03_check_connection")
-
     async def execute_test_steps(self):
         try:
             pool_config = json.dumps({"genesis_txn": str(Constant.pool_genesis_txn_file)})

@@ -19,9 +19,6 @@ from test_scripts.test_scenario_base import TestScenarioBase
 
 class TestScenario09(TestScenarioBase):
 
-    def __init__(self):
-        super().__init__(test_name="test_scenario_09_remove_and_add_role")
-
     async def execute_test_steps(self):
         """
         This function is the main part of test script.

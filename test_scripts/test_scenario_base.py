@@ -8,6 +8,7 @@ Containing the test base class.
 import time
 import sys
 import os
+import inspect
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.utils import *
 from libraries.constant import Constant
@@ -32,12 +33,12 @@ class TestScenarioBase(object):
     steps = None
     test_result = None
 
-    def __init__(self, test_name):
+    def init_data_test(self):
         """
-        Init some specify data that is different among sub test classes.
-        Should be called first by super().__init__ in all sub test classes.
-        :param test_name: name of test case.
+        Init test data.
+        If the test case need some extra test date then just override this method.
         """
+        test_name = os.path.splitext(os.path.basename(inspect.getfile(self.__class__)))[0]
         self.test_result = TestResult(test_name)
         self.steps = Steps()
         self.logger = Logger(test_name)
@@ -68,6 +69,7 @@ class TestScenarioBase(object):
         Execute the test scenario and control the work flow of this test scenario.
         """
         begin_time = time.time()
+        self.init_data_test()
         run_async_method(self.execute_precondition_steps)
         run_async_method(self.execute_test_steps)
         run_async_method(self.execute_postcondition_steps)

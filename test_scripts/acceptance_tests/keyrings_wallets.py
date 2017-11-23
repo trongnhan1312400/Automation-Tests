@@ -21,9 +21,6 @@ from test_scripts.test_scenario_base import TestScenarioBase
 
 class TestScenario04(TestScenarioBase):
 
-    def __init__(self):
-        super().__init__(test_name="test_scenario_04_keyrings_wallet")
-
     async def execute_test_steps(self):
         print("Test Scenario 04 -> started")
         try:
