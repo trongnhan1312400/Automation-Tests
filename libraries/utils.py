@@ -1,9 +1,8 @@
-'''
+"""
 Created on Nov 9, 2017
 
 @author: khoi.ngo
-'''
-from libraries import step
+"""
 
 
 def generate_random_string(prefix="", suffix="", size=20):

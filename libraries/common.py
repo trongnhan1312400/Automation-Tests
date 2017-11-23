@@ -1,8 +1,8 @@
-'''
+"""
 Created on Nov 13, 2017
 
 @author: khoi.ngo
-'''
+"""
 
 from .constant import Colors, Constant
 import asyncio
@@ -16,7 +16,7 @@ class Common():
     Wrapper the common steps.
     """
 
-# Static methods =========================================================================================================
+# Static methods =================================================================================================
     @staticmethod
     async def prepare_pool_and_wallet(pool_name, wallet_name, pool_genesis_txn_file):
         """
