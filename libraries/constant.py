@@ -1,3 +1,4 @@
+
 """
 Created on Nov 9, 2017
 
@@ -39,6 +40,8 @@ class Constant:
     user_home = os.path.expanduser('~') + os.sep
     work_dir = user_home + ".indy"
     seed_default_trustee = "000000000000000000000000Trustee1"
-    pool_genesis_txn_file = "/var/lib/indy/sandbox/pool_transactions_sandbox_genesis"
-    domain_transactions_sandbox_genesis = "/var/lib/indy/sandbox/domain_transactions_sandbox_genesis"
-    original_pool_genesis_txn_file = "/var/lib/indy/sandbox/original_pool_transactions_sandbox_genesis"
+    # The path to the genesis transaction file is configurable. The default directory is "/var/lib/indy/sandbox/".
+    genesis_transaction_file_path = "/var/lib/indy/sandbox/"
+    pool_genesis_txn_file = genesis_transaction_file_path + "pool_transactions_sandbox_genesis"
+    domain_transactions_sandbox_genesis = genesis_transaction_file_path + "domain_transactions_sandbox_genesis"
+    original_pool_genesis_txn_file = genesis_transaction_file_path + "original_pool_transactions_sandbox_genesis"
