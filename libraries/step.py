@@ -7,6 +7,7 @@ Created on Nov 20, 2017
 
 class Steps():
     """
+    Class manage list of step.
     """
     __steps = []
 
@@ -14,13 +15,23 @@ class Steps():
         pass
 
     def get_last_step(self):
+        """
+        return the last item of step.
+        """
         if len(self.__steps) != 0:
             return self.__steps[-1]
 
     def get_list_step(self):
+        """
+        return the list of step.
+        """
         return self.__steps
 
     def add_step(self, name):
+        """
+        Add a new step to list step.
+        :param name: variable hold the step name. Using to report.
+        """
         from libraries.constant import Colors
         step_id = len(self.__steps)
         print(Colors.HEADER + "\n{0}. {1}\n".format(step_id, name) + Colors.ENDC)
