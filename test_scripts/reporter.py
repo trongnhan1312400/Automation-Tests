@@ -3,7 +3,7 @@ Created on Nov 12, 2017
 
 @author: nghia.huynh
 
-This file contains all function and class to make a HTML report
+Contains all functions and classes to make a HTML report.
 """
 import os
 import json
@@ -21,11 +21,14 @@ class FileNameGetter:
     __END_DATE_PART = 14
 
     @staticmethod
-    def get(part: str, file_name: str) -> str:
+    def get_part_of_name(part: str, file_name: str) -> str:
         """
-        Get a specify part in file name.
+        The format of "file_name" is [name]_[date]_[time].json
+        Example: test_scenario_09_2017-11-21_14-20-30.json
 
-        :param part: what part you want to get in file name.
+        This function get the [name] (test_scenario_09) or the [date] (2017-11-20)
+
+        :param part: part in file name ('date' or 'name').
         :param file_name:
         :return: the part in file name that you want.
         """
@@ -38,7 +41,10 @@ class FileNameGetter:
     @staticmethod
     def get_name(file_name: str) -> str:
         """
-        Get name of test from file name.
+        The format of "file_name" is [name]_[date]_[time].json
+        Example: test_scenario_09_2017-11-21_14-20-30.json
+
+        This function get the [name] (test_scenario_09)
 
         :param file_name:
         :return: name of test.
@@ -50,7 +56,10 @@ class FileNameGetter:
     @staticmethod
     def get_date(file_name: str) -> str:
         """
-        Get date of test from file name.
+        The format of "file_name" is [name]_[date]_[time].json
+        Example: test_scenario_09_2017-11-21_14-20-30.json
+
+        This function get the [date] (2017-11-20)
 
         :param file_name:
         :return: date of test.
@@ -98,7 +107,7 @@ class FileNameFilter:
 
         for f in self.__filter.keys():
             if f in temp:
-                part = FileNameGetter.get(part=f, file_name=file_name)
+                part = FileNameGetter.get_part_of_name(part=f, file_name=file_name)
                 if not part or not self.__filter[f] or not part.startswith(self.__filter[f]):
                     temp[f] = False
 
@@ -109,7 +118,7 @@ def get_version(program: str) -> str:
     """
     Return version of a program.
 
-    :param program:
+    :param program: program's name.
     :return: version.
     """
     cmd = "dpkg -l | grep '{}'".format(program)
