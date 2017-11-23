@@ -177,9 +177,6 @@ class TestScenario11(TestScenarioBase):
                                           trustanchor2_verkey, None, Roles.NONE)
             await perform_with_expected_code(self.steps, ledger.sign_and_submit_request, self.pool_handle, self.wallet_handle,
                                              trustanchor1_did, nym_txn_req17, expected_code=304)
-
-            for item in self.steps.get_list_step():
-                item.to_string()
         except IndyError as e:
             print(Colors.FAIL + "Stop due to IndyError: " + str(e) + Colors.ENDC)
         except Exception as ex:
