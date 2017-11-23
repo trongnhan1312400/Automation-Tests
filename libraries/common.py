@@ -16,7 +16,6 @@ class Common():
     Wrapper the common steps.
     """
 
-# Static methods =================================================================================================
     @staticmethod
     async def prepare_pool_and_wallet(pool_name, wallet_name, pool_genesis_txn_file):
         """
@@ -54,8 +53,7 @@ class Common():
         """
         import os
         import shutil
-        print(Colors.HEADER + "\n\tCheck if the wallet and pool for this test already exist and delete them...\n"
-              + Colors.ENDC)
+        print(Colors.HEADER + "\n\tCheck if the wallet and pool for this test already exist and delete them...\n" + Colors.ENDC)
         work_dir = Constant.work_dir
 
         if os.path.exists(work_dir + "/pool/" + pool_name):
@@ -125,7 +123,6 @@ class Common():
             print(Colors.FAIL + str(E) + Colors.ENDC)
             raise
 
-# Methods ==========================================================================================================
     async def create_and_open_pool(self, pool_name, pool_genesis_txn_file):
         """
         Creates a new local pool ledger configuration.
