@@ -3,7 +3,7 @@ Created on Nov 8, 2017
 
 @author: nhan.nguyen
 
-Contains test script of test scenario 09: remove and add role.
+Containing test script of test scenario 09: remove and add role.
 """
 import json
 import sys

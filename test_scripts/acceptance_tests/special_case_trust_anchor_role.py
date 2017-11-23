@@ -3,7 +3,7 @@ Created on Nov 8, 2017
 
 @author: khoi.ngo
 
-Contains test scripts of test scenario 11: special case for TrustAnchor role.
+Containing test scripts of test scenario 11: special case for TrustAnchor role.
 """
 
 # /usr/bin/env python3.6
@@ -13,7 +13,6 @@ import os
 from indy import ledger, signus
 from indy.error import IndyError
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.constant import Constant, Colors, Roles
 from libraries.common import Common
 from libraries.utils import *

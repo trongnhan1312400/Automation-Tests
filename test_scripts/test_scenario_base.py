@@ -3,7 +3,7 @@ Created on Nov 22, 2017
 
 @author: khoi.ngo
 
-Contains the test base class
+Containing the test base class
 """
 import time
 import sys

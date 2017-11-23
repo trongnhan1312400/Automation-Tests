@@ -3,7 +3,7 @@ Created on Nov 8, 2017
 
 @author: khoi.ngo
 
-Contains test script of test scenario 02: verify messages on connection.
+Containing test script of test scenario 02: verify messages on connection.
 """
 
 import json
@@ -11,7 +11,6 @@ import os.path
 import sys
 from indy import pool
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
-# sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.constant import Constant, Colors, Roles
 from libraries.result import Status
 from libraries.common import Common
