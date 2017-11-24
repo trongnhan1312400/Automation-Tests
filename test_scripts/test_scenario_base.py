@@ -11,7 +11,7 @@ import os
 import inspect
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.utils import *
-from libraries.constant import Constant
+from libraries.constant import Constant, Colors
 from libraries.common import Common
 from libraries.logger import Logger
 from libraries.result import TestResult
@@ -32,6 +32,7 @@ class TestScenarioBase(object):
     logger = None
     steps = None
     test_result = None
+    time_out = 300
 
     def init_data_test(self):
         """
@@ -70,7 +71,14 @@ class TestScenarioBase(object):
         """
         begin_time = time.time()
         self.init_data_test()
-        run_async_method(self.execute_precondition_steps)
-        run_async_method(self.execute_test_steps)
-        run_async_method(self.execute_postcondition_steps)
-        make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
+
+        try:
+            run_async_method(self.execute_precondition_steps, self.time_out)
+            run_async_method(self.execute_test_steps, self.time_out)
+        except TimeoutError:
+            print(Colors.FAIL + "\nTerminate test scenario because of time out\n" + Colors.ENDC)
+        except Exception as e:
+            print("\n\t{}\n".format(str(e)))
+        finally:
+            run_async_method(self.execute_postcondition_steps)
+            make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)

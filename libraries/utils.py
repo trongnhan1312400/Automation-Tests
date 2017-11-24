@@ -99,15 +99,19 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
         return Ex
 
 
-def run_async_method(method):
+def run_async_method(method, time_out=None):
     """
-    Run async method until it complete.
+    Run async method until it complete or until the time is over.
 
     :param method: (optional).
+    :param time_out:
     """
     import asyncio
     loop = asyncio.new_event_loop()
-    loop.run_until_complete(method())
+    if not time_out:
+        loop.run_until_complete(method())
+    else:
+        loop.run_until_complete(asyncio.wait_for(method(), time_out))
     loop.close()
 
 
