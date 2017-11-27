@@ -11,9 +11,9 @@ class Steps:
     """
     Class manage list of step.
     """
-    __steps = []
 
     def __init__(self):
+        self.__steps = []
         pass
 
     def get_last_step(self):

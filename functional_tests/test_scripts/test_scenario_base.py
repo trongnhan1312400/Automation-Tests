@@ -24,17 +24,7 @@ class TestScenarioBase(object):
     All test scenario should inherit from this class.
     This class controls the work flow and hold some general test data for test scenarios that inherit it.
     """
-    pool_name = generate_random_string("test_pool")
-    wallet_name = generate_random_string("test_wallet")
-    pool_handle = 0
-    wallet_handle = 0
-    pool_genesis_txn_file = Constant.pool_genesis_txn_file
-    logger = None
-    steps = None
-    test_result = None
-    time_out = 300
-
-    def init_data_test(self):
+    def __init__(self):
         """
         Init test data.
         If the test case need some extra test date then just override this method.
@@ -43,6 +33,12 @@ class TestScenarioBase(object):
         self.test_result = TestResult(test_name)
         self.steps = Steps()
         self.logger = Logger(test_name)
+        self.pool_name = generate_random_string("test_pool")
+        self.wallet_name = generate_random_string("test_wallet")
+        self.pool_handle = 0
+        self.wallet_handle = 0
+        self.pool_genesis_txn_file = Constant.pool_genesis_txn_file
+        self.time_out = 300
 
     async def execute_precondition_steps(self):
         """
@@ -69,14 +65,14 @@ class TestScenarioBase(object):
         """
         Execute the test scenario and control the work flow of this test scenario.
         """
+        self.__init__()
         begin_time = time.time()
-        self.init_data_test()
 
         try:
             run_async_method(self.execute_precondition_steps, self.time_out)
             run_async_method(self.execute_test_steps, self.time_out)
         except TimeoutError:
-            print(Colors.FAIL + "\nTerminate test scenario because of time out\n" + Colors.ENDC)
+            print(Colors.FAIL + "\nTerminate test scenario because of time limit!!!\n" + Colors.ENDC)
         except Exception as e:
             print("\n\t{}\n".format(str(e)))
         finally:
