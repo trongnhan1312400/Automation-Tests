@@ -55,7 +55,6 @@ class Common:
         """
         import os
         import shutil
-        print(Colors.HEADER + "\n\tCheck if the wallet and pool for this test already exist and delete them...\n" + Colors.ENDC)
         work_dir = Constant.work_dir
 
         if os.path.exists(work_dir + "/pool/" + pool_name):
@@ -92,7 +91,8 @@ class Common:
             print(Colors.FAIL + str(E) + Colors.ENDC)
             raise
 
-    async def create_and_open_pool(self, pool_name, pool_genesis_txn_file):
+    @staticmethod
+    async def create_and_open_pool(pool_name, pool_genesis_txn_file):
         """
         Creates a new local pool ledger configuration.
         Then open that pool and return the pool handle that can be used later to connect pool nodes.
@@ -109,7 +109,8 @@ class Common:
         pool_handle = await pool.open_pool_ledger(pool_name, None)
         return pool_handle
 
-    async def create_and_open_wallet(self, pool_name, wallet_name):
+    @staticmethod
+    async def create_and_open_wallet(pool_name, wallet_name):
         """
         Creates a new secure wallet with the given unique name.
         Then open that wallet and get the wallet handle that can
@@ -126,7 +127,8 @@ class Common:
         wallet_handle = await wallet.open_wallet(wallet_name, None, None)
         return wallet_handle
 
-    async def close_pool_and_wallet(self, pool_handle, wallet_handle):
+    @staticmethod
+    async def close_pool_and_wallet(pool_handle, wallet_handle):
         """
         Close the pool and wallet with the pool and wallet handle.
 
@@ -140,7 +142,8 @@ class Common:
         print(Colors.HEADER + "\nClose wallet\n" + Colors.ENDC)
         await wallet.close_wallet(wallet_handle)
 
-    async def delete_pool_and_wallet(self, pool_name, wallet_name):
+    @staticmethod
+    async def delete_pool_and_wallet(pool_name, wallet_name):
         """
         Delete the pool and wallet with the pool and wallet name.
 
