@@ -25,7 +25,7 @@ class TestRunner:
         self.__catch_arg()
         pass
 
-    async def run(self):
+    def run(self):
         list_tests = []
         if self.__argv_for_test_runner["-d"] is not None:
             if self.__argv_for_test_runner["-d"] is "":
@@ -107,7 +107,4 @@ class TestRunner:
 
 
 if __name__ == "__main__":
-    try:
-        TestRunner().run_with_time_out()
-    except TimeoutError:
-        print("\n\nTerminate the TestRunner because time out!!!!!\n\n")
+    TestRunner().run()
