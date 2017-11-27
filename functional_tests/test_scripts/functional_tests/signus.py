@@ -2,14 +2,15 @@
 Created on Nov 27, 2017
 
 @author: khoi.ngo
+Implementing test case signus.py in the below link.
+https://github.com/hyperledger/indy-sdk/blob/master/samples/python/src/signus.py
 '''
 
 import json
 import os.path
 import sys
 from indy import signus, wallet, pool
-from indy.error import IndyError
-sys.path.append(os.path.join(os.path.dirname(__file__), '../functional_tests'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 from libraries.constant import Constant, Colors, Roles
 from libraries.result import Status
 from libraries.common import Common
@@ -25,13 +26,18 @@ class SignusSample(TestScenarioBase):
     their_wallet_handle = 0
     pool_name = generate_random_string("pool_test")
     pool_handle = 0
-    seed_trustee1 = "000000000000000000000000Trustee1"
 
     async def execute_precondition_steps(self):
+        """
+        Clean up the pool and wallets folders without using lib-indy.
+        """
         Common().clean_up_pool_and_wallet_folder(self.pool_name, self.my_wallet_name)
         Common().clean_up_pool_and_wallet_folder(self.pool_name, self.their_wallet_name)
 
     async def execute_postcondition_steps(self):
+        """
+        Closing my_wallet, their_wallet and pool. Then, deleting them.
+        """
         await wallet.close_wallet(self.my_wallet_handle)
         await wallet.close_wallet(self.their_wallet_handle)
         await wallet.delete_wallet(self.their_wallet_name, None)
@@ -41,56 +47,50 @@ class SignusSample(TestScenarioBase):
 
     async def execute_test_steps(self):
         print("Signus sample -> started")
-        try:
-            # 1. Create pool
-            self.steps.add_step("Create pool Ledger")
-            self.pool_handle = await perform(self.steps, Common.create_and_open_pool,
-                                             self.pool_name, self.pool_genesis_txn_file)
+        # 1. Create pool
+        self.steps.add_step("Create pool Ledger")
+        self.pool_handle = await perform(self.steps, Common.create_and_open_pool,
+                                         self.pool_name, self.pool_genesis_txn_file)
 
-            # 2. Create and open my wallet
-            self.steps.add_step("Create and open my wallet")
-            self.my_wallet_handle = await perform(self.steps, Common.create_and_open_wallet,
-                                                  self.pool_name, self.my_wallet_name)
+        # 2. Create and open my wallet
+        self.steps.add_step("Create and open my wallet")
+        self.my_wallet_handle = await perform(self.steps, Common.create_and_open_wallet,
+                                              self.pool_name, self.my_wallet_name)
 
-            # 3. Create Their Wallet and Get Wallet Handle
-            self.steps.add_step("Create their wallet and get wallet handle")
-            self.their_wallet_handle = await perform(self.steps, Common.create_and_open_wallet,
-                                                     self.pool_name, self.their_wallet_name)
+        # 3. Create Their Wallet and Get Wallet Handle
+        self.steps.add_step("Create their wallet and get wallet handle")
+        self.their_wallet_handle = await perform(self.steps, Common.create_and_open_wallet,
+                                                 self.pool_name, self.their_wallet_name)
 
-            # 4. create my DID
-            self.steps.add_step("Create my DID")
-            await perform(self.steps, signus.create_and_store_my_did, self.my_wallet_handle, "{}")
+        # 4. create my DID
+        self.steps.add_step("Create my DID")
+        await perform(self.steps, signus.create_and_store_my_did, self.my_wallet_handle, "{}")
 
-            # 5. create their DID
-            self.steps.add_step("Create their DID")
-            (their_did, their_verkey) = await perform(self.steps, signus.create_and_store_my_did,
-                                                      self.their_wallet_handle, json.dumps({"seed": self.seed_trustee1}))
+        # 5. create their DID
+        self.steps.add_step("Create their DID")
+        (their_did, their_verkey) = await perform(self.steps, signus.create_and_store_my_did,
+                                                  self.their_wallet_handle, json.dumps({"seed": Constant.seed_default_trustee}))
 
-            # 6. Store Their DID
-            self.steps.add_step("Store Their DID")
-            their_identity_json = json.dumps({'did': their_did, 'verkey': their_verkey})
-            await perform(self.steps, signus.store_their_did, self.my_wallet_handle, their_identity_json)
+        # 6. Store Their DID
+        self.steps.add_step("Store Their DID")
+        their_identity_json = json.dumps({'did': their_did, 'verkey': their_verkey})
+        await perform(self.steps, signus.store_their_did, self.my_wallet_handle, their_identity_json)
 
-            # 7. Their sign message
-            self.steps.add_step("Their sign message")
-            message = json.dumps({
-                "reqId": 1495034346617224651,
-                "identifier": "GJ1SzoWzavQYfNL9XkaJdrQejfztN4XqdsiV4ct3LXKL",
-                "operation": {
-                    "type": "1",
-                    "dest": "4efZu2SXufS556yss7W5k6Po37jt4371RM4whbPKBKdB"
-                }
-            })
-            signature = await perform(self.steps, signus.sign, self.their_wallet_handle, their_did, message)
+        # 7. Their sign message
+        self.steps.add_step("Their sign message")
+        message = json.dumps({
+            "reqId": 1495034346617224651,
+            "identifier": "GJ1SzoWzavQYfNL9XkaJdrQejfztN4XqdsiV4ct3LXKL",
+            "operation": {
+                "type": "1",
+                "dest": "4efZu2SXufS556yss7W5k6Po37jt4371RM4whbPKBKdB"
+            }
+        })
+        signature = await perform(self.steps, signus.sign, self.their_wallet_handle, their_did, message)
 
-            # 8. Verify signature
-            self.steps.add_step("Verify signature")
-            assert await perform(self.steps, signus.verify_signature, self.my_wallet_handle, self.pool_handle, their_did, message, signature)
-
-        except IndyError as e:
-            print(Colors.FAIL + "Stop due to IndyError: " + str(e) + Colors.ENDC)
-        except Exception as ex:
-            print(Colors.FAIL + "Exception: " + str(ex) + Colors.ENDC)
+        # 8. Verify signature
+        self.steps.add_step("Verify signature")
+        assert await perform(self.steps, signus.verify_signature, self.my_wallet_handle, self.pool_handle, their_did, message, signature)
 
         print("Signus sample -> completed")
 
