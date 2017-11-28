@@ -328,6 +328,7 @@ class HTMLReporter:
     def generate_report(self, json_name):
         print("Generating a html report...")
         report_file_name = HTMLReporter.__make_report_name()
+        json_name = "*" if not json_name else json_name
         list_file_name = glob.glob(self.__json_dir + json_name + ".json")
         self.make_suite_name(report_file_name)
         self.make_configurate_table()
