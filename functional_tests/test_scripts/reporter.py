@@ -34,10 +34,16 @@ class FileNameFilter:
         Build the file name that containing some wild card.
         :return: the file name that containing some wild card.
         """
-        result = ""
-        for f in FileNameFilter.__FILTER_SUPPORTED:
-            if f in list_filter and list_filter[f] is not None:
-                result = result + list_filter[f]
+        result = "*"
+        if "name" in list_filter and list_filter["name"]:
+            name = list_filter["name"]
+            if str(name).startswith("*"):
+                result = name
+            else:
+                result = "{}{}".format(result, name)
+        if "date" in list_filter and list_filter["date"]:
+            result = "{}{}".format(result, list_filter["date"])
+
         if not result.endswith("*"):
             result += "*"
         return "{}{}".format(result, file_extension)
