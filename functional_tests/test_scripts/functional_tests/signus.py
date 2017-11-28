@@ -11,8 +11,7 @@ import os.path
 import sys
 from indy import signus, wallet, pool
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
-from libraries.constant import Constant, Colors, Roles
-from libraries.result import Status
+from libraries.constant import Constant
 from libraries.common import Common
 from libraries.utils import *
 from test_scripts.test_scenario_base import TestScenarioBase

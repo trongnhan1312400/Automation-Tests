@@ -11,7 +11,7 @@ import os.path
 import sys
 from indy import signus, wallet, pool, ledger
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
-from libraries.constant import Constant, Colors, Roles
+from libraries.constant import Constant
 from libraries.result import Status
 from libraries.common import Common
 from libraries.utils import *
@@ -87,16 +87,19 @@ class LedgerSample(TestScenarioBase):
 
         # 8. Prepare and send GET_NYM request
         self.steps.add_step("Prepare and send GET_NYM request")
-        get_nym_txn_req8 = await perform(self.steps, ledger.build_get_nym_request, their_did, my_did)
-        get_nym_txn_resp = await perform(self.steps, ledger.submit_request, self.pool_handle, get_nym_txn_req8)
+        nym_txn_req8 = await perform(self.steps, ledger.build_get_nym_request, their_did, my_did)
+        nym_txn_resp = await perform(self.steps, ledger.submit_request, self.pool_handle, nym_txn_req8)
 
         # 9. Verify GET_NYM request
         self.steps.add_step("Verify GET_NYM request")
         try:
-            get_nym_txn_resp = json.loads(get_nym_txn_resp)
-            if (get_nym_txn_resp['result']['dest'] == my_did):
+            nym_txn_resp_as_dict = json.loads(nym_txn_resp)
+            if nym_txn_resp_as_dict["result"]["dest"] == my_did:
                 self.steps.get_last_step().set_status(Status.PASSED)
+            else:
+                self.steps.get_last_step().set_status(Status.FAILED)
         except Exception as E:
+            self.steps.get_last_step().set_status(Status.FAILED)
             self.steps.get_last_step().set_message(str(E))
 
         print("Ledger sample -> completed")

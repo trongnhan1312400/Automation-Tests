@@ -26,7 +26,7 @@ class TestRunner:
     __reporter_dir = __default_dir + "/reporter.py"
 
     def __init__(self):
-        self.__args_for_test_runner = None
+        self.__args = None
         self.__test_process = None
         self.__current_scenario = None
         self.__continue = True
@@ -37,7 +37,7 @@ class TestRunner:
         """
         Run all test scenario and then execute reporter if -html flag exist.
         """
-        temp = self.__args_for_test_runner.directory
+        temp = self.__args.directory
         print(os.path.join(TestRunner.__default_dir, temp))
         test_directiory = temp if temp else TestRunner.__default_dir
 
@@ -62,7 +62,7 @@ class TestRunner:
         Execute the "self.run" function with timeout.
         Timeout is from sys.argv.
         """
-        time_out = self.__args_for_test_runner.timeout
+        time_out = self.__args.timeout
 
         if not time_out or time_out <= 0:
             self.run()
@@ -100,7 +100,11 @@ class TestRunner:
         Catch args for TestRunner in sys.argv.
         """
         arg_parser = argparse.ArgumentParser()
-        arg_parser.add_argument("-d", "--directory", dest="directory", help="directory of test scenarios",
+        arg_parser.add_argument("-d", "--directory", dest="directory",
+                                help="directory of test scenarios (not recursive)",
+                                default="", nargs="?")
+        arg_parser.add_argument("-rd", "--recur_directory", dest="recur_directory",
+                                help="directory of test scenarios (recursive)",
                                 default="", nargs="?")
         arg_parser.add_argument("-t", "--timeout", dest="timeout", type=float, help="time out of test runner",
                                 default=-1.0, nargs="?")
@@ -108,13 +112,13 @@ class TestRunner:
                                 help="if this flag is missing, html report would not be generated",
                                 default=False)
         arg_parser.add_argument("-l", "--keep_log", action="store_true",  help="keep all log file")
-        self.__args_for_test_runner = arg_parser.parse_args()
+        self.__args = arg_parser.parse_args()
 
     def __execute_reporter(self):
         """
         Execute html_reporter if -html flag is exist in sys.argv.
         """
-        if not self.__args_for_test_runner.report:
+        if not self.__args.report:
             return
         cmd = "{} {}".format("python3.6", TestRunner.__reporter_dir)
         subprocess.call(cmd, shell=True)
@@ -132,12 +136,17 @@ class TestRunner:
         process.start()
         process.join()
 
-    @staticmethod
-    def __get_list_scenarios_in_folder(start_directory):
-        """
-        Get all test scenarios in start directory and sub directories.
-        :param start_directory:
-        """
+    def __get_list_scenarios_in_folder(self):
+
+        # If both directory and recur_directory are exist then show "Invalid command" and exit.
+        if self.__args.directory and self.__args.recur_directory:
+            print(Colors.FAIL + "\n{}\n".format(Message.ERR_COMMAND_ERROR) + Colors.ENDC)
+            exit(1)
+
+        start_directory = self.__args.directory if self.__args.directory else self.__args.recur_directory
+        if not start_directory:
+            start_directory
+
         list_files = []
 
         try:
