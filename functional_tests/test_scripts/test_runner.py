@@ -39,7 +39,7 @@ class TestRunner:
         """
         temp = self.__args_for_test_runner.directory
         print(os.path.join(TestRunner.__default_dir, temp))
-        test_directiory = os.path.join(TestRunner.__default_dir, temp) if temp else TestRunner.__default_dir
+        test_directiory = temp if temp else TestRunner.__default_dir
 
         if not os.path.exists(test_directiory):
             print(Message.ERR_PATH_DOES_NOT_EXIST)
