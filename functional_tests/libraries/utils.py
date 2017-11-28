@@ -7,6 +7,8 @@ Containing all functions used by several test steps on test scenarios.
 """
 from indy.error import IndyError
 from .constant import Colors
+from .result import Status
+
 
 def generate_random_string(prefix="", suffix="", size=20):
     """
@@ -51,8 +53,6 @@ async def perform(steps, func, *agrs):
     :param agrs: argument of function.
     :return: the result of function of the exception that the function raise.
     """
-    from indy.error import IndyError
-    from libraries.result import Status
     try:
         result = await func(*agrs)
         steps.get_last_step().set_status(Status.PASSED)
@@ -80,8 +80,6 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
     :return: exception if the "func" raise it without "expected_code".
              'None' if the "func" run without any exception of the exception contain "expected_code".
     """
-    from indy.error import IndyError
-    from libraries.result import Status
     try:
         await func(*agrs)
         steps.get_last_step().set_message("Can execute without exception.")
@@ -126,8 +124,6 @@ def make_final_result(test_result, steps, begin_time, logger):
     :param logger: (optional).
     """
     import time
-    from .constant import Colors
-    from libraries.result import Status
     for step in steps:
         test_result.add_step(step)
         if step.get_status() == Status.FAILED:
