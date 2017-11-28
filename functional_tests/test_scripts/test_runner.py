@@ -129,6 +129,11 @@ class TestRunner:
         process.join()
 
     def __get_list_scenarios_in_folder(self):
+        """
+        Get all scenario in folder.
+        Recursive to sub folder if "-rd" argument appear in sys.argv.
+        :return: list test scenarios.
+        """
         # If both directory and recur_directory are exist then show "Invalid command" and exit.
         if self.__args.directory is not "" and self.__args.recur_directory is not "":
             print(Colors.FAIL + "\n{}\n".format(Message.ERR_COMMAND_ERROR) + Colors.ENDC)

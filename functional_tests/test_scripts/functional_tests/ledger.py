@@ -1,10 +1,10 @@
-'''
+"""
 Created on Nov 28, 2017
 
 @author: khoi.ngo
-Implementing test case signus.py in the below link.
+Implementing test case ledger.py in the below link.
 https://github.com/hyperledger/indy-sdk/blob/master/samples/python/src/ledger.py
-'''
+"""
 
 import json
 import os.path
@@ -12,7 +12,6 @@ import sys
 from indy import signus, wallet, pool, ledger
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 from libraries.constant import Constant
-from libraries.result import Status
 from libraries.common import Common
 from libraries.utils import *
 from test_scripts.test_scenario_base import TestScenarioBase

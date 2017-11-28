@@ -16,37 +16,6 @@ import argparse
 import time
 
 
-class FileNameFilter:
-    __FILTER_SUPPORTED = ["name", "date"]
-
-    def __init__(self, list_filter: dict, file_extension: str):
-        self.__file_name = FileNameFilter.__build_wildcard_file_name(list_filter, file_extension)
-
-    def get_files(self, folder) -> list:
-        """
-        Get all file in "folder" that satisfy the "self.__file_name" that containing some wildcard.
-        """
-        return glob.glob(folder + self.__file_name)
-
-    @staticmethod
-    def __build_wildcard_file_name(list_filter: dict, file_extension: str):
-        """
-        Build the file name that containing some wild card.
-        :return: the file name that containing some wild card.
-        """
-        result = ""
-        if "name" in list_filter and list_filter["name"]:
-            result = list_filter["name"] + "_"
-        if "date" in list_filter and list_filter["date"]:
-            if not result:
-                result = "*"
-            result = "{}{}".format(result, list_filter["date"])
-
-        if not result.endswith("*"):
-            result += "*"
-        return "{}{}".format(result, file_extension)
-
-
 def get_version(program: str) -> str:
     """
     Return version of a program.
@@ -354,14 +323,12 @@ class HTMLReporter:
         self.__statictics_table = self.__statictics_table.replace("total_time", str(total))
 
     def __init__(self):
-        self.__filter = None
         HTMLReporter.__init_report_folder()
 
-    def generate_report(self, file_filter: dict):
+    def generate_report(self, json_name):
         print("Generating a html report...")
-        self.__filter = FileNameFilter(file_filter, ".json")
-        list_file_name = self.__filter.get_files(self.__json_dir)
         report_file_name = HTMLReporter.__make_report_name()
+        list_file_name = glob.glob(self.__json_dir + json_name + ".json")
         self.make_suite_name(report_file_name)
         self.make_configurate_table()
         self.make_report_content_by_list(list_file_name)
@@ -424,12 +391,10 @@ if __name__ == "__main__":
     reporter = HTMLReporter()
     # Get argument from sys.argv to make filters
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("-d", "--date", dest="date", nargs="?", default=None,
-                            help="filter json file by date")
     arg_parser.add_argument("-n", "--name", dest="name", nargs="?", default=None,
                             help="filter json file by name")
     args = arg_parser.parse_args()
-    json_filter = vars(args)
+    json_name = args.name
 
     # Generate a html report
-    reporter.generate_report(json_filter)
+    reporter.generate_report(json_name)
