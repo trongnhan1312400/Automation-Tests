@@ -10,7 +10,6 @@ import json
 import socket
 import platform
 import glob
-import sys
 import subprocess
 import errno
 import argparse
@@ -109,7 +108,7 @@ class FileNameFilter:
         for f in self.__filter.keys():
             if f in temp:
                 part = FileNameGetter.get_part_of_name(part=f, file_name=file_name)
-                if not part or not self.__filter[f] or not part.startswith(self.__filter[f]):
+                if  self.__filter[f] and (not part or not part.startswith(self.__filter[f])):
                     temp[f] = False
 
         return all(value is True for value in temp.values())
@@ -504,9 +503,9 @@ if __name__ == "__main__":
     reporter = HTMLReporter()
     # Get argument from sys.argv to make filters
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("-d", "--date", dest="date", nargs="?", default="",
+    arg_parser.add_argument("-d", "--date", dest="date", nargs="?", default=None,
                             help="filter json file by date")
-    arg_parser.add_argument("-n", "--name", dest="name", nargs="?", default="",
+    arg_parser.add_argument("-n", "--name", dest="name", nargs="?", default=None,
                             help="filter json file by name")
     args = arg_parser.parse_args()
     json_filter = vars(args)
