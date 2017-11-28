@@ -13,105 +13,34 @@ import glob
 import subprocess
 import errno
 import argparse
-
-
-class FileNameGetter:
-    __FILE_NAME_GETTER = {"name": "get_name", "date": "get_date"}
-    __BEGIN_DATE_PART = 24
-    __END_DATE_PART = 14
-
-    @staticmethod
-    def get_part_of_name(part: str, file_name: str) -> str:
-        """
-        The format of "file_name" is [name]_[date]_[time].json
-        Example: test_scenario_09_2017-11-21_14-20-30.json
-
-        This function get the [name] (test_scenario_09) or the [date] (2017-11-20)
-
-        :param part: part in file name ('date' or 'name').
-        :param file_name:
-        :return: the part in file name that you want.
-        """
-        if part in FileNameGetter.__FILE_NAME_GETTER:
-            getter = getattr(FileNameGetter, FileNameGetter.__FILE_NAME_GETTER[part])
-            return getter(file_name)
-
-        return ""
-
-    @staticmethod
-    def get_name(file_name: str) -> str:
-        """
-        The format of "file_name" is [name]_[date]_[time].json
-        Example: test_scenario_09_2017-11-21_14-20-30.json
-
-        This function get the [name] (test_scenario_09)
-
-        :param file_name:
-        :return: name of test.
-        """
-        if file_name is None or len(file_name) < (FileNameGetter.__BEGIN_DATE_PART + 1):
-            return ""
-        return file_name[0:(len(file_name) - (FileNameGetter.__BEGIN_DATE_PART + 1))]
-
-    @staticmethod
-    def get_date(file_name: str) -> str:
-        """
-        The format of "file_name" is [name]_[date]_[time].json
-        Example: test_scenario_09_2017-11-21_14-20-30.json
-
-        This function get the [date] (2017-11-20)
-
-        :param file_name:
-        :return: date of test.
-        """
-        if file_name is None or len(file_name) < FileNameGetter.__BEGIN_DATE_PART:
-            return ""
-        return file_name[(len(file_name) - FileNameGetter.__BEGIN_DATE_PART):
-                         (len(file_name) - FileNameGetter.__END_DATE_PART)]
+import time
 
 
 class FileNameFilter:
     __FILTER_SUPPORTED = ["name", "date"]
-    __FILTER_REGEX = "&"
-    __VALUE_REGEX = "="
 
-    def __init__(self, list_filter: dict):
-        self.__filter = list_filter
+    def __init__(self, list_filter: dict, file_extension: str):
+        self.__file_name = FileNameFilter.__build_wildcard_file_name(list_filter, file_extension)
 
-    def do_filter(self, list_file_name) -> list:
+    def get_files(self, folder) -> list:
         """
-        :param list_file_name: list to filter.
-        :return: list of file name that satisfy condition.
+        Get all file in "folder" that satisfy the "self.__file_name" that containing some wildcard.
         """
-        result = []
-        for file_name in list_file_name:
-            if self.__check(os.path.basename(file_name)):
-                result.append(file_name)
+        return glob.glob(folder + self.__file_name)
 
-        return result
-
-    def get_filter(self):
-        return self.__filter
-
-    def __check(self, file_name: str) -> bool:
+    @staticmethod
+    def __build_wildcard_file_name(list_filter: dict, file_extension: str):
         """
-        Check if the file name satisfy the condition.
-
-        :param file_name:
-        :return: True if file_name satisfy all filters.
-                 False if file_name does not satisfy at least one filter.
+        Build the file name that containing some wild card.
+        :return: the file name that containing some wild card.
         """
-        temp = {}
+        result = ""
         for f in FileNameFilter.__FILTER_SUPPORTED:
-            temp[f] = True
-
-        for f in self.__filter.keys():
-            if f in temp:
-                part = FileNameGetter.get_part_of_name(part=f, file_name=file_name)
-                if  self.__filter[f] and (not part or not part.startswith(self.__filter[f])):
-                    temp[f] = False
-
-        return all(value is True for value in temp.values())
+            if f in list_filter and list_filter[f] is not None:
+                result = result + list_filter[f]
+        if not result.endswith("*"):
+            result += "*"
+        return "{}{}".format(result, file_extension)
 
 
 def get_version(program: str) -> str:
@@ -426,10 +355,9 @@ class HTMLReporter:
 
     def generate_report(self, file_filter: dict):
         print("Generating a html report...")
-        self.__filter = FileNameFilter(file_filter)
-        list_file_name = glob.glob(HTMLReporter.__json_dir + "*.json")
-        list_file_name = self.__filter.do_filter(list_file_name)
-        report_file_name = HTMLReporter.__make_report_name(self.__filter.get_filter())
+        self.__filter = FileNameFilter(file_filter, ".json")
+        list_file_name = self.__filter.get_files(self.__json_dir)
+        report_file_name = HTMLReporter.__make_report_name()
         self.make_suite_name(report_file_name)
         self.make_configurate_table()
         self.make_report_content_by_list(list_file_name)
@@ -457,23 +385,12 @@ class HTMLReporter:
         f.close()
 
     @staticmethod
-    def __make_report_name(json_filter: dict) -> str:
+    def __make_report_name() -> str:
         """
-        Generate report name from filter.
-        :param json_filter:
+        Generate report name.
         :return: report name.
         """
-        name = ""
-        if "name" in json_filter and json_filter["name"] is not None:
-            name += json_filter["name"]
-
-        if "date" in json_filter and json_filter["date"] is not None:
-            if name is not "":
-                name += "_"
-            name = "{}{}".format(name, json_filter["date"])
-
-        if name is "":
-            name = "Summary"
+        name = "Summary_{}".format(str(time.strftime("%Y-%m-%d_%H-%M-%S")))
 
         return name
 

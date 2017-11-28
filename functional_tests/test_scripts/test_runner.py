@@ -38,9 +38,10 @@ class TestRunner:
         Run all test scenario and then execute reporter if -html flag exist.
         """
         temp = self.__args_for_test_runner.directory
-        test_directiory = temp if temp else TestRunner.__default_dir
+        print(os.path.join(TestRunner.__default_dir, temp))
+        test_directiory = os.path.join(TestRunner.__default_dir, temp) if temp else TestRunner.__default_dir
 
-        if not os.path.exists(test_directiory) or not os.path.isdir(test_directiory):
+        if not os.path.exists(test_directiory):
             print(Message.ERR_PATH_DOES_NOT_EXIST)
             return
 
@@ -103,22 +104,19 @@ class TestRunner:
                                 default="", nargs="?")
         arg_parser.add_argument("-t", "--timeout", dest="timeout", type=float, help="time out of test runner",
                                 default=-1.0, nargs="?")
-        arg_parser.add_argument("-html", "--html_reporter", dest="reporter",
-                                help="path to html reporter. If this arg is "
-                                     "missing, html report would not be generated",
-                                default="", nargs="?")
-        arg_parser.add_argument("-l", "--keep_log", action='store_true',  help="keep all log file")
+        arg_parser.add_argument("-html", "--html_report", dest="report", action="store_true",
+                                help="if this flag is missing, html report would not be generated",
+                                default=False)
+        arg_parser.add_argument("-l", "--keep_log", action="store_true",  help="keep all log file")
         self.__args_for_test_runner = arg_parser.parse_args()
 
     def __execute_reporter(self):
         """
         Execute html_reporter if -html flag is exist in sys.argv.
         """
-        reporter_path = self.__args_for_test_runner.reporter
-        if reporter_path is "":
+        if not self.__args_for_test_runner.report:
             return
-        reporter_path = reporter_path if reporter_path else TestRunner.__reporter_dir
-        cmd = "{} {}".format("python3.6", reporter_path)
+        cmd = "{} {}".format("python3.6", TestRunner.__reporter_dir)
         subprocess.call(cmd, shell=True)
 
     def __execute_test_scenario(self, test_scenario):
