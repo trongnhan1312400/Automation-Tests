@@ -36,7 +36,7 @@ class FileNameFilter:
         """
         result = ""
         if "name" in list_filter and list_filter["name"]:
-            result = list_filter["name"]
+            result = list_filter["name"] + "_"
         if "date" in list_filter and list_filter["date"]:
             if not result:
                 result = "*"
