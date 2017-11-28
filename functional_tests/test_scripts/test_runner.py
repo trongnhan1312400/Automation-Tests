@@ -36,7 +36,6 @@ class TestRunner:
         """
         Run all test scenario and then execute reporter if -html flag exist.
         """
-        list_test_files = []
         temp = self.__argv_for_test_runner["-d"]
         test_directiory = temp if temp is not None else TestRunner.__default_dir
 
@@ -109,6 +108,7 @@ class TestRunner:
         for arg in args:
             if arg in sys.argv:
                 index = sys.argv.index(arg)
+                self.__argv_for_test_runner[arg] = ""
                 if index < len(sys.argv) - 1:
                     temp = sys.argv[index + 1]
                     self.__argv_for_test_runner[arg] = temp if temp not in args else ""
@@ -117,11 +117,11 @@ class TestRunner:
         """
         Execute html_reporter if -html flag is exist in sys.argv.
         """
-        report_path = self.__argv_for_test_runner["-html"]
-        if report_path is "":
+        reporter_path = self.__argv_for_test_runner["-html"]
+        if reporter_path is "":
             return
-        report_path = report_path if report_path else TestRunner.__reporter_dir
-        cmd = "{} {}".format(TestRunner.__EXECUTOR, report_path)
+        reporter_path = reporter_path if reporter_path else TestRunner.__reporter_dir
+        cmd = "{} {}".format(TestRunner.__EXECUTOR, reporter_path)
         subprocess.call(cmd, shell=True)
 
     def __execute_test_scenario(self, test_scenario_file: str):
@@ -134,7 +134,7 @@ class TestRunner:
         sys.path.append(os.path.dirname(os.path.abspath(test_scenario_file)))
         test_module = importlib.import_module(os.path.basename(test_scenario_file).replace(".py", ""))
         for name, cls in inspect.getmembers(test_module, inspect.isclass):
-            if "TestScenarioBase" in str(cls.__bases__):
+            if "TestScenarioBase" in str(cls.__bases__) and self.__continue:
                 test_scenario = cls()
                 process = multiprocessing.Process(target=test_scenario.execute_scenario)
                 self.__current_scenario = test_scenario
@@ -143,14 +143,14 @@ class TestRunner:
                 process.join()
 
     @staticmethod
-    def __get_list_files(star_directory):
+    def __get_list_files(start_directory):
         """
-        Get all .py file in star directory and sub directories.
-        :param star_directory:
+        Get all .py file in start directory and sub directories.
+        :param start_directory:
         """
         list_files = []
         try:
-            for directory, _, _ in os.walk(star_directory):
+            for directory, _, _ in os.walk(start_directory):
                 list_files.extend(glob.glob(os.path.join(directory, "*.py")))
         except Exception as e:
             print(str(e))
