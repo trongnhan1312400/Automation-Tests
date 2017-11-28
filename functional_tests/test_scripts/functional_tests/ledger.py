@@ -94,10 +94,13 @@ class LedgerSample(TestScenarioBase):
         self.steps.add_step("Verify GET_NYM request")
         try:
             nym_txn_resp_as_dict = json.loads(nym_txn_resp)
-            if nym_txn_resp_as_dict["result"]["dest"] == my_did:
+            did_response = nym_txn_resp_as_dict["result"]["dest"]
+            if did_response == my_did:
                 self.steps.get_last_step().set_status(Status.PASSED)
             else:
                 self.steps.get_last_step().set_status(Status.FAILED)
+                self.steps.get_last_step().set_message(("Failed. Expected did is [%s] but actual did is [%s]")
+                                                       % (my_did, did_response))
         except Exception as E:
             self.steps.get_last_step().set_status(Status.FAILED)
             self.steps.get_last_step().set_message(str(E))
