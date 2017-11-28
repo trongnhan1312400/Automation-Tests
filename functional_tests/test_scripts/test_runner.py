@@ -14,6 +14,7 @@ import asyncio
 import inspect
 import importlib
 import multiprocessing
+import argparse
 from threading import Timer
 from indy import IndyError
 
@@ -25,7 +26,7 @@ class TestRunner:
     __reporter_dir = __default_dir + "/reporter.py"
 
     def __init__(self):
-        self.__argv_for_test_runner = {"-d": None, "-t": None, "-html": None}
+        self.__args_for_test_runner = None
         self.__test_process = None
         self.__current_scenario = None
         self.__continue = True
@@ -36,8 +37,8 @@ class TestRunner:
         """
         Run all test scenario and then execute reporter if -html flag exist.
         """
-        temp = self.__argv_for_test_runner["-d"]
-        test_directiory = temp if temp is not None else TestRunner.__default_dir
+        temp = self.__args_for_test_runner.directory
+        test_directiory = temp if temp else TestRunner.__default_dir
 
         if not os.path.exists(test_directiory) or not os.path.isdir(test_directiory):
             print("Directory is incorrect!")
@@ -60,15 +61,9 @@ class TestRunner:
         Execute the "self.run" function with timeout.
         Timeout is from sys.argv.
         """
-        time_out = self.__argv_for_test_runner["-t"]
-        try:
-            if time_out:
-                time_out = float(time_out)
-        except ValueError:
-            print("Time out is not a number")
-            return
+        time_out = self.__args_for_test_runner.timeout
 
-        if not time_out:
+        if not time_out or time_out <= 0:
             self.run()
             print("\033[92m" + "\nAll tests have been executed!!!\n" + "\033[0m")
         else:
@@ -85,7 +80,6 @@ class TestRunner:
     def __timeout_event(self):
         """
         Terminate current test scenario and run it's pos-condition.
-        :return:
         """
         self.__continue = False
         print("\033[91m" + "\nAborting test scenario because of time limitation...\n" + "\033[0m")
@@ -104,20 +98,23 @@ class TestRunner:
         """
         Catch args for TestRunner in sys.argv.
         """
-        args = self.__argv_for_test_runner
-        for arg in args:
-            if arg in sys.argv:
-                index = sys.argv.index(arg)
-                self.__argv_for_test_runner[arg] = ""
-                if index < len(sys.argv) - 1:
-                    temp = sys.argv[index + 1]
-                    self.__argv_for_test_runner[arg] = temp if temp not in args else ""
+        arg_parser = argparse.ArgumentParser()
+        arg_parser.add_argument("-d", "--directory", dest="directory", help="directory of test scenarios",
+                                default="", nargs="?")
+        arg_parser.add_argument("-t", "--timeout", dest="timeout", type=float, help="time out of test runner",
+                                default=-1.0, nargs="?")
+        arg_parser.add_argument("-html", "--html_reporter", dest="reporter",
+                                help="path to html reporter. If this arg is "
+                                     "missing, html report would not be generated",
+                                default="", nargs="?")
+        arg_parser.add_argument("-l", "--keep_log", action='store_true',  help="keep all log file")
+        self.__args_for_test_runner = arg_parser.parse_args()
 
     def __execute_reporter(self):
         """
         Execute html_reporter if -html flag is exist in sys.argv.
         """
-        reporter_path = self.__argv_for_test_runner["-html"]
+        reporter_path = self.__args_for_test_runner.reporter
         if reporter_path is "":
             return
         reporter_path = reporter_path if reporter_path else TestRunner.__reporter_dir
