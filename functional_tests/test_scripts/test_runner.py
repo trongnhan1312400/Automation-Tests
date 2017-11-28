@@ -37,19 +37,11 @@ class TestRunner:
         """
         Run all test scenario and then execute reporter if -html flag exist.
         """
-        temp = self.__args.directory
-        print(os.path.join(TestRunner.__default_dir, temp))
-        test_directiory = temp if temp else TestRunner.__default_dir
-
-        if not os.path.exists(test_directiory):
-            print(Message.ERR_PATH_DOES_NOT_EXIST)
-            return
-
-        list_test_scenarios = TestRunner.__get_list_scenarios_in_folder(test_directiory)
+        list_test_scenarios = self.__get_list_scenarios_in_folder()
 
         if not list_test_scenarios:
-            print(Message.ERR_CANNOT_FIND_ANY_TEST_SCENARIOS)
-            return
+            print(Colors.FAIL + "\n{}\n".format(Message.ERR_CANNOT_FIND_ANY_TEST_SCENARIOS) + Colors.ENDC)
+            exit(1)
 
         for test_scenario in list_test_scenarios:
             if self.__continue:
@@ -137,21 +129,34 @@ class TestRunner:
         process.join()
 
     def __get_list_scenarios_in_folder(self):
-
         # If both directory and recur_directory are exist then show "Invalid command" and exit.
-        if self.__args.directory and self.__args.recur_directory:
+        if self.__args.directory is not "" and self.__args.recur_directory is not "":
             print(Colors.FAIL + "\n{}\n".format(Message.ERR_COMMAND_ERROR) + Colors.ENDC)
             exit(1)
+        recursive = False
 
-        start_directory = self.__args.directory if self.__args.directory else self.__args.recur_directory
+        start_directory = ""
+        if self.__args.directory is not "":
+            start_directory = self.__args.directory
+        elif self.__args.recur_directory is not "":
+            start_directory = self.__args.recur_directory
+            recursive = True
+
         if not start_directory:
-            start_directory
+            start_directory = TestRunner.__default_dir
+
+        if not os.path.exists(start_directory):
+            print(Colors.FAIL + "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST) + Colors.ENDC)
+            exit(1)
 
         list_files = []
 
         try:
-            for directory, _, _ in os.walk(start_directory):
-                list_files.extend(glob.glob(os.path.join(directory, "*.py")))
+            if recursive:
+                for directory, _, _ in os.walk(start_directory):
+                    list_files.extend(glob.glob(os.path.join(directory, "*.py")))
+            else:
+                list_files.extend(glob.glob(os.path.join(start_directory, "*.py")))
         except Exception:
             pass
 
