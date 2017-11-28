@@ -84,13 +84,19 @@ class LedgerSample(TestScenarioBase):
         await perform(self.steps, Common().build_and_send_nym_request, self.pool_handle,
                       self.their_wallet_handle, their_did, my_did, None, None, None)
 
-        # 8. verify GET NYM
+        # 8. Prepare and send GET_NYM request
         self.steps.add_step("Prepare and send GET_NYM request")
         get_nym_txn_req8 = await perform(self.steps, ledger.build_get_nym_request, their_did, my_did)
         get_nym_txn_resp = await perform(self.steps, ledger.submit_request, self.pool_handle, get_nym_txn_req8)
 
-        get_nym_txn_resp = json.loads(get_nym_txn_resp)
-        assert get_nym_txn_resp['result']['dest'] == my_did
+        # 9. Verify GET_NYM request
+        self.steps.add_step("Verify GET_NYM request")
+        try:
+            get_nym_txn_resp = json.loads(get_nym_txn_resp)
+            if (get_nym_txn_resp['result']['dest'] == my_did):
+                self.steps.get_last_step().set_status(Status.PASSED)
+        except Exception as E:
+            self.steps.get_last_step().set_message(str(E))
 
         print("Ledger sample -> completed")
 
