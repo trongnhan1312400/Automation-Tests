@@ -52,8 +52,9 @@ class LedgerSample(TestScenarioBase):
         print("Ledger sample -> started")
         # 1. Create pool
         self.steps.add_step("Create pool Ledger")
-        self.pool_handle = await perform(self.steps, Common.create_and_open_pool,
-                                         self.pool_name, self.pool_genesis_txn_file)
+        result = await perform(self.steps, Common.create_and_open_pool,
+                               self.pool_name, self.pool_genesis_txn_file)
+        self.pool_handle = raise_if_exception(result)
 
         # 2. Create and open my wallet
         self.steps.add_step("Create and open my wallet")
