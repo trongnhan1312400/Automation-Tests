@@ -13,6 +13,7 @@ import glob
 import sys
 import subprocess
 import errno
+import argparse
 
 
 class FileNameGetter:
@@ -464,10 +465,10 @@ class HTMLReporter:
         :return: report name.
         """
         name = ""
-        if "name" in json_filter:
+        if "name" in json_filter and json_filter["name"] is not None:
             name += json_filter["name"]
 
-        if "date" in json_filter:
+        if "date" in json_filter and json_filter["date"] is not None:
             if name is not "":
                 name += "_"
             name = "{}{}".format(name, json_filter["date"])
@@ -500,20 +501,15 @@ def print_help():
 
 
 if __name__ == "__main__":
-    __FILTER_SUPPORTED = {"-date": "date", "-name": "name"}
-    args = sys.argv
-    if "-help" in args:
-        print_help()
-        exit(0)
-
-    # Get argument from sys.argv to make filters
     reporter = HTMLReporter()
-    json_filter = {}
-    for key in __FILTER_SUPPORTED:
-        if key in args:
-            index = args.index(key)
-            if index + 1 < len(args):
-                json_filter[__FILTER_SUPPORTED[key]] = args[index + 1]
+    # Get argument from sys.argv to make filters
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument("-d", "--date", dest="date", nargs="?", default="",
+                            help="filter json file by date")
+    arg_parser.add_argument("-n", "--name", dest="name", nargs="?", default="",
+                            help="filter json file by name")
+    args = arg_parser.parse_args()
+    json_filter = vars(args)
 
     # Generate a html report
     reporter.generate_report(json_filter)
