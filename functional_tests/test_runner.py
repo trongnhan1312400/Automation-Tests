@@ -22,6 +22,7 @@ from libraries.constant import Colors, Message
 
 class TestRunner:
     __default_dir = os.path.dirname(os.path.abspath(__file__))
+    __test_script_dir = __default_dir + "/test_scripts"
     __reporter_dir = __default_dir + "/reporter.py"
 
     def __init__(self):
@@ -147,7 +148,7 @@ class TestRunner:
             recursive = True
 
         if not start_directory:
-            start_directory = TestRunner.__default_dir
+            start_directory = TestRunner.__test_script_dir
 
         if not os.path.exists(start_directory):
             print(Colors.FAIL + "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST) + Colors.ENDC)
