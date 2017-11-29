@@ -52,7 +52,7 @@ class Constant:
 class Message:
     ERR_PATH_DOES_NOT_EXIST = "Cannot find the path specified!"
     ERR_CANNOT_FIND_ANY_TEST_SCENARIOS = "Cannot find any test scenarios!"
-    ERR_TEST_RUNNER_TIME_LIMITATION = "Aborting test scenario because of time limitation!"
+    ERR_TIME_LIMITATION = "Aborting test scenario because of time limitation!"
     ERR_COMMAND_ERROR = "Invalid command!"
     INFO_RUNNING_TEST_POS_CONDITION = "Running clean up for aborted test scenario."
     INFO_ALL_TEST_HAVE_BEEN_EXECUTED = "All test have been executed!"

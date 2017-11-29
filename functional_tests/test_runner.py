@@ -17,7 +17,6 @@ import multiprocessing
 import argparse
 from threading import Timer
 from indy import IndyError
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from libraries.constant import Colors, Message
 
 
@@ -75,7 +74,7 @@ class TestRunner:
         Terminate current test scenario and run it's pos-condition.
         """
         self.__continue = False
-        print(Colors.FAIL + "\n{}\n".format(Message.ERR_TEST_RUNNER_TIME_LIMITATION) + Colors.ENDC)
+        print(Colors.FAIL + "\n{}\n".format(Message.ERR_TIME_LIMITATION) + Colors.ENDC)
         print(Colors.HEADER + "{}".format(Message.INFO_RUNNING_TEST_POS_CONDITION) + Colors.ENDC)
         if self.__test_process:
             self.__test_process.terminate()

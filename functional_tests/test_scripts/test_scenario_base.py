@@ -11,10 +11,10 @@ import os
 import inspect
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.utils import *
-from libraries.constant import Constant, Colors
+from libraries.constant import Constant, Colors, Message
 from libraries.common import Common
 from libraries.logger import Logger
-from libraries.result import TestResult
+from libraries.result import TestResult, Status
 from libraries.step import Steps
 
 
@@ -72,9 +72,11 @@ class TestScenarioBase(object):
             run_async_method(self.execute_precondition_steps, self.time_out)
             run_async_method(self.execute_test_steps, self.time_out)
         except TimeoutError:
-            print(Colors.FAIL + "\nTerminate test scenario because of time limit!!!\n" + Colors.ENDC)
+            print(Colors.FAIL + "\n{}\n".format(Message.ERR_TIME_LIMITATION) + Colors.ENDC)
+            self.steps.get_last_step().set_status(Status.FAILED)
+            self.steps.get_last_step().set_message(Message.ERR_TIME_LIMITATION)
         except Exception as e:
-            print("\n\t{}\n".format(str(e)))
+            print(Colors.FAIL + "\n\t{}\n".format(str(e)) + Colors.ENDC)
         finally:
             run_async_method(self.execute_postcondition_steps)
             make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
