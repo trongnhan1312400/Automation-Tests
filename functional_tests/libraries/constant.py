@@ -56,3 +56,5 @@ class Message:
     ERR_COMMAND_ERROR = "Invalid command!"
     INFO_RUNNING_TEST_POS_CONDITION = "Running clean up for aborted test scenario."
     INFO_ALL_TEST_HAVE_BEEN_EXECUTED = "All test have been executed!"
+    INDY_ERROR = "IndyError: {}"
+    EXCEPTION = "Exception: {}"
