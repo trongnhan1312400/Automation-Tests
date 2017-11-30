@@ -50,7 +50,7 @@ class Constant:
 
 
 class Message:
-    ERR_PATH_DOES_NOT_EXIST = "Cannot find the path specified!"
+    ERR_PATH_DOES_NOT_EXIST = "Cannot find the path specified! \"{}\""
     ERR_CANNOT_FIND_ANY_TEST_SCENARIOS = "Cannot find any test scenarios!"
     ERR_TIME_LIMITATION = "Aborting test scenario because of time limitation!"
     ERR_COMMAND_ERROR = "Invalid command!"

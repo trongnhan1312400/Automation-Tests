@@ -10,7 +10,7 @@ import asyncio
 import json
 from indy import wallet, pool, ledger
 from indy.error import IndyError
-from .constant import Colors, Constant
+from .constant import Colors, Constant, Message
 
 
 class Common:
@@ -101,6 +101,11 @@ class Common:
         :param pool_genesis_txn_file: Pool configuration json. if NULL, then default config will be used.
         :return: The pool handle was created.
         """
+        import os
+        if os.path.exists(Constant.pool_genesis_txn_file) is not True:
+            error_message = Colors.FAIL + "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST.format(Constant.pool_genesis_txn_file)) + Colors.ENDC
+            raise ValueError(error_message)
+
         print(Colors.HEADER + "\nCreate Ledger\n" + Colors.ENDC)
         pool_config = json.dumps({"genesis_txn": str(pool_genesis_txn_file)})
         await pool.create_pool_ledger_config(pool_name, pool_config)

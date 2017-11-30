@@ -14,7 +14,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 from libraries.constant import Constant
 from libraries.common import Common
 from libraries.utils import *
-from test_scripts.test_scenario_base import TestScenarioBase
+from libraries.test_scenario_base import TestScenarioBase
 
 
 class SignusSample(TestScenarioBase):
@@ -50,7 +50,7 @@ class SignusSample(TestScenarioBase):
         self.steps.add_step("Create pool Ledger")
         result = await perform(self.steps, Common.create_and_open_pool,
                                self.pool_name, self.pool_genesis_txn_file)
-        self.pool_handle = raise_if_exception(result)
+        self.pool_handle = exit_if_exception(result)
 
         # 2. Create and open my wallet
         self.steps.add_step("Create and open my wallet")
