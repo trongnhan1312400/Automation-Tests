@@ -1,30 +1,30 @@
-'''
-Created on Nov 27, 2017
+"""
+Created on Nov 28, 2017
 
 @author: khoi.ngo
-Implementing test case signus.py in the below link.
-https://github.com/hyperledger/indy-sdk/blob/master/samples/python/src/signus.py
-'''
+Implementing test case ledger.py in the below link.
+https://github.com/hyperledger/indy-sdk/blob/master/samples/python/src/ledger.py
+"""
 
 import json
 import os.path
 import sys
-from indy import signus, wallet, pool
+from indy import signus, wallet, pool, ledger
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 from libraries.constant import Constant
 from libraries.common import Common
 from libraries.utils import *
-from test_scripts.test_scenario_base import TestScenarioBase
+from libraries.test_scenario_base import TestScenarioBase
 
 
-class SignusSample(TestScenarioBase):
+class LedgerSample(TestScenarioBase):
 
-    my_wallet_name = generate_random_string("my_wallet")
-    my_wallet_handle = 0
-    their_wallet_name = generate_random_string("their_wallet")
-    their_wallet_handle = 0
     pool_name = generate_random_string("pool_test")
+    my_wallet_name = generate_random_string("my_wallet")
+    their_wallet_name = generate_random_string("their_wallet")
     pool_handle = 0
+    my_wallet_handle = 0
+    their_wallet_handle = 0
 
     async def execute_precondition_steps(self):
         """
@@ -37,20 +37,23 @@ class SignusSample(TestScenarioBase):
         """
         Closing my_wallet, their_wallet and pool. Then, deleting them.
         """
+        # Close 2 wallets and the pool.
         await wallet.close_wallet(self.my_wallet_handle)
         await wallet.close_wallet(self.their_wallet_handle)
+        await pool.close_pool_ledger(self.pool_handle)
+
+        # Delete 2 wallets and the pool.
         await wallet.delete_wallet(self.their_wallet_name, None)
         await wallet.delete_wallet(self.my_wallet_name, None)
-        await pool.close_pool_ledger(self.pool_handle)
         await pool.delete_pool_ledger_config(self.pool_name)
 
     async def execute_test_steps(self):
-        print("Signus sample -> started")
+        print("Ledger sample -> started")
         # 1. Create pool
         self.steps.add_step("Create pool Ledger")
         result = await perform(self.steps, Common.create_and_open_pool,
                                self.pool_name, self.pool_genesis_txn_file)
-        self.pool_handle = raise_if_exception(result)
+        self.pool_handle = exit_if_exception(result)
 
         # 2. Create and open my wallet
         self.steps.add_step("Create and open my wallet")
@@ -64,7 +67,7 @@ class SignusSample(TestScenarioBase):
 
         # 4. create my DID
         self.steps.add_step("Create my DID")
-        await perform(self.steps, signus.create_and_store_my_did, self.my_wallet_handle, "{}")
+        (my_did, my_verkey) = await perform(self.steps, signus.create_and_store_my_did, self.my_wallet_handle, "{}")
 
         # 5. create their DID
         self.steps.add_step("Create their DID")
@@ -76,24 +79,33 @@ class SignusSample(TestScenarioBase):
         their_identity_json = json.dumps({'did': their_did, 'verkey': their_verkey})
         await perform(self.steps, signus.store_their_did, self.my_wallet_handle, their_identity_json)
 
-        # 7. Their sign message
-        self.steps.add_step("Their sign message")
-        message = json.dumps({
-            "reqId": 1495034346617224651,
-            "identifier": "GJ1SzoWzavQYfNL9XkaJdrQejfztN4XqdsiV4ct3LXKL",
-            "operation": {
-                "type": "1",
-                "dest": "4efZu2SXufS556yss7W5k6Po37jt4371RM4whbPKBKdB"
-            }
-        })
-        signature = await perform(self.steps, signus.sign, self.their_wallet_handle, their_did, message)
+        # 7. Prepare and send NYM transaction
+        self.steps.add_step("Prepare and send NYM transaction")
+        await perform(self.steps, Common().build_and_send_nym_request, self.pool_handle,
+                      self.their_wallet_handle, their_did, my_did, None, None, None)
 
-        # 8. Verify signature
-        self.steps.add_step("Verify signature")
-        assert await perform(self.steps, signus.verify_signature, self.my_wallet_handle, self.pool_handle, their_did, message, signature)
+        # 8. Prepare and send GET_NYM request
+        self.steps.add_step("Prepare and send GET_NYM request")
+        nym_txn_req8 = await perform(self.steps, ledger.build_get_nym_request, their_did, my_did)
+        nym_txn_resp = await perform(self.steps, ledger.submit_request, self.pool_handle, nym_txn_req8)
 
-        print("Signus sample -> completed")
+        # 9. Verify GET_NYM request
+        self.steps.add_step("Verify GET_NYM request")
+        try:
+            nym_txn_resp_as_dict = json.loads(nym_txn_resp)
+            did_response = nym_txn_resp_as_dict["result"]["dest"]
+            if did_response == my_did:
+                self.steps.get_last_step().set_status(Status.PASSED)
+            else:
+                self.steps.get_last_step().set_status(Status.FAILED)
+                self.steps.get_last_step().set_message("Failed. Expected did is [%s] but actual did is [%s]"
+                                                       % (my_did, did_response))
+        except Exception as E:
+            self.steps.get_last_step().set_status(Status.FAILED)
+            self.steps.get_last_step().set_message(str(E))
+
+        print("Ledger sample -> completed")
 
 
 if __name__ == '__main__':
-    SignusSample().execute_scenario()
+    LedgerSample().execute_scenario()

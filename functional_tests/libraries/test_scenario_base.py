@@ -9,7 +9,7 @@ import time
 import sys
 import os
 import inspect
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+# sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.utils import *
 from libraries.constant import Constant, Colors, Message
 from libraries.common import Common

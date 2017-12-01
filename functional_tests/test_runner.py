@@ -157,7 +157,7 @@ class TestRunner:
             start_directory = TestRunner.__test_script_dir
 
         if not os.path.exists(start_directory):
-            print(Colors.FAIL + "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST) + Colors.ENDC)
+            print(Colors.FAIL + "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST.format(start_directory)) + Colors.ENDC)
             exit(1)
 
         list_files = []

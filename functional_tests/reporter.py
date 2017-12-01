@@ -121,33 +121,33 @@ class HTMLReporter:
 
     __end_file = """</html>"""
 
-    __suite_name = """<h3>s_name</h3>"""
+    __suite_name = """<h3>{}</h3>"""
 
     __configuration_table = """<table id="configuration">
             <tbody>
             <tr>
                 <th>Run machine</th>
-                <td>host_name</td>            
+                <td>{}</td>            
             </tr>
             <tr>
                 <th>OS</th>
-                <td>os_name</td>
+                <td>{}</td>
             </tr>
             <tr>
                 <th>indy - plenum</th>
-                <td>v_plenum</td>            
+                <td>{}</td>            
             </tr>
              <tr>
                 <th>indy - anoncreds</th>
-                <td>v_anoncreds</td>            
+                <td>{}</td>            
             </tr>
             <tr>
                 <th>indy - node</th>
-                <td>v_indynode</td>            
+                <td>{}</td>            
             </tr>
             <tr>
                 <th>sovrin</th>
-                <td>v_sovrin</td>            
+                <td>{}</td>            
             </tr>
             </tbody>
         </table>"""
@@ -161,26 +161,26 @@ class HTMLReporter:
                 <th>Time (ms)</th>
             </tr>
             <tr>
-                <td>plan_name</td>
-                <td class="num">passed_num</td>
-                <td class="num">failed_num</td>            
-                <td class="num">total_time</td>
+                <td>{}</td>
+                <td class="num">{}</td>
+                <td class="num">{}</td>            
+                <td class="num">{}</td>
             </tr>
             </tbody>
         </table>"""
 
     __passed_testcase_template = """<tr class="passedeven">
-                                           <td rowspan="1">tc_name</td>
+                                           <td rowspan="1">{}</td>
                                            <td>Passed</td>
-                                           <td rowspan="1">tc_starttime</td>
-                                           <td rowspan="1">tc_duration</td>
+                                           <td rowspan="1">{}</td>
+                                           <td rowspan="1">{}</td>
                                        </tr>"""
 
     __failed_testcase_template = """<tr class="failedeven">
-                                            <td rowspan="1">tc_name</td>
-                                            <td><a href='#tc_link'>Failed</a></td>
-                                            <td rowspan="1">tc_starttime</td>
-                                            <td rowspan="1">tc_duration</td>
+                                            <td rowspan="1">{}</td>
+                                            <td><a href='#{}'>Failed</a></td>
+                                            <td rowspan="1">{}</td>
+                                            <td rowspan="1">{}</td>
                                         </tr>"""
 
     __summary_head = """<h2>Test Summary</h2>
@@ -212,20 +212,20 @@ class HTMLReporter:
 
     __test_log_head = """<h2>Test Execution Logs</h2>"""
 
-    __table_test_log = """<h3 id = "tc_link">test_name</h3>
+    __table_test_log = """<h3 id = "{}">{}</h3>
                             <table id="execution_logs" border='1' width='800'>"""
 
     __table_test_log_content = """ """
 
     __passed_test_log = """
             <tr>
-                <td><font color="green">step_num : step_name :: step_status</font></td>       
+                <td><font color="green">{} : {} :: {}</font></td>       
             </tr>"""
 
     __failed_test_log = """
             <tr>
-                <td><font color="red">step_num : step_name :: step_status
-                <br>Traceback: error_message</br>
+                <td><font color="red">{} : {} :: {}
+                <br>Traceback: {}</br>
                 </font>
                 </td>            
             </tr>
@@ -236,25 +236,19 @@ class HTMLReporter:
         Generating the statistics table.
         :param suite_name:
         """
-        self.__suite_name = self.__suite_name.replace("s_name", suite_name)
-        self.__statictics_table = self.__statictics_table.replace("plan_name", suite_name)
+        self.__suite_name = self.__suite_name.format(suite_name)
 
     def make_configurate_table(self):
         """
         Generating the configuration table.
         """
-        self.__configuration_table = self.__configuration_table.replace("host_name", socket.gethostname())
-        self.__configuration_table = self.__configuration_table.replace("os_name", os.name + platform.system() +
-                                                                        platform.release())
-        self.__configuration_table = self.__configuration_table.replace("v_plenum", get_version("indy-plenum"))
-        self.__configuration_table = self.__configuration_table.replace("v_anoncreds", get_version("indy-anoncreds"))
-        self.__configuration_table = self.__configuration_table.replace("v_indynode", get_version("indy-node"))
-        self.__configuration_table = self.__configuration_table.replace("v_sovrin", get_version("sovrin"))
+        self.__configuration_table = self.__configuration_table.format(socket.gethostname(), platform.system() + platform.release(), get_version("indy-plenum"), get_version("indy-anoncreds"), get_version("indy-node"), get_version("sovrin"))
 
-    def make_report_content_by_list(self, list_json: list):
+    def make_report_content_by_list(self, list_json: list, suite_name):
         """
         Generating the report content by reading all json file within the inputted path
         :param list_json:
+        :param suite_name:
         """
         if not list_json:
             return
@@ -279,9 +273,8 @@ class HTMLReporter:
                     passed = passed + 1
 
                     temp_testcase = self.__passed_testcase_template
-                    temp_testcase = temp_testcase.replace("tc_name", testcase)
-                    temp_testcase = temp_testcase.replace("tc_starttime", starttime)
-                    temp_testcase = temp_testcase.replace("tc_duration", str(duration))
+                    temp_testcase = temp_testcase.format(testcase, starttime, str(duration))
+
                     # Add passed test case into  table
                     self.__passed_testcase_table = self.__passed_testcase_table + temp_testcase
 
@@ -289,38 +282,30 @@ class HTMLReporter:
                     failed = failed + 1
 
                     temp_testcase = self.__failed_testcase_template
-                    temp_testcase = temp_testcase.replace("tc_name", testcase)
-                    temp_testcase = temp_testcase.replace("tc_starttime", starttime)
-                    temp_testcase = temp_testcase.replace("tc_duration", str(duration))
-                    temp_testcase = temp_testcase.replace("tc_link", testcase.replace(" ", ""))
+                    temp_testcase = temp_testcase.format(testcase, testcase.replace(" ", ""), starttime, str(duration))
+
                     # Add failed test case into  table
                     self.__failed_testcase_table = self.__failed_testcase_table + temp_testcase
 
                     test_log = self.__table_test_log
-                    test_log = test_log.replace("test_name", testcase)
-                    test_log = test_log.replace("tc_link", testcase.replace(" ", ""))
+                    test_log = test_log.format(testcase.replace(" ", ""), testcase)
 
                     self.__table_test_log_content = self.__table_test_log_content + test_log
 
                     # loop for each step
                     for i in range(0, len(json_text['run'])):
                         if json_text['run'][i]['status'] == "Passed":
-                            temp = self.__passed_test_log
+                            temp = self.__passed_test_log.format(str(i + 1), json_text['run'][i]['step'], json_text['run'][i]['status'])
                         else:
                             temp = self.__failed_test_log
-                            temp = temp.replace("error_message", json_text['run'][i]['message'])
+                            temp = self.__passed_test_log.format(str(i + 1), json_text['run'][i]['step'],
+                                                                 json_text['run'][i]['status'], json_text['run'][i]['message'])
 
-                        temp = temp.replace("step_num", str(i + 1))
-                        temp = temp.replace("step_name", json_text['run'][i]['step'])
-                        temp = temp.replace("step_status", json_text['run'][i]['status'])
                         self.__table_test_log_content = self.__table_test_log_content + temp
 
                     self.__table_test_log_content = self.__table_test_log_content + self.__end_table + self.__go_to_summary
 
-        self.__statictics_table = self.__statictics_table.replace("plan_name", str(passed))
-        self.__statictics_table = self.__statictics_table.replace("passed_num", str(passed))
-        self.__statictics_table = self.__statictics_table.replace("failed_num", str(failed))
-        self.__statictics_table = self.__statictics_table.replace("total_time", str(total))
+        self.__statictics_table = self.__statictics_table.format(suite_name, str(passed), str(failed), str(total))
 
     def __init__(self):
         HTMLReporter.__init_report_folder()
@@ -332,7 +317,7 @@ class HTMLReporter:
         list_file_name = glob.glob(self.__json_dir + json_name + ".json")
         self.make_suite_name(report_file_name)
         self.make_configurate_table()
-        self.make_report_content_by_list(list_file_name)
+        self.make_report_content_by_list(list_file_name, report_file_name)
 
         # Write to file.
         print(("Refer to " + self.__report_dir + "{}.html").format(report_file_name))
