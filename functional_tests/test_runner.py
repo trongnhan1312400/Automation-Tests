@@ -48,6 +48,7 @@ class TestRunner:
                 self.__execute_test_scenario(test_scenario)
 
         self.__execute_reporter()
+        print(Colors.OKGREEN + "\n{}\n".format(Message.INFO_ALL_TEST_HAVE_BEEN_EXECUTED) + Colors.ENDC)
 
     def run_with_time_out(self):
         """
@@ -98,13 +99,17 @@ class TestRunner:
         arg_parser.add_argument("-rd", "--recur_directory", dest="recur_directory",
                                 help="directory of test scenarios (recursive)",
                                 default="", nargs="?")
-        arg_parser.add_argument("-t", "--timeout", dest="timeout", type=float, help="time out of test runner",
-                                default=-1.0, nargs="?")
+        arg_parser.add_argument("-t", "--timeout", dest="timeout", type=float, help="timeout for each scenario"
+                                                                                    " (default: 300s)",
+                                default=300, nargs="?")
         arg_parser.add_argument("-html", "--html_report", dest="report", action="store_true",
                                 help="if this flag is missing, html report would not be generated",
                                 default=False)
         arg_parser.add_argument("-l", "--keep_log", action="store_true",  help="keep all log file")
         self.__args = arg_parser.parse_args()
+        if self.__args.timeout <= 0.0:
+            print("Invalid timeout!")
+            exit(1)
 
     def __execute_reporter(self):
         """
@@ -123,7 +128,8 @@ class TestRunner:
         if not test_scenario:
             return
         self.__current_scenario = test_scenario()
-        process = multiprocessing.Process(target=self.__current_scenario.execute_scenario)
+        process = multiprocessing.Process(target=self.__current_scenario.execute_scenario,
+                                          kwargs={"time_out": self.__args.timeout})
         self.__test_process = process
         process.start()
         process.join()
@@ -162,7 +168,7 @@ class TestRunner:
                     list_files.extend(glob.glob(os.path.join(directory, "*.py")))
             else:
                 list_files.extend(glob.glob(os.path.join(start_directory, "*.py")))
-        except Exception:
+        except OSError:
             pass
 
         list_test_scenarios = []
@@ -177,4 +183,4 @@ class TestRunner:
 
 
 if __name__ == "__main__":
-    TestRunner().run_with_time_out()
+    TestRunner().run()

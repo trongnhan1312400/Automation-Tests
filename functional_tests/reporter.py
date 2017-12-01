@@ -35,7 +35,7 @@ def get_version(program: str) -> str:
 
 
 class HTMLReporter:
-    __default_dir = os.path.dirname(__file__)
+    __default_dir = os.path.dirname(os.path.abspath(__file__))
 
     __json_dir = __default_dir + "/test_output/test_results/"
 
