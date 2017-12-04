@@ -17,34 +17,9 @@ from .result import Status
 from .constant import Colors
 
 
-class Printer(object):
-    """
-    Class that write content to several file.
-    Use this class when you want to write log not only on console but only on some other files.
-    """
-    def __init__(self, *files):
-        self.files = files
-
-    def write(self, content):
-        """
-        Write a content into several files.
-        :param content: (optional) content you want to write.
-        """
-        for f in self.files:
-            f.write(content)
-            f.flush()  # Want this content is displayed immediately on file
-
-    def flush(self):
-        """
-        Make the content in buffer display immediately on files.
-        """
-        for f in self.files:
-            f.flush()
-
-
 class Logger:
     """
-    Catch the log written by Python on console.
+    Catch the log is written on console.
     """
     __log_dir = os.path.join(os.path.dirname(__file__), "..") + "/test_output/log_files/"
     __KEEP_LOG_FLAG = "-l"
