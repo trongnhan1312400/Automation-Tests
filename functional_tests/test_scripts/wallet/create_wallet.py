@@ -20,21 +20,21 @@ class CreateWallet(TestScenarioBase):
         Common().clean_up_pool_and_wallet_folder(self.pool_name, self.wallet_name)
 
     async def execute_test_steps(self):
-        print("CreateWallet started")
+        print("CreateWallet test started")
         try:
-            # 1. Create pool
+            # 1. Create and open a pool
             self.steps.add_step("Create pool Ledger")
             result = await perform(self.steps, Common.create_and_open_pool,
                                    self.pool_name, self.pool_genesis_txn_file)
             self.pool_handle = exit_if_exception(result)
 
-            # 2. Create wallet
+            # 2. Create a wallet
             self.steps.add_step("Create wallet")
             returned_code = await perform(self.steps, wallet.create_wallet, self.pool_name, self.wallet_name,
                                           None, None, None)
 
-            # 3. Verify create wallet successfully
-            self.steps.add_step("Verify wallet folder exist")
+            # 3. Verify new created wallet folder exists
+            self.steps.add_step("Verify new created wallet folder exists")
             wallet_path = Constant.work_dir + "/wallet/" + self.wallet_name
             result = os.path.exists(wallet_path)
             if (not isinstance(returned_code, IndyError)) and (result is True):
@@ -43,7 +43,7 @@ class CreateWallet(TestScenarioBase):
                 self.steps.get_last_step().set_message("Failed. Cannot find the wallet which was created.")
         except Exception as e:
             print(Colors.FAIL + "\n\t{}\n".format(str(e)) + Colors.ENDC)
-        print("CreateWallet completed")
+        print("CreateWallet test completed")
 
 
 if __name__ == '__main__':
