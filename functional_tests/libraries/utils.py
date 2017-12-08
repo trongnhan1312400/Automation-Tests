@@ -6,7 +6,7 @@ Created on Nov 9, 2017
 Containing all functions used by several test steps on test scenarios.
 """
 from indy.error import IndyError
-from .constant import Colors, Message, Constant
+from .constant import Colors, Message
 from .result import Status
 
 
@@ -88,7 +88,7 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
     except IndyError as E:
         if E.error_code == expected_code:
             steps.get_last_step().set_status(Status.PASSED)
-            return None
+            return True
         else:
             print(Colors.FAIL + Message.INDY_ERROR.format(str(E)) + Colors.ENDC)
             steps.get_last_step().set_message(str(E))
