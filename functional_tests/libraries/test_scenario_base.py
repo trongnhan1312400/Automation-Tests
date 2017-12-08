@@ -16,6 +16,7 @@ from libraries.common import Common
 from libraries.logger import Logger
 from libraries.result import TestResult, Status
 from libraries.step import Steps
+from concurrent.futures import _base
 
 
 class TestScenarioBase(object):
@@ -61,22 +62,33 @@ class TestScenarioBase(object):
         """
         pass
 
-    def execute_scenario(self):
+    def execute_scenario(self, time_out=None):
         """
         Execute the test scenario and control the work flow of this test scenario.
         """
         self.__init__()
         begin_time = time.time()
+        if time_out:
+            self.time_out = time_out
 
         try:
-            run_async_method(self.execute_precondition_steps, self.time_out)
-            run_async_method(self.execute_test_steps, self.time_out)
-        except TimeoutError:
+            run_async_method(self.__execute_precondition_and_steps, self.time_out)
+        except _base.TimeoutError:
             print(Colors.FAIL + "\n{}\n".format(Message.ERR_TIME_LIMITATION) + Colors.ENDC)
             self.steps.get_last_step().set_status(Status.FAILED)
             self.steps.get_last_step().set_message(Message.ERR_TIME_LIMITATION)
         except Exception as e:
-            print(Colors.FAIL + "\n\t{}\n".format(str(e)) + Colors.ENDC)
+            print(Colors.FAIL + "\n\t{}\n".format(str(type(e))) + Colors.ENDC)
         finally:
-            run_async_method(self.execute_postcondition_steps)
+            try:
+                run_async_method(self.execute_postcondition_steps)
+            except Exception:
+                pass
             make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
+
+    async def __execute_precondition_and_steps(self):
+        """
+        Execute precondition and test steps.
+        """
+        await self.execute_precondition_steps()
+        await self.execute_test_steps()
