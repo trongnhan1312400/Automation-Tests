@@ -7,13 +7,11 @@ https://github.com/hyperledger/indy-sdk/blob/master/samples/python/src/ledger.py
 """
 
 import json
-import os.path
-import sys
 from indy import signus, wallet, pool, ledger
-sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 from libraries.constant import Constant
 from libraries.common import Common
-from libraries.utils import *
+from libraries.utils import generate_random_string, perform, exit_if_exception
+from libraries.result import Status
 from libraries.test_scenario_base import TestScenarioBase
 
 
