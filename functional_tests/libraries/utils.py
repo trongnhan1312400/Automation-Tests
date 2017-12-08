@@ -5,6 +5,7 @@ Created on Nov 9, 2017
 
 Containing all functions used by several test steps on test scenarios.
 """
+import os
 from indy.error import IndyError
 from .constant import Colors, Message, Constant
 from .result import Status
@@ -38,7 +39,7 @@ def exit_if_exception(code):
     :param code: (optional) code that you want to check.
     :return: "code" if it is not an exception.
     """
-    if (isinstance(code, IndyError) or (isinstance(code, Exception))):
+    if isinstance(code, IndyError) or (isinstance(code, Exception)):
         exit(1)
     else:
         return code
@@ -94,7 +95,7 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
             steps.get_last_step().set_message(str(E))
             return E
     except Exception as Ex:
-        print(Colors.FAIL + Message.EXCEPTION.format(str(E)) + Colors.ENDC)
+        print(Colors.FAIL + Message.EXCEPTION.format(str(Ex)) + Colors.ENDC)
         return Ex
 
 
@@ -133,3 +134,34 @@ def make_final_result(test_result, steps, begin_time, logger):
     test_result.set_duration(time.time() - begin_time)
     test_result.write_result_to_file()
     logger.save_log(test_result.get_test_status())
+
+
+def check_pool_exist(pool_name: str) -> bool:
+    """
+    Check whether pool config exist or not.
+    :param pool_name:
+    :return: bool
+    """
+    if not pool_name:
+        return False
+    return os.path.exists(Constant.work_dir + "/pool/" + pool_name)
+
+
+def print_with_color(message: str, color: str):
+    print(color + message + Colors.ENDC)
+
+
+def print_error(message: str):
+    print_with_color(message, Colors.FAIL)
+
+
+def print_header(message: str):
+    print_with_color(message, Colors.HEADER)
+
+
+def print_ok_green(message: str):
+    print_with_color(message, Colors.OKGREEN)
+
+
+def print_ok_blue(message: str):
+    print_with_color(message, Colors.OKBLUE)

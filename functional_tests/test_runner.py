@@ -18,6 +18,7 @@ import argparse
 from threading import Timer
 from indy import IndyError
 from libraries.constant import Colors, Message
+from libraries.test_scenario_base import TestScenarioBase
 
 
 class TestRunner:
@@ -176,7 +177,7 @@ class TestRunner:
             sys.path.append(os.path.dirname(os.path.abspath(file)))
             test_module = importlib.import_module(os.path.basename(file).replace(".py", ""))
             for name, cls in inspect.getmembers(test_module, inspect.isclass):
-                if "TestScenarioBase" in str(cls.__bases__):
+                if cls is not TestScenarioBase and issubclass(cls, TestScenarioBase):
                     list_test_scenarios.append(cls)
 
         return list_test_scenarios

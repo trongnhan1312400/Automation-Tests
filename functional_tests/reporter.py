@@ -242,7 +242,10 @@ class HTMLReporter:
         """
         Generating the configuration table.
         """
-        self.__configuration_table = self.__configuration_table.format(socket.gethostname(), platform.system() + platform.release(), get_version("indy-plenum"), get_version("indy-anoncreds"), get_version("indy-node"), get_version("sovrin"))
+        self.__configuration_table = self.__configuration_table.format(socket.gethostname(), platform.system() +
+                                                                       platform.release(), get_version("indy-plenum"),
+                                                                       get_version("indy-anoncreds"),
+                                                                       get_version("indy-node"), get_version("sovrin"))
 
     def make_report_content_by_list(self, list_json: list, suite_name):
         """
@@ -295,26 +298,28 @@ class HTMLReporter:
                     # loop for each step
                     for i in range(0, len(json_text['run'])):
                         if json_text['run'][i]['status'] == "Passed":
-                            temp = self.__passed_test_log.format(str(i + 1), json_text['run'][i]['step'], json_text['run'][i]['status'])
-                        else:
-                            temp = self.__failed_test_log
                             temp = self.__passed_test_log.format(str(i + 1), json_text['run'][i]['step'],
-                                                                 json_text['run'][i]['status'], json_text['run'][i]['message'])
+                                                                 json_text['run'][i]['status'])
+                        else:
+                            temp = self.__failed_test_log.format(str(i + 1), json_text['run'][i]['step'],
+                                                                 json_text['run'][i]['status'],
+                                                                 json_text['run'][i]['message'])
 
                         self.__table_test_log_content = self.__table_test_log_content + temp
 
-                    self.__table_test_log_content = self.__table_test_log_content + self.__end_table + self.__go_to_summary
+                    self.__table_test_log_content = (self.__table_test_log_content + self.__end_table +
+                                                     self.__go_to_summary)
 
         self.__statictics_table = self.__statictics_table.format(suite_name, str(passed), str(failed), str(total))
 
     def __init__(self):
         HTMLReporter.__init_report_folder()
 
-    def generate_report(self, json_name):
+    def generate_report(self, file_filter):
         print("Generating a html report...")
         report_file_name = HTMLReporter.__make_report_name()
-        json_name = "*" if not json_name else json_name
-        list_file_name = glob.glob(self.__json_dir + json_name + ".json")
+        file_filter = "*" if not file_filter else file_filter
+        list_file_name = glob.glob(self.__json_dir + file_filter + ".json")
         self.make_suite_name(report_file_name)
         self.make_configurate_table()
         self.make_report_content_by_list(list_file_name, report_file_name)

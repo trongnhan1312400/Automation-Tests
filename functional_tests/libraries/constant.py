@@ -42,6 +42,13 @@ class Constant:
     user_home = os.path.expanduser('~') + os.sep
     work_dir = user_home + ".indy"
     seed_default_trustee = "000000000000000000000000Trustee1"
+    seed_default_steward = "000000000000000000000000Steward1"
+
+    # Information for seed_my2 = "00000000000000000000000000000My2"
+    seed_my2 = "00000000000000000000000000000My2"
+    did_my2 = "2PRyVHmkXQnQzJQKxHxnXC"
+    vekey_my2 = "kqa2HyagzfMAq42H5f9u3UMwnSBPQx2QfrSyXbUPxMn"
+
     # The path to the genesis transaction file is configurable. The default directory is "/var/lib/indy/sandbox/".
     genesis_transaction_file_path = "/var/lib/indy/sandbox/"
     pool_genesis_txn_file = genesis_transaction_file_path + "pool_transactions_sandbox_genesis"

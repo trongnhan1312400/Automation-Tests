@@ -6,17 +6,14 @@ Created on Nov 22, 2017
 Containing the test base class.
 """
 import time
-import sys
-import os
 import inspect
-# sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from libraries.utils import *
 from libraries.constant import Constant, Colors, Message
 from libraries.common import Common
 from libraries.logger import Logger
 from libraries.result import TestResult, Status
 from libraries.step import Steps
-from concurrent.futures import _base
+from concurrent.futures import TimeoutError
 
 
 class TestScenarioBase(object):
@@ -30,14 +27,14 @@ class TestScenarioBase(object):
         Init test data.
         If the test case need some extra test date then just override this method.
         """
-        test_name = os.path.splitext(os.path.basename(inspect.getfile(self.__class__)))[0]
-        self.test_result = TestResult(test_name)
+        self.test_name = os.path.splitext(os.path.basename(inspect.getfile(self.__class__)))[0]
+        self.test_result = TestResult(self.test_name)
         self.steps = Steps()
-        self.logger = Logger(test_name)
+        self.logger = Logger(self.test_name)
         self.pool_name = generate_random_string("test_pool")
         self.wallet_name = generate_random_string("test_wallet")
-        self.pool_handle = 0
-        self.wallet_handle = 0
+        self.pool_handle = None
+        self.wallet_handle = None
         self.pool_genesis_txn_file = Constant.pool_genesis_txn_file
         self.time_out = 300
 
@@ -67,13 +64,14 @@ class TestScenarioBase(object):
         Execute the test scenario and control the work flow of this test scenario.
         """
         self.__init__()
+        print_with_color("\nTest case: {} ----> started\n".format(self.test_name), Colors.BOLD)
         begin_time = time.time()
         if time_out:
             self.time_out = time_out
 
         try:
             run_async_method(self.__execute_precondition_and_steps, self.time_out)
-        except _base.TimeoutError:
+        except TimeoutError:
             print(Colors.FAIL + "\n{}\n".format(Message.ERR_TIME_LIMITATION) + Colors.ENDC)
             self.steps.get_last_step().set_status(Status.FAILED)
             self.steps.get_last_step().set_message(Message.ERR_TIME_LIMITATION)
@@ -82,9 +80,11 @@ class TestScenarioBase(object):
         finally:
             try:
                 run_async_method(self.execute_postcondition_steps)
-            except Exception:
-                pass
+            except Exception as e:
+                print(Colors.FAIL + "\n\t{}\n".format(str(type(e))) + Colors.ENDC)
+
             make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
+        print_with_color("Test case: {} ----> finished\n".format(self.test_name), Colors.BOLD)
 
     async def __execute_precondition_and_steps(self):
         """
