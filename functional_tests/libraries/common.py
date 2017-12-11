@@ -6,7 +6,6 @@ Created on Nov 13, 2017
 Containing all functions that is common among test scenarios.
 """
 
-import asyncio
 import json
 import os
 import shutil
@@ -45,8 +44,8 @@ class Common:
         :param wallet_name: The name of the wallet.
         :param wallet_handle: The handle of the wallet.
         """
-        await Common().close_pool_and_wallet(pool_handle, wallet_handle)
-        await Common().delete_pool_and_wallet(pool_name, wallet_name)
+        await Common.close_and_delete_wallet(wallet_name, wallet_handle)
+        await Common.close_and_delete_pool(pool_name, pool_handle)
 
     @staticmethod
     def clean_up_pool_and_wallet_folder(pool_name, wallet_name):
@@ -125,11 +124,13 @@ class Common:
         :param wallet_handle: wallet handle returned by indy_open_wallet.
         :raise Exception if the method has error.
         """
-        print(Colors.HEADER + "\nClose pool\n" + Colors.ENDC)
-        await pool.close_pool_ledger(pool_handle)
+        if pool_handle:
+            print(Colors.HEADER + "\nClose pool\n" + Colors.ENDC)
+            await pool.close_pool_ledger(pool_handle)
 
-        print(Colors.HEADER + "\nClose wallet\n" + Colors.ENDC)
-        await wallet.close_wallet(wallet_handle)
+        if wallet_handle:
+            print(Colors.HEADER + "\nClose wallet\n" + Colors.ENDC)
+            await wallet.close_wallet(wallet_handle)
 
     @staticmethod
     async def delete_pool_and_wallet(pool_name, wallet_name):
@@ -140,23 +141,24 @@ class Common:
         :param wallet_name: Name of the wallet to delete.
         :raise Exception if the method has error.
         """
-        print(Colors.HEADER + "\nDelete pool\n" + Colors.ENDC)
-        await pool.delete_pool_ledger_config(pool_name)
+        if pool_name:
+            print(Colors.HEADER + "\nDelete pool\n" + Colors.ENDC)
+            await pool.delete_pool_ledger_config(pool_name)
 
-        print(Colors.HEADER + "\nDelete wallet\n" + Colors.ENDC)
-        await wallet.delete_wallet(wallet_name, None)
-        await asyncio.sleep(0)
+        if wallet_name:
+            print(Colors.HEADER + "\nDelete wallet\n" + Colors.ENDC)
+            await wallet.delete_wallet(wallet_name, None)
 
     @staticmethod
     async def create_and_open_pool_ledger_for_steps(steps, pool_name, pool_genesis_txn_file, pool_config=None):
         # Create a pool ledger config.
         steps.add_step("Create pool ledger config")
-        await utils.perform_and_raise_exception(steps, Common.create_pool_ledger_config,
-                                                pool_name, pool_genesis_txn_file)
+        await utils.perform(steps, Common.create_pool_ledger_config, pool_name,
+                            pool_genesis_txn_file, ignore_exception=False)
 
         # Open pool ledger.
         steps.add_step("Open pool ledger")
-        result = await utils.perform_and_raise_exception(steps, pool.open_pool_ledger, pool_name, pool_config)
+        result = await utils.perform(steps, pool.open_pool_ledger, pool_name, pool_config, ignore_exception=False)
 
         return result
 
@@ -165,13 +167,13 @@ class Common:
                                                xtype=None, credentials=None, runtime_config=None):
         # Create a wallet.
         steps.add_step("Create wallet")
-        await utils.perform_and_raise_exception(steps, wallet.create_wallet, pool_name, wallet_name, xtype,
-                                                wallet_config, credentials)
+        await utils.perform(steps, wallet.create_wallet, pool_name, wallet_name, xtype,
+                            wallet_config, credentials, ignore_exception=False)
 
         # Open wallet.
         steps.add_step("Open wallet")
-        result = await utils.perform_and_raise_exception(steps, wallet.open_wallet, wallet_name,
-                                                         runtime_config, credentials)
+        result = await utils.perform(steps, wallet.open_wallet, wallet_name, runtime_config,
+                                     credentials, ignore_exception=False)
 
         return result
 

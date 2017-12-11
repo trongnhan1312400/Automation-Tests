@@ -2,10 +2,11 @@
 Created on Dec 8, 2017
 
 @author: nhan.nguyen
-
-Containing a base class for agent testing.
 """
 
+from indy import agent, signus
+from libraries.common import Common
+from libraries import utils
 from test_scripts.agent.agent_test_base import AgentTestBase
 
 
@@ -14,13 +15,17 @@ class TestAgentPrepMessageWithCreatedVerkey(AgentTestBase):
     async def execute_test_steps(self):
         # 1. Created wallet.
         # 2. Open wallet.
-        await super()._create_and_open_wallet(self.wallet_name, self.pool_name)
+        self.wallet_handle = await Common.create_and_open_wallet_for_steps(self.steps, self.wallet_name, self.pool_name)
 
         # 3. Create "sender_verkey".
-        await super()._create_sender_verkey(self.wallet_handle, "{}")
+        self.steps.add_step("Create 'sender_verkey'")
+        (_, self.sender_verkey) = await utils.perform(self.steps, signus.create_key,
+                                                      self.wallet_handle, "{}", ignore_exception=False)
 
         # 4. Prepare message.
-        await super()._prepare_msg(self.wallet_handle, self.sender_verkey, self.recipient_verkey, self.message)
+        self.steps.add_step("Prepare encrypted message")
+        self.encrypted_msg = await utils.perform(self.steps, agent.prep_msg, self.wallet_handle, self.sender_verkey,
+                                                 self.recipient_verkey, self.message, ignore_exception=False)
 
         # 5. Parsed 'encrypted_message'.
         # 6. Check 'parsed_message'

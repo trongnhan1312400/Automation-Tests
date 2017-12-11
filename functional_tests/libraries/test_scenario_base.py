@@ -76,12 +76,14 @@ class TestScenarioBase(object):
             self.steps.get_last_step().set_status(Status.FAILED)
             self.steps.get_last_step().set_message(Message.ERR_TIME_LIMITATION)
         except Exception as e:
-            print(Colors.FAIL + "\n\t{}\n".format(str(type(e))) + Colors.ENDC)
+            print(Colors.FAIL + "\n{}\n".format(str(type(e))) + Colors.ENDC)
+            self.steps.get_last_step().set_status(Status.FAILED)
+            self.steps.get_last_step().set_message(Message.EXCEPTION.format(str(e)))
         finally:
             try:
                 run_async_method(self.execute_postcondition_steps)
             except Exception as e:
-                print(Colors.FAIL + "\n\t{}\n".format(str(type(e))) + Colors.ENDC)
+                print(Colors.FAIL + "\n{}\n".format(str(type(e))) + Colors.ENDC)
 
             make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
         print_with_color("Test case: {} ----> finished\n".format(self.test_name), Colors.BOLD)

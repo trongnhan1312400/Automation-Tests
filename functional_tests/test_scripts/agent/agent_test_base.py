@@ -6,10 +6,9 @@ Created on Dec 8, 2017
 Containing a base class for agent testing.
 """
 
-from indy import agent, signus
-from indy import IndyError
+from indy import agent
 from libraries.common import Common
-from libraries.constant import Constant, Message
+from libraries.constant import Constant
 from libraries import utils
 from libraries.result import Status
 from libraries.test_scenario_base import TestScenarioBase
@@ -38,11 +37,9 @@ class AgentTestBase(TestScenarioBase):
         # Parse encrypted_message.
         self.steps.add_step("Parse encrypted message")
 
-        parsed_verkey, parsed_msg = await utils.perform_and_raise_exception(self.steps,
-                                                                            agent.parse_msg,
-                                                                            self.wallet_handle,
-                                                                            self.recipient_verkey,
-                                                                            self.encrypted_msg)
+        parsed_verkey, parsed_msg = await utils.perform(self.steps, agent.parse_msg, self.wallet_handle,
+                                                        self.recipient_verkey, self.encrypted_msg,
+                                                        ignore_exception=False)
         # Verify "parsed_msg".
         self.steps.add_step("Verify 'parsed_message'")
         if self.message is parsed_msg:
@@ -58,30 +55,3 @@ class AgentTestBase(TestScenarioBase):
         else:
             self.steps.get_last_step().set_status(Status.FAILED)
             self.steps.get_last_step().set_message("'parsed_verkey' mismatches with 'sender_verkey'")
-
-    async def _create_and_open_wallet(self, wallet_name, pool_name):
-        # Create and open wallet.
-        self.wallet_handle = await Common.create_and_open_wallet_for_steps(self.steps, wallet_name, pool_name)
-
-    async def _create_sender_verkey(self, wallet_handle, key_json):
-        # Create 'sender_verkey'.
-        self.steps.add_step("Create 'sender_verkey'")
-        await utils.perform(self.steps, signus.create_key, wallet_handle, key_json)
-
-    async def _create_sender_verkey_with_did(self, wallet_handle, key_json):
-        # Create 'sender_verkey' with "signus.create_and_store_my_did".
-        self.steps.add_step("Create 'sender_verkey' with 'signus.create_and_store_my_did'")
-        (_, self.sender_verkey) = await utils.perform_and_raise_exception(self.steps, signus.create_and_store_my_did,
-                                                                          wallet_handle, key_json)
-
-    async def _prepare_msg(self, wallet_handle, sender_verkey, recipient_verkey, msg):
-        # Prepare message.
-        self.steps.add_step("Prepare message")
-        self.encrypted_msg = await utils.perform_and_raise_exception(self.steps, agent.prep_msg, wallet_handle,
-                                                                     sender_verkey, recipient_verkey, msg)
-
-    async def _prepare_anonymous_msg(self, recipient_verkey, msg):
-        # Prepare anonymous message.
-        self.steps.add_step("Prepare anonymous message")
-        self.message = await utils.perform_and_raise_exception(self.steps, agent.prep_anonymous_msg,
-                                                               recipient_verkey, msg)

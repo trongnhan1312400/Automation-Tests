@@ -1,5 +1,5 @@
 """
-Created on Dec 8, 2017
+Created on Dec 11, 2017
 
 @author: nhan.nguyen
 """
@@ -10,7 +10,7 @@ from libraries import utils
 from test_scripts.agent.agent_test_base import AgentTestBase
 
 
-class TestAgentPrepMessageWithCreatedDid(AgentTestBase):
+class TestAgentParseAuthMessage(AgentTestBase):
 
     async def execute_test_steps(self):
         # 1. Created wallet.
@@ -22,16 +22,21 @@ class TestAgentPrepMessageWithCreatedDid(AgentTestBase):
         (_, self.sender_verkey) = await utils.perform(self.steps, signus.create_and_store_my_did,
                                                       self.wallet_handle, "{}", ignore_exception=False)
 
-        # 4. Prepare message.
+        # 4. Create "recipient_verkey" with "signus.created_and_store_my_did".
+        self.steps.add_step("Create 'recipient_verkey' with 'signus.created_and_store_my_did'")
+        (_, self.recipient_verkey) = await utils.perform(self.steps, signus.create_and_store_my_did,
+                                                         self.wallet_handle, "{}", ignore_exception=False)
+
+        # 5. Prepare message.
         self.steps.add_step("Prepare encrypted message")
         self.encrypted_msg = await utils.perform(self.steps, agent.prep_msg, self.wallet_handle, self.sender_verkey,
                                                  self.recipient_verkey, self.message, ignore_exception=False)
 
-        # 5. Parsed 'encrypted_message'.
-        # 6. Check 'parsed_message'
-        # 7. Check 'parsed_verkey'
+        # 6. Parsed 'encrypted_message'.
+        # 7. Check 'parsed_message'
+        # 8. Check 'parsed_verkey'
         await super()._parsed_and_check_encrypted_msg()
 
 
 if __name__ == "__main__":
-    TestAgentPrepMessageWithCreatedDid().execute_scenario()
+    TestAgentParseAuthMessage().execute_scenario()

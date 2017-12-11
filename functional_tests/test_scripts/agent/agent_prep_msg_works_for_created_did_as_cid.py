@@ -1,26 +1,31 @@
 """
-Created on Dec 8, 2017
+Created on Dec 11, 2017
 
 @author: nhan.nguyen
-
-Containing a base class for agent testing.
 """
 
+from indy import agent, signus
+from libraries.common import Common
+from libraries import utils
 from test_scripts.agent.agent_test_base import AgentTestBase
 
 
-class TestAgentPrepMessageWithCreatedDid(AgentTestBase):
+class TestAgentPrepMessageWithCreatedDidAsCid(AgentTestBase):
 
     async def execute_test_steps(self):
         # 1. Created wallet.
         # 2. Open wallet.
-        await super()._create_and_open_wallet(self.wallet_name, self.pool_name)
+        self.wallet_handle = await Common.create_and_open_wallet_for_steps(self.steps, self.wallet_name, self.pool_name)
 
         # 3. Create "sender_verkey" with "signus.created_and_store_my_did" as cid.
-        await super()._create_sender_verkey_with_did(self.wallet_handle, "{'cid': True}")
+        self.steps.add_step("Create 'sender_verkey' with 'signus.created_and_store_my_did'")
+        (_, self.sender_verkey) = await utils.perform(self.steps, signus.create_and_store_my_did,
+                                                      self.wallet_handle, "{'cid': True}", ignore_exception=False)
 
         # 4. Prepare message.
-        await super()._prepare_msg(self.wallet_handle, self.sender_verkey, self.recipient_verkey, self.message)
+        self.steps.add_step("Prepare encrypted message")
+        self.encrypted_msg = await utils.perform(self.steps, agent.prep_msg, self.wallet_handle, self.sender_verkey,
+                                                 self.recipient_verkey, self.message, ignore_exception=False)
 
         # 5. Parsed 'encrypted_message'.
         # 6. Check 'parsed_message'
@@ -29,4 +34,4 @@ class TestAgentPrepMessageWithCreatedDid(AgentTestBase):
 
 
 if __name__ == "__main__":
-    TestAgentPrepMessageWithCreatedDid().execute_scenario()
+    TestAgentPrepMessageWithCreatedDidAsCid().execute_scenario()
