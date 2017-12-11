@@ -42,16 +42,10 @@ class AgentTestBase(TestScenarioBase):
                                                         ignore_exception=False)
         # Verify "parsed_msg".
         self.steps.add_step("Verify 'parsed_message'")
-        if self.message is parsed_msg:
-            self.steps.get_last_step().set_status(Status.PASSED)
-        else:
-            self.steps.get_last_step().set_status(Status.FAILED)
-            self.steps.get_last_step().set_message("'parsed_message' mismatches with original 'message'")
+        utils.check(self.steps, error_message="'parsed_message' mismatches with original 'message'",
+                    condition=lambda: self.message == parsed_msg)
 
         # Verify "parsed_verkey".
         self.steps.add_step("Verify 'parsed_verkey'")
-        if (self.sender_verkey is None and not parsed_verkey) or self.sender_verkey is parsed_verkey:
-            self.steps.get_last_step().set_status(Status.PASSED)
-        else:
-            self.steps.get_last_step().set_status(Status.FAILED)
-            self.steps.get_last_step().set_message("'parsed_verkey' mismatches with 'sender_verkey'")
+        utils.check(self.steps, error_message="'parsed_verkey' mismatches with 'sender_verkey'",
+                    condition=lambda: self.sender_verkey == parsed_verkey)

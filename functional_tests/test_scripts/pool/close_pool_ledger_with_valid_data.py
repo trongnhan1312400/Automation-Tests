@@ -26,12 +26,7 @@ class TestClosePoolLedgerConfig(PoolTestBase):
 
         # 4. Verify that pool ledger is closed successfully.
         self.steps.add_step("Verify that pool ledger is closed successfully")
-        step = self.steps.get_last_step()
-        if not isinstance(result, Exception) and result is not None:
-            step.set_status(Status.FAILED)
-            step.set_message("Cannot close pool ledger")
-        else:
-            step.set_status(Status.PASSED)
+        if utils.check(self.steps, error_message="Cannot close opened pool ledger", condition=lambda: result is None):
             self.pool_handle = None  # prevent post-condition close pool ledger again.
 
 

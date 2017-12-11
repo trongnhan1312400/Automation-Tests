@@ -26,12 +26,8 @@ class TestRefreshPoolLedgerConfig(PoolTestBase):
 
         # 4. Verify that opened pool ledger can be refreshed.
         self.steps.add_step("Verify that opened pool ledger can be refreshed")
-        step = self.steps.get_last_step()
-        if result is not None:
-            step.set_status(Status.FAILED)
-            step.set_message("Cannot refresh pool ledger")
-        else:
-            step.set_status(Status.PASSED)
+        utils.check(self.steps, error_message="Cannot refresh pool ledger",
+                    condition=lambda:result is None)
 
 
 if __name__ == "__main__":

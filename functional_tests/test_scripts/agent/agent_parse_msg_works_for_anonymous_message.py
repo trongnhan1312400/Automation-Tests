@@ -8,7 +8,7 @@ from indy import agent, signus
 from libraries.common import Common
 from libraries import utils
 from test_scripts.agent.agent_test_base import AgentTestBase
-
+from indy import anoncreds
 
 class TestAgentParseAnonymousMessage(AgentTestBase):
 

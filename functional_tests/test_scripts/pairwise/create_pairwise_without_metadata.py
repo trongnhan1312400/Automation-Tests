@@ -13,7 +13,7 @@ from libraries.result import Status
 from test_scripts.pairwise.pairwise_test_base import PairwiseTestBase
 
 
-class TestCreatePairwiseWithMetadata(PairwiseTestBase):
+class TestCreatePairwiseWithoutMetadata(PairwiseTestBase):
 
     async def execute_test_steps(self):
         # 1. Create wallet.
@@ -38,18 +38,18 @@ class TestCreatePairwiseWithMetadata(PairwiseTestBase):
 
         # 6. Create pairwise.
         self.steps.add_step("Creare pairwise between 'my_did' and 'their_did'")
-        metadata = "Test create pairwise"
-        await utils.perform(self.steps, pairwise.create_pairwise, self.wallet_handle, my_did, their_did, metadata)
+        await utils.perform(self.steps, pairwise.create_pairwise, self.wallet_handle, my_did, their_did, None)
 
         # 7 Get created pairwise.
         self.steps.add_step("Get created pairwise")
-        pairwise_with_metadata = await utils.perform(self.steps, pairwise.get_pairwise, self.wallet_handle, their_did)
+        pairwise_without_metadata = await utils.perform(self.steps, pairwise.get_pairwise,
+                                                        self.wallet_handle, their_did)
 
         # 8. Verify 'pairwise_with_metadata'.
         self.steps.add_step("Verify 'pairwise_with_metadata'")
         utils.check(self.steps, error_message="Gotten pairwise mismatches",
-                    condition=lambda: json.loads(pairwise_with_metadata) == {"my_did": my_did, "metadata": metadata})
+                    condition=lambda: json.loads(pairwise_without_metadata) == {"my_did": my_did})
 
 
 if __name__ == "__main__":
-    TestCreatePairwiseWithMetadata().execute_scenario()
+    TestCreatePairwiseWithoutMetadata().execute_scenario()

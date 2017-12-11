@@ -4,6 +4,7 @@ Created on Dec 11, 2017
 @author: nhan.nguyen
 """
 
+import json
 from indy import agent, signus
 from libraries.common import Common
 from libraries import utils
@@ -20,7 +21,7 @@ class TestAgentPrepMessageWithCreatedDidAsCid(AgentTestBase):
         # 3. Create "sender_verkey" with "signus.created_and_store_my_did" as cid.
         self.steps.add_step("Create 'sender_verkey' with 'signus.created_and_store_my_did'")
         (_, self.sender_verkey) = await utils.perform(self.steps, signus.create_and_store_my_did,
-                                                      self.wallet_handle, "{'cid': True}", ignore_exception=False)
+                                                      self.wallet_handle, json.dumps({"cid": True}))
 
         # 4. Prepare message.
         self.steps.add_step("Prepare encrypted message")

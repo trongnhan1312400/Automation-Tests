@@ -9,7 +9,7 @@ import os
 from indy.error import IndyError
 from .constant import Colors, Message, Constant
 from .result import Status
-
+from .step import Steps
 
 def generate_random_string(prefix="", suffix="", size=20):
     """
@@ -45,7 +45,7 @@ def exit_if_exception(code):
         return code
 
 
-async def perform(steps, func, *args, ignore_exception=True):
+async def perform(steps, func, *args, ignore_exception=False):
     """
     Execute an function and set status, message for the last test step depend on the result of the function.
 
@@ -170,3 +170,20 @@ def print_ok_green(message: str):
 
 def print_ok_blue(message: str):
     print_with_color(message, Colors.OKBLUE)
+
+
+def check(steps: Steps, error_message: str, condition) -> bool:
+    if steps:
+        step = steps.get_last_step()
+        if not callable(condition):
+            step.set_status(Status.FAILED)
+            step.set_message("The 'condition' argument must be a callable object")
+        else:
+            if not condition():
+                step.set_status(Status.FAILED)
+                step.set_message(error_message)
+            else:
+                step.set_status(Status.PASSED)
+                return True
+
+    return False
