@@ -38,9 +38,10 @@ class DeleteWallet(TestScenarioBase):
         self.steps.add_step("Delete wallet.")
         await perform(self.steps, wallet.delete_wallet, self.wallet_name, None)
 
-        # 5. Verify that user is able to delete a wallet by deleting that wallet twice.
-        self.steps.add_step("Verify that user is able to delete a wallet.")
-        assert await perform_with_expected_code(self.steps, wallet.delete_wallet, self.wallet_name, None,
+        # 5. Verify that user is able to delete a wallet by opening that wallet.
+        # expected code is CommonIOError
+        self.steps.add_step("Verify that user is able to delete a wallet by opening that wallet.")
+        assert await perform_with_expected_code(self.steps, wallet.open_wallet, self.wallet_name, None, None,
                                                 expected_code=ErrorCode.CommonIOError)
         print("DeleteWallet test completed")
 

@@ -5,7 +5,7 @@ Created on Dec 8, 2017
 
 Implementing test case CloseWallet with valid value.
 """
-from indy import wallet
+from indy import wallet, signus
 from indy.error import ErrorCode
 from libraries.test_scenario_base import TestScenarioBase
 from libraries.utils import perform, exit_if_exception, perform_with_expected_code
@@ -35,10 +35,12 @@ class CloseWallet(TestScenarioBase):
         self.steps.add_step("Close wallet.")
         await perform(self.steps, wallet.close_wallet, self.wallet_handle)
 
-        # 4. verify close wallet successfully by close wallet twice.
-        self.steps.add_step("verify close wallet successfully by close wallet twice.")
-        assert await perform_with_expected_code(self.steps, wallet.close_wallet, self.wallet_handle,
-                                                expected_code=ErrorCode.WalletInvalidHandle)
+        # 4. Verify close wallet successfully by create and store did in that wallet
+        # expected code is WalletInvalidHandle.
+        self.steps.add_step("Verify close wallet successfully by create and store did in that wallet.")
+        assert await perform_with_expected_code(self.steps, signus.create_and_store_my_did,
+                                                self.wallet_handle, "{}", expected_code=ErrorCode.WalletInvalidHandle)
+
         print("CloseWallet test completed")
 
 

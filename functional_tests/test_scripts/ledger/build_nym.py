@@ -65,7 +65,7 @@ class LedgerSample(TestScenarioBase):
 
         # 4. create my DID
         self.steps.add_step("Create my DID")
-        (my_did, my_verkey) = await perform(self.steps, signus.create_and_store_my_did, self.my_wallet_handle, "{}")
+        (my_did, _) = await perform(self.steps, signus.create_and_store_my_did, self.my_wallet_handle, "{}")
 
         # 5. create their DID
         self.steps.add_step("Create their DID")
