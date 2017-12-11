@@ -8,6 +8,12 @@ Containing all constants that are necessary to execute test scenario.
 """
 
 
+class JsonTemplate:
+    message = '{{"reqId": {:d}, "identifier": "{}", "operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
+    request = '{{"reqId": {:d}, "identifier": "{}", "operation": {{ "type": "{}", "dest": "{}"}}, "signature": "{}"}}'
+    response = '{{"result": {{ "reqId": {}, "identifier": "{}", "dest": "{}", "data": "{}", "type": "{}" }}, "op": "{}"}}'
+
+
 class Colors:
     """
     Class to set the colors for text.

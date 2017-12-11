@@ -45,7 +45,11 @@ def exit_if_exception(code):
         return code
 
 
-async def perform(steps, func, *args, ignore_exception=True):
+def compare_json(js1, js2):
+    return js1.items() <= js2.items()
+
+
+async def perform(steps, func, *args, ignore_exception=False):
     """
     Execute an function and set status, message for the last test step depend on the result of the function.
 
