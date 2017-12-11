@@ -5,13 +5,15 @@ Created on Dec 11, 2017
 
 Implementing test case SignRequest with valid value.
 """
-from indy import signus, ledger
-from libraries.test_scenario_base import TestScenarioBase
-from libraries.utils import perform, exit_if_exception
-from libraries.common import Common
-from libraries.result import Status
 import json
+
+from indy import signus, ledger
+
+from libraries.common import Common
 from libraries.constant import Constant
+from libraries.result import Status
+from libraries.test_scenario_base import TestScenarioBase
+from libraries.utils import perform
 
 
 class SignRequest(TestScenarioBase):
@@ -34,27 +36,22 @@ class SignRequest(TestScenarioBase):
                 }
             })
         expected_signature = "65hzs4nsdQsTUqLCLy2qisbKLfwYKZSWoyh1C6CU59p5pfG3EHQXGAsjW4Qw4QdwkrvjSgQuyv8qyABcXRBznFKW"
-        # 1. Create pool
-        self.steps.add_step("Create pool Ledger")
-        result = await perform(self.steps, Common.create_and_open_pool,
-                               self.pool_name, self.pool_genesis_txn_file)
-        self.pool_handle = exit_if_exception(result)
 
-        # 2. Create and open wallet
-        self.steps.add_step("Create and open my wallet")
-        self.wallet_handle = await perform(self.steps, Common.create_and_open_wallet,
-                                           self.pool_name, self.wallet_name)
+        # 1. Prepare pool and wallet. Get pool_hanlde, wallet_hanlde
+        self.steps.add_step("Prepare pool and wallet")
+        self.pool_handle, self.wallet_handle = await perform(self.steps, Common.prepare_pool_and_wallet,
+                                                             self.pool_name, self.wallet_name, self.pool_genesis_txn_file)
 
-        # 3. Create and store did
+        # 2. Create and store did
         self.steps.add_step("Create DID")
         (did, _) = await perform(self.steps, signus.create_and_store_my_did, self.wallet_handle,
                                  json.dumps({"seed": Constant.seed_default_trustee}))
 
-        # 4. sign request
+        # 3. sign request
         self.steps.add_step("sign the request")
         json_response = await perform(self.steps, ledger.sign_request, self.wallet_handle, did, message)
 
-        # 5. verify the signature is correct.
+        # 4. verify the signature is correct.
         self.steps.add_step("verify the signature is correct.")
         try:
             signed_msg = json.loads(json_response)

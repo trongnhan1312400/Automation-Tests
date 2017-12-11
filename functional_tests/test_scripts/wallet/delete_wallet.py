@@ -8,7 +8,7 @@ Implementing test case DeleteWallet with valid value.
 from indy.error import ErrorCode
 from indy import wallet
 from libraries.test_scenario_base import TestScenarioBase
-from libraries.utils import perform, exit_if_exception, perform_with_expected_code
+from libraries.utils import perform, perform_with_expected_code
 from libraries.common import Common
 
 
@@ -21,9 +21,8 @@ class DeleteWallet(TestScenarioBase):
         print("DeleteWallet test started")
         # 1. Create and open a pool
         self.steps.add_step("Create and open a pool Ledger")
-        result = await perform(self.steps, Common.create_and_open_pool,
-                               self.pool_name, self.pool_genesis_txn_file)
-        self.pool_handle = exit_if_exception(result)
+        self.pool_handle = await perform(self.steps, Common.create_and_open_pool,
+                                         self.pool_name, self.pool_genesis_txn_file)
 
         # 2. Create and open a wallet
         self.steps.add_step("Create and open wallet")

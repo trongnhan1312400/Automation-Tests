@@ -11,6 +11,7 @@ from .constant import Colors, Message, Constant
 from .result import Status
 from .step import Steps
 
+
 def generate_random_string(prefix="", suffix="", size=20):
     """
     Generate random string .
@@ -43,6 +44,10 @@ def exit_if_exception(code):
         exit(1)
     else:
         return code
+
+
+def compare_json(js1, js2):
+    return js1.items() <= js2.items()
 
 
 async def perform(steps, func, *args, ignore_exception=False):

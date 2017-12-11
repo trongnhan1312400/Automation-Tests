@@ -9,7 +9,7 @@ from indy import wallet
 from indy.error import IndyError
 from libraries.constant import Constant, Colors
 from libraries.common import Common
-from libraries.utils import perform, exit_if_exception
+from libraries.utils import perform
 from libraries.result import Status
 from libraries.test_scenario_base import TestScenarioBase
 
@@ -24,9 +24,8 @@ class CreateWallet(TestScenarioBase):
         try:
             # 1. Create and open a pool
             self.steps.add_step("Create pool Ledger")
-            result = await perform(self.steps, Common.create_and_open_pool,
-                                   self.pool_name, self.pool_genesis_txn_file)
-            self.pool_handle = exit_if_exception(result)
+            self.pool_handle = await perform(self.steps, Common.create_and_open_pool,
+                                             self.pool_name, self.pool_genesis_txn_file)
 
             # 2. Create a wallet
             self.steps.add_step("Create wallet")
