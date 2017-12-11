@@ -16,8 +16,8 @@ class TestAgentPrepMessageWithCreatedDid(AgentTestBase):
         # 2. Open wallet.
         await super()._create_and_open_wallet(self.wallet_name, self.pool_name)
 
-        # 3. Create "sender_verkey" with "signus.created_and_store_my_did".
-        await super()._create_sender_verkey_with_did(self.wallet_handle, "{}")
+        # 3. Create "sender_verkey" with "signus.created_and_store_my_did" as cid.
+        await super()._create_sender_verkey_with_did(self.wallet_handle, "{'cid': True}")
 
         # 4. Prepare message.
         await super()._prepare_msg(self.wallet_handle, self.sender_verkey, self.recipient_verkey, self.message)

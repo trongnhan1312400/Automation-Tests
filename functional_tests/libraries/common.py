@@ -92,7 +92,7 @@ class Common:
         :return: The pool handle was created.
         """
         print(Colors.HEADER + "\nCreate Ledger\n" + Colors.ENDC)
-        Common.create_pool_ledger_config(pool_name, pool_genesis_txn_file)
+        await Common.create_pool_ledger_config(pool_name, pool_genesis_txn_file)
 
         print(Colors.HEADER + "\nOpen pool ledger\n" + Colors.ENDC)
         pool_handle = await pool.open_pool_ledger(pool_name, None)
@@ -151,14 +151,12 @@ class Common:
     async def create_and_open_pool_ledger_for_steps(steps, pool_name, pool_genesis_txn_file, pool_config=None):
         # Create a pool ledger config.
         steps.add_step("Create pool ledger config")
-        result = await utils.perform(steps, Common.create_pool_ledger_config, pool_name, pool_genesis_txn_file)
-
-        if isinstance(result, Exception):
-            return result
+        await utils.perform_and_raise_exception(steps, Common.create_pool_ledger_config,
+                                                pool_name, pool_genesis_txn_file)
 
         # Open pool ledger.
         steps.add_step("Open pool ledger")
-        result = await utils.perform(steps, pool.open_pool_ledger, pool_name, pool_config)
+        result = await utils.perform_and_raise_exception(steps, pool.open_pool_ledger, pool_name, pool_config)
 
         return result
 
@@ -167,14 +165,13 @@ class Common:
                                                xtype=None, credentials=None, runtime_config=None):
         # Create a wallet.
         steps.add_step("Create wallet")
-        result = await utils.perform(steps, wallet.create_wallet, pool_name, wallet_name, xtype,
-                                     wallet_config, credentials)
-        if isinstance(result, Exception):
-            return result
+        await utils.perform_and_raise_exception(steps, wallet.create_wallet, pool_name, wallet_name, xtype,
+                                                wallet_config, credentials)
 
         # Open wallet.
         steps.add_step("Open wallet")
-        result = await utils.perform(steps, wallet.open_wallet, wallet_name, runtime_config, credentials)
+        result = await utils.perform_and_raise_exception(steps, wallet.open_wallet, wallet_name,
+                                                         runtime_config, credentials)
 
         return result
 

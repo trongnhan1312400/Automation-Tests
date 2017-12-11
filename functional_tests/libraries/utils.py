@@ -7,7 +7,7 @@ Containing all functions used by several test steps on test scenarios.
 """
 import os
 from indy.error import IndyError
-from .constant import Colors, Message
+from .constant import Colors, Message, Constant
 from .result import Status
 
 
@@ -45,7 +45,7 @@ def exit_if_exception(code):
         return code
 
 
-async def perform(steps, func, *agrs):
+async def perform(steps, func, *args):
     """
     Execute an function and set status, message for the last test step depend on the result of the function.
 
@@ -55,7 +55,7 @@ async def perform(steps, func, *agrs):
     :return: the result of function of the exception that the function raise.
     """
     try:
-        result = await func(*agrs)
+        result = await func(*args)
         steps.get_last_step().set_status(Status.PASSED)
     except IndyError as E:
         print(Colors.FAIL + Message.INDY_ERROR.format(str(E)) + Colors.ENDC)
@@ -97,6 +97,23 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
     except Exception as Ex:
         print(Colors.FAIL + Message.EXCEPTION.format(str(Ex)) + Colors.ENDC)
         return Ex
+
+
+async def perform_and_raise_exception(steps, func, *args):
+    try:
+        result = await func(*args)
+        steps.get_last_step().set_status(Status.PASSED)
+    except IndyError as E:
+        print(Colors.FAIL + Message.INDY_ERROR.format(str(E)) + Colors.ENDC)
+        steps.get_last_step().set_message(str(E))
+        steps.get_last_step().set_status(Status.FAILED)
+        raise E
+    except Exception as Ex:
+        print(Colors.FAIL + Message.EXCEPTION.format(str(Ex)) + Colors.ENDC)
+        steps.get_last_step().set_message(str(Ex))
+        steps.get_last_step().set_status(Status.FAILED)
+        raise Ex
+    return result
 
 
 def run_async_method(method, time_out=None):
