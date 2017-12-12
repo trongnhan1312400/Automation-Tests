@@ -17,8 +17,8 @@ class TestDeletePoolLedgerConfig(PoolTestBase):
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
-        await utils.perform_and_raise_exception(self.steps, Common.create_pool_ledger_config,
-                                                self.pool_name, Constant.pool_genesis_txn_file)
+        await utils.perform(self.steps, Common.create_pool_ledger_config,
+                            self.pool_name, Constant.pool_genesis_txn_file)
 
         # 2. Delete created pool ledger config.
         self.steps.add_step("Delete created pool ledger config")
@@ -26,14 +26,9 @@ class TestDeletePoolLedgerConfig(PoolTestBase):
 
         # 3. Verify that pool ledger config is deleted.
         self.steps.add_step("Verify that pool ledger config is deleted")
-        if not isinstance(result, Exception or IndexError):
-            step = self.steps.get_last_step()
-            if utils.check_pool_exist(self.pool_name):
-                message = "Cannot delete a pool ledger config"
-                step.set_message(message)
-                step.set_status(Status.FAILED)
-            else:
-                step.set_status(Status.PASSED)
+        if utils.check(self.steps, error_message="Cannot delete a pool ledger config",
+                       condition=lambda: not isinstance(result, Exception) and
+                       not utils.check_pool_exist(self.pool_name)):
                 self.pool_name = None   # prevent post-condition clean up the pool again.
 
 

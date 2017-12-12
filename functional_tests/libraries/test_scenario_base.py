@@ -86,7 +86,7 @@ class TestScenarioBase(object):
                 print(Colors.FAIL + "\n{}\n".format(str(type(e))) + Colors.ENDC)
 
             make_final_result(self.test_result, self.steps.get_list_step(), begin_time, self.logger)
-        print_with_color("Test case: {} ----> finished\n".format(self.test_name), Colors.BOLD)
+            print_with_color("Test case: {} ----> finished\n".format(self.test_name), Colors.BOLD)
 
     async def __execute_precondition_and_steps(self):
         """
