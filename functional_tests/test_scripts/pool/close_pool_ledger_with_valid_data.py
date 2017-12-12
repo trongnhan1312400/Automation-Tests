@@ -6,7 +6,6 @@ Created on Dec 8, 2017
 
 from indy import pool
 from libraries.constant import Constant
-from libraries.result import Status
 from libraries import utils
 from libraries.common import Common
 from test_scripts.pool.pool_test_base import PoolTestBase
@@ -22,7 +21,7 @@ class TestClosePoolLedgerConfig(PoolTestBase):
 
         # 3. Close pool ledger.
         self.steps.add_step("Close pool ledger")
-        result = await utils.perform(self.steps, pool.close_pool_ledger, self.pool_handle)
+        result = await utils.perform(self.steps, pool.close_pool_ledger, self.pool_handle, ignore_exception=True)
 
         # 4. Verify that pool ledger is closed successfully.
         self.steps.add_step("Verify that pool ledger is closed successfully")

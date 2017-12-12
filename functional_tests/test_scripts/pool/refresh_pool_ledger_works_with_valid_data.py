@@ -6,7 +6,6 @@ Created on Dec 8, 2017
 
 from indy import pool
 from libraries.constant import Constant
-from libraries.result import Status
 from libraries import utils
 from libraries.common import Common
 from test_scripts.pool.pool_test_base import PoolTestBase
@@ -22,12 +21,12 @@ class TestRefreshPoolLedgerConfig(PoolTestBase):
 
         # 3. Refresh pool ledger.
         self.steps.add_step("Refresh pool ledger")
-        result = await utils.perform(self.steps, pool.refresh_pool_ledger, self.pool_handle)
+        result = await utils.perform(self.steps, pool.refresh_pool_ledger, self.pool_handle, ignore_exception=True)
 
         # 4. Verify that opened pool ledger can be refreshed.
         self.steps.add_step("Verify that opened pool ledger can be refreshed")
         utils.check(self.steps, error_message="Cannot refresh pool ledger",
-                    condition=lambda:result is None)
+                    condition=lambda: result is None)
 
 
 if __name__ == "__main__":

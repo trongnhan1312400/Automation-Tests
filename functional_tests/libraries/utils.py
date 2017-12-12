@@ -186,7 +186,9 @@ def check(steps: Steps, error_message: str, condition) -> bool:
         else:
             if not condition():
                 step.set_status(Status.FAILED)
-                step.set_message(error_message)
+                if error_message:
+                    temp_message = (step.get_message + "\n") if step.get_message() else ""
+                    step.set_message(temp_message + error_message)
             else:
                 step.set_status(Status.PASSED)
                 return True

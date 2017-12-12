@@ -7,7 +7,6 @@ Created on Dec 8, 2017
 from indy import pool
 from libraries import utils
 from libraries.constant import Constant
-from libraries.result import Status
 from libraries.common import Common
 from test_scripts.pool.pool_test_base import PoolTestBase
 
@@ -22,7 +21,7 @@ class TestDeletePoolLedgerConfig(PoolTestBase):
 
         # 2. Delete created pool ledger config.
         self.steps.add_step("Delete created pool ledger config")
-        result = await utils.perform(self.steps, pool.delete_pool_ledger_config, self.pool_name)
+        result = await utils.perform(self.steps, pool.delete_pool_ledger_config, self.pool_name, ignore_exception=True)
 
         # 3. Verify that pool ledger config is deleted.
         self.steps.add_step("Verify that pool ledger config is deleted")
