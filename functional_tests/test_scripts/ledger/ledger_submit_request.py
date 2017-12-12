@@ -42,9 +42,9 @@ class SubmitRequest(TestScenarioBase):
         signed_msg = json.loads(response)
         signature = signed_msg['signature']
         type_request = "105"
-        request_json = JsonTemplate.request.format(1491566332010860, submitter_did, type_request, target_did, signature)
+        request_json = JsonTemplate.submit_request.format(1491566332010860, submitter_did, type_request, target_did, signature)
         data = ""
-        expected_response = json.loads(JsonTemplate.response.format(1491566332010860, submitter_did, target_did, data, type_request, "REPLY"))
+        expected_response = json.loads(JsonTemplate.submit_response.format(1491566332010860, submitter_did, target_did, data, type_request, "REPLY"))
 
         # 4. Submit request
         response = json.loads(await perform(self.steps, ledger.submit_request, self.pool_handle, request_json))
