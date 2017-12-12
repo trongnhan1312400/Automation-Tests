@@ -21,7 +21,7 @@ class TestRefreshPoolLedgerConfig(PoolTestBase):
 
         # 3. Refresh pool ledger.
         self.steps.add_step("Refresh pool ledger")
-        result = await utils.perform(self.steps, pool.refresh_pool_ledger, self.pool_handle)
+        result = await utils.perform(self.steps, pool.refresh_pool_ledger, self.pool_handle, ignore_exception=True)
 
         # 4. Verify that opened pool ledger can be refreshed.
         self.steps.add_step("Verify that opened pool ledger can be refreshed")

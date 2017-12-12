@@ -21,7 +21,7 @@ class TestClosePoolLedgerConfig(PoolTestBase):
 
         # 3. Close pool ledger.
         self.steps.add_step("Close pool ledger")
-        result = await utils.perform(self.steps, pool.close_pool_ledger, self.pool_handle)
+        result = await utils.perform(self.steps, pool.close_pool_ledger, self.pool_handle, ignore_exception=True)
 
         # 4. Verify that pool ledger is closed successfully.
         self.steps.add_step("Verify that pool ledger is closed successfully")
