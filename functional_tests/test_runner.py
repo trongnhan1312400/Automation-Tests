@@ -106,7 +106,7 @@ class TestRunner:
         arg_parser.add_argument("-html", "--html_report", dest="report", action="store_true",
                                 help="if this flag is missing, html report would not be generated",
                                 default=False)
-        arg_parser.add_argument("-l", "--keep_log", action="store_true",  help="keep all log file")
+        arg_parser.add_argument("-l", "--keep_log", action="store_true", help="keep all log file")
         self.__args = arg_parser.parse_args()
         if self.__args.timeout <= 0.0:
             print("Invalid timeout!")

@@ -25,7 +25,7 @@ def get_version(program: str) -> str:
     """
     cmd = "dpkg -l | grep '{}'".format(program)
     process = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
-    (out, err) = process.communicate()
+    (out, _) = process.communicate()
     result = out.decode()
     version = result.split()
 
@@ -49,7 +49,7 @@ class HTMLReporter:
                     margin-bottom: 10px;
                     border-collapse: collapse;
                     empty-cells: show
-                }   
+                }
 
                 th, td {
                     border: 1px solid #009;
@@ -127,7 +127,7 @@ class HTMLReporter:
             <tbody>
             <tr>
                 <th>Run machine</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
             <tr>
                 <th>OS</th>
@@ -135,19 +135,19 @@ class HTMLReporter:
             </tr>
             <tr>
                 <th>indy - plenum</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
              <tr>
                 <th>indy - anoncreds</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
             <tr>
                 <th>indy - node</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
             <tr>
                 <th>sovrin</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
             </tbody>
         </table>"""
@@ -156,14 +156,14 @@ class HTMLReporter:
             <tbody>
             <tr>
                 <th>Test Plan</th>
-                <th># Passed</th>       
+                <th># Passed</th>
                 <th># Failed</th>
                 <th>Time (ms)</th>
             </tr>
             <tr>
                 <td>{}</td>
                 <td class="num">{}</td>
-                <td class="num">{}</td>            
+                <td class="num">{}</td>
                 <td class="num">{}</td>
             </tr>
             </tbody>
@@ -196,7 +196,7 @@ class HTMLReporter:
 
     __go_to_summary = """<a href = #summary>Back to summary.</a>"""
 
-    __begin_summary_content = """ 
+    __begin_summary_content = """
             <tbody>
             <tr>
                 <th colspan="4"></th>
@@ -219,7 +219,7 @@ class HTMLReporter:
 
     __passed_test_log = """
             <tr>
-                <td><font color="green">{} : {} :: {}</font></td>       
+                <td><font color="green">{} : {} :: {}</font></td>
             </tr>"""
 
     __failed_test_log = """
@@ -227,7 +227,7 @@ class HTMLReporter:
                 <td><font color="red">{} : {} :: {}
                 <br>Traceback: {}</br>
                 </font>
-                </td>            
+                </td>
             </tr>
             """
 
