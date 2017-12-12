@@ -10,7 +10,7 @@ import json
 from indy import signus, ledger
 
 from libraries.common import Common
-from libraries.constant import Constant, JsonTemplate
+from libraries.constant import Constant, JsonTemplate, Message
 from libraries.result import Status
 from libraries.test_scenario_base import TestScenarioBase
 from libraries.utils import perform
@@ -58,7 +58,7 @@ class SubmitRequest(TestScenarioBase):
         if (r1 and r2 and r3 and r4) is True:
             self.steps.get_last_step().set_status(Status.PASSED)
         else:
-            self.steps.get_last_step().set_message("Failed. The json response is incorrect.")
+            self.steps.get_last_step().set_message(Message.JSON_INCORRECT.format(""))
         print("SubmitRequest completed")
 
 

@@ -12,6 +12,7 @@ class JsonTemplate:
     message = '{{"reqId": {:d}, "identifier": "{}", "operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
     submit_request = '{{"reqId": {:d}, "identifier": "{}", "operation": {{ "type": "{}", "dest": "{}"}}, "signature": "{}"}}'
     submit_response = '{{"result": {{ "reqId": {:d}, "identifier": "{}", "dest": "{}", "data": "{}", "type": "{}" }}, "op": "{}"}}'
+    get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}","dest":"{}","data":{}}}}}'
 
 
 class Colors:
@@ -71,3 +72,4 @@ class Message:
     INFO_ALL_TEST_HAVE_BEEN_EXECUTED = "All test have been executed!"
     INDY_ERROR = "IndyError: {}"
     EXCEPTION = "Exception: {}"
+    JSON_INCORRECT = "Failed. Json response is incorrect. {}"

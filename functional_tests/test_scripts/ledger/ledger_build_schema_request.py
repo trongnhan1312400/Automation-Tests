@@ -10,7 +10,7 @@ import json
 from indy import signus, ledger
 
 from libraries.common import Common
-from libraries.constant import Constant
+from libraries.constant import Constant, Message
 from libraries.result import Status
 from libraries.test_scenario_base import TestScenarioBase
 from libraries.utils import perform, compare_json
@@ -42,7 +42,7 @@ class SchemaRequest(TestScenarioBase):
             assert compare_json(expected_response, response)
             self.steps.get_last_step().set_status(Status.PASSED)
         except AssertionError as e:
-            self.steps.get_last_step().set_message("Failed. Json response is incorrect. " + str(e))
+            self.steps.get_last_step().set_message(Message.JSON_INCORRECT.format(str(e)))
         print("SchemaRequest completed")
 
 

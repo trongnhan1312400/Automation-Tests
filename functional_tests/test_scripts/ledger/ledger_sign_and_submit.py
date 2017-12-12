@@ -39,12 +39,13 @@ class SignAndSubmitRequest(TestScenarioBase):
         await perform(self.steps, Common().build_and_send_nym_request, self.pool_handle,
                       self.wallet_handle, submitter_did, target_did, None, None, None)
 
-        # 5. Prepare and send GET_NYM request
+        # 5. build nym request
+        # 6. submit request
         self.steps.add_step("Prepare and send GET_NYM request")
         get_nym_req = await perform(self.steps, ledger.build_get_nym_request, submitter_did, target_did)
         nym_response = await perform(self.steps, ledger.submit_request, self.pool_handle, get_nym_req)
 
-        # 6. Verify GET_NYM request
+        # 7. Verify GET_NYM request
         self.steps.add_step("Verify GET_NYM request")
         json_response = json.loads(nym_response)
         did_response = json_response["result"]["dest"]
