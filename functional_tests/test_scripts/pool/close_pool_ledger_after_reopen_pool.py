@@ -33,7 +33,8 @@ class TestCloseReopenedPoolLedgerConfig(PoolTestBase):
 
         # 6. Verify that reopened pool ledger is closed successfully.
         self.steps.add_step("Verify that reopened pool ledger is closed successfully")
-        if utils.check(self.steps, error_message="Cannot close reopened pool ledger", condition=lambda: result is None):
+        if utils.check(self.steps, error_message="Cannot close reopened pool ledger",
+                       condition=lambda: result is None):
             self.pool_handle = None  # prevent post-condition close pool ledger again.
 
 
