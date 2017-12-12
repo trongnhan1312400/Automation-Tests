@@ -6,7 +6,6 @@ Created on Dec 8, 2017
 
 from libraries import utils
 from libraries.constant import Constant
-from libraries.result import Status
 from libraries.common import Common
 from test_scripts.pool.pool_test_base import PoolTestBase
 

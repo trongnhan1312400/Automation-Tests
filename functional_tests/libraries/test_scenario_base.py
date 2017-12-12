@@ -29,6 +29,7 @@ class TestScenarioBase(object):
         If the test case need some extra test date then just override this method.
         """
         self.test_name = os.path.splitext(os.path.basename(inspect.getfile(self.__class__)))[0]
+        print_with_color("\nTest case: {} ----> started\n".format(self.test_name), Colors.BOLD)
         self.test_result = TestResult(self.test_name)
         self.steps = Steps()
         self.logger = Logger(self.test_name)
@@ -65,7 +66,6 @@ class TestScenarioBase(object):
         Execute the test scenario and control the work flow of this test scenario.
         """
         self.__init__()
-        print_with_color("\nTest case: {} ----> started\n".format(self.test_name), Colors.BOLD)
         begin_time = time.time()
         if time_out:
             self.time_out = time_out

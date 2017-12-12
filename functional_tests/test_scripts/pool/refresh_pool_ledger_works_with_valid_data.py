@@ -6,7 +6,6 @@ Created on Dec 8, 2017
 
 from indy import pool
 from libraries.constant import Constant
-from libraries.result import Status
 from libraries import utils
 from libraries.common import Common
 from test_scripts.pool.pool_test_base import PoolTestBase
@@ -27,7 +26,7 @@ class TestRefreshPoolLedgerConfig(PoolTestBase):
         # 4. Verify that opened pool ledger can be refreshed.
         self.steps.add_step("Verify that opened pool ledger can be refreshed")
         utils.check(self.steps, error_message="Cannot refresh pool ledger",
-                    condition=lambda:result is None)
+                    condition=lambda: result is None)
 
 
 if __name__ == "__main__":

@@ -11,7 +11,6 @@ import os
 import time
 import errno
 import logging
-import tempfile
 import io
 from .result import Status
 from .constant import Colors
@@ -38,8 +37,8 @@ class Logger:
         self.__log_file_path = "{}{}_{}.log".format(Logger.__log_dir, test_name,
                                                     str(time.strftime("%Y-%m-%d_%H-%M-%S")))
 
-        self.__temp_file = tempfile.TemporaryFile(mode="w+t")
-        Logger.__redirect_stdout_stderr(self.__temp_file)
+        self.__log_file = open(self.__log_file_path, "w+t")
+        Logger.__redirect_stdout_stderr(self.__log_file)
 
     def save_log(self, test_status: str = Status.FAILED):
         """
@@ -50,15 +49,14 @@ class Logger:
         """
         Logger.__restore_stdout_stderr()
 
-        self.__temp_file.seek(0)
-        content = self.__temp_file.read()
-        self.__temp_file.close()
+        self.__log_file.seek(0)
+        content = self.__log_file.read()
+        self.__log_file.close()
         print(content)
-        if test_status == Status.FAILED or Logger.__KEEP_LOG_FLAG in sys.argv:
-            with open(self.__log_file_path, "w") as log:
-                log.write(content)
+        if not test_status == Status.FAILED and Logger.__KEEP_LOG_FLAG not in sys.argv:
+            os.remove(self.__log_file_path)
 
-        if os.path.isfile(self.__log_file_path):
+        if os.path.exists(self.__log_file_path) and os.path.isfile(self.__log_file_path):
             print(Colors.OKBLUE + "Log file has been kept at: {}\n".format(self.__log_file_path) + Colors.ENDC)
 
     @staticmethod
