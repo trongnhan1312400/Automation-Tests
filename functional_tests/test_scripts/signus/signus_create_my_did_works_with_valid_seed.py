@@ -18,12 +18,17 @@ class TestCreateDidWithValidSeed(SignusTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
-        self.wallet_handle = await Common.create_and_open_wallet_for_steps(self.steps, self.wallet_name, self.pool_name)
+        self.wallet_handle = await \
+            Common.create_and_open_wallet_for_steps(self.steps,
+                                                    self.wallet_name,
+                                                    self.pool_name)
 
         # 3. Create did and verkey with valid seed.
         self.steps.add_step("Create did and verkey with valid seed")
-        (my_did, my_verkey) = await utils.perform(self.steps, signus.create_and_store_my_did, self.wallet_handle,
-                                                  json.dumps({"seed": Constant.seed_default_trustee}))
+        did_json = json.dumps({"seed": Constant.seed_default_trustee})
+        (my_did, my_verkey) = await \
+            utils.perform(self.steps, signus.create_and_store_my_did,
+                          self.wallet_handle, did_json)
 
         # 4. Check created did.
         self.steps.add_step("Check created did")

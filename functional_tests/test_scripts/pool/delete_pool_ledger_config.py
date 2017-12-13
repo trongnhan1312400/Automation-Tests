@@ -21,14 +21,18 @@ class TestDeletePoolLedgerConfig(PoolTestBase):
 
         # 2. Delete created pool ledger config.
         self.steps.add_step("Delete created pool ledger config")
-        result = await utils.perform(self.steps, pool.delete_pool_ledger_config, self.pool_name, ignore_exception=True)
+        result = await \
+            utils.perform(self.steps, pool.delete_pool_ledger_config,
+                          self.pool_name, ignore_exception=True)
 
         # 3. Verify that pool ledger config is deleted.
         self.steps.add_step("Verify that pool ledger config is deleted")
-        if utils.check(self.steps, error_message="Cannot delete a pool ledger config",
+        error_message = "Cannot delete a pool ledger config"
+        if utils.check(self.steps, error_message,
                        condition=lambda: not isinstance(result, Exception) and
                        not utils.check_pool_exist(self.pool_name)):
-                self.pool_name = None   # prevent post-condition clean up the pool again.
+            # prevent post-condition clean up the pool again.
+            self.pool_name = None
 
 
 if __name__ == "__main__":

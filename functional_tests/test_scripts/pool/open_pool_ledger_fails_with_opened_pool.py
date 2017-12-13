@@ -21,12 +21,19 @@ class TestOpenAOpenedPoolLedger(PoolTestBase):
                             self.pool_name, Constant.pool_genesis_txn_file)
         # 2. Open pool ledger.
         self.steps.add_step("Open pool ledger")
-        self.pool_handle = await utils.perform(self.steps, pool.open_pool_ledger, self.pool_name, None)
+        self.pool_handle = await utils.perform(self.steps,
+                                               pool.open_pool_ledger,
+                                               self.pool_name, None)
 
-        # 3. Reopen a opened pool ledger and verify that cannot reopen a opened pool ledger.
-        self.steps.add_step("Reopen a opened pool ledger and verify that cannot reopen a opened pool ledger")
-        await utils.perform_with_expected_code(self.steps, pool.open_pool_ledger, self.pool_name, None,
-                                               expected_code=ErrorCode.PoolLedgerInvalidPoolHandle)
+        # 3. Reopen a opened pool ledger
+        # and verify that cannot reopen a opened pool ledger.
+        self.steps.add_step("Reopen a opened pool ledger and "
+                            "verify that cannot reopen a opened pool ledger")
+        expected_code =  ErrorCode.PoolLedgerInvalidPoolHandle
+        await utils.perform_with_expected_code(self.steps,
+                                               pool.open_pool_ledger,
+                                               self.pool_name, None,
+                                               expected_code)
 
 
 if __name__ == "__main__":

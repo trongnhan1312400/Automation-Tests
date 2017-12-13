@@ -10,14 +10,12 @@ import subprocess
 import os
 import glob
 import sys
-import asyncio
 import inspect
 import importlib
 import multiprocessing
 import argparse
-from threading import Timer
-from indy import IndyError
-from libraries.constant import Colors, Message
+from libraries import utils
+from libraries.constant import Message
 from libraries.test_scenario_base import TestScenarioBase
 
 
@@ -41,7 +39,8 @@ class TestRunner:
         list_test_scenarios = self.__get_list_scenarios_in_folder()
 
         if not list_test_scenarios:
-            print(Colors.FAIL + "\n{}\n".format(Message.ERR_CANNOT_FIND_ANY_TEST_SCENARIOS) + Colors.ENDC)
+            utils.print_error(
+                "\n{}\n".format(Message.ERR_CANNOT_FIND_ANY_TEST_SCENARIOS))
             exit(1)
 
         for test_scenario in list_test_scenarios:
@@ -49,45 +48,8 @@ class TestRunner:
                 self.__execute_test_scenario(test_scenario)
 
         self.__execute_reporter()
-        print(Colors.OKGREEN + "\n{}\n".format(Message.INFO_ALL_TEST_HAVE_BEEN_EXECUTED) + Colors.ENDC)
-
-    def run_with_time_out(self):
-        """
-        Execute the "self.run" function with timeout.
-        Timeout is from sys.argv.
-        """
-        time_out = self.__args.timeout
-
-        if not time_out or time_out <= 0:
-            self.run()
-            print(Colors.OKGREEN + "\n{}\n".format(Message.INFO_ALL_TEST_HAVE_BEEN_EXECUTED) + Colors.ENDC)
-        else:
-            timer = Timer(float(time_out), function=self.__timeout_event)
-            timer.start()
-            self.run()
-            if timer.is_alive():
-                timer.cancel()
-            if self.__continue:
-                print(Colors.OKGREEN + "\n{}\n".format(Message.INFO_ALL_TEST_HAVE_BEEN_EXECUTED) + Colors.ENDC)
-            else:
-                self.__continue = False
-
-    def __timeout_event(self):
-        """
-        Terminate current test scenario and run it's pos-condition.
-        """
-        self.__continue = False
-        print(Colors.FAIL + "\n{}\n".format(Message.ERR_TIME_LIMITATION) + Colors.ENDC)
-        print(Colors.HEADER + "{}".format(Message.INFO_RUNNING_TEST_POS_CONDITION) + Colors.ENDC)
-        if self.__test_process:
-            self.__test_process.terminate()
-        if self.__current_scenario:
-            try:
-                loop = asyncio.new_event_loop()
-                loop.run_until_complete(self.__current_scenario.execute_postcondition_steps())
-                loop.close()
-            except IndyError:
-                pass
+        utils.print_ok_green(
+            "\n{}\n".format(Message.INFO_ALL_TEST_HAVE_BEEN_EXECUTED))
 
     def __catch_arg(self):
         """
@@ -95,18 +57,22 @@ class TestRunner:
         """
         arg_parser = argparse.ArgumentParser()
         arg_parser.add_argument("-d", "--directory", dest="directory",
-                                help="directory of test scenarios (not recursive)",
-                                default="", nargs="?")
-        arg_parser.add_argument("-rd", "--recur_directory", dest="recur_directory",
-                                help="directory of test scenarios (recursive)",
-                                default="", nargs="?")
-        arg_parser.add_argument("-t", "--timeout", dest="timeout", type=float, help="timeout for each scenario"
-                                                                                    " (default: 300s)",
+                                default="", nargs="?",
+                                help="directory of test "
+                                     "scenarios (not recursive)")
+        arg_parser.add_argument("-rd", "--recur_directory",
+                                dest="recur_directory", default="", nargs="?",
+                                help="directory of test scenarios (recursive)")
+        arg_parser.add_argument("-t", "--timeout", dest="timeout", type=float,
+                                help="timeout for each "
+                                     "scenario (default: 300s)",
                                 default=300, nargs="?")
-        arg_parser.add_argument("-html", "--html_report", dest="report", action="store_true",
-                                help="if this flag is missing, html report would not be generated",
-                                default=False)
-        arg_parser.add_argument("-l", "--keep_log", action="store_true", help="keep all log file")
+        arg_parser.add_argument("-html", "--html_report", dest="report",
+                                action="store_true", default=False,
+                                help="if this flag is missing, html "
+                                     "report would not be generated")
+        arg_parser.add_argument("-l", "--keep_log", action="store_true",
+                                help="keep all log file")
         self.__args = arg_parser.parse_args()
         if self.__args.timeout <= 0.0:
             print("Invalid timeout!")
@@ -129,8 +95,9 @@ class TestRunner:
         if not test_scenario:
             return
         self.__current_scenario = test_scenario()
-        process = multiprocessing.Process(target=self.__current_scenario.execute_scenario,
-                                          kwargs={"time_out": self.__args.timeout})
+        process = multiprocessing.\
+            Process(target=self.__current_scenario.execute_scenario,
+                    kwargs={"time_out": self.__args.timeout})
         self.__test_process = process
         process.start()
         process.join()
@@ -141,9 +108,11 @@ class TestRunner:
         Recursive to sub folder if "-rd" argument appear in sys.argv.
         :return: list test scenarios.
         """
-        # If both directory and recur_directory are exist then show "Invalid command" and exit.
-        if self.__args.directory is not "" and self.__args.recur_directory is not "":
-            print(Colors.FAIL + "\n{}\n".format(Message.ERR_COMMAND_ERROR) + Colors.ENDC)
+        # If both directory and recur_directory are exist
+        # then show "Invalid command" and exit.
+        if self.__args.directory is not "" \
+           and self.__args.recur_directory is not "":
+            utils.print_error("\n{}\n".format(Message.ERR_COMMAND_ERROR))
             exit(1)
         recursive = False
 
@@ -158,7 +127,9 @@ class TestRunner:
             start_directory = TestRunner.__test_script_dir
 
         if not os.path.exists(start_directory):
-            print(Colors.FAIL + "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST.format(start_directory)) + Colors.ENDC)
+            utils.print_error(
+                "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST.
+                                format(start_directory)))
             exit(1)
 
         list_files = []
@@ -166,18 +137,23 @@ class TestRunner:
         try:
             if recursive:
                 for directory, _, _ in os.walk(start_directory):
-                    list_files.extend(glob.glob(os.path.join(directory, "*.py")))
+                    list_files.extend(glob.glob(os.path.join(directory,
+                                                             "*.py")))
             else:
-                list_files.extend(glob.glob(os.path.join(start_directory, "*.py")))
+                list_files.extend(glob.glob(os.path.join(start_directory,
+                                                         "*.py")))
         except OSError:
             pass
 
         list_test_scenarios = []
         for file in list_files:
             sys.path.append(os.path.dirname(os.path.abspath(file)))
-            test_module = importlib.import_module(os.path.basename(file).replace(".py", ""))
+            test_module = \
+                importlib.import_module(os.path.basename(file).replace(".py",
+                                                                       ""))
             for name, cls in inspect.getmembers(test_module, inspect.isclass):
-                if cls is not TestScenarioBase and issubclass(cls, TestScenarioBase):
+                if cls is not TestScenarioBase \
+                        and issubclass(cls, TestScenarioBase):
                     list_test_scenarios.append(cls)
 
         return list_test_scenarios

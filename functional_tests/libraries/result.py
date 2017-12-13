@@ -30,7 +30,8 @@ class Status:
 
 
 class TestResult:
-    __json_dir = os.path.join(os.path.dirname(__file__), "..") + "/test_output/test_results/"
+    __json_dir = os.path.join(os.path.dirname(__file__), "..") \
+                 + "/test_output/test_results/"
 
     def __init__(self, test_case_name):
         """
@@ -42,9 +43,12 @@ class TestResult:
         self.__run = []  # Store information of steps in test case
         self.__test_result[KeyWord.TEST_CASE] = test_case_name
         self.__test_result[KeyWord.RESULT] = Status.PASSED
-        self.__test_result[KeyWord.START_TIME] = str(time.strftime("%Y-%m-%d_%H-%M-%S"))
-        self.__json_file_path = "{}{}_{}.json".format(TestResult.__json_dir, self.__test_result[KeyWord.TEST_CASE],
-                                                      self.__test_result[KeyWord.START_TIME])
+        self.__test_result[KeyWord.START_TIME] = \
+            str(time.strftime("%Y-%m-%d_%H-%M-%S"))
+        self.__json_file_path = \
+            "{}{}_{}.json".format(TestResult.__json_dir,
+                                  self.__test_result[KeyWord.TEST_CASE],
+                                  self.__test_result[KeyWord.START_TIME])
 
     def set_result(self, result):
         """
@@ -62,7 +66,8 @@ class TestResult:
         """
         self.__test_result[KeyWord.DURATION] = round(duration * 1000)
 
-    def set_step_status(self, step_summary: str, status: str = Status.PASSED, message: str = None):
+    def set_step_status(self, step_summary: str, status: str = Status.PASSED,
+                        message: str = None):
         """
         Set status and message for specify step.
 
@@ -70,7 +75,8 @@ class TestResult:
         :param status: (optional) PASSED or FAILED.
         :param message: anything that involve to step like Exception, Log,...
         """
-        temp = {KeyWord.STEP: step_summary, KeyWord.STATUS: status, KeyWord.MESSAGE: message}
+        temp = {KeyWord.STEP: step_summary, KeyWord.STATUS: status,
+                KeyWord.MESSAGE: message}
         self.__run.append(temp)
 
     def add_step(self, step):
@@ -81,7 +87,9 @@ class TestResult:
         """
         if not step:
             return
-        temp = {KeyWord.STEP: step.get_name(), KeyWord.STATUS: step.get_status(), KeyWord.MESSAGE: step.get_message()}
+        temp = {KeyWord.STEP: step.get_name(),
+                KeyWord.STATUS: step.get_status(),
+                KeyWord.MESSAGE: step.get_message()}
         self.__run.append(temp)
 
     def write_result_to_file(self):
@@ -90,8 +98,10 @@ class TestResult:
         """
         self.__test_result[KeyWord.RUN] = self.__run
         with open(self.__json_file_path, "w+") as outfile:
-            json.dump(self.__test_result, outfile, ensure_ascii=False, indent=2)
-            print(Colors.OKBLUE + "\nJson file has been written at: {}\n".format(self.__json_file_path) + Colors.ENDC)
+            json.dump(self.__test_result, outfile,
+                      ensure_ascii=False, indent=2)
+            print(Colors.OKBLUE + "\nJson file has been written at: {}\n".
+                  format(self.__json_file_path) + Colors.ENDC)
 
     def set_test_failed(self):
         """
