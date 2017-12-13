@@ -80,15 +80,11 @@ class Common:
         :param role: Role of a user NYM record.
         :raise Exception if the method has error.
         """
-        try:
-            nym_txn_req = await \
-                ledger.build_nym_request(submitter_did, target_did,
-                                         target_verkey, alias, role)
-            await ledger.sign_and_submit_request(pool_handle, wallet_handle,
-                                                 submitter_did, nym_txn_req)
-        except IndyError as E:
-            print(Colors.FAIL + str(E) + Colors.ENDC)
-            raise
+        nym_txn_req = await \
+            ledger.build_nym_request(submitter_did, target_did,
+                                     target_verkey, alias, role)
+        await ledger.sign_and_submit_request(pool_handle, wallet_handle,
+                                             submitter_did, nym_txn_req)
 
     @staticmethod
     async def create_and_open_pool(pool_name, pool_genesis_txn_file):

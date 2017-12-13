@@ -19,7 +19,6 @@ from libraries.utils import perform
 class BuildNymRequest(TestScenarioBase):
 
     async def execute_test_steps(self):
-        print("BuildNymRequest started")
         # 1. Prepare pool and wallet. Get pool_hanlde, wallet_hanlde
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = await perform(self.steps, Common.prepare_pool_and_wallet,
@@ -51,7 +50,6 @@ class BuildNymRequest(TestScenarioBase):
             self.steps.get_last_step().set_status(Status.PASSED)
         except AssertionError:
             self.steps.get_last_step().set_message(Message.JSON_INCORRECT.format(""))
-        print("BuildNymRequest completed")
 
 
 if __name__ == '__main__':

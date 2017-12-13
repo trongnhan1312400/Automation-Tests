@@ -19,7 +19,6 @@ from libraries.utils import perform
 class SignAndSubmitRequest(TestScenarioBase):
 
     async def execute_test_steps(self):
-        print("SignAndSubmitRequest started")
         # 1. Prepare pool and wallet. Get pool_hanlde, wallet_hanlde
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = await perform(self.steps, Common.prepare_pool_and_wallet,
@@ -55,7 +54,6 @@ class SignAndSubmitRequest(TestScenarioBase):
             self.steps.get_last_step().set_status(Status.FAILED)
             self.steps.get_last_step().set_message("Failed. Expected did is [%s] but actual did is [%s]"
                                                    % (target_did, did_response))
-        print("SignAndSubmitRequest completed")
 
 
 if __name__ == '__main__':

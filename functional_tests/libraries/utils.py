@@ -153,6 +153,14 @@ def make_final_result(test_result, steps, begin_time, logger):
     logger.save_log(test_result.get_test_status())
 
 
+def verify_json(steps, expected_response, response):
+    try:
+        assert expected_response.items() <= response.items()
+        steps.get_last_step().set_status(Status.PASSED)
+    except AssertionError as e:
+        steps.get_last_step().set_message(Message.JSON_INCORRECT.format(str(e)))
+
+
 def check_pool_exist(pool_name: str) -> bool:
     """
     Check whether pool config exist or not.

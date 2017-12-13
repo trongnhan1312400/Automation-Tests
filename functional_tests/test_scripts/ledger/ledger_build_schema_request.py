@@ -10,16 +10,14 @@ import json
 from indy import signus, ledger
 
 from libraries.common import Common
-from libraries.constant import Constant, Message
-from libraries.result import Status
+from libraries.constant import Constant
 from libraries.test_scenario_base import TestScenarioBase
-from libraries.utils import perform, compare_json
+from libraries.utils import perform, verify_json
 
 
 class SchemaRequest(TestScenarioBase):
 
     async def execute_test_steps(self):
-        print("SchemaRequest started")
         # 1. Prepare pool and wallet. Get pool_hanlde, wallet_hanlde
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = await perform(self.steps, Common.prepare_pool_and_wallet,
@@ -38,12 +36,7 @@ class SchemaRequest(TestScenarioBase):
         # 4. Verifying build schema successfully by checking data response
         self.steps.add_step("Verifying build schema successfully by checking data response")
         expected_response = {"operation": {"type": "101", "data": json.loads(data)}}
-        try:
-            assert compare_json(expected_response, response)
-            self.steps.get_last_step().set_status(Status.PASSED)
-        except AssertionError as e:
-            self.steps.get_last_step().set_message(Message.JSON_INCORRECT.format(str(e)))
-        print("SchemaRequest completed")
+        verify_json(self.steps, expected_response, response)
 
 
 if __name__ == '__main__':
