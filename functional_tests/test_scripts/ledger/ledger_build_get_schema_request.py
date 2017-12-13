@@ -34,8 +34,7 @@ class GetSchemaRequest(TestScenarioBase):
         self.steps.add_step("Build schema request")
         name = generate_random_string(size=4)
         version = "1.1.1"
-        data_request = (
-            '{"name":"%s", "version":"%s", "attr_names":["name","male"]}' % (name, version))
+        data_request = ('{"name":"%s", "version":"%s", "attr_names":["name","male"]}' % (name, version))
         data_response = ('{"name":"%s", "version":"%s"}' % (name, version))
         schema_req = await perform(self.steps, ledger.build_schema_request, submitter_did, data_request)
 
