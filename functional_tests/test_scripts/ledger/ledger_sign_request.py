@@ -22,7 +22,6 @@ class SignRequest(TestScenarioBase):
         pass
 
     async def execute_test_steps(self):
-        print("SignRequest started")
         # Prepare data to test.
         message = json.dumps(
             {
@@ -53,19 +52,14 @@ class SignRequest(TestScenarioBase):
 
         # 4. verify the signature is correct.
         self.steps.add_step("verify the signature is correct.")
-        try:
-            signed_msg = json.loads(json_response)
-            actual_signature = signed_msg['signature']
-            if actual_signature == expected_signature:
-                self.steps.get_last_step().set_status(Status.PASSED)
-            else:
-                self.steps.get_last_step().set_status(Status.FAILED)
-                self.steps.get_last_step().set_message("Failed. Expected signature is [%s] but actual signature is [%s]"
-                                                       % (expected_signature, actual_signature))
-        except Exception as E:
+        signed_msg = json.loads(json_response)
+        actual_signature = signed_msg['signature']
+        if actual_signature == expected_signature:
+            self.steps.get_last_step().set_status(Status.PASSED)
+        else:
             self.steps.get_last_step().set_status(Status.FAILED)
-            self.steps.get_last_step().set_message(str(E))
-        print("SignRequest completed")
+            self.steps.get_last_step().set_message("Failed. Expected signature is [%s] but actual signature is [%s]"
+                                                   % (expected_signature, actual_signature))
 
 
 if __name__ == '__main__':
