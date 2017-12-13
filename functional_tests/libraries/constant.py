@@ -11,6 +11,7 @@ Containing all constants that are necessary to execute test scenario.
 class JsonTemplate:
     message = '{{"reqId": {:d}, "identifier": "{}","operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
     submit_request = '{{"reqId": {:d}, "identifier": "{}", "operation": {{ "type": "{}", "dest": "{}"}}, "signature": "{}"}}'
+    attrib_request = '{{"identifier":"{}","operation":{{"type":"{}","dest":"{}","raw":{}}}}}'
     submit_response = '{{"result": {{ "reqId": {:d}, "identifier": "{}", "dest": "{}", "data": "{}","type": "{}" }}, "op": "{}"}}'
     get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}","dest":"{}","data":{}}}}}'
     get_nym_response = '{{"identifier":"{}","operation":{{"type":"{}","dest":"{}"}}}}'
