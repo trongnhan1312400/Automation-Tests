@@ -9,10 +9,11 @@ Containing all constants that are necessary to execute test scenario.
 
 
 class JsonTemplate:
-    message = '{{"reqId": {:d}, "identifier": "{}", "operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
+    message = '{{"reqId": {:d}, "identifier": "{}","operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
     submit_request = '{{"reqId": {:d}, "identifier": "{}", "operation": {{ "type": "{}", "dest": "{}"}}, "signature": "{}"}}'
-    submit_response = '{{"result": {{ "reqId": {:d}, "identifier": "{}", "dest": "{}", "data": "{}", "type": "{}" }}, "op": "{}"}}'
+    submit_response = '{{"result": {{ "reqId": {:d}, "identifier": "{}", "dest": "{}", "data": "{}","type": "{}" }}, "op": "{}"}}'
     get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}","dest":"{}","data":{}}}}}'
+    get_nym_response = '{{"identifier":"{}","operation":{{"type":"{}","dest":"{}"}}}}'
 
 
 class Colors:
@@ -61,11 +62,17 @@ class Constant:
     did_my2 = "2PRyVHmkXQnQzJQKxHxnXC"
     verkey_my2 = "kqa2HyagzfMAq42H5f9u3UMwnSBPQx2QfrSyXbUPxMn"
 
-    # The path to the genesis transaction file is configurable. The default directory is "/var/lib/indy/sandbox/".
+    # The path to the genesis transaction file is configurable.
+    # The default directory is "/var/lib/indy/sandbox/".
     genesis_transaction_file_path = "/var/lib/indy/sandbox/"
-    pool_genesis_txn_file = genesis_transaction_file_path + "pool_transactions_sandbox_genesis"
-    domain_transactions_sandbox_genesis = genesis_transaction_file_path + "domain_transactions_sandbox_genesis"
-    original_pool_genesis_txn_file = genesis_transaction_file_path + "original_pool_transactions_sandbox_genesis"
+    pool_genesis_txn_file = \
+        genesis_transaction_file_path + "pool_transactions_sandbox_genesis"
+    domain_transactions_sandbox_genesis = \
+        genesis_transaction_file_path + "domain_transactions_sandbox_genesis"
+
+    original_pool_genesis_txn_file = \
+        genesis_transaction_file_path \
+        + "original_pool_transactions_sandbox_genesis"
 
 
 class Message:
@@ -73,7 +80,8 @@ class Message:
     ERR_CANNOT_FIND_ANY_TEST_SCENARIOS = "Cannot find any test scenarios!"
     ERR_TIME_LIMITATION = "Aborting test scenario because of time limitation!"
     ERR_COMMAND_ERROR = "Invalid command!"
-    INFO_RUNNING_TEST_POS_CONDITION = "Running clean up for aborted test scenario."
+    INFO_RUNNING_TEST_POS_CONDITION = "Running clean up for " \
+                                      "aborted test scenario."
     INFO_ALL_TEST_HAVE_BEEN_EXECUTED = "All test have been executed!"
     INDY_ERROR = "IndyError: {}"
     EXCEPTION = "Exception: {}"

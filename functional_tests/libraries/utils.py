@@ -26,9 +26,12 @@ def generate_random_string(prefix="", suffix="", size=20):
     left_size = size - len(prefix) - len(suffix)
     random_str = ""
     if left_size > 0:
-        random_str = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(left_size))
+        random_str = ''.join(
+            random.choice(string.ascii_uppercase +
+                          string.digits) for _ in range(left_size))
     else:
-        print("Warning: Length of prefix and suffix more than %s chars" % str(size))
+        print("Warning: Length of prefix and suffix more than %s chars"
+              % str(size))
     result = str(prefix) + random_str + str(suffix)
     return result
 
@@ -52,7 +55,8 @@ def compare_json(js1, js2):
 
 async def perform(steps, func, *args, ignore_exception=False):
     """
-    Execute an function and set status, message for the last test step depend on the result of the function.
+    Execute an function and set status, message for the last test step depend
+    on the result of the function.
 
     :param steps: (optional) list of test steps.
     :param func: (optional) executed function.
@@ -82,14 +86,16 @@ async def perform(steps, func, *args, ignore_exception=False):
 
 async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
     """
-    Execute the "func" with expectation that the "func" raise an IndyError that IndyError.error_code = "expected_code".
+    Execute the "func" with expectation that the "func" raise an IndyError that
+    IndyError.error_code = "expected_code".
 
     :param steps: (optional) list of test steps.
     :param func: (optional) executed function.
     :param agrs: arguments of "func".
     :param expected_code: the error code that you expect in IndyError.
     :return: exception if the "func" raise it without "expected_code".
-             'None' if the "func" run without any exception of the exception contain "expected_code".
+             'None' if the "func" run without any exception of the exception
+             contain "expected_code".
     """
     try:
         await func(*agrs)
@@ -101,7 +107,7 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
             steps.get_last_step().set_status(Status.PASSED)
             return True
         else:
-            print(Colors.FAIL + Message.INDY_ERROR.format(str(E)) + Colors.ENDC)
+            print_error(Message.INDY_ERROR.format(str(E)))
             steps.get_last_step().set_message(str(E))
             return E
     except Exception as Ex:
@@ -138,12 +144,21 @@ def make_final_result(test_result, steps, begin_time, logger):
     for step in steps:
         test_result.add_step(step)
         if step.get_status() == Status.FAILED:
-            print('%s: ' % str(step.get_id()) + Colors.FAIL + 'failed\nMessage: ' + step.get_message() + Colors.ENDC)
+            print('%s: ' % str(step.get_id()) + Colors.FAIL +
+                  'failed\nMessage: ' + step.get_message() + Colors.ENDC)
             test_result.set_test_failed()
 
     test_result.set_duration(time.time() - begin_time)
     test_result.write_result_to_file()
     logger.save_log(test_result.get_test_status())
+
+
+def verify_json(steps, expected_response, response):
+    try:
+        assert expected_response.items() <= response.items()
+        steps.get_last_step().set_status(Status.PASSED)
+    except AssertionError as e:
+        steps.get_last_step().set_message(Message.JSON_INCORRECT.format(str(e)))
 
 
 def check_pool_exist(pool_name: str) -> bool:
@@ -182,12 +197,14 @@ def check(steps: Steps, error_message: str, condition) -> bool:
         step = steps.get_last_step()
         if not callable(condition):
             step.set_status(Status.FAILED)
-            step.set_message("The 'condition' argument must be a callable object")
+            step.set_message("The 'condition' argument "
+                             "must be a callable object")
         else:
             if not condition():
                 step.set_status(Status.FAILED)
                 if error_message:
-                    temp_message = (step.get_message + "\n") if step.get_message() else ""
+                    temp_message = (step.get_message + "\n") \
+                        if step.get_message() else ""
                     step.set_message(temp_message + error_message)
             else:
                 step.set_status(Status.PASSED)

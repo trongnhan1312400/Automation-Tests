@@ -11,10 +11,9 @@ class Steps:
     """
     Class manage list of step.
     """
-    __steps = []
 
     def __init__(self):
-        pass
+        self.__steps = []
 
     def get_last_step(self):
         """
@@ -22,6 +21,8 @@ class Steps:
         """
         if len(self.__steps) != 0:
             return self.__steps[-1]
+        else:
+            return None
 
     def get_list_step(self):
         """
@@ -34,9 +35,9 @@ class Steps:
         Add a new step to list step.
         :param name: variable hold the step name. Using to report.
         """
-        from libraries.constant import Colors
+        from libraries import utils
         step_id = len(self.__steps)
-        print(Colors.HEADER + "\n{0}. {1}\n".format(step_id + 1, name) + Colors.ENDC)
+        utils.print_header("\n{0}. {1}\n".format(step_id + 1, name))
         new_step = Step(step_id + 1, name)
         self.__steps.append(new_step)
 

@@ -17,10 +17,9 @@ from .constant import Colors
 
 
 class Logger:
-    """
-    Catch the log is written on console.
-    """
-    __log_dir = os.path.join(os.path.dirname(__file__), "..") + "/test_output/log_files/"
+    __log_dir = os.path.join(os.path.dirname(__file__), "..") \
+                + "/test_output/log_files/"
+
     __KEEP_LOG_FLAG = "-l"
     __LOG_LVL = logging.DEBUG
 
@@ -34,16 +33,20 @@ class Logger:
 
     def __init__(self, test_name: str):
         Logger.__init_log_folder()
-        self.__log_file_path = "{}{}_{}.log".format(Logger.__log_dir, test_name,
-                                                    str(time.strftime("%Y-%m-%d_%H-%M-%S")))
+        current_time = str(time.strftime("%Y-%m-%d_%H-%M-%S"))
+        self.__log_file_path = "{}{}_{}.log".format(Logger.__log_dir,
+                                                    test_name,
+                                                    current_time)
 
         self.__log_file = open(self.__log_file_path, "w+t")
         Logger.__redirect_stdout_stderr(self.__log_file)
 
     def save_log(self, test_status: str = Status.FAILED):
         """
-        If "-l" is exist in sys.argv or test_status is Failed then keeping the log file.
-        If test_status is Passed and missing "-l" from sys.argv then deleting log file.
+        If "-l" is exist in sys.argv or test_status is Failed
+        then keeping the log file.
+        If test_status is Passed and missing "-l" from sys.argv
+        then deleting log file.
 
         :param test_status: Passed of Failed.
         """
@@ -53,11 +56,14 @@ class Logger:
         content = self.__log_file.read()
         self.__log_file.close()
         print(content)
-        if not test_status == Status.FAILED and Logger.__KEEP_LOG_FLAG not in sys.argv:
+        if not test_status == Status.FAILED \
+           and Logger.__KEEP_LOG_FLAG not in sys.argv:
             os.remove(self.__log_file_path)
 
-        if os.path.exists(self.__log_file_path) and os.path.isfile(self.__log_file_path):
-            print(Colors.OKBLUE + "Log file has been kept at: {}\n".format(self.__log_file_path) + Colors.ENDC)
+        if os.path.exists(self.__log_file_path) \
+           and os.path.isfile(self.__log_file_path):
+            print(Colors.OKBLUE + "Log file has been kept at: {}\n".
+                  format(self.__log_file_path) + Colors.ENDC)
 
     @staticmethod
     def __redirect_stdout_stderr(file):

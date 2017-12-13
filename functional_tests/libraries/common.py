@@ -21,21 +21,27 @@ class Common:
     """
 
     @staticmethod
-    async def prepare_pool_and_wallet(pool_name, wallet_name, pool_genesis_txn_file):
+    async def prepare_pool_and_wallet(pool_name, wallet_name,
+                                      pool_genesis_txn_file):
         """
         Prepare pool and wallet to use in a test case.
 
         :param pool_name: Name of the pool ledger configuration.
         :param wallet_name: Name of the wallet.
-        :param pool_genesis_txn_file: The path of the pool_genesis_transaction file.
+        :param pool_genesis_txn_file: path of pool_genesis_transaction file.
         :return: The pool handle and the wallet handle were created.
         """
-        pool_handle = await Common().create_and_open_pool(pool_name, pool_genesis_txn_file)
-        wallet_handle = await Common().create_and_open_wallet(pool_name, wallet_name)
+        pool_handle = await \
+            Common().create_and_open_pool(pool_name, pool_genesis_txn_file)
+
+        wallet_handle = await \
+            Common().create_and_open_wallet(pool_name, wallet_name)
+
         return pool_handle, wallet_handle
 
     @staticmethod
-    async def clean_up_pool_and_wallet(pool_name, pool_handle, wallet_name, wallet_handle):
+    async def clean_up_pool_and_wallet(pool_name, pool_handle,
+                                       wallet_name, wallet_handle):
         """
         Clean up pool and wallet. Using as a post condition of a test case.
 
@@ -59,8 +65,9 @@ class Common:
         Common.delete_wallet_folder(wallet_name)
 
     @staticmethod
-    async def build_and_send_nym_request(pool_handle, wallet_handle, submitter_did,
-                                         target_did, target_verkey, alias, role):
+    async def build_and_send_nym_request(pool_handle, wallet_handle,
+                                         submitter_did, target_did,
+                                         target_verkey, alias, role):
         """
         Build a nym request and send it.
 
@@ -73,25 +80,27 @@ class Common:
         :param role: Role of a user NYM record.
         :raise Exception if the method has error.
         """
-        try:
-            nym_txn_req = await ledger.build_nym_request(submitter_did, target_did, target_verkey, alias, role)
-            await ledger.sign_and_submit_request(pool_handle, wallet_handle, submitter_did, nym_txn_req)
-        except IndyError as E:
-            print(Colors.FAIL + str(E) + Colors.ENDC)
-            raise
+        nym_txn_req = await \
+            ledger.build_nym_request(submitter_did, target_did,
+                                     target_verkey, alias, role)
+        await ledger.sign_and_submit_request(pool_handle, wallet_handle,
+                                             submitter_did, nym_txn_req)
 
     @staticmethod
     async def create_and_open_pool(pool_name, pool_genesis_txn_file):
         """
         Creates a new local pool ledger configuration.
-        Then open that pool and return the pool handle that can be used later to connect pool nodes.
+        Then open that pool and return the pool handle that can be used later
+        to connect pool nodes.
 
         :param pool_name: Name of the pool ledger configuration.
-        :param pool_genesis_txn_file: Pool configuration json. if NULL, then default config will be used.
+        :param pool_genesis_txn_file: Pool configuration json. if NULL, then
+        default config will be used.
         :return: The pool handle was created.
         """
         print(Colors.HEADER + "\nCreate Ledger\n" + Colors.ENDC)
-        await Common.create_pool_ledger_config(pool_name, pool_genesis_txn_file)
+        await Common.create_pool_ledger_config(pool_name,
+                                               pool_genesis_txn_file)
 
         print(Colors.HEADER + "\nOpen pool ledger\n" + Colors.ENDC)
         pool_handle = await pool.open_pool_ledger(pool_name, None)
@@ -150,7 +159,9 @@ class Common:
             await wallet.delete_wallet(wallet_name, None)
 
     @staticmethod
-    async def create_and_open_pool_ledger_for_steps(steps, pool_name, pool_genesis_txn_file, pool_config=None):
+    async def create_and_open_pool_ledger_for_steps(steps, pool_name,
+                                                    pool_genesis_txn_file,
+                                                    pool_config=None):
         # Create a pool ledger config.
         steps.add_step("Create pool ledger config")
         await utils.perform(steps, Common.create_pool_ledger_config, pool_name,
@@ -158,22 +169,25 @@ class Common:
 
         # Open pool ledger.
         steps.add_step("Open pool ledger")
-        result = await utils.perform(steps, pool.open_pool_ledger, pool_name, pool_config, ignore_exception=False)
+        result = await utils.perform(steps, pool.open_pool_ledger, pool_name,
+                                     pool_config, ignore_exception=False)
 
         return result
 
     @staticmethod
-    async def create_and_open_wallet_for_steps(steps, wallet_name, pool_name, wallet_config=None,
-                                               xtype=None, credentials=None, runtime_config=None):
+    async def create_and_open_wallet_for_steps(steps, wallet_name, pool_name,
+                                               wallet_config=None, xtype=None,
+                                               credentials=None,
+                                               runtime_config=None):
         # Create a wallet.
         steps.add_step("Create wallet")
-        await utils.perform(steps, wallet.create_wallet, pool_name, wallet_name, xtype,
-                            wallet_config, credentials, ignore_exception=False)
+        await utils.perform(steps, wallet.create_wallet, pool_name,
+                            wallet_name, xtype, wallet_config, credentials)
 
         # Open wallet.
         steps.add_step("Open wallet")
-        result = await utils.perform(steps, wallet.open_wallet, wallet_name, runtime_config,
-                                     credentials, ignore_exception=False)
+        result = await utils.perform(steps, wallet.open_wallet, wallet_name,
+                                     runtime_config, credentials)
 
         return result
 
@@ -181,7 +195,8 @@ class Common:
     async def create_pool_ledger_config(pool_name, pool_genesis_txn_file):
         if os.path.exists(pool_genesis_txn_file) is not True:
             error_message = (Colors.FAIL +
-                             "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST.format(pool_genesis_txn_file)) +
+                             "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST.
+                                             format(pool_genesis_txn_file)) +
                              Colors.ENDC)
             raise ValueError(error_message)
 
@@ -205,7 +220,8 @@ class Common:
                 utils.print_error(str(ie))
 
     @staticmethod
-    async def close_and_delete_wallet(wallet_name, wallet_handle, credentials=None):
+    async def close_and_delete_wallet(wallet_name, wallet_handle,
+                                      credentials=None):
         if wallet_handle:
             try:
                 utils.print_header("\nClose wallet\n")

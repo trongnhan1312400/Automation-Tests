@@ -24,8 +24,9 @@ def get_version(program: str) -> str:
     :return: version.
     """
     cmd = "dpkg -l | grep '{}'".format(program)
-    process = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
-    (out, err) = process.communicate()
+    process = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE,
+                               stdin=subprocess.PIPE)
+    (out, _) = process.communicate()
     result = out.decode()
     version = result.split()
 
@@ -43,13 +44,14 @@ class HTMLReporter:
 
     __head = """<html>
             <head>
-             <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+             <meta http-equiv="Content-Type" content="text/html; 
+             charset=windows-1252">
                 <title>Summary Report</title>
                 <style type="text/css">table {
                     margin-bottom: 10px;
                     border-collapse: collapse;
                     empty-cells: show
-                }   
+                }
 
                 th, td {
                     border: 1px solid #009;
@@ -127,7 +129,7 @@ class HTMLReporter:
             <tbody>
             <tr>
                 <th>Run machine</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
             <tr>
                 <th>OS</th>
@@ -135,19 +137,19 @@ class HTMLReporter:
             </tr>
             <tr>
                 <th>indy - plenum</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
              <tr>
                 <th>indy - anoncreds</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
             <tr>
                 <th>indy - node</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
             <tr>
                 <th>sovrin</th>
-                <td>{}</td>            
+                <td>{}</td>
             </tr>
             </tbody>
         </table>"""
@@ -156,14 +158,14 @@ class HTMLReporter:
             <tbody>
             <tr>
                 <th>Test Plan</th>
-                <th># Passed</th>       
+                <th># Passed</th>
                 <th># Failed</th>
                 <th>Time (ms)</th>
             </tr>
             <tr>
                 <td>{}</td>
                 <td class="num">{}</td>
-                <td class="num">{}</td>            
+                <td class="num">{}</td>
                 <td class="num">{}</td>
             </tr>
             </tbody>
@@ -196,7 +198,7 @@ class HTMLReporter:
 
     __go_to_summary = """<a href = #summary>Back to summary.</a>"""
 
-    __begin_summary_content = """ 
+    __begin_summary_content = """
             <tbody>
             <tr>
                 <th colspan="4"></th>
@@ -213,13 +215,14 @@ class HTMLReporter:
     __test_log_head = """<h2>Test Execution Logs</h2>"""
 
     __table_test_log = """<h3 id = "{}">{}</h3>
-                            <table id="execution_logs" border='1' width='800'>"""
+                            <table id="execution_logs" 
+                            border='1' width='800'>"""
 
     __table_test_log_content = """ """
 
     __passed_test_log = """
             <tr>
-                <td><font color="green">{} : {} :: {}</font></td>       
+                <td><font color="green">{} : {} :: {}</font></td>
             </tr>"""
 
     __failed_test_log = """
@@ -227,7 +230,7 @@ class HTMLReporter:
                 <td><font color="red">{} : {} :: {}
                 <br>Traceback: {}</br>
                 </font>
-                </td>            
+                </td>
             </tr>
             """
 
@@ -242,14 +245,19 @@ class HTMLReporter:
         """
         Generating the configuration table.
         """
-        self.__configuration_table = self.__configuration_table.format(socket.gethostname(), platform.system() +
-                                                                       platform.release(), get_version("indy-plenum"),
-                                                                       get_version("indy-anoncreds"),
-                                                                       get_version("indy-node"), get_version("sovrin"))
+        self.__configuration_table = \
+            self.__configuration_table.format(socket.gethostname(),
+                                              platform.system() +
+                                              platform.release(),
+                                              get_version("indy-plenum"),
+                                              get_version("indy-anoncreds"),
+                                              get_version("indy-node"),
+                                              get_version("sovrin"))
 
     def make_report_content_by_list(self, list_json: list, suite_name):
         """
-        Generating the report content by reading all json file within the inputted path
+        Generating the report content by reading all json file
+        within the inputted path
         :param list_json:
         :param suite_name:
         """
@@ -276,41 +284,57 @@ class HTMLReporter:
                     passed = passed + 1
 
                     temp_testcase = self.__passed_testcase_template
-                    temp_testcase = temp_testcase.format(testcase, starttime, str(duration))
+                    temp_testcase = temp_testcase.format(testcase, starttime,
+                                                         str(duration))
 
                     # Add passed test case into  table
-                    self.__passed_testcase_table = self.__passed_testcase_table + temp_testcase
+                    self.__passed_testcase_table = \
+                        self.__passed_testcase_table + temp_testcase
 
                 elif result == "Failed":
                     failed = failed + 1
 
                     temp_testcase = self.__failed_testcase_template
-                    temp_testcase = temp_testcase.format(testcase, testcase.replace(" ", ""), starttime, str(duration))
+                    temp_testcase = \
+                        temp_testcase.format(testcase,
+                                             testcase.replace(" ", ""),
+                                             starttime, str(duration))
 
                     # Add failed test case into  table
-                    self.__failed_testcase_table = self.__failed_testcase_table + temp_testcase
+                    self.__failed_testcase_table = \
+                        self.__failed_testcase_table + temp_testcase
 
                     test_log = self.__table_test_log
-                    test_log = test_log.format(testcase.replace(" ", ""), testcase)
+                    test_log = test_log.format(testcase.replace(" ", ""),
+                                               testcase)
 
-                    self.__table_test_log_content = self.__table_test_log_content + test_log
+                    self.__table_test_log_content = \
+                        self.__table_test_log_content + test_log
 
                     # loop for each step
                     for i in range(0, len(json_text['run'])):
+                        step = json_text['run'][i]['step']
+                        status = json_text['run'][i]['status']
                         if json_text['run'][i]['status'] == "Passed":
-                            temp = self.__passed_test_log.format(str(i + 1), json_text['run'][i]['step'],
-                                                                 json_text['run'][i]['status'])
+                            temp = self.__passed_test_log.format(str(i + 1),
+                                                                 step, status)
                         else:
-                            temp = self.__failed_test_log.format(str(i + 1), json_text['run'][i]['step'],
-                                                                 json_text['run'][i]['status'],
-                                                                 json_text['run'][i]['message'])
+                            message = json_text['run'][i]['message']
+                            temp = self.__failed_test_log.format(str(i + 1),
+                                                                 step, status,
+                                                                 message)
 
-                        self.__table_test_log_content = self.__table_test_log_content + temp
+                        self.__table_test_log_content = \
+                            self.__table_test_log_content + temp
 
-                    self.__table_test_log_content = (self.__table_test_log_content + self.__end_table +
-                                                     self.__go_to_summary)
+                    self.__table_test_log_content = \
+                        self.__table_test_log_content + self.__end_table +\
+                        self.__go_to_summary
 
-        self.__statictics_table = self.__statictics_table.format(suite_name, str(passed), str(failed), str(total))
+        self.__statictics_table = self.__statictics_table.format(suite_name,
+                                                                 str(passed),
+                                                                 str(failed),
+                                                                 str(total))
 
     def __init__(self):
         HTMLReporter.__init_report_folder()
@@ -325,7 +349,8 @@ class HTMLReporter:
         self.make_report_content_by_list(list_file_name, report_file_name)
 
         # Write to file.
-        print(("Refer to " + self.__report_dir + "{}.html").format(report_file_name))
+        print(("Refer to " + self.__report_dir + "{}.html").
+              format(report_file_name))
         f = open((self.__report_dir + "{}.html").format(report_file_name), 'w')
         f.write(
             self.__head +
@@ -369,21 +394,12 @@ class HTMLReporter:
                 raise e
 
 
-def print_help():
-    content = "\nGenerate html report from serveral json files\n\n" \
-              "-help: print help\n\n" \
-              "-name: test name of json files that will be selected to make report\n" \
-              "-date: date of test of json files that will be selected to make report\n" \
-              "Example: python3.6 html_reporter.py -name Test09 -date 2017-11-20\n"
-    print(content)
-
-
 if __name__ == "__main__":
     reporter = HTMLReporter()
     # Get argument from sys.argv to make filters
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("-n", "--name", dest="name", nargs="?", default=None,
-                            help="filter json file by name")
+    arg_parser.add_argument("-n", "--name", dest="name", nargs="?",
+                            default=None, help="filter json file by name")
     args = arg_parser.parse_args()
     json_name = args.name
 
