@@ -13,7 +13,6 @@ from test_scripts.signus.signus_test_base import SignusTestBase
 
 
 class TestEncryptWithPkInWallet(SignusTestBase):
-
     async def execute_precondition_steps(self):
         await super().execute_precondition_steps()
         Common.delete_pool_folder(self.pool_name)
@@ -59,7 +58,7 @@ class TestEncryptWithPkInWallet(SignusTestBase):
         # 8. Encrypte message by 'signus.encrypt'
         self.steps.add_step("Encrypte message by 'signus.encrypt'")
         message = "Test signus".encode("utf-8")
-        (encrypted_message, nonce) = await\
+        (encrypted_message, nonce) = await \
             utils.perform(self.steps, signus.encrypt, self.wallet_handle,
                           self.pool_handle, my_did, their_did, message)
 

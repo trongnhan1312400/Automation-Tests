@@ -12,7 +12,6 @@ from test_scripts.pool.pool_test_base import PoolTestBase
 
 
 class TestOpenPoolLedgerConfig(PoolTestBase):
-
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")

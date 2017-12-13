@@ -13,7 +13,6 @@ from test_scripts.pool.pool_test_base import PoolTestBase
 
 
 class TestCloseAClosedPoolLedger(PoolTestBase):
-
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         # 2. Open pool ledger.
@@ -32,11 +31,11 @@ class TestCloseAClosedPoolLedger(PoolTestBase):
         # closed pool ledger cannot be closed.
         self.steps.add_step("Close a closed pool ledger verify that"
                             " closed pool ledger cannot be closed")
-        expected_code = ErrorCode.PoolLedgerInvalidPoolHandle
+        error_code = ErrorCode.PoolLedgerInvalidPoolHandle
         await utils.perform_with_expected_code(self.steps,
                                                pool.close_pool_ledger,
                                                self.pool_handle,
-                                               expected_code)
+                                               expected_code=error_code)
         self.pool_handle = None  # prevent post-condition close pool again.
 
 

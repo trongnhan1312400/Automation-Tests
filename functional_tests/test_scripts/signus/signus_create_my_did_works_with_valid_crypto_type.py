@@ -13,7 +13,6 @@ from test_scripts.signus.signus_test_base import SignusTestBase
 
 
 class TestCreateDidWithValidCryptoType(SignusTestBase):
-
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.

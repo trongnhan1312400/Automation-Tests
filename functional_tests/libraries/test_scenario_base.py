@@ -78,7 +78,7 @@ class TestScenarioBase(object):
         """
         self.__init__()
         utils.print_with_color("\nTest case: {} ----> started\n"
-                         .format(self.test_name), Colors.BOLD)
+                               .format(self.test_name), Colors.BOLD)
         begin_time = time.time()
         if time_out:
             self.time_out = time_out

@@ -4,14 +4,14 @@ Created on Dec 12, 2017
 @author: nhan.nguyen
 """
 
-import base58
+import json
 from indy import signus
 from libraries.common import Common
 from libraries import utils
 from test_scripts.signus.signus_test_base import SignusTestBase
 
 
-class TestCreateDidWithEmptyJson(SignusTestBase):
+class TestStoreDidAndVerkeyIntoWallet(SignusTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -22,20 +22,22 @@ class TestCreateDidWithEmptyJson(SignusTestBase):
 
         # 3. Create did and verkey with empty json.
         self.steps.add_step("Create did and verkey with empty json")
-        (my_did, my_verkey) = await \
+        (their_did, their_verkey) = await \
             utils.perform(self.steps, signus.create_and_store_my_did,
                           self.wallet_handle, "{}")
 
-        # 4. Check created did.
-        self.steps.add_step("Check created did")
-        utils.check(self.steps, error_message="Created did is invalid",
-                    condition=lambda: len(base58.b58decode(my_did)) == 16)
+        # 4. Store created did and verkey into wallet.
+        self.steps.add_step("Store created did and verkey into wallet")
+        did_key_json = json.dumps({"did": their_did, "verkey": their_verkey})
+        result = await utils.perform(self.steps, signus.store_their_did,
+                                     self.wallet_handle, did_key_json)
 
-        # 5. Check created verkey.
-        self.steps.add_step("Check created verkey")
-        utils.check(self.steps, error_message="Created verkey is invalid",
-                    condition=lambda: len(base58.b58decode(my_verkey)) == 32)
+        # 5. Verify that did is stored successfully.
+        self.steps.add_step("Verify that did is stored successfully")
+        error_message = "Cannot store created did and verkey"
+        utils.check(self.steps, error_message,
+                    condition=lambda: result is None)
 
 
 if __name__ == "__main__":
-    TestCreateDidWithEmptyJson().execute_scenario()
+    TestStoreDidAndVerkeyIntoWallet().execute_scenario()

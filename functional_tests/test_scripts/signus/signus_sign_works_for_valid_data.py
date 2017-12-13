@@ -13,7 +13,6 @@ from test_scripts.signus.signus_test_base import SignusTestBase
 
 
 class TestSignWithValidData(SignusTestBase):
-
     def __init__(self):
         super().__init__()
         self.expected_signature = bytes([169, 215, 8, 225, 7, 107, 110, 9, 193,
