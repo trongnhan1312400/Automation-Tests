@@ -6,12 +6,13 @@ Created on Dec 12, 2017
 
 import json
 from indy import signus
+from indy.error import ErrorCode
 from libraries.common import Common
 from libraries import utils
 from test_scripts.signus.signus_test_base import SignusTestBase
 
 
-class TestStoreDidIntoWallet(SignusTestBase):
+class TestStoreDidWithInvalidWalletHandle(SignusTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -26,17 +27,18 @@ class TestStoreDidIntoWallet(SignusTestBase):
             utils.perform(self.steps, signus.create_and_store_my_did,
                           self.wallet_handle, "{}")
 
-        # 4. Store created did into wallet.
-        self.steps.add_step("Store created did into wallet")
-        result = await utils.perform(self.steps, signus.store_their_did,
-                                     self.wallet_handle,
-                                     json.dumps({"did": their_did}))
-
-        # 5. Verify that did is stored successfully.
-        self.steps.add_step("Verify that did is stored successfully")
-        utils.check(self.steps, error_message="Cannot store created did",
-                    condition=lambda: result is None)
+        # 4. Store 'their_did' with invalid wallet handle and
+        # verify that created did cannot be stored.
+        self.steps.add_step("Store 'their_did' with invalid wallet handle and"
+                            " verify that created did cannot be stored")
+        did_json = json.dumps({"did": their_did})
+        error_code = ErrorCode.WalletInvalidHandle
+        await utils.perform_with_expected_code(self.steps,
+                                               signus.store_their_did,
+                                               self.wallet_handle + 1,
+                                               did_json,
+                                               expected_code=error_code)
 
 
 if __name__ == "__main__":
-    TestStoreDidIntoWallet().execute_scenario()
+    TestStoreDidWithInvalidWalletHandle().execute_scenario()

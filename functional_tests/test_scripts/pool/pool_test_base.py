@@ -11,7 +11,6 @@ from libraries.test_scenario_base import TestScenarioBase
 
 
 class PoolTestBase(TestScenarioBase):
-
     async def execute_precondition_steps(self):
         Common.delete_pool_folder(self.pool_name)
 

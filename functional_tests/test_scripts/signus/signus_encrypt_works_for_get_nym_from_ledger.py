@@ -13,7 +13,6 @@ from test_scripts.signus.signus_test_base import SignusTestBase
 
 
 class TestEncryptWithNymFromLedger(SignusTestBase):
-
     async def execute_precondition_steps(self):
         await super().execute_precondition_steps()
         Common.delete_pool_folder(self.pool_name)

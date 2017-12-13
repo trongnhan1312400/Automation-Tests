@@ -13,7 +13,6 @@ from test_scripts.pool.pool_test_base import PoolTestBase
 
 
 class TestOpenAOpenedPoolLedger(PoolTestBase):
-
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
@@ -29,11 +28,11 @@ class TestOpenAOpenedPoolLedger(PoolTestBase):
         # and verify that cannot reopen a opened pool ledger.
         self.steps.add_step("Reopen a opened pool ledger and "
                             "verify that cannot reopen a opened pool ledger")
-        expected_code =  ErrorCode.PoolLedgerInvalidPoolHandle
+        error_code = ErrorCode.PoolLedgerInvalidPoolHandle
         await utils.perform_with_expected_code(self.steps,
                                                pool.open_pool_ledger,
                                                self.pool_name, None,
-                                               expected_code)
+                                               expected_code=error_code)
 
 
 if __name__ == "__main__":

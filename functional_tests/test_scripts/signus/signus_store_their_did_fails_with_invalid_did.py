@@ -1,5 +1,5 @@
 """
-Created on Dec 13, 2017
+Created on Dec 12, 2017
 
 @author: nhan.nguyen
 """
@@ -12,7 +12,7 @@ from libraries import utils
 from test_scripts.signus.signus_test_base import SignusTestBase
 
 
-class TestCreateDidWithInvalidSeed(SignusTestBase):
+class TestStoreInvalidDidIntoWallet(SignusTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -21,17 +21,19 @@ class TestCreateDidWithInvalidSeed(SignusTestBase):
                                                     self.wallet_name,
                                                     self.pool_name)
 
-        # 3. Create did and verify that cannot create did with invalid seed.
-        self.steps.add_step("Create did and verify that "
-                            "cannot create did with invalid seed")
-        invalid_seed_json = json.dumps({"seed": "invalidSeed"})
+        # 4. Store an invalid did into wallet and
+        # verify that invalid did cannot be stored.
+        self.steps.add_step("Store an invalid did into wallet and"
+                            " verify that invalid did cannot be stored")
+
+        invalid_did_json = json.dumps({"did": "invalidDID"})
         error_code = ErrorCode.CommonInvalidStructure
         await utils.perform_with_expected_code(self.steps,
-                                               signus.create_and_store_my_did,
+                                               signus.store_their_did,
                                                self.wallet_handle,
-                                               invalid_seed_json,
+                                               invalid_did_json,
                                                expected_code=error_code)
 
 
 if __name__ == "__main__":
-    TestCreateDidWithInvalidSeed().execute_scenario()
+    TestStoreInvalidDidIntoWallet().execute_scenario()

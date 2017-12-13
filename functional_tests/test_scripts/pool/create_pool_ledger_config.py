@@ -11,7 +11,6 @@ from test_scripts.pool.pool_test_base import PoolTestBase
 
 
 class TestCreatePoolLedgerConfig(PoolTestBase):
-
     async def execute_test_steps(self):
         # 1. Create a pool ledger config.
         self.steps.add_step("Create pool ledger config")
@@ -25,7 +24,7 @@ class TestCreatePoolLedgerConfig(PoolTestBase):
         error_message = "Cannot create a pool ledger config"
         utils.check(self.steps, error_message,
                     condition=lambda: not isinstance(result, Exception) and
-                    utils.check_pool_exist(self.pool_name))
+                                      utils.check_pool_exist(self.pool_name))
 
 
 if __name__ == "__main__":

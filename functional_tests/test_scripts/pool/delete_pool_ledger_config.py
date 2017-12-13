@@ -12,7 +12,6 @@ from test_scripts.pool.pool_test_base import PoolTestBase
 
 
 class TestDeletePoolLedgerConfig(PoolTestBase):
-
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
@@ -30,7 +29,7 @@ class TestDeletePoolLedgerConfig(PoolTestBase):
         error_message = "Cannot delete a pool ledger config"
         if utils.check(self.steps, error_message,
                        condition=lambda: not isinstance(result, Exception) and
-                       not utils.check_pool_exist(self.pool_name)):
+                               not utils.check_pool_exist(self.pool_name)):
             # prevent post-condition clean up the pool again.
             self.pool_name = None
 

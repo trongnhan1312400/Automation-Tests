@@ -12,7 +12,6 @@ from test_scripts.signus.signus_test_base import SignusTestBase
 
 
 class TestCreateDidWithInvalidWalletHandle(SignusTestBase):
-
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -25,11 +24,11 @@ class TestCreateDidWithInvalidWalletHandle(SignusTestBase):
         # with invalid wallet handle.
         self.steps.add_step("Create did and verify that cannot create "
                             "did with invalid wallet handle")
-        expected_code = ErrorCode.WalletInvalidHandle
+        error_code = ErrorCode.WalletInvalidHandle
         await utils.perform_with_expected_code(self.steps,
                                                signus.create_and_store_my_did,
-                                               self.wallet_handle, "{}",
-                                               expected_code)
+                                               self.wallet_handle + 1, "{}",
+                                               expected_code=error_code)
 
 
 if __name__ == "__main__":
