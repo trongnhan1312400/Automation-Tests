@@ -49,6 +49,7 @@ class TestResult:
             "{}{}_{}.json".format(TestResult.__json_dir,
                                   self.__test_result[KeyWord.TEST_CASE],
                                   self.__test_result[KeyWord.START_TIME])
+        TestResult.__init_output_folder()
 
     def set_result(self, result):
         """

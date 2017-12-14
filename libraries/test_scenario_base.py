@@ -5,6 +5,7 @@ Created on Nov 22, 2017
 
 Containing the test base class.
 """
+
 import inspect
 import os
 import time
@@ -17,7 +18,7 @@ from libraries.result import TestResult, Status
 from libraries.step import Steps
 
 
-class TestScenarioBase(object):
+class TestScenarioBase:
     """
     Test base....
     All test scenario should inherit from this class.

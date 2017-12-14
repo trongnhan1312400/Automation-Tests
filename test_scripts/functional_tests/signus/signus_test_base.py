@@ -11,6 +11,10 @@ from libraries.test_scenario_base import TestScenarioBase
 
 
 class SignusTestBase(TestScenarioBase):
+    def __init__(self):
+        if self.__class__ is not SignusTestBase:
+            super().__init__()
+
     async def execute_precondition_steps(self):
         Common.delete_wallet_folder(self.wallet_name)
 
