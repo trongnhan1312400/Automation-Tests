@@ -6,9 +6,11 @@ Created on Dec 12, 2017
 
 import base58
 from indy import signus
-from libraries.common import Common
+
 from libraries import utils
-from test_scripts.signus.signus_test_base import SignusTestBase
+from libraries.common import Common
+from test_scripts.functional_tests.signus.signus_test_base\
+    import SignusTestBase
 
 
 class TestCreateDidWithEmptyJson(SignusTestBase):

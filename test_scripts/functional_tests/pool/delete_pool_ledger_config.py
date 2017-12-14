@@ -5,10 +5,11 @@ Created on Dec 8, 2017
 """
 
 from indy import pool
+
 from libraries import utils
-from libraries.constant import Constant
 from libraries.common import Common
-from test_scripts.pool.pool_test_base import PoolTestBase
+from libraries.constant import Constant
+from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
 
 
 class TestDeletePoolLedgerConfig(PoolTestBase):

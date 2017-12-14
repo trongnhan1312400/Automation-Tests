@@ -5,13 +5,13 @@ Created on Dec 8, 2017
 """
 
 from indy import pool
-from libraries.constant import Constant
 from libraries import utils
 from libraries.common import Common
-from test_scripts.pool.pool_test_base import PoolTestBase
+from libraries.constant import Constant
+from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
 
 
-class TestClosePoolLedgerConfig(PoolTestBase):
+class TestCloseReopenedPoolLedgerConfig(PoolTestBase):
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         # 2. Open pool ledger.
@@ -23,12 +23,24 @@ class TestClosePoolLedgerConfig(PoolTestBase):
 
         # 3. Close pool ledger.
         self.steps.add_step("Close pool ledger")
+        await utils.perform(self.steps, pool.close_pool_ledger,
+                            self.pool_handle)
+
+        # 4. Reopen pool ledger.
+        self.steps.add_step("Reopen pool ledger")
+        self.pool_handle = await \
+            utils.perform(self.steps, pool.open_pool_ledger,
+                          self.pool_name, None)
+
+        # 5. Close reopened pool ledger.
+        self.steps.add_step("Close reopened pool ledger")
         result = await utils.perform(self.steps, pool.close_pool_ledger,
                                      self.pool_handle, ignore_exception=True)
 
-        # 4. Verify that pool ledger is closed successfully.
-        self.steps.add_step("Verify that pool ledger is closed successfully")
-        error_message = "Cannot close opened pool ledger"
+        # 6. Verify that reopened pool ledger is closed successfully.
+        self.steps.add_step("Verify that reopened pool "
+                            "ledger is closed successfully")
+        error_message = "Cannot close reopened pool ledger"
         if utils.check(self.steps, error_message,
                        condition=lambda: result is None):
             # prevent post-condition close pool ledger again.
@@ -36,4 +48,4 @@ class TestClosePoolLedgerConfig(PoolTestBase):
 
 
 if __name__ == "__main__":
-    TestClosePoolLedgerConfig().execute_scenario()
+    TestCloseReopenedPoolLedgerConfig().execute_scenario()

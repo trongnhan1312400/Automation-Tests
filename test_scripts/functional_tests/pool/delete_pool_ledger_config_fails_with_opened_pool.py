@@ -6,10 +6,11 @@ Created on Dec 12, 2017
 
 from indy import pool
 from indy.error import ErrorCode
-from libraries.constant import Constant
-from libraries.common import Common
+
 from libraries import utils
-from test_scripts.pool.pool_test_base import PoolTestBase
+from libraries.common import Common
+from libraries.constant import Constant
+from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
 
 
 class TestOpenPoolLedgerConfig(PoolTestBase):

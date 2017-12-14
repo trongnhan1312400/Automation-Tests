@@ -9,10 +9,12 @@ Containing all functions that is common among test scenarios.
 import json
 import os
 import shutil
+
 from indy import wallet, pool, ledger
 from indy.error import IndyError
-from .constant import Colors, Constant, Message
+
 from . import utils
+from .constant import Colors, Constant, Message
 
 
 class Common:

@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="41192950-8429-45cc-bf49-a47288bb9d07" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/__init__.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/functional_tests/.idea/functional_tests.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/functional_tests/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/functional_tests/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/functional_tests/.idea/workspace.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/__init__.py" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/common.py" afterPath="$PROJECT_DIR$/libraries/common.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/constant.py" afterPath="$PROJECT_DIR$/libraries/constant.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/logger.py" afterPath="$PROJECT_DIR$/libraries/logger.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/result.py" afterPath="$PROJECT_DIR$/libraries/result.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/step.py" afterPath="$PROJECT_DIR$/libraries/step.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/test_scenario_base.py" afterPath="$PROJECT_DIR$/libraries/test_scenario_base.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/utils.py" afterPath="$PROJECT_DIR$/libraries/utils.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/reporter.py" afterPath="$PROJECT_DIR$/reporter.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/reporter_summary_report/__init__.py" afterPath="$PROJECT_DIR$/libraries/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_output/__init__.py" afterPath="$PROJECT_DIR$/reporter_summary_report/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_output/log_files/__init__.py" afterPath="$PROJECT_DIR$/test_output/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_output/test_results/__init__.py" afterPath="$PROJECT_DIR$/test_output/log_files/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_runner.py" afterPath="$PROJECT_DIR$/test_runner.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/__init__.py" afterPath="$PROJECT_DIR$/test_output/test_results/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/agent/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/anoncreds/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/crypto/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/agent/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_build_get_nym_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_nym_request.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_build_get_schema_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_schema_request.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_build_nym_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_nym_request.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_build_schema_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_schema_request.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_sign_and_submit.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_and_submit.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_sign_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_request.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_submit_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_submit_request.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/misc/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/crypto/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pairwise/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/misc/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/close_pool_ledger_after_reopen_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/close_pool_ledger_fails_with_closed_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/close_pool_ledger_with_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/create_pool_ledger_config.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/create_pool_ledger_config_fails_with_empty_name.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/delete_pool_ledger_config.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/delete_pool_ledger_config_fails_with_opened_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/open_pool_ledger_fails_with_opened_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_fails_with_opened_pool.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/open_pool_ledger_with_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_with_valid_data.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/pool_test_base.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/pool_test_base.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/refresh_pool_ledger_works_with_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/signus_create_my_did_works_with_empty_json.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_empty_json.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/signus_create_my_did_works_with_valid_crypto_type.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_crypto_type.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/signus_create_my_did_works_with_valid_seed.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_seed.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/signus_test_base.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_test_base.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/close_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/close_wallet.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/create_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/create_wallet.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/delete_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/delete_wallet.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/open_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/open_wallet.py" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="delete_pool_ledger_config_fails_with_opened_pool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="74" lean-forward="false" selection-start-line="12" selection-start-column="74" selection-end-line="12" selection-end-column="74" />
+              <folding>
+                <element signature="e#55#76#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="open_pool_ledger_fails_with_opened_pool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_fails_with_opened_pool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="74" lean-forward="false" selection-start-line="12" selection-start-column="74" selection-end-line="12" selection-end-column="74" />
+              <folding>
+                <element signature="e#55#76#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="open_pool_ledger_with_valid_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_with_valid_data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="74" lean-forward="false" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+              <folding>
+                <element signature="e#54#75#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="refresh_pool_ledger_works_with_valid_data.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="close_pool_ledger_after_reopen_pool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="close_pool_ledger_fails_with_closed_pool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="close_pool_ledger_with_valid_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create_pool_ledger_config.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="74" lean-forward="false" selection-start-line="9" selection-start-column="74" selection-end-line="9" selection-end-column="74" />
+              <folding>
+                <element signature="e#54#81#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create_pool_ledger_config_fails_with_empty_name.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+              <folding>
+                <element signature="e#55#87#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="delete_pool_ledger_config.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="74" lean-forward="false" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+              <folding>
+                <element signature="e#54#75#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>test_scripts.functional_tests.signus</find>
+      <find>test_scripts.functional_tests.pool</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>.signus_test_base</replace>
+      <replace>.pool_test_base</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/test_scripts/funtional_tests/pool/close_pool_ledger_after_reopen_pool.py" />
+        <option value="$PROJECT_DIR$/test_scripts/funtional_tests/pool/close_pool_ledger_fails_with_closed_pool.py" />
+        <option value="$PROJECT_DIR$/test_scripts/funtional_tests/pool/close_pool_ledger_with_valid_data.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_crypto_type.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_seed.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_wallet_handle.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_for_cid.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_with_empty_json.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_with_passed_did.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_crypto_type.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_seed.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_encrypt_works_for_get_nym_from_ledger.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_encrypt_works_with_pk_cached_in_wallet.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_sign_fails_for_unknown_signer.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_sign_works_for_invalid_wallet_handle.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_sign_works_for_valid_data.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_did.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_json.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_wallet_handle.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_only_verkey.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did_and_verkey.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/open_pool_ledger_with_valid_data.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/open_pool_ledger_fails_with_opened_pool.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/delete_pool_ledger_config.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/create_pool_ledger_config.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py" />
+        <option value="$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_empty_json.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_crypto_type.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_seed.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_fails_with_opened_pool.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_with_valid_data.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="16" />
+    <option name="y" value="158" />
+    <option name="width" value="1260" />
+    <option name="height" value="944" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
+              <item name="test_output" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
+              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
+              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
+              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
+              <item name="pool" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
+              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
+              <item name="signus" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Git\stable\Automation-Tests\test_scripts\funtional_tests" />
+      <recent name="D:\Git\stable\Automation-Tests" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="41192950-8429-45cc-bf49-a47288bb9d07" name="Default" comment="" />
+      <created>1513221381836</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1513221381836</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37578124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.md" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_test_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/reporter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_nym_request.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/pool_test_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#97#132#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_test_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/reporter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_crypto_type.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_seed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_wallet_handle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#78#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_for_cid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_with_empty_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#68#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_with_passed_did.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_crypto_type.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_seed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#68#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_encrypt_works_for_get_nym_from_ledger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_encrypt_works_with_pk_cached_in_wallet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_sign_fails_for_unknown_signer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_sign_works_for_invalid_wallet_handle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_sign_works_for_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_did.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_wallet_handle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_only_verkey.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did_and_verkey.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/open_pool_ledger_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+          <folding>
+            <element signature="e#54#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/open_pool_ledger_fails_with_opened_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="74" lean-forward="false" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+          <folding>
+            <element signature="e#55#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="74" lean-forward="false" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+          <folding>
+            <element signature="e#55#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/delete_pool_ledger_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+          <folding>
+            <element signature="e#54#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+          <folding>
+            <element signature="e#55#87#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/create_pool_ledger_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="74" lean-forward="false" selection-start-line="9" selection-start-column="74" selection-end-line="9" selection-end-column="74" />
+          <folding>
+            <element signature="e#54#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+          <folding>
+            <element signature="e#54#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="74" lean-forward="false" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+          <folding>
+            <element signature="e#55#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Automation-Tests/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding>
+            <element signature="e#54#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_seed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_crypto_type.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_empty_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reporter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="375" column="11" lean-forward="true" selection-start-line="375" selection-start-column="11" selection-end-line="375" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="74" lean-forward="false" selection-start-line="9" selection-start-column="74" selection-end-line="9" selection-end-column="74" />
+          <folding>
+            <element signature="e#54#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+          <folding>
+            <element signature="e#55#87#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="74" lean-forward="false" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+          <folding>
+            <element signature="e#54#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="74" lean-forward="false" selection-start-line="12" selection-start-column="74" selection-end-line="12" selection-end-column="74" />
+          <folding>
+            <element signature="e#55#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_fails_with_opened_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="74" lean-forward="false" selection-start-line="12" selection-start-column="74" selection-end-line="12" selection-end-column="74" />
+          <folding>
+            <element signature="e#55#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="74" lean-forward="false" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+          <folding>
+            <element signature="e#54#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

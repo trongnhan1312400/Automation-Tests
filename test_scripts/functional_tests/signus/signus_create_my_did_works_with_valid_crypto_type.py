@@ -5,11 +5,14 @@ Created on Dec 12, 2017
 """
 
 import json
+
 from indy import signus
+
+from libraries import utils
 from libraries.common import Common
 from libraries.constant import Constant
-from libraries import utils
-from test_scripts.signus.signus_test_base import SignusTestBase
+from test_scripts.functional_tests.signus.signus_test_base\
+    import SignusTestBase
 
 
 class TestCreateDidWithValidCryptoType(SignusTestBase):
