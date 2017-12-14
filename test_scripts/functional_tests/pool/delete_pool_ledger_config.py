@@ -30,7 +30,7 @@ class TestDeletePoolLedgerConfig(PoolTestBase):
         error_message = "Cannot delete a pool ledger config"
         if utils.check(self.steps, error_message,
                        condition=lambda: not isinstance(result, Exception) and
-                               not utils.check_pool_exist(self.pool_name)):
+                       not utils.check_pool_exist(self.pool_name)):
             # prevent post-condition clean up the pool again.
             self.pool_name = None
 

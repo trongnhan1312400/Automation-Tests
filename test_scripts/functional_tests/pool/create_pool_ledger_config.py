@@ -24,7 +24,7 @@ class TestCreatePoolLedgerConfig(PoolTestBase):
         error_message = "Cannot create a pool ledger config"
         utils.check(self.steps, error_message,
                     condition=lambda: not isinstance(result, Exception) and
-                                      utils.check_pool_exist(self.pool_name))
+                    utils.check_pool_exist(self.pool_name))
 
 
 if __name__ == "__main__":
