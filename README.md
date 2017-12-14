@@ -1,4 +1,4 @@
-## Indy Python wrapper functional test
+# Indy Python wrapper functional test
 
 This is a Python wrapper functional test for Indy. The tests are not driven by any unit test framework but are standalone python scripts.
 
@@ -10,7 +10,7 @@ After building successfully the Indy SDK for Python, you need to run the command
 
 - Install base58 dependency with pip install: 
 ```
-     python3.6 -m pip install base58.
+     python3.6 -m pip install base58
 ```
 - Setup PYTHONPATH: 
 ```
@@ -22,11 +22,11 @@ After building successfully the Indy SDK for Python, you need to run the command
 ```
     python3.6 Automation-Tests/test_scripts/functional_tests/wallet/open_wallet.py
 ```
-- Run a folder test case:
+- Run a folder test case using test_runner.py:
 ```
     python3.6 Automation-Tests/test_runner.py -d Automation-Tests/test_scripts/functional_tests/wallet
 ```
-- Run all test cases in the project:
+- Run all test cases in the project using test_runner.py:
 ```    
     python3.6 Automation-Tests/test_runner.py -rd
 ```
@@ -53,6 +53,15 @@ optional arguments:
 ```
     python3.6 your_repo_location/functional_tests/reporter.py
 ```
+- Get the summary report for a group of test cases.
+```
+    python3.6 Automation-Tests/reporter.py -n *wallet*
+```
+- Get the summary report on a giving date
+```
+    python3.6 Automation-Tests/reporter.py -n *2017-12-14*
+``` 
+
 ##### This is the usage of reporter.py
 ```
 reporter.py [-h] [-n [NAME]]
