@@ -2,63 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41192950-8429-45cc-bf49-a47288bb9d07" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/__init__.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/functional_tests/.idea/functional_tests.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/functional_tests/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/functional_tests/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/functional_tests/.idea/workspace.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/__init__.py" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/common.py" afterPath="$PROJECT_DIR$/libraries/common.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/constant.py" afterPath="$PROJECT_DIR$/libraries/constant.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/logger.py" afterPath="$PROJECT_DIR$/libraries/logger.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/result.py" afterPath="$PROJECT_DIR$/libraries/result.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/step.py" afterPath="$PROJECT_DIR$/libraries/step.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/test_scenario_base.py" afterPath="$PROJECT_DIR$/libraries/test_scenario_base.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/libraries/utils.py" afterPath="$PROJECT_DIR$/libraries/utils.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/reporter.py" afterPath="$PROJECT_DIR$/reporter.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/reporter_summary_report/__init__.py" afterPath="$PROJECT_DIR$/libraries/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_output/__init__.py" afterPath="$PROJECT_DIR$/reporter_summary_report/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_output/log_files/__init__.py" afterPath="$PROJECT_DIR$/test_output/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_output/test_results/__init__.py" afterPath="$PROJECT_DIR$/test_output/log_files/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_runner.py" afterPath="$PROJECT_DIR$/test_runner.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/__init__.py" afterPath="$PROJECT_DIR$/test_output/test_results/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/agent/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/anoncreds/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/crypto/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/agent/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_build_get_nym_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_nym_request.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_build_get_schema_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_schema_request.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_build_nym_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_nym_request.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_build_schema_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_schema_request.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_sign_and_submit.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_and_submit.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_sign_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_request.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/ledger/ledger_submit_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_submit_request.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/misc/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/crypto/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pairwise/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/misc/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/close_pool_ledger_after_reopen_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/close_pool_ledger_fails_with_closed_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/close_pool_ledger_with_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/create_pool_ledger_config.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/create_pool_ledger_config_fails_with_empty_name.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/delete_pool_ledger_config.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/delete_pool_ledger_config_fails_with_opened_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/open_pool_ledger_fails_with_opened_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_fails_with_opened_pool.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/open_pool_ledger_with_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_with_valid_data.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/pool_test_base.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/pool_test_base.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/pool/refresh_pool_ledger_works_with_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/signus_create_my_did_works_with_empty_json.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_empty_json.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/signus_create_my_did_works_with_valid_crypto_type.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_crypto_type.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/signus_create_my_did_works_with_valid_seed.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_seed.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/signus/signus_test_base.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_test_base.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/__init__.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/close_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/close_wallet.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/create_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/create_wallet.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/delete_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/delete_wallet.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/functional_tests/test_scripts/wallet/open_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/open_wallet.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/functional_tests/README.md" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -109,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+              <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -285,6 +230,11 @@
             <path>
               <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
               <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
+              <item name="reporter_summary_report" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
               <item name="test_output" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -325,8 +275,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Git\stable\Automation-Tests\test_scripts\funtional_tests" />
       <recent name="D:\Git\stable\Automation-Tests" />
+      <recent name="D:\Git\stable\Automation-Tests\test_scripts\funtional_tests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -356,9 +306,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37578124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37578124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -863,7 +812,7 @@
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
           <folding />
         </state>
       </provider>
