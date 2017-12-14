@@ -5,9 +5,11 @@ Created on Nov 22, 2017
 
 Containing the test base class.
 """
+
 import inspect
 import os
 import time
+import asyncio
 
 from libraries import utils
 from libraries.common import Common
@@ -17,7 +19,7 @@ from libraries.result import TestResult, Status
 from libraries.step import Steps
 
 
-class TestScenarioBase(object):
+class TestScenarioBase:
     """
     Test base....
     All test scenario should inherit from this class.
@@ -77,8 +79,13 @@ class TestScenarioBase(object):
         work flow of this test scenario.
         """
         self.__init__()
-        utils.print_with_color("\nTest case: {} ----> started\n"
-                               .format(self.test_name), Colors.BOLD)
+        utils.print_with_color(
+            "\nTest case: {} ----> started\n".format(self.test_name),
+            Colors.BOLD)
+
+        # Create new event loop for this test scenario.
+        asyncio.set_event_loop(asyncio.new_event_loop())
+
         begin_time = time.time()
         if time_out:
             self.time_out = time_out
@@ -104,8 +111,11 @@ class TestScenarioBase(object):
             utils.make_final_result(self.test_result,
                                     self.steps.get_list_step(),
                                     begin_time, self.logger)
-            utils.print_with_color("Test case: {} ----> finished\n".
-                                   format(self.test_name), Colors.BOLD)
+            asyncio.get_event_loop().close()
+
+            utils.print_with_color(
+                "Test case: {} ----> finished\n".format(self.test_name),
+                Colors.BOLD)
 
     async def __execute_precondition_and_steps(self):
         """

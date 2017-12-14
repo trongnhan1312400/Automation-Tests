@@ -9,12 +9,10 @@ Containing all functions that is common among test scenarios.
 import json
 import os
 import shutil
-
 from indy import wallet, pool, ledger
 from indy.error import IndyError
-
-from . import utils
 from .constant import Colors, Constant, Message
+from . import utils
 
 
 class Common:
@@ -164,6 +162,14 @@ class Common:
     async def create_and_open_pool_ledger_for_steps(steps, pool_name,
                                                     pool_genesis_txn_file,
                                                     pool_config=None):
+        """
+        Do two common steps within test cases: create and open pool ledger.
+        :param steps: (optional) list step of test case.
+        :param pool_name: (optional)
+        :param pool_genesis_txn_file: (optional) link to config file.
+        :param pool_config:
+        :return: pool handle.
+        """
         # Create a pool ledger config.
         steps.add_step("Create pool ledger config")
         await utils.perform(steps, Common.create_pool_ledger_config, pool_name,
@@ -181,6 +187,18 @@ class Common:
                                                wallet_config=None, xtype=None,
                                                credentials=None,
                                                runtime_config=None):
+        """
+        Do two common steps within test cases create and open wallet.
+
+        :param steps: (optional) list step of test case.
+        :param wallet_name: (optional)
+        :param pool_name: (optional)
+        :param wallet_config: use for created wallet
+        :param xtype:
+        :param credentials:
+        :param runtime_config: use for open wallet with some configurations.
+        :return: wallet handle.
+        """
         # Create a wallet.
         steps.add_step("Create wallet")
         await utils.perform(steps, wallet.create_wallet, pool_name,
@@ -195,6 +213,13 @@ class Common:
 
     @staticmethod
     async def create_pool_ledger_config(pool_name, pool_genesis_txn_file):
+        """
+        Create a pool ledger config.
+
+        :param pool_name: (optional)
+        :param pool_genesis_txn_file: (optional) link to config file to create
+                                       pool ledger config.
+        """
         if os.path.exists(pool_genesis_txn_file) is not True:
             error_message = (Colors.FAIL +
                              "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST.
@@ -207,6 +232,12 @@ class Common:
 
     @staticmethod
     async def close_and_delete_pool(pool_name, pool_handle):
+        """
+        Close and delete pool ledger by using libindy.
+
+        :param pool_name: (optional)
+        :param pool_handle: (optional) return by pool.open_pool_ledger.
+        """
         if pool_handle:
             try:
                 utils.print_header("\nClose pool\n")
@@ -224,6 +255,13 @@ class Common:
     @staticmethod
     async def close_and_delete_wallet(wallet_name, wallet_handle,
                                       credentials=None):
+        """
+        Close and delete wallet by using libindy.
+
+        :param wallet_name: (optional)
+        :param wallet_handle: (optional) return by wallet.open_wallet.
+        :param credentials: credentials of wallet.
+        """
         if wallet_handle:
             try:
                 utils.print_header("\nClose wallet\n")
@@ -240,6 +278,11 @@ class Common:
 
     @staticmethod
     def delete_pool_folder(pool_name: str):
+        """
+        Delete pool folder by os operation.
+
+        :param pool_name: (optional)
+        """
         if not pool_name:
             return
 
@@ -253,6 +296,11 @@ class Common:
 
     @staticmethod
     def delete_wallet_folder(wallet_name: str):
+        """
+        Delete wallet folder by os operation.
+
+        :param wallet_name: (optional)
+        """
         if not wallet_name:
             return
 
