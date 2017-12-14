@@ -11,6 +11,10 @@ from libraries.test_scenario_base import TestScenarioBase
 
 
 class PoolTestBase(TestScenarioBase):
+    def __init__(self):
+        if self.__class__ is not PoolTestBase:
+            super().__init__()
+
     async def execute_precondition_steps(self):
         Common.delete_pool_folder(self.pool_name)
 
