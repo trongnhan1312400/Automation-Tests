@@ -39,6 +39,7 @@ class TestResult:
 
         :param test_case_name: (optional) name of test case.
         """
+        TestResult.__init_output_folder()
         self.__test_result = {}  # Store information of a test case
         self.__run = []  # Store information of steps in test case
         self.__test_result[KeyWord.TEST_CASE] = test_case_name
@@ -49,7 +50,6 @@ class TestResult:
             "{}{}_{}.json".format(TestResult.__json_dir,
                                   self.__test_result[KeyWord.TEST_CASE],
                                   self.__test_result[KeyWord.START_TIME])
-        TestResult.__init_output_folder()
 
     def set_result(self, result):
         """

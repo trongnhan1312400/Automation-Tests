@@ -123,12 +123,11 @@ def run_async_method(method, time_out=None):
     :param time_out:
     """
     import asyncio
-    loop = asyncio.new_event_loop()
+    loop = asyncio.get_event_loop()
     if not time_out:
         loop.run_until_complete(method())
     else:
         loop.run_until_complete(asyncio.wait_for(method(), time_out))
-    loop.close()
 
 
 def make_final_result(test_result, steps, begin_time, logger):
@@ -154,6 +153,12 @@ def make_final_result(test_result, steps, begin_time, logger):
 
 
 def verify_json(steps, expected_response, response):
+    """
+    Verify two json are equal.
+    :param steps: (optional) list step of test case.
+    :param expected_response: (optional) expected json.
+    :param response: (optional) actual json.
+    """
     try:
         assert expected_response.items() <= response.items()
         steps.get_last_step().set_status(Status.PASSED)
@@ -164,6 +169,7 @@ def verify_json(steps, expected_response, response):
 def check_pool_exist(pool_name: str) -> bool:
     """
     Check whether pool config exist or not.
+
     :param pool_name:
     :return: bool
     """
@@ -173,26 +179,61 @@ def check_pool_exist(pool_name: str) -> bool:
 
 
 def print_with_color(message: str, color: str):
+    """
+    Print a message with specified color onto console.
+
+    :param message: (optional)
+    :param color: (optional)
+    """
     print(color + message + Colors.ENDC)
 
 
 def print_error(message: str):
+    """
+    Print message onto console with "Fail" color.
+
+    :param message: (optional)
+    """
     print_with_color(message, Colors.FAIL)
 
 
 def print_header(message: str):
+    """
+    Print message onto console with "Header" color.
+
+    :param message: (optional)
+    """
     print_with_color(message, Colors.HEADER)
 
 
 def print_ok_green(message: str):
+    """
+    Print message onto console with "OK_GREEN" color.
+
+    :param message: (optional)
+    """
     print_with_color(message, Colors.OKGREEN)
 
 
 def print_ok_blue(message: str):
+    """
+    Print message onto console with "OK_BLUE" color.
+
+    :param message: (optional)
+    """
     print_with_color(message, Colors.OKBLUE)
 
 
 def check(steps: Steps, error_message: str, condition) -> bool:
+    """
+    Check if the condition are return True.
+    Set message into last step if the condition return False.
+
+    :param steps: (optional) list step of test case.
+    :param error_message: message to set if condition return False.
+    :param condition: (optional) a callable.
+    :return: True or False depend on result of "condition".
+    """
     if steps:
         step = steps.get_last_step()
         if not callable(condition):
