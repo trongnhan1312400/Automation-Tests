@@ -1,4 +1,3 @@
-
 ## Indy Python wrapper functional test
 
 This is a Python wrapper functional test for Indy. The tests are not driven by any unit test framework but are standalone python scripts.
@@ -15,28 +14,51 @@ After building successfully the Indy SDK for Python, you need to run the command
 ```
 - Setup PYTHONPATH: 
 ```
-    export PYTHONPATH=$PYTHONPATH:your_repo_location/functional_tests 
+    export PYTHONPATH=$PYTHONPATH:your_repo_location/Automation-Tests
 ```
-
 
 #### Then run:
 - Run one test case:
 ```
-    python3.6 your_repo_location/functional_tests/test_scripts/wallet/open_wallet.py
+    python3.6 Automation-Tests/test_scripts/functional_tests/wallet/open_wallet.py
 ```
 - Run a folder test case:
 ```
-    python3.6 your_repo_location/functional_tests/test_runner.py -d your_test_folder
+    python3.6 Automation-Tests/test_runner.py -d Automation-Tests/test_scripts/functional_tests/wallet
 ```
-
 - Run all test cases in the project:
-```
-    python3.6 your_repo_location/functional_tests/test_runner.py -rd
+```    
+    python3.6 Automation-Tests/test_runner.py -rd
 ```
 
+##### This is the usage of test_runner.py
+```
+test_runner.py [-h] [-d [DIRECTORY]] [-rd [RECUR_DIRECTORY]]
+                      [-t [TIMEOUT]] [-html] [-l]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d [DIRECTORY], --directory [DIRECTORY]
+                        directory of test scenarios (not recursive)
+  -rd [RECUR_DIRECTORY], --recur_directory [RECUR_DIRECTORY]
+                        directory of test scenarios (recursive)
+  -t [TIMEOUT], --timeout [TIMEOUT]
+                        timeout for each scenario (default: 300s)
+  -html, --html_report  if this flag is missing, html report would not be
+                        generated
+  -l, --keep_log        keep all log file
+```
 #### Generate the htlm report:
 - Get the summary report for all the run
 ```
     python3.6 your_repo_location/functional_tests/reporter.py
 ```
+##### This is the usage of reporter.py
+```
+reporter.py [-h] [-n [NAME]]
 
+optional arguments:
+  -h, --help            show this help message and exit
+  -n [NAME], --name [NAME]
+                        filter json file by name
+```
