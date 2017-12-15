@@ -5,8 +5,7 @@ Created on Dec 8, 2017
 """
 
 from libraries import utils
-from libraries.common import Common
-from libraries.constant import Constant
+from libraries import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
 
 
@@ -15,8 +14,8 @@ class TestCreatePoolLedgerConfig(PoolTestBase):
         # 1. Create a pool ledger config.
         self.steps.add_step("Create pool ledger config")
         result = await \
-            utils.perform(self.steps, Common.create_pool_ledger_config,
-                          self.pool_name, Constant.pool_genesis_txn_file,
+            utils.perform(self.steps, common.create_pool_ledger_config,
+                          self.pool_name, constant.pool_genesis_txn_file,
                           ignore_exception=True)
 
         # 2. Verify that pool ledger config is created.

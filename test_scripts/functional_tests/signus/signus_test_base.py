@@ -6,7 +6,7 @@ Created on Dec 12, 2017
 Containing a base class for signus testing.
 """
 
-from libraries.common import Common
+from libraries import common
 from libraries.test_scenario_base import TestScenarioBase
 
 
@@ -16,10 +16,10 @@ class SignusTestBase(TestScenarioBase):
             super().__init__()
 
     async def execute_precondition_steps(self):
-        Common.delete_wallet_folder(self.wallet_name)
+        common.delete_wallet_folder(self.wallet_name)
 
     async def execute_postcondition_steps(self):
-        await Common.close_and_delete_wallet(self.wallet_name,
+        await common.close_and_delete_wallet(self.wallet_name,
                                              self.wallet_handle)
 
     def execute_scenario(self, time_out=None):

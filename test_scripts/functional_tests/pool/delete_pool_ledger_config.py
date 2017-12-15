@@ -7,8 +7,7 @@ Created on Dec 8, 2017
 from indy import pool
 
 from libraries import utils
-from libraries.common import Common
-from libraries.constant import Constant
+from libraries import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
 
 
@@ -16,8 +15,8 @@ class TestDeletePoolLedgerConfig(PoolTestBase):
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
-        await utils.perform(self.steps, Common.create_pool_ledger_config,
-                            self.pool_name, Constant.pool_genesis_txn_file)
+        await utils.perform(self.steps, common.create_pool_ledger_config,
+                            self.pool_name, constant.pool_genesis_txn_file)
 
         # 2. Delete created pool ledger config.
         self.steps.add_step("Delete created pool ledger config")

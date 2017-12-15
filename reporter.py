@@ -44,7 +44,7 @@ class HTMLReporter:
 
     __head = """<html>
             <head>
-             <meta http-equiv="Content-Type" content="text/html; 
+             <meta http-equiv="Content-Type" content="text/html;
              charset=windows-1252">
                 <title>Summary Report</title>
                 <style type="text/css">table {
@@ -215,7 +215,7 @@ class HTMLReporter:
     __test_log_head = """<h2>Test Execution Logs</h2>"""
 
     __table_test_log = """<h3 id = "{}">{}</h3>
-                            <table id="execution_logs" 
+                            <table id="execution_logs"
                             border='1' width='800'>"""
 
     __table_test_log_content = """ """

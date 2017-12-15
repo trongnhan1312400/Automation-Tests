@@ -8,7 +8,7 @@ import base58
 from indy import signus
 
 from libraries import utils
-from libraries.common import Common
+from libraries import common
 from test_scripts.functional_tests.signus.signus_test_base\
     import SignusTestBase
 
@@ -18,7 +18,7 @@ class TestCreateDidWithEmptyJson(SignusTestBase):
         # 1. Create wallet.
         # 2. Open wallet.
         self.wallet_handle = await \
-            Common.create_and_open_wallet_for_steps(self.steps,
+            common.create_and_open_wallet_for_steps(self.steps,
                                                     self.wallet_name,
                                                     self.pool_name)
 
