@@ -1,58 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41192950-8429-45cc-bf49-a47288bb9d07" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_runner.py" afterPath="$PROJECT_DIR$/test_runner.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_nym_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_nym_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_schema_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_schema_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_nym_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_nym_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_schema_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_schema_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_and_submit.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_and_submit.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_submit_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_submit_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_fails_with_opened_pool.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_fails_with_opened_pool.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_with_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/open_pool_ledger_with_valid_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/pool_test_base.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/pool_test_base.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/pool/refresh_pool_ledger_works_with_valid_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_crypto_type.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_crypto_type.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_seed.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_seed.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_wallet_handle.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_wallet_handle.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_for_cid.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_for_cid.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_empty_json.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_empty_json.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_passed_did.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_passed_did.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_crypto_type.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_crypto_type.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_seed.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_works_with_valid_seed.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_encrypt_works_for_get_nym_from_ledger.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_encrypt_works_for_get_nym_from_ledger.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_encrypt_works_with_pk_cached_in_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_encrypt_works_with_pk_cached_in_wallet.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_fails_for_unknown_signer.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_fails_for_unknown_signer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_works_for_invalid_wallet_handle.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_works_for_invalid_wallet_handle.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_works_for_valid_data.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_works_for_valid_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_did.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_did.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_json.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_json.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did_and_verkey.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did_and_verkey.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_test_base.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_test_base.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/close_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/close_wallet.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/create_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/create_wallet.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/delete_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/delete_wallet.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/open_wallet.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/wallet/open_wallet.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/libraries/__init__.py" afterPath="$PROJECT_DIR$/utilities/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/libraries/common.py" afterPath="$PROJECT_DIR$/utilities/common.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/libraries/constant.py" afterPath="$PROJECT_DIR$/utilities/constant.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/libraries/logger.py" afterPath="$PROJECT_DIR$/utilities/logger.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/libraries/result.py" afterPath="$PROJECT_DIR$/utilities/result.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/libraries/step.py" afterPath="$PROJECT_DIR$/utilities/step.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/libraries/test_scenario_base.py" afterPath="$PROJECT_DIR$/utilities/test_scenario_base.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/libraries/utils.py" afterPath="$PROJECT_DIR$/utilities/utils.py" />
-    </list>
+    <list default="true" id="41192950-8429-45cc-bf49-a47288bb9d07" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -253,7 +202,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="16" />
     <option name="y" value="158" />
     <option name="width" value="1260" />
@@ -402,10 +351,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="7" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42880258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42880258" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
