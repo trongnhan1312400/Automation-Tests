@@ -13,7 +13,7 @@ from test_scripts.functional_tests.signus.signus_test_base \
     import SignusTestBase
 
 
-class TestStoreInvalidDidIntoWallet(SignusTestBase):
+class TestStoreOnlyVerkeyIntoWallet(SignusTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -22,19 +22,24 @@ class TestStoreInvalidDidIntoWallet(SignusTestBase):
                                                     self.wallet_name,
                                                     self.pool_name)
 
-        # 4. Store an invalid did into wallet and
-        # verify that invalid did cannot be stored.
-        self.steps.add_step("Store an invalid did into wallet and"
-                            " verify that invalid did cannot be stored")
+        # 3. Create did and verkey with empty json.
+        self.steps.add_step("Create did and verkey with empty json")
+        (_, their_verkey) = await \
+            utils.perform(self.steps, signus.create_and_store_my_did,
+                          self.wallet_handle, "{}")
 
-        invalid_did_json = json.dumps({"did": "invalidDID"})
+        # 4. Store only "their_verkey" into wallet and
+        # verify that use cannot store only verkey into wallet.
+        self.steps.add_step("Store only 'their_verkey' into wallet and verify "
+                            "that use cannot store only verkey into wallet")
+        key_did = json.dumps({"verkey": their_verkey})
         error_code = ErrorCode.CommonInvalidStructure
         await utils.perform_with_expected_code(self.steps,
                                                signus.store_their_did,
                                                self.wallet_handle,
-                                               invalid_did_json,
+                                               key_did,
                                                expected_code=error_code)
 
 
 if __name__ == "__main__":
-    TestStoreInvalidDidIntoWallet().execute_scenario()
+    TestStoreOnlyVerkeyIntoWallet().execute_scenario()
