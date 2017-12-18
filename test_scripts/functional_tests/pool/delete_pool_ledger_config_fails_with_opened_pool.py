@@ -6,9 +6,9 @@ Created on Dec 12, 2017
 
 from indy import pool
 from indy.error import ErrorCode
-from libraries.constant import Constant
-from libraries.common import Common
+
 from libraries import utils
+from libraries import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
 
 
@@ -16,8 +16,8 @@ class TestOpenPoolLedgerConfig(PoolTestBase):
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
-        await utils.perform(self.steps, Common.create_pool_ledger_config,
-                            self.pool_name, Constant.pool_genesis_txn_file)
+        await utils.perform(self.steps, common.create_pool_ledger_config,
+                            self.pool_name, constant.pool_genesis_txn_file)
         # 2. Open pool ledger.
         self.steps.add_step("Open pool ledger")
         self.pool_handle = await \

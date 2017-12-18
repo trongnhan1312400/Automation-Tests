@@ -7,8 +7,7 @@ Created on Dec 12, 2017
 import json
 from indy import signus
 from indy.error import ErrorCode
-from libraries.common import Common
-from libraries import utils
+from libraries import utils, common
 from test_scripts.functional_tests.signus.signus_test_base \
     import SignusTestBase
 
@@ -18,7 +17,7 @@ class TestStoreInvalidDidIntoWallet(SignusTestBase):
         # 1. Create wallet.
         # 2. Open wallet.
         self.wallet_handle = await \
-            Common.create_and_open_wallet_for_steps(self.steps,
+            common.create_and_open_wallet_for_steps(self.steps,
                                                     self.wallet_name,
                                                     self.pool_name)
 

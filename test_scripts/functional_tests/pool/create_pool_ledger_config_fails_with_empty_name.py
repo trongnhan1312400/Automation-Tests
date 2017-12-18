@@ -6,8 +6,7 @@ Created on Dec 12, 2017
 
 from indy.error import ErrorCode
 from libraries import utils
-from libraries.constant import Constant
-from libraries.common import Common
+from libraries import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
 
 
@@ -21,8 +20,8 @@ class TestCreatePoolConfigFailsWithEmptyName(PoolTestBase):
                             "with empty pool name")
         error_code = ErrorCode.CommonInvalidParam2
         await utils.perform_with_expected_code(
-            self.steps, Common.create_pool_ledger_config, self.pool_name,
-            Constant.pool_genesis_txn_file, expected_code=error_code)
+            self.steps, common.create_pool_ledger_config, self.pool_name,
+            constant.pool_genesis_txn_file, expected_code=error_code)
 
 
 if __name__ == "__main__":

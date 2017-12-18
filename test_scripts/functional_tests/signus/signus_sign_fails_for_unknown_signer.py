@@ -6,9 +6,7 @@ Created on Dec 14, 2017
 
 from indy import signus
 from indy.error import ErrorCode
-from libraries.common import Common
-from libraries.constant import Constant
-from libraries import utils
+from libraries import utils, common, constant
 from test_scripts.functional_tests.signus.signus_test_base \
     import SignusTestBase
 
@@ -21,7 +19,7 @@ class TestSignWithValidData(SignusTestBase):
         # 1. Create wallet.
         # 2. Open wallet.
         self.wallet_handle = await \
-            Common.create_and_open_wallet_for_steps(self.steps,
+            common.create_and_open_wallet_for_steps(self.steps,
                                                     self.wallet_name,
                                                     self.pool_name)
 
@@ -32,7 +30,7 @@ class TestSignWithValidData(SignusTestBase):
         error_code = ErrorCode.WalletNotFoundError
         await utils.perform_with_expected_code(self.steps, signus.sign,
                                                self.wallet_handle,
-                                               Constant.did_my1,
+                                               constant.did_my1,
                                                "Test signus".encode("UTF-8"),
                                                expected_code=error_code)
 

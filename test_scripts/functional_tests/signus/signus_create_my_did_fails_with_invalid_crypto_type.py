@@ -9,8 +9,7 @@ import json
 from indy import signus
 from indy.error import ErrorCode
 from libraries import utils
-from libraries.common import Common
-from libraries.constant import Constant
+from libraries import common, constant
 from test_scripts.functional_tests.signus.signus_test_base \
     import SignusTestBase
 
@@ -20,7 +19,7 @@ class TestCreateDidWithInvalidCryptoType(SignusTestBase):
         # 1. Create wallet.
         # 2. Open wallet.
         self.wallet_handle = await \
-            Common.create_and_open_wallet_for_steps(self.steps,
+            common.create_and_open_wallet_for_steps(self.steps,
                                                     self.wallet_name,
                                                     self.pool_name)
 
@@ -30,7 +29,7 @@ class TestCreateDidWithInvalidCryptoType(SignusTestBase):
                             "type and verify that cannot create "
                             "did with invalid crypto type.")
 
-        did_json = json.dumps({"seed": Constant.seed_my1,
+        did_json = json.dumps({"seed": constant.seed_my1,
                                "crypto_type": "invalidType"})
         error_code = ErrorCode.SignusUnknownCryptoError
         await utils.perform_with_expected_code(self.steps,

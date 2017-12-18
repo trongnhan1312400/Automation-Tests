@@ -7,9 +7,9 @@ Containing all functions used by several test steps on test scenarios.
 """
 import os
 from indy.error import IndyError
-from .constant import Colors, Message, Constant
-from .result import Status
-from .step import Steps
+from libraries import constant
+from libraries.result import Status
+from libraries.step import Steps
 
 
 def generate_random_string(prefix="", suffix="", size=20):
@@ -68,18 +68,18 @@ async def perform(steps, func, *args, ignore_exception=False):
         result = await func(*args)
         steps.get_last_step().set_status(Status.PASSED)
     except IndyError as E:
-        print(Colors.FAIL + Message.INDY_ERROR.format(str(E)) + Colors.ENDC)
+        print_error(constant.INDY_ERROR.format(str(E)))
         steps.get_last_step().set_message(str(E))
         steps.get_last_step().set_status(Status.FAILED)
         result = E
     except Exception as Ex:
-        print(Colors.FAIL + Message.EXCEPTION.format(str(Ex)) + Colors.ENDC)
+        print_error(constant.EXCEPTION.format(str(Ex)))
         steps.get_last_step().set_message(str(Ex))
         steps.get_last_step().set_status(Status.FAILED)
         result = Ex
 
-    if not ignore_exception:
-        exit_if_exception(result)
+    if isinstance(result, Exception):
+        raise result
 
     return result
 
@@ -107,11 +107,11 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
             steps.get_last_step().set_status(Status.PASSED)
             return True
         else:
-            print_error(Message.INDY_ERROR.format(str(E)))
+            print_error(constant.INDY_ERROR.format(str(E)))
             steps.get_last_step().set_message(str(E))
             return E
     except Exception as Ex:
-        print(Colors.FAIL + Message.EXCEPTION.format(str(Ex)) + Colors.ENDC)
+        print_error(constant.EXCEPTION.format(str(Ex)))
         return Ex
 
 
@@ -143,8 +143,9 @@ def make_final_result(test_result, steps, begin_time, logger):
     for step in steps:
         test_result.add_step(step)
         if step.get_status() == Status.FAILED:
-            print('%s: ' % str(step.get_id()) + Colors.FAIL +
-                  'failed\nMessage: ' + step.get_message() + Colors.ENDC)
+            print('%s: ' % str(step.get_id()) + constant.Color.FAIL +
+                  'failed\nMessage: ' + step.get_message() +
+                  constant.Color.ENDC)
             test_result.set_test_failed()
 
     test_result.set_duration(time.time() - begin_time)
@@ -163,7 +164,8 @@ def verify_json(steps, expected_response, response):
         assert expected_response.items() <= response.items()
         steps.get_last_step().set_status(Status.PASSED)
     except AssertionError as e:
-        steps.get_last_step().set_message(Message.JSON_INCORRECT.format(str(e)))
+        steps.get_last_step().set_message(
+            constant.JSON_INCORRECT.format(str(e)))
 
 
 def check_pool_exist(pool_name: str) -> bool:
@@ -175,7 +177,7 @@ def check_pool_exist(pool_name: str) -> bool:
     """
     if not pool_name:
         return False
-    return os.path.exists(Constant.work_dir + "/pool/" + pool_name)
+    return os.path.exists(constant.work_dir + "/pool/" + pool_name)
 
 
 def print_with_color(message: str, color: str):
@@ -185,7 +187,7 @@ def print_with_color(message: str, color: str):
     :param message: (optional)
     :param color: (optional)
     """
-    print(color + message + Colors.ENDC)
+    print(color + message + constant.Color.ENDC)
 
 
 def print_error(message: str):
@@ -194,7 +196,7 @@ def print_error(message: str):
 
     :param message: (optional)
     """
-    print_with_color(message, Colors.FAIL)
+    print_with_color(message, constant.Color.FAIL)
 
 
 def print_header(message: str):
@@ -203,7 +205,7 @@ def print_header(message: str):
 
     :param message: (optional)
     """
-    print_with_color(message, Colors.HEADER)
+    print_with_color(message, constant.Color.HEADER)
 
 
 def print_ok_green(message: str):
@@ -212,7 +214,7 @@ def print_ok_green(message: str):
 
     :param message: (optional)
     """
-    print_with_color(message, Colors.OKGREEN)
+    print_with_color(message, constant.Color.OKGREEN)
 
 
 def print_ok_blue(message: str):
@@ -221,7 +223,7 @@ def print_ok_blue(message: str):
 
     :param message: (optional)
     """
-    print_with_color(message, Colors.OKBLUE)
+    print_with_color(message, constant.Color.OKBLUE)
 
 
 def check(steps: Steps, error_message: str, condition) -> bool:
@@ -252,3 +254,7 @@ def check(steps: Steps, error_message: str, condition) -> bool:
                 return True
 
     return False
+
+
+def create_claim_offer(issuer_did: str, schema_seq: int):
+    return {"issuer_did": issuer_did, "schema_seq_no": schema_seq}

@@ -14,8 +14,7 @@ import inspect
 import importlib
 import multiprocessing
 import argparse
-from libraries import utils
-from libraries.constant import Message
+from libraries import utils, constant
 from libraries.test_scenario_base import TestScenarioBase
 
 
@@ -40,7 +39,7 @@ class TestRunner:
 
         if not list_test_scenarios:
             utils.print_error(
-                "\n{}\n".format(Message.ERR_CANNOT_FIND_ANY_TEST_SCENARIOS))
+                "\n{}\n".format(constant.ERR_CANNOT_FIND_ANY_TEST_SCENARIOS))
             exit(1)
 
         for test_scenario in list_test_scenarios:
@@ -49,7 +48,7 @@ class TestRunner:
 
         self.__execute_reporter()
         utils.print_ok_green(
-            "\n{}\n".format(Message.INFO_ALL_TEST_HAVE_BEEN_EXECUTED))
+            "\n{}\n".format(constant.INFO_ALL_TEST_HAVE_BEEN_EXECUTED))
 
     def __catch_arg(self):
         """
@@ -112,7 +111,7 @@ class TestRunner:
         # then show "Invalid command" and exit.
         if self.__args.directory is not "" \
            and self.__args.recur_directory is not "":
-            utils.print_error("\n{}\n".format(Message.ERR_COMMAND_ERROR))
+            utils.print_error("\n{}\n".format(constant.ERR_COMMAND_ERROR))
             exit(1)
         recursive = False
 
@@ -128,7 +127,7 @@ class TestRunner:
 
         if not os.path.exists(start_directory):
             utils.print_error(
-                "\n{}\n".format(Message.ERR_PATH_DOES_NOT_EXIST.
+                "\n{}\n".format(constant.ERR_PATH_DOES_NOT_EXIST.
                                 format(start_directory)))
             exit(1)
 
