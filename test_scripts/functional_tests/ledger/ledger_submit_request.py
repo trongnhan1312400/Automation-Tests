@@ -5,15 +5,15 @@ Created on Dec 11, 2017
 
 Implementing test case SubmitRequest with valid value.
 """
+
 import json
 
 from indy import signus, ledger
-
-from libraries import common, constant
-from libraries.constant import JsonTemplate
-from libraries.result import Status
-from libraries.test_scenario_base import TestScenarioBase
-from libraries.utils import perform
+from utilities import common, constant
+from utilities.constant import JsonTemplate
+from utilities.result import Status
+from utilities.test_scenario_base import TestScenarioBase
+from utilities.utils import perform
 
 
 class SubmitRequest(TestScenarioBase):

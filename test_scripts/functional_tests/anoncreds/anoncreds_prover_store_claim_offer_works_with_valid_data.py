@@ -6,7 +6,7 @@ Created on Dec 15, 2017
 
 import json
 from indy import anoncreds, signus
-from libraries import utils, constant, common
+from utilities import utils, constant, common
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
@@ -40,7 +40,7 @@ class TestProverStoreClaimOfferWithValidData(AnoncredsTestBase):
         offer_json = utils.create_claim_offer(issuer_did,
                                               constant.sample_schema1_seq)
         await utils.perform(self.steps, anoncreds.prover_store_claim_offer,
-                            self.wallet_handle, offer_json,
+                            self.wallet_handle, json.dumps(offer_json),
                             ignore_exception=False)
 
         # 6. Get claim offers and store returned value into 'list_claim_offer'.
@@ -54,7 +54,6 @@ class TestProverStoreClaimOfferWithValidData(AnoncredsTestBase):
         # 7. Verify that 'offer_json' exists in 'list_claim_offer'.
         self.steps.add_step("Verify that 'offer_json' exists "
                             "in 'list_claim_offer'")
-        offer_json = json.loads(offer_json)
         utils.check(self.steps, error_message="Cannot store a claim offer",
                     condition=lambda: offer_json in list_claim_offer)
 

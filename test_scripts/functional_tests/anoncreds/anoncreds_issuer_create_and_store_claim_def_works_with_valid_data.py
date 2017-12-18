@@ -6,7 +6,7 @@ Created on Dec 15, 2017
 
 import json
 from indy import anoncreds, signus
-from libraries import utils, common, constant
+from utilities import utils, common, constant
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
@@ -47,45 +47,30 @@ class TestIssuerCreateAndStoreClaimDefWithValidData(AnoncredsTestBase):
                     condition=lambda: len(claim_def_primary['r']) == 4)
 
         # 6. Check claim_def['data']['primary']['n'].
-        self.steps.add_step("Check claim_def['data']['primary']['n']")
-        error_message = "Length of claim_def['data']['primary']['n'] " \
-                        "is a not empty list"
-        utils.check(self.steps, error_message,
-                    condition=lambda: isinstance(claim_def_primary['n'], list)
-                    and len(claim_def_primary['n']) > 0)
+        self.__check_a_field_is_not_empty_list(claim_def_primary, 'n')
 
         # 7. Check claim_def['data']['primary']['s'].
-        self.steps.add_step("Check claim_def['data']['primary']['s']")
-        error_message = "Length of claim_def['data']['primary']['s'] " \
-                        "is a not empty list"
-        utils.check(self.steps, error_message,
-                    condition=lambda: isinstance(claim_def_primary['s'], list)
-                    and len(claim_def_primary['s']) > 0)
+        self.__check_a_field_is_not_empty_list(claim_def_primary, 's')
 
         # 8. Check claim_def['data']['primary']['rms'].
-        self.steps.add_step("Check claim_def['data']['primary']['rms']")
-        error_message = "Length of claim_def['data']['primary']['rms'] " \
-                        "is a not empty list"
-        utils.check(self.steps, error_message,
-                    condition=lambda:
-                    isinstance(claim_def_primary['rms'], list)
-                    and len(claim_def_primary['rms']) > 0)
+        self.__check_a_field_is_not_empty_list(claim_def_primary, 'rms')
+
         # 9. Check claim_def['data']['primary']['z'].
-        self.steps.add_step("Check claim_def['data']['primary']['z']")
-        error_message = "Length of claim_def['data']['primary']['z'] " \
-                        "is a not empty list"
-        utils.check(self.steps, error_message,
-                    condition=lambda: isinstance(claim_def_primary['z'], list)
-                    and len(claim_def_primary['z']) > 0)
+        self.__check_a_field_is_not_empty_list(claim_def_primary, "z")
 
         # 10. Check claim_def['data']['primary']['rctxt'].
-        self.steps.add_step("Check claim_def['data']['primary']['rctxt']")
-        error_message = "Length of claim_def['data']['primary']['rctxt'] " \
-                        "is a not empty list"
+        self.__check_a_field_is_not_empty_list(claim_def_primary, "rctxt")
+
+    def __check_a_field_is_not_empty_list(self, claim_json_def_primary,
+                                          key: str):
+        self.steps.add_step(
+            "Check claim_def['data']['primary']['{}']".format(key))
+
+        error_message = "Claim_def['data']['primary']['{}'] " \
+                        "is empty".format(key)
+
         utils.check(self.steps, error_message,
-                    condition=lambda:
-                    isinstance(claim_def_primary['rctxt'], list)
-                    and len(claim_def_primary['rctxt']) > 0)
+                    condition=lambda: len(claim_json_def_primary[key]) > 0)
 
 
 if __name__ == '__main__':

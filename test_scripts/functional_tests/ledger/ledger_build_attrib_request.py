@@ -9,10 +9,10 @@ import json
 
 from indy import signus, ledger
 
-from libraries import common, constant
-from libraries.constant import JsonTemplate
-from libraries.test_scenario_base import TestScenarioBase
-from libraries.utils import perform, verify_json
+from utilities import common, constant
+from utilities.constant import JsonTemplate
+from utilities.test_scenario_base import TestScenarioBase
+from utilities.utils import perform, verify_json
 
 
 class BuildAttribRequest(TestScenarioBase):

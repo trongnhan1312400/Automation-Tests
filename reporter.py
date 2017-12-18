@@ -344,6 +344,10 @@ class HTMLReporter:
         report_file_name = HTMLReporter.__make_report_name()
         file_filter = "*" if not file_filter else file_filter
         list_file_name = glob.glob(self.__json_dir + file_filter + ".json")
+        if not list_file_name:
+            print("Cannot find any json at {}".format(HTMLReporter.__json_dir))
+            return
+
         self.make_suite_name(report_file_name)
         self.make_configurate_table()
         self.make_report_content_by_list(list_file_name, report_file_name)

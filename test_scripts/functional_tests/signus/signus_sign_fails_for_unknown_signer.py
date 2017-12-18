@@ -6,7 +6,7 @@ Created on Dec 14, 2017
 
 from indy import signus
 from indy.error import ErrorCode
-from libraries import utils, common, constant
+from utilities import utils, common, constant
 from test_scripts.functional_tests.signus.signus_test_base \
     import SignusTestBase
 

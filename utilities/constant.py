@@ -32,8 +32,16 @@ sample_schema1 = {
         "data": {
             "name": "gvt",
             "version": "1.0",
-            "attr_names": ["age", "sex", "height", "name"]
+            "keys": ["age", "sex", "height", "name"]
         }
+    }
+
+sample_claim_json = {
+        "sex": ["male", "59446570995589672392109492583948874286"
+                        "92050081607692519917050011144233115103"],
+        "name": ["Alex", "1139481716457488690172217916278103335"],
+        "height": ["175", "175"],
+        "age": ["28", "28"]
     }
 
 signature_type = "CL"

@@ -6,8 +6,8 @@ Created on Dec 12, 2017
 Containing a base class for signus testing.
 """
 
-from libraries import common
-from libraries.test_scenario_base import TestScenarioBase
+from utilities import common
+from utilities.test_scenario_base import TestScenarioBase
 
 
 class SignusTestBase(TestScenarioBase):

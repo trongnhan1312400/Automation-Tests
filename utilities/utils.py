@@ -7,9 +7,9 @@ Containing all functions used by several test steps on test scenarios.
 """
 import os
 from indy.error import IndyError
-from libraries import constant
-from libraries.result import Status
-from libraries.step import Steps
+from utilities import constant
+from utilities.result import Status
+from utilities.step import Steps
 
 
 def generate_random_string(prefix="", suffix="", size=20):
@@ -78,7 +78,7 @@ async def perform(steps, func, *args, ignore_exception=False):
         steps.get_last_step().set_status(Status.FAILED)
         result = Ex
 
-    if isinstance(result, Exception):
+    if isinstance(result, Exception) and not ignore_exception:
         raise result
 
     return result

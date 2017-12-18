@@ -35,7 +35,7 @@ class Steps:
         Add a new step to list step.
         :param name: variable hold the step name. Using to report.
         """
-        from libraries import utils
+        from utilities import utils
         step_id = len(self.__steps)
         utils.print_header("\n{0}. {1}\n".format(step_id + 1, name))
         new_step = Step(step_id + 1, name)
@@ -46,7 +46,7 @@ class Step:
     """
     Class manage information of a test step.
     """
-    from libraries.result import Status
+    from utilities.result import Status
 
     def __init__(self, step_id, name, status=Status.FAILED, message=""):
         self.__id = step_id

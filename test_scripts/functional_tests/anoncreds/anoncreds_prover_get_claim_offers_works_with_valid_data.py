@@ -6,7 +6,7 @@ Created on Dec 15, 2017
 
 import json
 from indy import anoncreds, signus
-from libraries import utils, constant, common
+from utilities import utils, constant, common
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
@@ -66,8 +66,8 @@ class TestProverGetClaimOffersWithValidData(AnoncredsTestBase):
 
         # 9. Verify that 'offer_json1' and 'offer_json2'
         # exist in 'list_claim_offer'.
-        self.steps.add_step("Verify that 'offer_json' and 'offer_json2' exist "
-                            "in 'list_claim_offer'")
+        self.steps.add_step("Verify that 'offer_json1' and 'offer_json2' "
+                            "exist in 'list_claim_offer'")
         utils.check(self.steps, error_message="Cannot store a claim offer",
                     condition=lambda: offer_json1 in list_claim_offer and
                     offer_json2 in list_claim_offer)

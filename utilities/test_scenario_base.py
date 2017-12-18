@@ -11,11 +11,11 @@ import os
 import time
 import asyncio
 
-from libraries import utils
-from libraries import common, constant
-from libraries.logger import Logger
-from libraries.result import TestResult, Status
-from libraries.step import Steps
+from utilities import utils
+from utilities import common, constant
+from utilities.logger import Logger
+from utilities.result import TestResult, Status
+from utilities.step import Steps
 
 
 class TestScenarioBase:
