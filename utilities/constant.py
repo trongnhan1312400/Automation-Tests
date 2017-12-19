@@ -7,6 +7,7 @@ Containing all constants that are necessary to execute test scenario.
 """
 
 import os
+import hashlib
 from enum import Enum
 
 
@@ -26,9 +27,9 @@ did_my2 = "2PRyVHmkXQnQzJQKxHxnXC"
 verkey_my2 = "kqa2HyagzfMAq42H5f9u3UMwnSBPQx2QfrSyXbUPxMn"
 
 # Constant for anoncreds testing.
-sample_schema1_seq = 1
-sample_schema1 = {
-        "seqNo": sample_schema1_seq,
+gvt_schema_seq = 1
+gvt_schema = {
+        "seqNo": gvt_schema_seq,
         "data": {
             "name": "gvt",
             "version": "1.0",
@@ -36,15 +37,34 @@ sample_schema1 = {
         }
     }
 
-sample_claim_json = {
-        "sex": ["male", "59446570995589672392109492583948874286"
-                        "92050081607692519917050011144233115103"],
-        "name": ["Alex", "1139481716457488690172217916278103335"],
-        "height": ["175", "175"],
-        "age": ["28", "28"]
+gvt_claim = {
+        "sex": ["male", str(int(hashlib.md5("male".encode()).
+                                hexdigest(), 16))],
+        "name": ["Alex", str(int(hashlib.md5("alex".encode()).
+                                 hexdigest(), 16))],
+        "height": ["175", str(int(hashlib.md5("175".encode()).
+                                  hexdigest(), 16))],
+        "age": ["28", str(int(hashlib.md5("28".encode()).hexdigest(), 16))]
+    }
+
+xys_shcema_seq = 2
+xyz_schema = {
+        "seqNo": xys_shcema_seq,
+        "data": {
+            "name": "xyz",
+            "version": "1.0",
+            "attr_names": ["period", "status"]
+        }
+    }
+
+xyz_claim = {
+        "status": ["partial", str(int(hashlib.md5("partial".encode()).
+                                  hexdigest(), 16))],
+        "period": ["8", str(int(hashlib.md5("8".encode()).hexdigest(), 16))]
     }
 
 signature_type = "CL"
+secret_name = "Master secret"
 
 # The path to the genesis transaction file is configurable.
 # The default directory is "/var/lib/indy/sandbox/".

@@ -1,17 +1,18 @@
 """
-Created on Dec 15, 2017
+Created on Dec 19, 2017
 
 @author: nhan.nguyen
 """
 
 import json
 from indy import anoncreds, signus
+from indy.error import ErrorCode
 from utilities import utils, constant, common
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
 
-class TestProverStoreClaimOfferWithValidData(AnoncredsTestBase):
+class TestProverStoreClaimOfferWithInvalidWalletHandle(AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -34,29 +35,18 @@ class TestProverStoreClaimOfferWithValidData(AnoncredsTestBase):
                             json.dumps(constant.gvt_schema),
                             constant.signature_type, False)
 
-        # 5. Store claim offer and verify that there is no exception raise.
-        self.steps.add_step("Store claim offer and verify that "
-                            "there is no exception raise")
+        # 5. Store claim offer with invalid json and
+        # verify that claim offer cannot be stored.
+        self.steps.add_step("Store claim offer with invalid json and "
+                            "verify that claim offer cannot be stored")
         offer_json = utils.create_claim_offer(issuer_did,
                                               constant.gvt_schema_seq)
-        await utils.perform(self.steps, anoncreds.prover_store_claim_offer,
-                            self.wallet_handle, json.dumps(offer_json),
-                            ignore_exception=False)
-
-        # 6. Get claim offers and store returned value into 'list_claim_offer'.
-        self.steps.add_step("Get claim offers and store "
-                            "returned value in to 'list_claim_offer'")
-        list_claim_offer = await \
-            utils.perform(self.steps, anoncreds.prover_get_claim_offers,
-                          self.wallet_handle, '{}')
-        list_claim_offer = json.loads(list_claim_offer)
-
-        # 7. Verify that 'offer_json' exists in 'list_claim_offer'.
-        self.steps.add_step("Verify that 'offer_json' exists "
-                            "in 'list_claim_offer'")
-        utils.check(self.steps, error_message="Cannot store a claim offer",
-                    condition=lambda: offer_json in list_claim_offer)
+        error_code = ErrorCode.WalletInvalidHandle
+        await utils.perform_with_expected_code(
+            self.steps, anoncreds.prover_store_claim_offer,
+            self.wallet_handle + 1, json.dumps(offer_json),
+            expected_code=error_code)
 
 
 if __name__ == '__main__':
-    TestProverStoreClaimOfferWithValidData().execute_scenario()
+    TestProverStoreClaimOfferWithInvalidWalletHandle().execute_scenario()

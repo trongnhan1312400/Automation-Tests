@@ -5,7 +5,7 @@ Created on Dec 18, 2017
 """
 
 from indy import anoncreds
-from utilities import utils, common
+from utilities import utils, common, constant
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
@@ -23,7 +23,8 @@ class TestProverCreateMasterSecret(AnoncredsTestBase):
         self.steps.add_step("Create master secret")
         result = await utils.perform(self.steps,
                                      anoncreds.prover_create_master_secret,
-                                     self.wallet_handle, "Test_anoncreds")
+                                     self.wallet_handle,
+                                     constant.secret_name)
 
         # 4. Verify that None is returned.
         self.steps.add_step("Verify that None is returned")

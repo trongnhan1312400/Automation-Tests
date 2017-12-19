@@ -35,9 +35,9 @@ class TestIssuerCreateAndStoreClaimDefWithInvalidWalletHandle\
         error_code = ErrorCode.WalletInvalidHandle
 
         await utils.perform_with_expected_code(
-            self.steps,anoncreds.issuer_create_and_store_claim_def,
+            self.steps, anoncreds.issuer_create_and_store_claim_def,
             self.wallet_handle + 1, issuer_did,
-            json.dumps(constant.sample_schema1),
+            json.dumps(constant.gvt_schema),
             constant.signature_type, False, expected_code=error_code)
 
 
