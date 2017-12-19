@@ -17,7 +17,7 @@ from utilities.utils import perform
 
 class BuildNymRequest(TestScenarioBase):
     async def execute_test_steps(self):
-        # 1. Prepare pool and wallet. Get pool_hanlde, wallet_hanlde
+        # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
             await perform(self.steps, common.prepare_pool_and_wallet,

@@ -9,16 +9,17 @@ import json
 
 from indy import signus, ledger
 
-from utilities import common, constant
-from utilities.result import Status
+from utilities import common
+from utilities.constant import seed_default_trustee, signature_type,\
+                               claim_response
 from utilities.test_scenario_base import TestScenarioBase
-from utilities.utils import perform
+from utilities.utils import perform, verify_json
 
 
 class ClaimRequest(TestScenarioBase):
 
     async def execute_test_steps(self):
-        # 1. Prepare pool and wallet. Get pool_hanlde, wallet_hanlde
+        # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = await \
             perform(self.steps, common.prepare_pool_and_wallet, self.pool_name,
@@ -28,7 +29,26 @@ class ClaimRequest(TestScenarioBase):
         self.steps.add_step("Create DIDs")
         (submitter_did, _) = await perform(
             self.steps, signus.create_and_store_my_did, self.wallet_handle,
-            json.dumps({"seed": constant.seed_default_trustee}))
+            json.dumps({"seed": seed_default_trustee}))
+
+        # 3. prepare data to build claim request
+        self.steps.add_step("build claim request")
+        schema_seq_no = 1
+        data = '"primary":{"n":"1","s":"2","rms":"3",' \
+               '"r":{"name":"1"}, "rctxt":"1","z":"1"}'
+        data_request = '{' + data + '}'
+        response = json.loads(await perform(
+                                self.steps, ledger.build_claim_def_txn,
+                                submitter_did, schema_seq_no,
+                                signature_type, data_request))
+
+        # 4. Verify json claim request is correct.
+        self.steps.add_step("Verify json claim request is correct.")
+        data_response = '{"revocation": {},' + data + '}'
+        expected_response = json.loads(claim_response.format(
+                                        submitter_did, data_response,
+                                        "102", signature_type))
+        verify_json(self.steps, expected_response, response)
 
 
 if __name__ == '__main__':

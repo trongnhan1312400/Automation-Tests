@@ -97,12 +97,13 @@ submit_request = '{{"reqId": {:d}, "identifier": "{}", ' \
                  '"operation": {{ "type": "{}", "dest": "{}"}},' \
                  ' "signature": "{}"}}'
 
-get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",'\
-                      ' "dest":"{}","raw":{}}}}}'
-
 submit_response = '{{"result": {{ "reqId": {:d}, ' \
                   '"identifier": "{}", "dest": "{}", ' \
                   '"data": "{}","type": "{}" }}, "op": "{}"}}'
+claim_response = '{{"identifier":"{}","operation":{{"ref":1,"data":{},' \
+                     '"type":"{}","signature_type":"{}"}}}}'
+get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",'\
+                      ' "dest":"{}","raw":{}}}}}'
 
 get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
                       '"dest":"{}","data":{}}}}}'
