@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41192950-8429-45cc-bf49-a47288bb9d07" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reporter_summary_report/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test_output/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test_output/log_files/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test_output/test_results/__init__.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_attrib_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_attrib_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_nym_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_nym_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_schema_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_schema_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_nym_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_nym_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_and_submit.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_and_submit.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_submit_request.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_submit_request.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/constant.py" afterPath="$PROJECT_DIR$/utilities/constant.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/step.py" afterPath="$PROJECT_DIR$/utilities/step.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/test_scenario_base.py" afterPath="$PROJECT_DIR$/utilities/test_scenario_base.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/utils.py" afterPath="$PROJECT_DIR$/utilities/utils.py" />
-    </list>
+    <list default="true" id="41192950-8429-45cc-bf49-a47288bb9d07" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -289,7 +272,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Automation-Tests" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
   </component>
   <component name="RecentsManager">
