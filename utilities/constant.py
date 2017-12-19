@@ -7,6 +7,7 @@ Containing all constants that are necessary to execute test scenario.
 """
 
 import os
+import hashlib
 from enum import Enum
 
 
@@ -24,6 +25,46 @@ verkey_my1 = "GjZWsBLgZCR18aL468JAT7w9CZRiBnpxUPPgyQxh4voa"
 seed_my2 = "00000000000000000000000000000My2"
 did_my2 = "2PRyVHmkXQnQzJQKxHxnXC"
 verkey_my2 = "kqa2HyagzfMAq42H5f9u3UMwnSBPQx2QfrSyXbUPxMn"
+
+# Constant for anoncreds testing.
+gvt_schema_seq = 1
+gvt_schema = {
+        "seqNo": gvt_schema_seq,
+        "data": {
+            "name": "gvt",
+            "version": "1.0",
+            "keys": ["age", "sex", "height", "name"]
+        }
+    }
+
+gvt_claim = {
+        "sex": ["male", str(int(hashlib.md5("male".encode()).
+                                hexdigest(), 16))],
+        "name": ["Alex", str(int(hashlib.md5("alex".encode()).
+                                 hexdigest(), 16))],
+        "height": ["175", str(int(hashlib.md5("175".encode()).
+                                  hexdigest(), 16))],
+        "age": ["28", str(int(hashlib.md5("28".encode()).hexdigest(), 16))]
+    }
+
+xyz_shcema_seq = 2
+xyz_schema = {
+        "seqNo": xyz_shcema_seq,
+        "data": {
+            "name": "xyz",
+            "version": "1.0",
+            "attr_names": ["period", "status"]
+        }
+    }
+
+xyz_claim = {
+        "status": ["partial", str(int(hashlib.md5("partial".encode()).
+                                  hexdigest(), 16))],
+        "period": ["8", str(int(hashlib.md5("8".encode()).hexdigest(), 16))]
+    }
+
+signature_type = "CL"
+secret_name = "Master secret"
 
 # The path to the genesis transaction file is configurable.
 # The default directory is "/var/lib/indy/sandbox/".
@@ -49,26 +90,25 @@ EXCEPTION = "Exception: {}"
 JSON_INCORRECT = "Failed. Json response is incorrect. {}"
 
 
-class JsonTemplate:
-    message = '{{"reqId": {:d}, "identifier": "{}",' \
-              '"operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
+message = '{{"reqId": {:d}, "identifier": "{}",' \
+          '"operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
 
-    submit_request = '{{"reqId": {:d}, "identifier": "{}", ' \
-                     '"operation": {{ "type": "{}", "dest": "{}"}},' \
-                     ' "signature": "{}"}}'
+submit_request = '{{"reqId": {:d}, "identifier": "{}", ' \
+                 '"operation": {{ "type": "{}", "dest": "{}"}},' \
+                 ' "signature": "{}"}}'
 
-    get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
-                          '"dest":"{}","raw":{}}}}}'
+get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",'\
+                      ' "dest":"{}","raw":{}}}}}'
 
-    submit_response = '{{"result": {{ "reqId": {:d}, ' \
-                      '"identifier": "{}", "dest": "{}", ' \
-                      '"data": "{}","type": "{}" }}, "op": "{}"}}'
+submit_response = '{{"result": {{ "reqId": {:d}, ' \
+                  '"identifier": "{}", "dest": "{}", ' \
+                  '"data": "{}","type": "{}" }}, "op": "{}"}}'
 
-    get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
-                          '"dest":"{}","data":{}}}}}'
+get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
+                      '"dest":"{}","data":{}}}}}'
 
-    get_nym_response = '{{"identifier":"{}",' \
-                       '"operation":{{"type":"{}","dest":"{}"}}}}'
+get_nym_response = '{{"identifier":"{}",' \
+                   '"operation":{{"type":"{}","dest":"{}"}}}}'
 
 
 class Color(str, Enum):

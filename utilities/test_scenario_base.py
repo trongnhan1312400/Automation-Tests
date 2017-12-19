@@ -9,7 +9,6 @@ Containing the test base class.
 import inspect
 import os
 import time
-import asyncio
 
 from utilities import utils
 from utilities import common, constant
@@ -83,7 +82,7 @@ class TestScenarioBase:
             constant.Color.BOLD)
 
         # Create new event loop for this test scenario.
-        asyncio.set_event_loop(asyncio.new_event_loop())
+#         asyncio.set_event_loop(asyncio.new_event_loop())
 
         begin_time = time.time()
         if time_out:
@@ -94,14 +93,15 @@ class TestScenarioBase:
                                    self.time_out)
         except TimeoutError:
             utils.print_error("\n{}\n".format(constant.ERR_TIME_LIMITATION))
-            self.steps.get_last_step().set_status(Status.FAILED)
-            self.steps.get_last_step().set_message(
-                constant.ERR_TIME_LIMITATION)
+            self.steps.get_last_step().set_status(Status.FAILED,
+                                                  constant.ERR_TIME_LIMITATION)
+#             self.steps.get_last_step().set_message(
+#                 constant.ERR_TIME_LIMITATION)
         except Exception as e:
             message = constant.EXCEPTION.format(str(e))
             utils.print_error("\n{}\n".format(message))
-            self.steps.get_last_step().set_status(Status.FAILED)
-            self.steps.get_last_step().set_message(message)
+            self.steps.get_last_step().set_status(Status.FAILED, message)
+#             self.steps.get_last_step().set_message(message)
         finally:
             try:
                 utils.run_async_method(self.execute_postcondition_steps)
@@ -112,7 +112,7 @@ class TestScenarioBase:
             utils.make_final_result(self.test_result,
                                     self.steps.get_list_step(),
                                     begin_time, self.logger)
-            asyncio.get_event_loop().close()
+#             asyncio.get_event_loop().close()
 
             utils.print_with_color(
                 "Test case: {} ----> finished\n".format(self.test_name),

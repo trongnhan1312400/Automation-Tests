@@ -59,10 +59,12 @@ class SignAndSubmitRequest(TestScenarioBase):
         if did_response == target_did:
             self.steps.get_last_step().set_status(Status.PASSED)
         else:
-            self.steps.get_last_step().set_status(Status.FAILED)
-            self.steps.get_last_step().set_message(
-                "Failed. Expected did is [%s] but actual did is [%s]"
-                % (target_did, did_response))
+            message = ("Failed. Expected did is [%s] but actual did is [%s]"
+                       % (target_did, did_response))
+            self.steps.get_last_step().set_status(Status.FAILED, message)
+#             self.steps.get_last_step().set_message(
+#                 "Failed. Expected did is [%s] but actual did is [%s]"
+#                 % (target_did, did_response))
 
 
 if __name__ == '__main__':

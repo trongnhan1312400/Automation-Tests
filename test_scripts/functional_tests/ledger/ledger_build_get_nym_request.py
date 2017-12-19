@@ -10,7 +10,6 @@ import json
 from indy import signus, ledger
 
 from utilities import common, constant
-from utilities.constant import JsonTemplate
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
 
@@ -58,8 +57,8 @@ class BuildGetNymRequest(TestScenarioBase):
         # 5. Verifying get_nym_request json correctly.
         self.steps.add_step("Verifying get_nym_request json")
         expected_response = json.loads(
-            JsonTemplate.get_nym_response.format(submitter_did,
-                                                 "105", target_did))
+            constant.get_nym_response.format(submitter_did,
+                                             "105", target_did))
         verify_json(self.steps, expected_response, get_nym_req)
 
 
