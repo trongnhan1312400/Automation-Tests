@@ -47,9 +47,9 @@ gvt_claim = {
         "age": ["28", str(int(hashlib.md5("28".encode()).hexdigest(), 16))]
     }
 
-xys_shcema_seq = 2
+xyz_shcema_seq = 2
 xyz_schema = {
-        "seqNo": xys_shcema_seq,
+        "seqNo": xyz_shcema_seq,
         "data": {
             "name": "xyz",
             "version": "1.0",

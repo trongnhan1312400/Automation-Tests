@@ -69,6 +69,7 @@ class TestProverGetClaimOffersForFilterByIssuerDid(AnoncredsTestBase):
         list_claim_offer = json.loads(list_claim_offer)
 
         # 10. Check length of "list_claim_offer".
+        self.steps.add_step("Check length of 'list_claim_offer'")
         error_msg = "Length of 'list_claim_offer' is not equal with 2"
         utils.check(self.steps, error_message=error_msg,
                     condition=lambda: len(list_claim_offer) == 2)
