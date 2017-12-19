@@ -34,7 +34,7 @@ class TestIssuerCreateAndStoreClaimDefWithValidData(AnoncredsTestBase):
             utils.perform(self.steps,
                           anoncreds.issuer_create_and_store_claim_def,
                           self.wallet_handle, issuer_did,
-                          json.dumps(constant.sample_schema1),
+                          json.dumps(constant.gvt_schema),
                           constant.signature_type, False)
 
         claim_def_primary = json.loads(claim_def)['data']['primary']
@@ -47,22 +47,21 @@ class TestIssuerCreateAndStoreClaimDefWithValidData(AnoncredsTestBase):
                     condition=lambda: len(claim_def_primary['r']) == 4)
 
         # 6. Check claim_def['data']['primary']['n'].
-        self.__check_a_field_is_not_empty_list(claim_def_primary, 'n')
+        self.__check_a_field_is_not_empty(claim_def_primary, 'n')
 
         # 7. Check claim_def['data']['primary']['s'].
-        self.__check_a_field_is_not_empty_list(claim_def_primary, 's')
+        self.__check_a_field_is_not_empty(claim_def_primary, 's')
 
         # 8. Check claim_def['data']['primary']['rms'].
-        self.__check_a_field_is_not_empty_list(claim_def_primary, 'rms')
+        self.__check_a_field_is_not_empty(claim_def_primary, 'rms')
 
         # 9. Check claim_def['data']['primary']['z'].
-        self.__check_a_field_is_not_empty_list(claim_def_primary, "z")
+        self.__check_a_field_is_not_empty(claim_def_primary, "z")
 
         # 10. Check claim_def['data']['primary']['rctxt'].
-        self.__check_a_field_is_not_empty_list(claim_def_primary, "rctxt")
+        self.__check_a_field_is_not_empty(claim_def_primary, "rctxt")
 
-    def __check_a_field_is_not_empty_list(self, claim_json_def_primary,
-                                          key: str):
+    def __check_a_field_is_not_empty(self, claim_json_def_primary, key: str):
         self.steps.add_step(
             "Check claim_def['data']['primary']['{}']".format(key))
 

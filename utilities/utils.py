@@ -16,8 +16,8 @@ def generate_random_string(prefix="", suffix="", size=20):
     """
     Generate random string .
 
-    :param prefix: (optional) Prefix of a string.
-    :param suffix: (optional) Suffix of a string.
+    :param prefix:  (optional) Prefix of a string.
+    :param suffix:  (optional) Suffix of a string.
     :param size: (optional) Max length of a string (include prefix and suffix)
     :return: The random string.
     """
@@ -36,17 +36,17 @@ def generate_random_string(prefix="", suffix="", size=20):
     return result
 
 
-def exit_if_exception(code):
+def exit_if_exception(result):
     """
     If "result" is an exception then raise the "result".
     Unless "result" is an exception then return the "result".
     :param result: the value that you want to check.
     :return: "result" if it is not an exception.
     """
-    if isinstance(code, IndyError) or (isinstance(code, Exception)):
+    if isinstance(result, IndyError) or (isinstance(result, Exception)):
         exit(1)
     else:
-        return code
+        return result
 
 
 def compare_json(js1, js2):
@@ -84,7 +84,7 @@ async def perform(steps, func, *args, ignore_exception=False):
     return result
 
 
-async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
+async def perform_with_expected_code(steps, func, *args, expected_code=0):
     """
     Execute the "func" with expectation that the "func" raise an IndyError that
     IndyError.error_code = "expected_code".
@@ -99,7 +99,7 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
              contain "expected_code".
     """
     try:
-        await func(*agrs)
+        await func(*args)
         message = "Expected exception %s but not." % str(expected_code)
         steps.get_last_step().set_status(Status.FAILED, message)
         return None
@@ -161,6 +161,7 @@ def make_final_result(test_result, steps, begin_time, logger):
 def verify_json(steps, expected_response, response):
     """
     Verify two json are equal.
+
     :param steps: list step of test case.
     :param expected_response: expected json.
     :param response: actual json.
@@ -189,8 +190,8 @@ def print_with_color(message: str, color: str):
     """
     Print a message with specified color onto console.
 
-    :param message: (optional)
-    :param color: (optional)
+    :param message:
+    :param color:
     """
     print(color + message + constant.Color.ENDC)
 
@@ -199,7 +200,7 @@ def print_error(message: str):
     """
     Print message onto console with "Fail" color.
 
-    :param message: (optional)
+    :param message:
     """
     print_with_color(message, constant.Color.FAIL)
 
@@ -208,7 +209,7 @@ def print_header(message: str):
     """
     Print message onto console with "Header" color.
 
-    :param message: (optional)
+    :param message:
     """
     print_with_color(message, constant.Color.HEADER)
 
@@ -217,7 +218,7 @@ def print_ok_green(message: str):
     """
     Print message onto console with "OK_GREEN" color.
 
-    :param message: (optional)
+    :param message:
     """
     print_with_color(message, constant.Color.OKGREEN)
 
@@ -226,7 +227,7 @@ def print_ok_blue(message: str):
     """
     Print message onto console with "OK_BLUE" color.
 
-    :param message: (optional)
+    :param message:
     """
     print_with_color(message, constant.Color.OKBLUE)
 
@@ -262,4 +263,10 @@ def check(steps: Steps, error_message: str, condition) -> bool:
 
 
 def create_claim_offer(issuer_did: str, schema_seq: int):
+    """
+    Return a claim offer.
+    :param issuer_did: create by signus.create_and_store_did.
+    :param schema_seq:
+    :return: claim offer.
+    """
     return {"issuer_did": issuer_did, "schema_seq_no": schema_seq}
