@@ -10,7 +10,6 @@ import json
 from indy import signus, ledger
 
 from utilities import common, constant
-from utilities.constant import JsonTemplate
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json, generate_random_string
 
@@ -59,8 +58,8 @@ class GetSchemaRequest(TestScenarioBase):
         # 5. Prepare data to check and build get schema request
         self.steps.add_step("build get schema request")
         expected_response = json.loads(
-            JsonTemplate.get_schema_response.format(submitter_did, "107",
-                                                    target_did, data_response))
+            constant.get_schema_response.format(submitter_did, "107",
+                                                target_did, data_response))
 
         get_schema_req = json.loads(
             await perform(self.steps, ledger.build_get_schema_request,

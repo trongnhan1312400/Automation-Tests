@@ -70,26 +70,25 @@ EXCEPTION = "Exception: {}"
 JSON_INCORRECT = "Failed. Json response is incorrect. {}"
 
 
-class JsonTemplate:
-    message = '{{"reqId": {:d}, "identifier": "{}",' \
-              '"operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
+message = '{{"reqId": {:d}, "identifier": "{}",' \
+          '"operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
 
-    submit_request = '{{"reqId": {:d}, "identifier": "{}", ' \
-                     '"operation": {{ "type": "{}", "dest": "{}"}},' \
-                     ' "signature": "{}"}}'
+submit_request = '{{"reqId": {:d}, "identifier": "{}", ' \
+                 '"operation": {{ "type": "{}", "dest": "{}"}},' \
+                 ' "signature": "{}"}}'
 
-    get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
-                          '"dest":"{}","raw":{}}}}}'
+get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",'\
+                      ' "dest":"{}","raw":{}}}}}'
 
-    submit_response = '{{"result": {{ "reqId": {:d}, ' \
-                      '"identifier": "{}", "dest": "{}", ' \
-                      '"data": "{}","type": "{}" }}, "op": "{}"}}'
+submit_response = '{{"result": {{ "reqId": {:d}, ' \
+                  '"identifier": "{}", "dest": "{}", ' \
+                  '"data": "{}","type": "{}" }}, "op": "{}"}}'
 
-    get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
-                          '"dest":"{}","data":{}}}}}'
+get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
+                      '"dest":"{}","data":{}}}}}'
 
-    get_nym_response = '{{"identifier":"{}",' \
-                       '"operation":{{"type":"{}","dest":"{}"}}}}'
+get_nym_response = '{{"identifier":"{}",' \
+                   '"operation":{{"type":"{}","dest":"{}"}}}}'
 
 
 class Color(str, Enum):

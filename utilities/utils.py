@@ -38,10 +38,10 @@ def generate_random_string(prefix="", suffix="", size=20):
 
 def exit_if_exception(code):
     """
-    If "code" is an exception then raise the "code".
-    Unless "code" is an exception then return the "code".
-    :param code: (optional) code that you want to check.
-    :return: "code" if it is not an exception.
+    If "result" is an exception then raise the "result".
+    Unless "result" is an exception then return the "result".
+    :param result: the value that you want to check.
+    :return: "result" if it is not an exception.
     """
     if isinstance(code, IndyError) or (isinstance(code, Exception)):
         exit(1)
@@ -58,10 +58,10 @@ async def perform(steps, func, *args, ignore_exception=False):
     Execute an function and set status, message for the last test step depend
     on the result of the function.
 
-    :param steps: (optional) list of test steps.
-    :param func: (optional) executed function.
+    :param steps: list of test steps.
+    :param func: executed function.
     :param args: argument of function.
-    :param ignore_exception: raise exception or not.
+    :param ignore_exception: (optional) raise exception or not.
     :return: the result of function of the exception that the function raise.
     """
     try:
@@ -69,13 +69,13 @@ async def perform(steps, func, *args, ignore_exception=False):
         steps.get_last_step().set_status(Status.PASSED)
     except IndyError as E:
         print_error(constant.INDY_ERROR.format(str(E)))
-        steps.get_last_step().set_message(str(E))
-        steps.get_last_step().set_status(Status.FAILED)
+#         steps.get_last_step().set_message(str(E))
+        steps.get_last_step().set_status(Status.FAILED, str(E))
         result = E
     except Exception as Ex:
         print_error(constant.EXCEPTION.format(str(Ex)))
-        steps.get_last_step().set_message(str(Ex))
-        steps.get_last_step().set_status(Status.FAILED)
+#         steps.get_last_step().set_message(str(Ex))
+        steps.get_last_step().set_status(Status.FAILED, str(Ex))
         result = Ex
 
     if isinstance(result, Exception) and not ignore_exception:
@@ -89,18 +89,19 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
     Execute the "func" with expectation that the "func" raise an IndyError that
     IndyError.error_code = "expected_code".
 
-    :param steps: (optional) list of test steps.
-    :param func: (optional) executed function.
+    :param steps: list of test steps.
+    :param func: executed function.
     :param agrs: arguments of "func".
-    :param expected_code: the error code that you expect in IndyError.
+    :param expected_code: (optional) the error code that you expect
+                          in IndyError.
     :return: exception if the "func" raise it without "expected_code".
              'None' if the "func" run without any exception of the exception
              contain "expected_code".
     """
     try:
         await func(*agrs)
-        steps.get_last_step().set_message("Can execute without exception.")
-        steps.get_last_step().set_status(Status.FAILED)
+        message = "Expected exception %s but not." % str(expected_code)
+        steps.get_last_step().set_status(Status.FAILED, message)
         return None
     except IndyError as E:
         if E.error_code == expected_code:
@@ -108,10 +109,11 @@ async def perform_with_expected_code(steps, func, *agrs, expected_code=0):
             return True
         else:
             print_error(constant.INDY_ERROR.format(str(E)))
-            steps.get_last_step().set_message(str(E))
+            steps.get_last_step().set_status(Status.FAILED, str(E))
             return E
     except Exception as Ex:
         print_error(constant.EXCEPTION.format(str(Ex)))
+        steps.get_last_step().set_status(Status.FAILED, str(Ex))
         return Ex
 
 
@@ -119,8 +121,11 @@ def run_async_method(method, time_out=None):
     """
     Run async method until it complete or until the time is over.
 
-    :param method: (optional).
+    :param method: The method want to run with event loop.
     :param time_out:
+
+    @note: We can customize this method to adapt different situations
+           in the future.
     """
     import asyncio
     loop = asyncio.get_event_loop()
@@ -134,10 +139,10 @@ def make_final_result(test_result, steps, begin_time, logger):
     """
     Making a test result.
 
-    :param test_result: (optional).
-    :param steps: (optional) list of steps.
-    :param begin_time: (optional) time that the test begin.
-    :param logger: (optional).
+    :param test_result: the object result was collected into test case.
+    :param steps: list of steps.
+    :param begin_time: time that the test begin.
+    :param logger: The object captures screen log.
     """
     import time
     for step in steps:
@@ -156,16 +161,16 @@ def make_final_result(test_result, steps, begin_time, logger):
 def verify_json(steps, expected_response, response):
     """
     Verify two json are equal.
-    :param steps: (optional) list step of test case.
-    :param expected_response: (optional) expected json.
-    :param response: (optional) actual json.
+    :param steps: list step of test case.
+    :param expected_response: expected json.
+    :param response: actual json.
     """
     try:
         assert expected_response.items() <= response.items()
         steps.get_last_step().set_status(Status.PASSED)
     except AssertionError as e:
-        steps.get_last_step().set_message(
-            constant.JSON_INCORRECT.format(str(e)))
+        message = constant.JSON_INCORRECT.format(str(e))
+        steps.get_last_step().set_status(Status.FAILED, message)
 
 
 def check_pool_exist(pool_name: str) -> bool:
@@ -231,9 +236,9 @@ def check(steps: Steps, error_message: str, condition) -> bool:
     Check if the condition are return True.
     Set message into last step if the condition return False.
 
-    :param steps: (optional) list step of test case.
+    :param steps: list step of test case.
     :param error_message: message to set if condition return False.
-    :param condition: (optional) a callable.
+    :param condition: a callable.
     :return: True or False depend on result of "condition".
     """
     if steps:

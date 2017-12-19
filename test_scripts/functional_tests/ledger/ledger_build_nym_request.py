@@ -10,7 +10,6 @@ import json
 from indy import signus, ledger
 
 from utilities import common, constant
-from utilities.constant import JsonTemplate
 from utilities.result import Status
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform
@@ -51,8 +50,8 @@ class BuildNymRequest(TestScenarioBase):
         # 4. Verifying json nym request response correctly.
         self.steps.add_step("Verifying nym request")
         expected_response = json.loads(
-            JsonTemplate.message.format(0, submitter_did, "1",
-                                        target_did, target_verkey))
+            constant.message.format(0, submitter_did, "1",
+                                    target_did, target_verkey))
         # We do not check reqId because It is dynamic number.
         try:
             assert nym_req_txn["identifier"] == expected_response["identifier"]
@@ -64,8 +63,10 @@ class BuildNymRequest(TestScenarioBase):
                 expected_response["operation"]["verkey"]
             self.steps.get_last_step().set_status(Status.PASSED)
         except AssertionError:
-            self.steps.get_last_step().set_message(
-                constant.JSON_INCORRECT.format(""))
+            message = constant.JSON_INCORRECT.format("")
+            self.steps.get_last_step().set_status(Status.FAILED, message)
+#             self.steps.get_last_step().set_message(
+#                 constant.JSON_INCORRECT.format(""))
 
 
 if __name__ == '__main__':
