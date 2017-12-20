@@ -36,7 +36,7 @@ class SignRequest(TestScenarioBase):
         expected_signature = "65hzs4nsdQsTUqLCLy2qisbKLfwYKZSWoyh1C6CU59" \
                              "p5pfG3EHQXGAsjW4Qw4QdwkrvjSgQuyv8qyABcXRBznFKW"
 
-        # 1. Prepare pool and wallet. Get pool_hanlde, wallet_hanlde
+        # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
             await perform(self.steps, common.prepare_pool_and_wallet,
