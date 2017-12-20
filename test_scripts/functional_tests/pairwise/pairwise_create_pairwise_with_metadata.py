@@ -25,12 +25,11 @@ class TestCreatePairwiseWithMetadata(PairwiseTestBase):
                                           self.wallet_handle,
                                           "{}", ignore_exception=False)
 
-        # 4. Create and "their_did" by default seed trustee.
-        self.steps.add_step("Create 'their_did' by default seed trustee")
+        # 4. Create and "their_did".
+        self.steps.add_step("Create 'their_did'")
         (their_did, _) = await  utils.perform(
             self.steps, signus.create_and_store_my_did, self.wallet_handle,
-            json.dumps({"seed": constant.seed_default_trustee}),
-            ignore_exception=False)
+            '{}', ignore_exception=False)
 
         # 5. Store 'their_did'.
         self.steps.add_step("Store 'their_did")
@@ -55,8 +54,9 @@ class TestCreatePairwiseWithMetadata(PairwiseTestBase):
         # 8. Verify 'pairwise_with_metadata'.
         self.steps.add_step("Verify 'pairwise_with_metadata'")
         utils.check(self.steps, error_message="Gotten pairwise mismatches",
-                    condition=lambda: json.loads(pairwise_with_metadata) == {
-                        "my_did": my_did, "metadata": metadata})
+                    condition=lambda:
+                    json.loads(pairwise_with_metadata) ==
+                    {"my_did": my_did, "metadata": metadata})
 
 
 if __name__ == "__main__":
