@@ -95,13 +95,10 @@ class TestScenarioBase:
             utils.print_error("\n{}\n".format(constant.ERR_TIME_LIMITATION))
             self.steps.get_last_step().set_status(Status.FAILED,
                                                   constant.ERR_TIME_LIMITATION)
-#             self.steps.get_last_step().set_message(
-#                 constant.ERR_TIME_LIMITATION)
         except Exception as e:
             message = constant.EXCEPTION.format(str(e))
             utils.print_error("\n{}\n".format(message))
             self.steps.get_last_step().set_status(Status.FAILED, message)
-#             self.steps.get_last_step().set_message(message)
         finally:
             try:
                 utils.run_async_method(self.execute_postcondition_steps)
