@@ -81,9 +81,6 @@ class TestScenarioBase:
             "\nTest case: {} ----> started\n".format(self.test_name),
             constant.Color.BOLD)
 
-        # Create new event loop for this test scenario.
-#         asyncio.set_event_loop(asyncio.new_event_loop())
-
         begin_time = time.time()
         if time_out:
             self.time_out = time_out
@@ -109,7 +106,6 @@ class TestScenarioBase:
             utils.make_final_result(self.test_result,
                                     self.steps.get_list_step(),
                                     begin_time, self.logger)
-#             asyncio.get_event_loop().close()
 
             utils.print_with_color(
                 "Test case: {} ----> finished\n".format(self.test_name),
