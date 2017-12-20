@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9674405d-1f2a-44ac-b3b3-2fb8beed3a3a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_fails_with_invalid_wallet_handle.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_no_results.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_parse_msg_works_for_anonymous_message.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_parse_msg_works_for_authenticated_message.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_anonymous_msg_works_for_created_key.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_msg_works_for_created_did.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_msg_works_for_created_did_as_cid.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_msg_works_for_created_key.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_test_base.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_master_secret_fails_with_invalid_wallet_handle.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_issuer_did.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_issuer_did.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reporter.py" afterPath="$PROJECT_DIR$/reporter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utilities/constant.py" afterPath="$PROJECT_DIR$/utilities/constant.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,33 +23,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="anoncreds_issuer_create_and_store_claim_def_works_with_valid_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_and_store_claim_def_works_with_valid_data.py">
+      <file leaf-file-name="agent_parse_msg_works_for_anonymous_message.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_parse_msg_works_for_anonymous_message.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="36" column="56" lean-forward="false" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="anoncreds_issuer_create_claim_fails_with_claim_mismatch_with_claim_req.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_claim_fails_with_claim_mismatch_with_claim_req.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="26" column="70" lean-forward="false" selection-start-line="24" selection-start-column="46" selection-end-line="26" selection-end-column="70" />
+            <state relative-caret-position="204">
+              <caret line="12" column="39" lean-forward="true" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
               <folding>
-                <element signature="e#54#65#0" expanded="true" />
+                <element signature="e#55#85#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anoncreds_prover_get_claim_offers_works_for_no_results.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_no_results.py">
+      <file leaf-file-name="check_pairwise_exists_works_with_not_existing_pairwise.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/check_pairwise_exists_works_with_not_existing_pairwise.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
               <folding>
                 <element signature="e#55#66#0" expanded="true" />
               </folding>
@@ -51,79 +47,94 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anoncreds_issuer_create_claim_with_valid_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_claim_with_valid_data.py">
+      <file leaf-file-name="create_pairwise_with_metadata.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/create_pairwise_with_metadata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="60" column="33" lean-forward="false" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+            <state relative-caret-position="17">
+              <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
               <folding>
-                <element signature="e#54#65#0" expanded="true" />
+                <element signature="e#55#66#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anoncreds_prover_get_claim_offers_fails_with_invalid_wallet_handle.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_fails_with_invalid_wallet_handle.py">
+      <file leaf-file-name="pairwise_test_base.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_test_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="23" column="46" lean-forward="false" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+            <state relative-caret-position="17">
+              <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
               <folding>
-                <element signature="e#55#81#0" expanded="true" />
+                <element signature="e#102#130#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anoncreds_prover_get_claim_offers_works_for_filter_by_issuer_did.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_issuer_did.py">
+      <file leaf-file-name="agent_test_base.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_test_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
-              <caret line="71" column="65" lean-forward="false" selection-start-line="71" selection-start-column="65" selection-end-line="71" selection-end-column="65" />
+            <state relative-caret-position="170">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constant.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utilities/constant.py">
+      <file leaf-file-name="create_pairwise_without_metadata.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/create_pairwise_without_metadata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+            <state relative-caret-position="17">
+              <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
               <folding>
-                <element signature="e#122#131#0" expanded="true" />
-                <marker date="1513670040586" expanded="true" signature="3766:3828" ph="'...'" />
+                <element signature="e#55#66#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anoncreds_prover_get_claim_offers_works_for_filter_by_schema_no_and_issuer_did.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_schema_no_and_issuer_did.py">
+      <file leaf-file-name="check_pairwise_exists_works_with_existing_pairwise.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/check_pairwise_exists_works_with_existing_pairwise.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+              <folding>
+                <element signature="e#55#66#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pairwise.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/indy/pairwise.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anoncreds_prover_get_claim_offers_works_for_filter_by_schema_no.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_schema_no.py">
+      <file leaf-file-name="agent_prep_anonymous_msg_works_for_created_key.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_anonymous_msg_works_for_created_key.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
-              <caret line="71" column="70" lean-forward="false" selection-start-line="71" selection-start-column="70" selection-end-line="71" selection-end-column="70" />
-              <folding />
+            <state relative-caret-position="85">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding>
+                <element signature="e#55#85#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anoncreds_issuer_create_and_store_claim_def_fails_with_invalid_wallet_handle.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_and_store_claim_def_fails_with_invalid_wallet_handle.py">
+      <file leaf-file-name="agent_parse_msg_works_for_authenticated_message.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_parse_msg_works_for_authenticated_message.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-              <folding />
+            <state relative-caret-position="221">
+              <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+              <folding>
+                <element signature="e#55#85#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -142,9 +153,11 @@
       <find>Common.</find>
       <find>(optional)</find>
       <find>code</find>
+      <find>libraries</find>
     </findStrings>
     <replaceStrings>
       <replace>result</replace>
+      <replace>utilities</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -153,21 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_encrypt_works_with_pk_cached_in_wallet.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_fails_for_unknown_signer.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_works_for_invalid_wallet_handle.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_works_for_valid_data.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_did.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_json.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_wallet_handle.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_only_verkey.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did_and_verkey.py" />
-        <option value="$PROJECT_DIR$/test_runner.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_after_reopen_pool.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_fails_with_closed_pool.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py" />
@@ -203,7 +201,22 @@
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_fails_with_invalid_wallet_handle.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_no_results.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_issuer_did.py" />
+        <option value="$PROJECT_DIR$/reporter.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_master_secret_fails_with_invalid_wallet_handle.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/test.py" />
         <option value="$PROJECT_DIR$/utilities/constant.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_parse_msg_works_for_anonymous_message.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_parse_msg_works_for_authenticated_message.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_anonymous_msg_works_for_created_key.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_msg_works_for_created_did_as_cid.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_msg_works_for_created_did.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_msg_works_for_created_key.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/check_pairwise_exists_works_with_existing_pairwise.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/check_pairwise_exists_works_with_not_existing_pairwise.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/create_pairwise_with_metadata.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/create_pairwise_without_metadata.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_test_base.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_test_base.py" />
       </list>
     </option>
   </component>
@@ -228,8 +241,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -267,27 +278,6 @@
               <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
               <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
               <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="crypto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
-              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="ledger" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
-              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="misc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
-              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
               <item name="pairwise" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -300,31 +290,24 @@
             <path>
               <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
               <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
-              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="signus" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
-              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="wallet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
               <item name="utilities" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="ToolWindowStructure.ShowToolbar" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Git\Automation-Tests\test_scripts\functional_tests\agent" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -353,18 +336,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46925566" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="8" y="30" width="624" height="946" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47653723" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="8" y="30" width="624" height="946" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995495" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24971098" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -385,131 +367,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_only_verkey.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="24" lean-forward="true" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_wallet_handle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_works_for_invalid_wallet_handle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_sign_works_for_valid_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_did.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_fails_with_invalid_json.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_output/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_get_nym_request.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/close_pool_ledger_with_valid_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="5" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_and_submit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_sign_request.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/constant.py" />
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_attrib_request.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/create_pool_ledger_config_fails_with_empty_name.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_crypto_type.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/result.py" />
-    <entry file="file://$PROJECT_DIR$/libraries/logger.py" />
-    <entry file="file://$PROJECT_DIR$/libraries/step.py" />
-    <entry file="file://$PROJECT_DIR$/test_runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="103" column="0" lean-forward="true" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reporter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="19" column="7" lean-forward="false" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/pool_test_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_test_base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -517,35 +374,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_test_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libraries/utils.py" />
     <entry file="file://$PROJECT_DIR$/libraries/common.py" />
     <entry file="file://$PROJECT_DIR$/libraries/test_scenario_base.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/indy/anoncreds.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="102" column="10" lean-forward="false" selection-start-line="102" selection-start-column="10" selection-end-line="102" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/ledger/ledger_build_nym_request.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1224">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -572,24 +406,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_master_secret_works_with_valid_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_claim_fails_with_invalid_wallet_handle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
           <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_store_claim_offer_works_with_valid_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -600,26 +420,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_store_claim_offer_fails_with_invalid_wallet_handle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="43" column="50" lean-forward="false" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_store_claim_offer_fails_with_invalid_json.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utilities/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3706">
           <caret line="222" column="39" lean-forward="false" selection-start-line="222" selection-start-column="39" selection-end-line="222" selection-end-column="39" />
           <folding>
-            <element signature="e#122#131#0" expanded="true" />
+            <element signature="e#122#131#0" expanded="false" />
             <marker date="1513669585231" expanded="true" signature="1072:1219" ph="..." />
             <marker date="1513669585231" expanded="true" signature="1077:1219" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
             <marker date="1513669585231" expanded="true" signature="7180:7260" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
@@ -635,29 +441,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_and_store_claim_def_works_with_valid_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="36" column="56" lean-forward="false" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_claim_fails_with_claim_mismatch_with_claim_req.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="26" column="70" lean-forward="false" selection-start-line="24" selection-start-column="46" selection-end-line="26" selection-end-column="70" />
           <folding>
-            <element signature="e#54#65#0" expanded="true" />
+            <element signature="e#54#65#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_schema_no.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="71" column="70" lean-forward="false" selection-start-line="71" selection-start-column="70" selection-end-line="71" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -677,13 +467,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_store_claim_offer_works_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_store_claim_offer_fails_with_invalid_wallet_handle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="43" column="50" lean-forward="false" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_store_claim_offer_fails_with_invalid_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/-2110551528/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62050">
+          <caret line="3650" column="8" lean-forward="false" selection-start-line="3650" selection-start-column="8" selection-end-line="3650" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reporter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4471">
+          <caret line="271" column="39" lean-forward="false" selection-start-line="271" selection-start-column="39" selection-end-line="271" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_crypto_type.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="29" column="12" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_and_store_claim_def_fails_with_invalid_wallet_handle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_fails_with_invalid_wallet_handle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="23" column="46" lean-forward="false" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
           <folding>
-            <element signature="e#55#81#0" expanded="true" />
+            <element signature="e#55#81#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_schema_no.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="71" column="70" lean-forward="false" selection-start-line="71" selection-start-column="70" selection-end-line="71" selection-end-column="70" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -692,36 +546,250 @@
         <state relative-caret-position="136">
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="e#55#66#0" expanded="true" />
+            <element signature="e#55#66#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/constant.py">
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_master_secret_works_with_valid_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
-          <folding>
-            <element signature="e#122#131#0" expanded="true" />
-            <marker date="1513670040586" expanded="true" signature="3766:3828" ph="'...'" />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="19" column="37" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_and_store_claim_def_works_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="36" column="56" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/indy/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_claim_with_valid_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="60" column="33" lean-forward="false" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+        <state relative-caret-position="670">
+          <caret line="61" column="58" lean-forward="false" selection-start-line="61" selection-start-column="58" selection-end-line="61" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_store_their_did_works_with_valid_did_and_verkey.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/indy/anoncreds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
           <folding>
-            <element signature="e#54#65#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_and_store_claim_def_fails_with_invalid_wallet_handle.py">
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_master_secret_fails_with_invalid_wallet_handle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
+        <state relative-caret-position="102">
+          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_test_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/indy/error.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="45" column="4" lean-forward="false" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pool/delete_pool_ledger_config_fails_with_opened_pool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="30" column="49" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/indy/agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="49" column="10" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilities/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilities/constant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="44" column="26" lean-forward="false" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+          <folding>
+            <element signature="e#122#131#0" expanded="true" />
+            <marker date="1513743811742" expanded="true" signature="3833:3895" ph="'...'" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_msg_works_for_created_did_as_cid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+          <folding>
+            <element signature="e#55#66#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_msg_works_for_created_key.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          <folding>
+            <element signature="e#55#85#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_msg_works_for_created_did.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding>
+            <element signature="e#55#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_prep_anonymous_msg_works_for_created_key.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#55#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_parse_msg_works_for_authenticated_message.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+          <folding>
+            <element signature="e#55#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_parse_msg_works_for_anonymous_message.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="39" lean-forward="true" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+          <folding>
+            <element signature="e#55#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/indy/pairwise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/check_pairwise_exists_works_with_existing_pairwise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/check_pairwise_exists_works_with_not_existing_pairwise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/create_pairwise_with_metadata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/create_pairwise_without_metadata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_test_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding>
+            <element signature="e#102#130#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/agent/agent_test_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
