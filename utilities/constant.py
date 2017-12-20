@@ -12,7 +12,7 @@ from enum import Enum
 
 
 user_home = os.path.expanduser('~') + os.sep
-work_dir = user_home + ".indy"
+work_dir = user_home + ".indy_client"
 seed_default_trustee = "000000000000000000000000Trustee1"
 seed_default_steward = "000000000000000000000000Steward1"
 
@@ -33,6 +33,7 @@ gvt_schema = {
         "data": {
             "name": "gvt",
             "version": "1.0",
+            "attr_names": ["age", "sex", "height", "name"],
             "keys": ["age", "sex", "height", "name"]
         }
     }
@@ -40,7 +41,7 @@ gvt_schema = {
 gvt_claim = {
         "sex": ["male", str(int(hashlib.md5("male".encode()).
                                 hexdigest(), 16))],
-        "name": ["Alex", str(int(hashlib.md5("alex".encode()).
+        "name": ["Alex", str(int(hashlib.md5("Alex".encode()).
                                  hexdigest(), 16))],
         "height": ["175", str(int(hashlib.md5("175".encode()).
                                   hexdigest(), 16))],
