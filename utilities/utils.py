@@ -232,6 +232,15 @@ def print_ok_blue(message: str):
     print_with_color(message, constant.Color.OKBLUE)
 
 
+def print_test_result(test_name, test_status):
+    if test_status == Status.PASSED:
+        print_with_color("Test case: {} ----> {}\n".
+                         format(test_name, "PASSED"),
+                         constant.Color.OKGREEN)
+    else:
+        print_error("Test case: {} ----> {}\n".format(test_name, "FAILED"))
+
+
 def check(steps: Steps, error_message: str, condition) -> bool:
     """
     Check if the condition are return True.

@@ -106,10 +106,8 @@ class TestScenarioBase:
             utils.make_final_result(self.test_result,
                                     self.steps.get_list_step(),
                                     begin_time, self.logger)
-
-            utils.print_with_color(
-                "Test case: {} ----> finished\n".format(self.test_name),
-                constant.Color.BOLD)
+            test_result_status = self.test_result.get_test_status()
+            utils.print_test_result(self.test_name, test_result_status)
 
     async def __execute_precondition_and_steps(self):
         """
