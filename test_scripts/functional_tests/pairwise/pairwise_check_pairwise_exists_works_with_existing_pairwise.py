@@ -6,7 +6,7 @@ Created on Dec 20, 2017
 
 import json
 from indy import signus, pairwise
-from utilities import utils, common, constant
+from utilities import utils, common
 from test_scripts.functional_tests.pairwise.pairwise_test_base \
     import PairwiseTestBase
 

@@ -103,6 +103,10 @@ submit_response = '{{"result": {{ "reqId": {:d}, ' \
                   '"data": "{}","type": "{}" }}, "op": "{}"}}'
 claim_response = '{{"identifier":"{}","operation":{{"ref":1,"data":{},' \
                      '"type":"{}","signature_type":"{}"}}}}'
+
+get_claim_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
+                '"ref":{},"signature_type":"{}","origin":"{}"}}}}'
+
 get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",'\
                       ' "dest":"{}","raw":{}}}}}'
 
