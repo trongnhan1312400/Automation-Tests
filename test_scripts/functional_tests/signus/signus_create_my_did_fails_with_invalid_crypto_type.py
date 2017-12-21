@@ -8,8 +8,7 @@ import json
 
 from indy import signus
 from indy.error import ErrorCode
-from utilities import utils
-from utilities import common, constant
+from utilities import common, constant, utils
 from test_scripts.functional_tests.signus.signus_test_base \
     import SignusTestBase
 

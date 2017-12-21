@@ -1,10 +1,8 @@
 """
-Created on Dec 12, 2017
+Created on Dec 21, 2017
 
 @author: nhan.nguyen
 """
-
-import base58
 
 from indy import signus
 from utilities import utils, common
@@ -12,7 +10,7 @@ from test_scripts.functional_tests.signus.signus_test_base\
     import SignusTestBase
 
 
-class TestCreateDidWithEmptyJson(SignusTestBase):
+class TestKeyForDidWithMyDid(SignusTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -27,16 +25,17 @@ class TestCreateDidWithEmptyJson(SignusTestBase):
             utils.perform(self.steps, signus.create_and_store_my_did,
                           self.wallet_handle, "{}")
 
-        # 4. Check created did.
-        self.steps.add_step("Check created did")
-        utils.check(self.steps, error_message="Created did is invalid",
-                    condition=lambda: len(base58.b58decode(my_did)) == 16)
+        # 4. Get verkey of 'my_did' from wallet.
+        self.steps.add_step("Get local verkey of 'my_did' from wallet")
+        returned_verkey = await utils.perform(self.steps, signus.key_for_did,
+                                              -1, self.wallet_handle, my_did)
 
-        # 5. Check created verkey.
-        self.steps.add_step("Check created verkey")
-        utils.check(self.steps, error_message="Created verkey is invalid",
-                    condition=lambda: len(base58.b58decode(my_verkey)) == 32)
+        # 5. Check returned verkey.
+        self.steps.add_step("Check returned verkey")
+        error_msg = "Returned verkey mismatch with 'my_verkey'"
+        utils.check(self.steps, error_message=error_msg,
+                    condition=lambda: returned_verkey == my_verkey)
 
 
 if __name__ == "__main__":
-    TestCreateDidWithEmptyJson().execute_scenario()
+    TestKeyForDidWithMyDid().execute_scenario()

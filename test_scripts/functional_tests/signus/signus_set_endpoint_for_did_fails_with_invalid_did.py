@@ -1,19 +1,17 @@
 """
-Created on Dec 13, 2017
+Created on Dec 12, 2017
 
 @author: nhan.nguyen
 """
 
-import json
-
 from indy import signus
 from indy.error import ErrorCode
-from utilities import common, utils
+from utilities import utils, common, constant
 from test_scripts.functional_tests.signus.signus_test_base \
     import SignusTestBase
 
 
-class TestCreateDidWithInvalidSeed(SignusTestBase):
+class TestSetEndPointForDidInWalletWithInvalidDid(SignusTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -22,17 +20,19 @@ class TestCreateDidWithInvalidSeed(SignusTestBase):
                                                     self.wallet_name,
                                                     self.pool_name)
 
-        # 3. Create did and verify that cannot create did with invalid seed.
-        self.steps.add_step("Create did and verify that "
-                            "cannot create did with invalid seed")
-        invalid_seed_json = json.dumps({"seed": "invalidSeed"})
+        # 3. Set endpoint with invalid did and
+        # verify that endpoint cannot be set.
+        self.steps.add_step("Set endpoint with invalid did and "
+                            "verify that endpoint cannot be set")
         error_code = ErrorCode.CommonInvalidStructure
         await utils.perform_with_expected_code(self.steps,
-                                               signus.create_and_store_my_did,
+                                               signus.set_endpoint_for_did,
                                                self.wallet_handle,
-                                               invalid_seed_json,
+                                               "invalidDid",
+                                               constant.endpoint,
+                                               constant.verkey_my1,
                                                expected_code=error_code)
 
 
 if __name__ == "__main__":
-    TestCreateDidWithInvalidSeed().execute_scenario()
+    TestSetEndPointForDidInWalletWithInvalidDid().execute_scenario()

@@ -83,7 +83,7 @@ class TestRunner:
         """
         if not self.__args.report:
             return
-        cmd = "{} {}".format("python3.6", TestRunner.__reporter_dir)
+        cmd = "{} {}".format("python3", TestRunner.__reporter_dir)
         subprocess.call(cmd, shell=True)
 
     def __execute_test_scenario(self, test_scenario):
@@ -94,7 +94,7 @@ class TestRunner:
         if not test_scenario:
             return
         self.__current_scenario = test_scenario()
-        process = multiprocessing.\
+        process = multiprocessing. \
             Process(target=self.__current_scenario.execute_scenario,
                     kwargs={"time_out": self.__args.timeout})
         self.__test_process = process
@@ -110,7 +110,7 @@ class TestRunner:
         # If both directory and recur_directory are exist
         # then show "Invalid command" and exit.
         if self.__args.directory is not "" \
-           and self.__args.recur_directory is not "":
+                and self.__args.recur_directory is not "":
             utils.print_error("\n{}\n".format(constant.ERR_COMMAND_ERROR))
             exit(1)
         recursive = False
@@ -132,17 +132,19 @@ class TestRunner:
             exit(1)
 
         list_files = []
-
-        try:
-            if recursive:
-                for directory, _, _ in os.walk(start_directory):
-                    list_files.extend(glob.glob(os.path.join(directory,
+        if start_directory.endswith(".py"):
+            list_files = [start_directory]
+        else:
+            try:
+                if recursive:
+                    for directory, _, _ in os.walk(start_directory):
+                        list_files.extend(glob.glob(os.path.join(directory,
+                                                                 "*.py")))
+                else:
+                    list_files.extend(glob.glob(os.path.join(start_directory,
                                                              "*.py")))
-            else:
-                list_files.extend(glob.glob(os.path.join(start_directory,
-                                                         "*.py")))
-        except OSError:
-            pass
+            except OSError:
+                pass
 
         list_test_scenarios = []
         for file in list_files:
