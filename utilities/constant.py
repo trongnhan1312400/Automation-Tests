@@ -15,6 +15,7 @@ user_home = os.path.expanduser('~') + os.sep
 work_dir = user_home + ".indy_client"
 seed_default_trustee = "000000000000000000000000Trustee1"
 seed_default_steward = "000000000000000000000000Steward1"
+endpoint = "127.0.0.0:9700"
 
 # Information for seed_my2 = "00000000000000000000000000000My1"
 seed_my1 = "00000000000000000000000000000My1"
