@@ -15,6 +15,10 @@ user_home = os.path.expanduser('~') + os.sep
 work_dir = user_home + ".indy_client"
 seed_default_trustee = "000000000000000000000000Trustee1"
 seed_default_steward = "000000000000000000000000Steward1"
+endpoint = "127.0.0.0:9700"
+decoded_verkey_length = 32
+decoded_did_length = 16
+crypto_type = "ed25519"
 
 # Information for seed_my2 = "00000000000000000000000000000My1"
 seed_my1 = "00000000000000000000000000000My1"
@@ -103,6 +107,10 @@ submit_response = '{{"result": {{ "reqId": {:d}, ' \
                   '"data": "{}","type": "{}" }}, "op": "{}"}}'
 claim_response = '{{"identifier":"{}","operation":{{"ref":1,"data":{},' \
                      '"type":"{}","signature_type":"{}"}}}}'
+
+get_claim_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
+                '"ref":{},"signature_type":"{}","origin":"{}"}}}}'
+
 get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",'\
                       ' "dest":"{}","raw":{}}}}}'
 
