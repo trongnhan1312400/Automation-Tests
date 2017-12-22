@@ -91,7 +91,7 @@ async def perform_with_expected_code(steps, func, *args, expected_code=0):
 
     :param steps: list of test steps.
     :param func: executed function.
-    :param agrs: arguments of "func".
+    :param args: arguments of "func".
     :param expected_code: (optional) the error code that you expect
                           in IndyError.
     :return: exception if the "func" raise it without "expected_code".
@@ -254,16 +254,11 @@ def check(steps: Steps, error_message: str, condition) -> bool:
     if steps:
         step = steps.get_last_step()
         if not callable(condition):
-            step.set_status(Status.FAILED)
-            step.set_message("The 'condition' argument "
+            raise ValueError("The 'condition' argument "
                              "must be a callable object")
         else:
             if not condition():
-                step.set_status(Status.FAILED)
-                if error_message:
-                    temp_message = (step.get_message + "\n") \
-                        if step.get_message() else ""
-                    step.set_message(temp_message + error_message)
+                raise ValueError(error_message)
             else:
                 step.set_status(Status.PASSED)
                 return True

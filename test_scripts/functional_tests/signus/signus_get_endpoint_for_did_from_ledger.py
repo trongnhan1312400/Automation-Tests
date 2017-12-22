@@ -1,5 +1,5 @@
 """
-Created on Dec 12, 2017
+Created on Dec 21, 2017
 
 @author: nhan.nguyen
 """
@@ -8,19 +8,10 @@ import json
 
 from indy import signus, ledger
 from utilities import utils, common, constant
-from test_scripts.functional_tests.signus.signus_test_base \
-    import SignusTestBase
+from utilities.test_scenario_base import TestScenarioBase
 
 
-class TestGetEndPointForDidFromLedger(SignusTestBase):
-    async def execute_precondition_steps(self):
-        await super().execute_precondition_steps()
-        common.delete_pool_folder(self.pool_name)
-
-    async def execute_postcondition_steps(self):
-        await super().execute_postcondition_steps()
-        await common.close_and_delete_pool(self.pool_name, self.pool_handle)
-
+class TestGetEndPointForDidFromLedger(TestScenarioBase):
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         # 2. Open pool ledger
@@ -35,7 +26,7 @@ class TestGetEndPointForDidFromLedger(SignusTestBase):
                                                     self.pool_name)
 
         # 5. Create did and verkey with default trustee seed.
-        self.steps.add_step("Create did and verkey with empty json")
+        self.steps.add_step("Create did and verkey with default trustee seed")
         (my_did, my_verkey) = await \
             utils.perform(self.steps, signus.create_and_store_my_did,
                           self.wallet_handle,
@@ -71,7 +62,7 @@ class TestGetEndPointForDidFromLedger(SignusTestBase):
         error_msg = "Returned endpoint mismatches with endpoint that is set"
         utils.check(self.steps, error_message=error_msg,
                     condition=lambda: returned_endpoint ==
-                    ep_json['endpoint']['ha'])
+                                      ep_json['endpoint']['ha'])
 
 
 if __name__ == "__main__":

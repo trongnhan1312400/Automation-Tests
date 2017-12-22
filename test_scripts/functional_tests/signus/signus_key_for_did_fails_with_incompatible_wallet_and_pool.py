@@ -7,19 +7,10 @@ Created on Dec 21, 2017
 from indy import signus
 from indy.error import ErrorCode
 from utilities import utils, common, constant
-from test_scripts.functional_tests.signus.signus_test_base\
-    import SignusTestBase
+from utilities.test_scenario_base import TestScenarioBase
 
 
-class TestKeyForDidWithIncompatiblePoolAndWallet(SignusTestBase):
-    async def execute_precondition_steps(self):
-        await super().execute_precondition_steps()
-        common.delete_pool_folder(self.pool_name)
-
-    async def execute_postcondition_steps(self):
-        await super().execute_postcondition_steps()
-        await common.close_and_delete_pool(self.pool_name, self.pool_handle)
-
+class TestKeyForDidWithIncompatiblePoolAndWallet(TestScenarioBase):
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         # 2. Open pool ledger.
