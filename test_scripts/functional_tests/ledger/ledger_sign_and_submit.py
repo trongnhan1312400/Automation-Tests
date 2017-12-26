@@ -44,7 +44,7 @@ class SignAndSubmitRequest(TestScenarioBase):
                       self.wallet_handle, submitter_did, target_did, None,
                       None, None)
 
-        # 5. build nym request
+        # 5. build get nym request
         # 6. submit request
         self.steps.add_step("Prepare and send GET_NYM request")
         get_nym_req = await perform(self.steps, ledger.build_get_nym_request,

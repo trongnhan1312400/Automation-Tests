@@ -53,8 +53,8 @@ class GetAttribRequest(TestScenarioBase):
                                 self.steps, ledger.build_get_attrib_request,
                                 submitter_did, submitter_did, raw_name))
 
-        # 6. Verify json get schema request is correct.
-        self.steps.add_step("Verify json get schema request is correct.")
+        # 6. Verify json get attrib request is correct.
+        self.steps.add_step("Verify json get attrib request is correct.")
         expected_response = json.loads(
             get_attrib_response.format(submitter_did, "104",
                                        submitter_did, json.dumps(raw_name)))
