@@ -39,7 +39,7 @@ class Logger:
                                                     current_time)
 
         self.__log_file = open(self.__log_file_path, "w+t")
-        Logger.__redirect_stdout_stderr(self.__log_file)
+        Logger.redirect_stdout_stderr(self.__log_file)
 
     def save_log(self, test_status: str = Status.FAILED):
         """
@@ -50,7 +50,7 @@ class Logger:
 
         :param test_status: Passed of Failed.
         """
-        Logger.__restore_stdout_stderr()
+        Logger.restore_stdout_stderr()
 
         self.__log_file.seek(0)
         content = self.__log_file.read()
@@ -66,7 +66,7 @@ class Logger:
                                 format(self.__log_file_path))
 
     @staticmethod
-    def __redirect_stdout_stderr(file):
+    def redirect_stdout_stderr(file):
         """
         Redirect sys.stdout and sys.stderr to file.
         :param file: file that stdout and stderr is redirected to.
@@ -77,17 +77,15 @@ class Logger:
         os.dup2(file.fileno(), Logger.__stdout_fd)
 
     @staticmethod
-    def __restore_stdout_stderr():
+    def restore_stdout_stderr():
         """
         Restore sys.stdout and sys.stderr to default.
         """
         os.dup2(Logger.__saved_stdout_fd, Logger.__stdout_fd)
         os.close(Logger.__saved_stdout_fd)
-        sys.stdout = Logger.__old_stdout
 
         os.dup2(Logger.__saved_stderr_fd, Logger.__stderr_fd)
         os.close(Logger.__saved_stderr_fd)
-        sys.stderr = Logger.__old_stderr
 
     @staticmethod
     def __init_log_folder():

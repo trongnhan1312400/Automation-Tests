@@ -1,17 +1,18 @@
 """
-Created on Dec 20, 2017
+Created on Dec 26, 2017
 
 @author: nhan.nguyen
 """
 
 import json
 from indy import signus, pairwise
+from indy.error import ErrorCode
 from utilities import utils, common
 from test_scripts.functional_tests.pairwise.pairwise_test_base \
     import PairwiseTestBase
 
 
-class TestCreatePairwiseWithMetadata(PairwiseTestBase):
+class TestGetPairwiseWithInvalidWalletHandle(PairwiseTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -36,29 +37,22 @@ class TestCreatePairwiseWithMetadata(PairwiseTestBase):
                             self.wallet_handle,
                             json.dumps({"did": their_did}))
 
-        # 6. Create pairwise with metadata and
-        # verify that there is no exception raised.
-        self.steps.add_step("Create pairwise with metadata and "
-                            "verify that there is no exception raised")
-        metadata = "Test pairwise"
+        # 6. Create pairwise without metadata.
+        self.steps.add_step("Create pairwise without metadata")
         await utils.perform(self.steps, pairwise.create_pairwise,
-                            self.wallet_handle, their_did, my_did, metadata,
-                            ignore_exception=False)
+                            self.wallet_handle, their_did, my_did, None)
 
-        # 7 Get created pairwise.
-        self.steps.add_step("Get created pairwise")
-        pairwise_with_metadata = await utils.perform(self.steps,
-                                                     pairwise.get_pairwise,
-                                                     self.wallet_handle,
-                                                     their_did)
-
-        # 8. Verify 'pairwise_with_metadata'.
-        self.steps.add_step("Verify 'pairwise_with_metadata'")
-        expected_pairwise = utils.create_gotten_pairwise_json(my_did, metadata)
-        utils.check(self.steps, error_message="Gotten pairwise mismatches",
-                    condition=lambda: json.loads(pairwise_with_metadata) ==
-                    expected_pairwise)
+        # 7. Get pairwise with invalid wallet handle and
+        # verify that pairwise cannot be gotten.
+        self.steps.add_step("Get pairwise with invalid wallet handle and "
+                            "verify that pairwise cannot be gotten")
+        error_code = ErrorCode.WalletInvalidHandle
+        await utils.perform_with_expected_code(self.steps,
+                                               pairwise.get_pairwise,
+                                               self.wallet_handle + 1,
+                                               their_did,
+                                               expected_code=error_code)
 
 
 if __name__ == "__main__":
-    TestCreatePairwiseWithMetadata().execute_scenario()
+    TestGetPairwiseWithInvalidWalletHandle().execute_scenario()

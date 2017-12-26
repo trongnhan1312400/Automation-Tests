@@ -1,5 +1,5 @@
 """
-Created on Dec 20, 2017
+Created on Dec 26, 2017
 
 @author: nhan.nguyen
 """
@@ -11,7 +11,7 @@ from test_scripts.functional_tests.pairwise.pairwise_test_base \
     import PairwiseTestBase
 
 
-class TestSetPairwiseMetadata(PairwiseTestBase):
+class TestResetPairwiseMetadata(PairwiseTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -39,46 +39,56 @@ class TestSetPairwiseMetadata(PairwiseTestBase):
 
         # 6. Create pairwise.
         self.steps.add_step("Create pairwise between 'my_did' and 'their_did'")
-        await utils.perform(self.steps, pairwise.create_pairwise,
-                            self.wallet_handle, their_did, my_did, None)
-
-        # 7. Get created pairwise without metadata.
-        self.steps.add_step("Get created pairwise without metadata")
-        pairwise_without_metadata = await utils.perform(self.steps,
-                                                        pairwise.get_pairwise,
-                                                        self.wallet_handle,
-                                                        their_did)
-
-        # 8. Set metadata for pairwise.
-        self.steps.add_step("Set metadata for pairwise")
         metadata = "Test pairwise"
-        await utils.perform(self.steps, pairwise.set_pairwise_metadata,
-                            self.wallet_handle, their_did, metadata)
+        await utils.perform(self.steps, pairwise.create_pairwise,
+                            self.wallet_handle, their_did, my_did, metadata)
 
-        # 9. Get created pairwise with metadata.
-        self.steps.add_step("Get created pairwise with metadata")
+        # 7. Get created pairwise with metadata.
+        self.steps.add_step("Get created pairwise without metadata")
         pairwise_with_metadata = await utils.perform(self.steps,
                                                      pairwise.get_pairwise,
                                                      self.wallet_handle,
                                                      their_did)
 
-        # 10. Verify that pairwise before and after setting metadata are
-        # different from each other.
+        # 8. Verify that gotten pairwise contains metadata.
+        self.steps.add_step("Verify that gotten pairwise contains metadata")
+        error_msg = "Gotten pairwise mismatches"
+        expected_pairwise = utils.create_gotten_pairwise_json(my_did, metadata)
+        utils.check(self.steps, error_message=error_msg,
+                    condition=lambda: json.loads(pairwise_with_metadata) ==
+                    expected_pairwise)
+
+        # 9. Set metadata for pairwise to reset metadata.
+        self.steps.add_step("Set metadata for pairwise to reset metadata")
+        metadata = None
+        await utils.perform(self.steps, pairwise.set_pairwise_metadata,
+                            self.wallet_handle, their_did, metadata)
+
+        # 10. Get pairwise of which metadata is reset.
+        self.steps.add_step("Get pairwise of which metadata is reset")
+        pairwise_without_metadata = await utils.perform(self.steps,
+                                                        pairwise.get_pairwise,
+                                                        self.wallet_handle,
+                                                        their_did)
+
+        # 11. Verify that pairwise before and after
+        # setting metadata is different from each other.
         self.steps.add_step("Verify that pairwise before and after "
-                            "setting metadata are different from each other")
+                            "setting metadata is different from each other")
         error_msg = "Pairwise before and after setting " \
                     "metadata are equal each other"
         utils.check(self.steps, error_message=error_msg,
                     condition=lambda: pairwise_with_metadata !=
                     pairwise_without_metadata)
 
-        # 11. Verify the metadata is set successfully.
-        self.steps.add_step("Verify the metadata is set successfully")
-        error_msg = "Cannot set metadata for pairwise"
+        # 12. Verify the metadata is reset successfully.
+        self.steps.add_step("Verify the metadata is reset successfully")
+        error_msg = "Cannot reset metadata for pairwise"
+        expected_pairwise = utils.create_gotten_pairwise_json(my_did)
         utils.check(self.steps, error_message=error_msg,
-                    condition=lambda: json.loads(pairwise_with_metadata) ==
-                    {"my_did": my_did, "metadata": metadata})
+                    condition=lambda: json.loads(pairwise_without_metadata) ==
+                    expected_pairwise)
 
 
 if __name__ == "__main__":
-    TestSetPairwiseMetadata().execute_scenario()
+    TestResetPairwiseMetadata().execute_scenario()

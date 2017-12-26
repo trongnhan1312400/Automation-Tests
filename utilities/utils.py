@@ -50,6 +50,12 @@ def exit_if_exception(result):
 
 
 def compare_json(js1, js2):
+    """
+    Check whether js1 contain js2.
+    :param js1:
+    :param js2:
+    :return:
+    """
     return js1.items() <= js2.items()
 
 
@@ -266,7 +272,7 @@ def check(steps: Steps, error_message: str, condition) -> bool:
     return False
 
 
-def create_claim_offer(issuer_did: str, schema_seq: int):
+def create_claim_offer(issuer_did: str, schema_seq: int) -> dict:
     """
     Return a claim offer.
     :param issuer_did: create by signus.create_and_store_did.
@@ -274,3 +280,20 @@ def create_claim_offer(issuer_did: str, schema_seq: int):
     :return: claim offer.
     """
     return {"issuer_did": issuer_did, "schema_seq_no": schema_seq}
+
+
+def create_gotten_pairwise_json(my_did: str=None, metadata=None) -> dict:
+    """
+    Return a pairwise json that gotten from wallet.
+    :param my_did:
+    :param metadata:
+    :return: pairwise json.
+    """
+    result = {}
+    if my_did is not None:
+        result['my_did'] = my_did
+
+    if metadata is not None:
+        result['metadata'] = metadata
+
+    return result

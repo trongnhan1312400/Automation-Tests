@@ -20,24 +20,21 @@ class TestCheckPairwiseNotExist(PairwiseTestBase):
 
         # 3. Create and "their_did".
         self.steps.add_step("Create 'their_did'")
-        (their_did, _) = await  utils.perform(
-            self.steps, signus.create_and_store_my_did, self.wallet_handle,
-            '{}', ignore_exception=False)
+        (their_did, _) = await utils.perform(self.steps,
+                                             signus.create_and_store_my_did,
+                                             self.wallet_handle, '{}')
 
         # 4. Store 'their_did'.
         self.steps.add_step("Store 'their_did")
         await utils.perform(self.steps, signus.store_their_did,
-                            self.wallet_handle,
-                            json.dumps({"did": their_did}),
-                            ignore_exception=False)
+                            self.wallet_handle, json.dumps({"did": their_did}))
 
         # 5. Verify that 'is_pairwise_exists' return 'False'.
         self.steps.add_step("Verify that 'is_pairwise_exists' return 'False'")
         pairwise_exists = await utils.perform(self.steps,
                                               pairwise.is_pairwise_exists,
                                               self.wallet_handle,
-                                              their_did,
-                                              ignore_exception=False)
+                                              their_did)
         utils.check(self.steps,
                     error_message="'True' is returned instead of 'False'",
                     condition=lambda: pairwise_exists is False)
