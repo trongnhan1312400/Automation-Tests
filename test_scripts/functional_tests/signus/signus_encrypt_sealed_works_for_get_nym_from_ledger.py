@@ -1,5 +1,5 @@
 """
-Created on Dec 12, 2017
+Created on Dec 22, 2017
 
 @author: nhan.nguyen
 """
@@ -11,7 +11,7 @@ from utilities import utils, constant, common
 from utilities.test_scenario_base import TestScenarioBase
 
 
-class TestEncryptWithNymFromLedger(TestScenarioBase):
+class TestEncryptSealedWithNymFromLedger(TestScenarioBase):
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
         # 2. Open pool ledger.
@@ -51,12 +51,12 @@ class TestEncryptWithNymFromLedger(TestScenarioBase):
                             self.pool_handle, self.wallet_handle,
                             my_did, identity_request)
 
-        # 9. Encrypte message by 'signus.encrypt'
-        self.steps.add_step("Encrypte message by 'signus.encrypt'")
+        # 9. Encrypt message by 'signus.encrypt_sealed'
+        self.steps.add_step("Encrypt message by 'signus.encrypt_sealed'")
         message = "Test signus".encode("utf-8")
-        (encrypted_message, nonce) = await \
-            utils.perform(self.steps, signus.encrypt, self.wallet_handle,
-                          self.pool_handle, my_did, their_did, message)
+        (encrypted_message, nonce) = await utils.perform(
+            self.steps, signus.encrypt_sealed, self.wallet_handle,
+            self.pool_handle, their_did, message)
 
         # 10. Check returned nonce.
         self.steps.add_step("Check returned nonce")
@@ -70,6 +70,18 @@ class TestEncryptWithNymFromLedger(TestScenarioBase):
         utils.check(self.steps, error_message,
                     condition=lambda: isinstance(encrypted_message, bytes))
 
+        # 12. Decrypt message by 'signus.decrypt_sealed'.
+        self.steps.add_step("Decrypt message by 'signus.decrypt_sealed'")
+        decrypted_msg = await utils.perform(self.steps, signus.decrypt_sealed,
+                                            self.wallet_handle, their_did,
+                                            encrypted_message)
+
+        # 13. Check decrypted message.
+        self.steps.add_step("Check decrypted message")
+        error_msg = "Decrypted message is incorrect"
+        utils.check(self.steps, error_message=error_msg,
+                    condition=lambda: decrypted_msg == message)
+
 
 if __name__ == "__main__":
-    TestEncryptWithNymFromLedger().execute_scenario()
+    TestEncryptSealedWithNymFromLedger().execute_scenario()

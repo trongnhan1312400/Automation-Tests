@@ -1,17 +1,18 @@
 """
-Created on Dec 20, 2017
+Created on Dec 26, 2017
 
 @author: nhan.nguyen
 """
 
 import json
 from indy import signus, pairwise
+from indy.error import ErrorCode
 from utilities import utils, common
 from test_scripts.functional_tests.pairwise.pairwise_test_base \
     import PairwiseTestBase
 
 
-class TestCheckPairwiseExist(PairwiseTestBase):
+class TestSetPairwiseMetadataWithInvalidWalletHandle(PairwiseTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -28,29 +29,32 @@ class TestCheckPairwiseExist(PairwiseTestBase):
         self.steps.add_step("Create 'their_did'")
         (their_did, _) = await utils.perform(self.steps,
                                              signus.create_and_store_my_did,
-                                             self.wallet_handle, '{}')
+                                             self.wallet_handle, "{}")
 
         # 5. Store 'their_did'.
         self.steps.add_step("Store 'their_did")
         await utils.perform(self.steps, signus.store_their_did,
-                            self.wallet_handle, json.dumps({"did": their_did}))
+                            self.wallet_handle,
+                            json.dumps({"did": their_did}),
+                            ignore_exception=False)
 
         # 6. Create pairwise.
-        self.steps.add_step("Creare pairwise between 'my_did' and 'their_did'")
+        self.steps.add_step("Create pairwise between 'my_did' and 'their_did'")
         await utils.perform(self.steps, pairwise.create_pairwise,
                             self.wallet_handle, their_did, my_did, None)
 
-        # 7. Verify that 'is_pairwise_exists' return 'True'.
-        self.steps.add_step("Verify that 'is_pairwise_exists' return 'True'")
-        pairwise_exists = await utils.perform(self.steps,
-                                              pairwise.is_pairwise_exists,
-                                              self.wallet_handle,
-                                              their_did,
-                                              ignore_exception=False)
-        utils.check(self.steps,
-                    error_message="'False' is returned instead of 'True'",
-                    condition=lambda: pairwise_exists is True)
+        # 7. Set metadata for pairwise with invalid wallet handle and
+        # verify that metadata cannot be set.
+        self.steps.add_step("Set metadata for pairwise with invalid wallet "
+                            "handle and verify that metadata cannot be set")
+        metadata = "Test pairwise"
+        error_code = ErrorCode.WalletInvalidHandle
+        await utils.perform_with_expected_code(self.steps,
+                                               pairwise.set_pairwise_metadata,
+                                               self.wallet_handle + 1,
+                                               their_did, metadata,
+                                               expected_code=error_code)
 
 
 if __name__ == "__main__":
-    TestCheckPairwiseExist().execute_scenario()
+    TestSetPairwiseMetadataWithInvalidWalletHandle().execute_scenario()

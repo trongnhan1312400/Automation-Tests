@@ -32,12 +32,14 @@ class TestCreateDidWithValidSeed(SignusTestBase):
         # 4. Check created did.
         self.steps.add_step("Check created did")
         utils.check(self.steps, error_message="Created did is invalid",
-                    condition=lambda: len(base58.b58decode(my_did)) == 16)
+                    condition=lambda: len(base58.b58decode(my_did)) ==
+                    constant.decoded_did_length)
 
         # 5. Check created verkey.
         self.steps.add_step("Check created verkey")
         utils.check(self.steps, error_message="Created verkey is invalid",
-                    condition=lambda: len(base58.b58decode(my_verkey)) == 32)
+                    condition=lambda: len(base58.b58decode(my_verkey)) ==
+                    constant.decoded_verkey_length)
 
 
 if __name__ == "__main__":

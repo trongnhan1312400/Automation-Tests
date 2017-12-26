@@ -12,9 +12,6 @@ from test_scripts.functional_tests.signus.signus_test_base \
 
 
 class TestSignWithValidData(SignusTestBase):
-    def __init__(self):
-        super().__init__()
-
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.

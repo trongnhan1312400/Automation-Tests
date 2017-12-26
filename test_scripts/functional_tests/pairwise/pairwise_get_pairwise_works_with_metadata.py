@@ -1,5 +1,5 @@
 """
-Created on Dec 20, 2017
+Created on Dec 26, 2017
 
 @author: nhan.nguyen
 """
@@ -11,7 +11,7 @@ from test_scripts.functional_tests.pairwise.pairwise_test_base \
     import PairwiseTestBase
 
 
-class TestCreatePairwiseWithMetadata(PairwiseTestBase):
+class TestGetPairwiseWithMetadata(PairwiseTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -36,14 +36,11 @@ class TestCreatePairwiseWithMetadata(PairwiseTestBase):
                             self.wallet_handle,
                             json.dumps({"did": their_did}))
 
-        # 6. Create pairwise with metadata and
-        # verify that there is no exception raised.
-        self.steps.add_step("Create pairwise with metadata and "
-                            "verify that there is no exception raised")
+        # 6. Create pairwise with metadata.
+        self.steps.add_step("Create pairwise with metadata")
         metadata = "Test pairwise"
         await utils.perform(self.steps, pairwise.create_pairwise,
-                            self.wallet_handle, their_did, my_did, metadata,
-                            ignore_exception=False)
+                            self.wallet_handle, their_did, my_did, metadata)
 
         # 7 Get created pairwise.
         self.steps.add_step("Get created pairwise")
@@ -52,13 +49,13 @@ class TestCreatePairwiseWithMetadata(PairwiseTestBase):
                                                      self.wallet_handle,
                                                      their_did)
 
-        # 8. Verify 'pairwise_with_metadata'.
-        self.steps.add_step("Verify 'pairwise_with_metadata'")
-        expected_pairwise = utils.create_gotten_pairwise_json(my_did, metadata)
+        # 8. Check returned pairwise.
+        self.steps.add_step("Check returned pairwise")
         utils.check(self.steps, error_message="Gotten pairwise mismatches",
-                    condition=lambda: json.loads(pairwise_with_metadata) ==
-                    expected_pairwise)
+                    condition=lambda:
+                    json.loads(pairwise_with_metadata) ==
+                    {"my_did": my_did, "metadata": metadata})
 
 
 if __name__ == "__main__":
-    TestCreatePairwiseWithMetadata().execute_scenario()
+    TestGetPairwiseWithMetadata().execute_scenario()

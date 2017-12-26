@@ -24,7 +24,7 @@ class TestCreateDidWithValidCryptoType(SignusTestBase):
         # 3. Create did and verkey with valid crypto type.
         self.steps.add_step("Create did and verkey with valid crypto type")
         did_json = json.dumps({"seed": constant.seed_my1,
-                               "crypto_type": "ed25519"})
+                               "crypto_type": constant.crypto_type})
         (my_did, my_verkey) = await \
             utils.perform(self.steps, signus.create_and_store_my_did,
                           self.wallet_handle, did_json)

@@ -1,5 +1,5 @@
 """
-Created on Dec 20, 2017
+Created on Dec 26, 2017
 
 @author: nhan.nguyen
 """
@@ -11,7 +11,7 @@ from test_scripts.functional_tests.pairwise.pairwise_test_base \
     import PairwiseTestBase
 
 
-class TestCreatePairwiseWithMetadata(PairwiseTestBase):
+class TestGetPairwiseWithoutMetadata(PairwiseTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -36,29 +36,25 @@ class TestCreatePairwiseWithMetadata(PairwiseTestBase):
                             self.wallet_handle,
                             json.dumps({"did": their_did}))
 
-        # 6. Create pairwise with metadata and
-        # verify that there is no exception raised.
-        self.steps.add_step("Create pairwise with metadata and "
-                            "verify that there is no exception raised")
-        metadata = "Test pairwise"
+        # 6. Create pairwise without metadata.
+        self.steps.add_step("Create pairwise without metadata")
         await utils.perform(self.steps, pairwise.create_pairwise,
-                            self.wallet_handle, their_did, my_did, metadata,
-                            ignore_exception=False)
+                            self.wallet_handle, their_did, my_did, None)
 
-        # 7 Get created pairwise.
+        # 7. Get created pairwise.
         self.steps.add_step("Get created pairwise")
-        pairwise_with_metadata = await utils.perform(self.steps,
-                                                     pairwise.get_pairwise,
-                                                     self.wallet_handle,
-                                                     their_did)
+        pairwise_without_metadata = await utils.perform(self.steps,
+                                                        pairwise.get_pairwise,
+                                                        self.wallet_handle,
+                                                        their_did)
 
-        # 8. Verify 'pairwise_with_metadata'.
-        self.steps.add_step("Verify 'pairwise_with_metadata'")
-        expected_pairwise = utils.create_gotten_pairwise_json(my_did, metadata)
+        # 8. Check returned pairwise.
+        self.steps.add_step("Check returned pairwise")
         utils.check(self.steps, error_message="Gotten pairwise mismatches",
-                    condition=lambda: json.loads(pairwise_with_metadata) ==
-                    expected_pairwise)
+                    condition=lambda:
+                    json.loads(pairwise_without_metadata) ==
+                    {"my_did": my_did})
 
 
 if __name__ == "__main__":
-    TestCreatePairwiseWithMetadata().execute_scenario()
+    TestGetPairwiseWithoutMetadata().execute_scenario()

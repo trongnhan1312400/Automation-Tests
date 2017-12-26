@@ -1,5 +1,5 @@
 """
-Created on Dec 21, 2017
+Created on Dec 22, 2017
 
 @author: nhan.nguyen
 """
@@ -10,13 +10,12 @@ from utilities import utils, common, constant
 from utilities.test_scenario_base import TestScenarioBase
 
 
-class TestKeyForDidWithInvalidPoolHandle(TestScenarioBase):
+class TestGetEndPointForDidWithUnknownDid(TestScenarioBase):
     async def execute_test_steps(self):
         # 1. Create pool ledger config.
-        # 2. Open pool ledger.
+        # 2. Open pool ledger
         self.pool_handle = await common.create_and_open_pool_ledger_for_steps(
-            self.steps, self.pool_name, constant.pool_genesis_txn_file
-        )
+            self.steps, self.pool_name, constant.pool_genesis_txn_file)
 
         # 3. Create wallet.
         # 4. Open wallet.
@@ -25,17 +24,18 @@ class TestKeyForDidWithInvalidPoolHandle(TestScenarioBase):
                                                     self.wallet_name,
                                                     self.pool_name)
 
-        # 5. Get verkey with invalid pool handle and
-        # verify that user cannot get verkey.
-        self.steps.add_step("Get verkey with invalid pool handle and "
-                            "verify that user cannot get verkey")
-        error_code = ErrorCode.PoolLedgerInvalidPoolHandle
-        await utils.perform_with_expected_code(self.steps, signus.key_for_did,
-                                               self.pool_handle + 1,
+        # 5. Get endpoint of an unknown did and
+        # verify that endpoint cannot be gotten.
+        self.steps.add_step("Get endpoint of an unknown did and "
+                            "verify that endpoint cannot be gotten")
+        error_code = ErrorCode.CommonInvalidState
+        unknown_did = utils.generate_random_string(size=20)
+        await utils.perform_with_expected_code(self.steps,
+                                               signus.get_endpoint_for_did,
                                                self.wallet_handle,
-                                               constant.did_my1,
+                                               self.pool_handle, unknown_did,
                                                expected_code=error_code)
 
 
 if __name__ == "__main__":
-    TestKeyForDidWithInvalidPoolHandle().execute_scenario()
+    TestGetEndPointForDidWithUnknownDid().execute_scenario()

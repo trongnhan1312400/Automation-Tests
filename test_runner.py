@@ -14,7 +14,7 @@ import inspect
 import importlib
 import multiprocessing
 import argparse
-from utilities import utils, constant
+from utilities import utils, constant, logger
 from utilities.test_scenario_base import TestScenarioBase
 
 
@@ -45,6 +45,7 @@ class TestRunner:
         for test_scenario in list_test_scenarios:
             if self.__continue:
                 self.__execute_test_scenario(test_scenario)
+        logger.Logger.restore_stdout_stderr()
 
         self.__execute_reporter()
         utils.print_ok_green(
