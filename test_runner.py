@@ -56,9 +56,9 @@ class TestRunner:
         complete_message = constant.INFO_TEST_PASS_FAIL.format(
             number_of_tests_pass, number_of_tests_fail)
 
-        self.__execute_reporter()
-
         print(complete_message)
+        
+        self.__execute_reporter()
 
     def __catch_arg(self):
         """
