@@ -12,13 +12,13 @@ import time
 import errno
 import logging
 import io
-from utilities.result import Status
-from utilities import utils
+from .result import Status
+from .constant import Color
 
 
 class Logger:
-    __log_dir = os.path.join(os.path.dirname(__file__), "..") \
-                + "/test_output/log_files/"
+    __log_dir = os.path.join(os.path.dirname(
+        __file__), "..") + "/test_output/log_files/"
 
     __KEEP_LOG_FLAG = "-l"
     __LOG_LVL = logging.DEBUG
@@ -39,7 +39,7 @@ class Logger:
                                                     current_time)
 
         self.__log_file = open(self.__log_file_path, "w+t")
-        Logger.__redirect_stdout_stderr(self.__log_file)
+        Logger.redirect_stdout_stderr(self.__log_file)
 
     def save_log(self, test_status: str = Status.FAILED):
         """
@@ -50,7 +50,7 @@ class Logger:
 
         :param test_status: Passed of Failed.
         """
-        Logger.__restore_stdout_stderr()
+        Logger.restore_stdout_stderr()
 
         self.__log_file.seek(0)
         content = self.__log_file.read()
@@ -62,11 +62,11 @@ class Logger:
 
         if os.path.exists(self.__log_file_path) \
            and os.path.isfile(self.__log_file_path):
-            utils.print_ok_blue("Log file has been kept at: {}\n".
-                                format(self.__log_file_path))
+            print(Color.OKBLUE + "Log file has been kept at: {}\n".
+                  format(self.__log_file_path) + Color.ENDC)
 
     @staticmethod
-    def __redirect_stdout_stderr(file):
+    def redirect_stdout_stderr(file):
         """
         Redirect sys.stdout and sys.stderr to file.
         :param file: file that stdout and stderr is redirected to.
@@ -77,7 +77,7 @@ class Logger:
         os.dup2(file.fileno(), Logger.__stdout_fd)
 
     @staticmethod
-    def __restore_stdout_stderr():
+    def restore_stdout_stderr():
         """
         Restore sys.stdout and sys.stderr to default.
         """
@@ -88,6 +88,14 @@ class Logger:
         os.dup2(Logger.__saved_stderr_fd, Logger.__stderr_fd)
         os.close(Logger.__saved_stderr_fd)
         sys.stderr = Logger.__old_stderr
+
+        Logger.__old_stdout = sys.stdout
+        Logger.__stdout_fd = Logger.__old_stdout.fileno()
+        Logger.__saved_stdout_fd = os.dup(Logger.__stdout_fd)
+
+        Logger.__old_stderr = sys.stderr
+        Logger.__stderr_fd = Logger.__old_stderr.fileno()
+        Logger.__saved_stderr_fd = os.dup(Logger.__stderr_fd)
 
     @staticmethod
     def __init_log_folder():

@@ -29,8 +29,10 @@ class TestResult:
     __STATUS = "status"
     __MESSAGE = "message"
 
-    __json_dir = (os.path.join(os.path.dirname(__file__), "..",) +
+    __json_dir = (os.path.join(os.path.dirname(__file__), "..", ) +
                   "/test_output/test_results/")
+
+    result_of_all_tests = {}
 
     def __init__(self, test_case_name):
         """
@@ -42,6 +44,7 @@ class TestResult:
         self.__test_result = {}  # Store information of a test case
         self.__run = []  # Store information of steps in test case
         self.__test_result[TestResult.__TEST_CASE] = test_case_name
+        TestResult.result_of_all_tests[test_case_name] = Status.PASSED
         self.__test_result[TestResult.__RESULT] = Status.PASSED
         self.__test_result[TestResult.__START_TIME] = \
             str(time.strftime("%Y-%m-%d_%H-%M-%S"))
@@ -56,6 +59,9 @@ class TestResult:
 
         :param result: (optional) result of test.
         """
+        TestResult.result_of_all_tests[
+            self.__test_result[TestResult.__TEST_CASE]] = result
+
         self.__test_result[TestResult.__RESULT] = result
 
     def set_duration(self, duration):
@@ -101,8 +107,8 @@ class TestResult:
             json.dump(self.__test_result, outfile,
                       ensure_ascii=False, indent=2)
             utils.print_ok_blue(
-                "\nJson file has been written at: {}\n".
-                format(self.__json_file_path))
+                "\nJson file has been written at: {}\n".format(
+                    self.__json_file_path))
 
     def set_test_failed(self):
         """
