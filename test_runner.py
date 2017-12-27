@@ -12,9 +12,9 @@ import glob
 import sys
 import inspect
 import importlib
-import multiprocessing
+import threading
 import argparse
-from utilities import utils, constant
+from utilities import utils, constant, result
 from utilities.test_scenario_base import TestScenarioBase
 
 
@@ -25,7 +25,7 @@ class TestRunner:
 
     def __init__(self):
         self.__args = None
-        self.__test_process = None
+        self.__test_thread = None
         self.__current_scenario = None
         self.__continue = True
         self.__catch_arg()
@@ -46,9 +46,19 @@ class TestRunner:
             if self.__continue:
                 self.__execute_test_scenario(test_scenario)
 
+        number_of_tests_pass = \
+            list(result.TestResult.result_of_all_tests.values()).count(
+                result.Status.PASSED)
+        number_of_tests_fail = \
+            list(result.TestResult.result_of_all_tests.values()).count(
+                result.Status.FAILED)
+
+        complete_message = constant.INFO_TEST_PASS_FAIL.format(
+            number_of_tests_pass, number_of_tests_fail)
+
         self.__execute_reporter()
-        utils.print_ok_green(
-            "\n{}\n".format(constant.INFO_ALL_TEST_HAVE_BEEN_EXECUTED))
+
+        print(complete_message)
 
     def __catch_arg(self):
         """
@@ -83,7 +93,7 @@ class TestRunner:
         """
         if not self.__args.report:
             return
-        cmd = "{} {}".format("python3.6", TestRunner.__reporter_dir)
+        cmd = "{} {}".format("python3", TestRunner.__reporter_dir)
         subprocess.call(cmd, shell=True)
 
     def __execute_test_scenario(self, test_scenario):
@@ -94,12 +104,12 @@ class TestRunner:
         if not test_scenario:
             return
         self.__current_scenario = test_scenario()
-        process = multiprocessing.\
-            Process(target=self.__current_scenario.execute_scenario,
-                    kwargs={"time_out": self.__args.timeout})
-        self.__test_process = process
-        process.start()
-        process.join()
+        thread = threading. \
+            Thread(target=self.__current_scenario.execute_scenario,
+                   kwargs={"time_out": self.__args.timeout})
+        self.__test_thread = thread
+        thread.start()
+        thread.join()
 
     def __get_list_scenarios_in_folder(self):
         """
@@ -110,7 +120,7 @@ class TestRunner:
         # If both directory and recur_directory are exist
         # then show "Invalid command" and exit.
         if self.__args.directory is not "" \
-           and self.__args.recur_directory is not "":
+                and self.__args.recur_directory is not "":
             utils.print_error("\n{}\n".format(constant.ERR_COMMAND_ERROR))
             exit(1)
         recursive = False
@@ -132,17 +142,19 @@ class TestRunner:
             exit(1)
 
         list_files = []
-
-        try:
-            if recursive:
-                for directory, _, _ in os.walk(start_directory):
-                    list_files.extend(glob.glob(os.path.join(directory,
+        if start_directory.endswith(".py"):
+            list_files = [start_directory]
+        else:
+            try:
+                if recursive:
+                    for directory, _, _ in os.walk(start_directory):
+                        list_files.extend(glob.glob(os.path.join(directory,
+                                                                 "*.py")))
+                else:
+                    list_files.extend(glob.glob(os.path.join(start_directory,
                                                              "*.py")))
-            else:
-                list_files.extend(glob.glob(os.path.join(start_directory,
-                                                         "*.py")))
-        except OSError:
-            pass
+            except OSError:
+                pass
 
         list_test_scenarios = []
         for file in list_files:
