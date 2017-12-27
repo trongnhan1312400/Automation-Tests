@@ -5,7 +5,7 @@ Created on Dec 22, 2017
 """
 from indy import signus
 from utilities import utils, common
-from test_scripts.functional_tests.signus.signus_test_base\
+from test_scripts.functional_tests.signus.signus_test_base \
     import SignusTestBase
 
 
@@ -29,12 +29,17 @@ class TestReplaceKeysApplyWithValidData(SignusTestBase):
         new_verkey = await utils.perform(self.steps, signus.replace_keys_start,
                                          self.wallet_handle, my_did, "{}")
 
-        # 5. Get verkey of 'my_did'.
+        # 5. Replace old verkey.
+        self.steps.add_step("Replace old verkey")
+        await utils.perform(self.steps, signus.replace_keys_apply,
+                            self.wallet_handle, my_did)
+
+        # 6. Get verkey of 'my_did'.
         self.steps.add_step("Get verkey of 'my_did'")
         updated_verkey = await utils.perform(self.steps, signus.key_for_did,
                                              -1, self.wallet_handle, my_did)
 
-        # 6. Check updated verkey.
+        # 7. Check updated verkey.
         self.steps.add_step("Check updated verkey")
         error_msg = "Updated verkey is different from verkey " \
                     "that returned by 'signus.replace_keys_start'"

@@ -89,7 +89,9 @@ ERR_TIME_LIMITATION = "Aborting test scenario because of time limitation!"
 ERR_COMMAND_ERROR = "Invalid command!"
 INFO_RUNNING_TEST_POS_CONDITION = "Running clean up for " \
                                   "aborted test scenario."
-INFO_ALL_TEST_HAVE_BEEN_EXECUTED = "All test have been executed!"
+INFO_TEST_PASS_FAIL = "\033[1m" + "Result:\n" + \
+                      "\033[92m" + "Tests pass: {}\n" + "\033[91m" \
+                      + "Tests fail: {}" + "\033[0m \n"
 INDY_ERROR = "IndyError: {}"
 EXCEPTION = "Exception: {}"
 JSON_INCORRECT = "Failed. Json response is incorrect. {}"

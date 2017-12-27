@@ -134,7 +134,8 @@ def run_async_method(method, time_out=None):
            in the future.
     """
     import asyncio
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     if not time_out:
         loop.run_until_complete(method())
     else:

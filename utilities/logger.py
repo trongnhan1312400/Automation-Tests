@@ -12,13 +12,13 @@ import time
 import errno
 import logging
 import io
-from utilities.result import Status
-from utilities import utils
+from .result import Status
+from .constant import Color
 
 
 class Logger:
-    __log_dir = os.path.join(os.path.dirname(__file__), "..") \
-                + "/test_output/log_files/"
+    __log_dir = os.path.join(os.path.dirname(
+        __file__), "..") + "/test_output/log_files/"
 
     __KEEP_LOG_FLAG = "-l"
     __LOG_LVL = logging.DEBUG
@@ -62,8 +62,8 @@ class Logger:
 
         if os.path.exists(self.__log_file_path) \
            and os.path.isfile(self.__log_file_path):
-            utils.print_ok_blue("Log file has been kept at: {}\n".
-                                format(self.__log_file_path))
+            print(Color.OKBLUE + "Log file has been kept at: {}\n".
+                  format(self.__log_file_path) + Color.ENDC)
 
     @staticmethod
     def redirect_stdout_stderr(file):
@@ -83,9 +83,19 @@ class Logger:
         """
         os.dup2(Logger.__saved_stdout_fd, Logger.__stdout_fd)
         os.close(Logger.__saved_stdout_fd)
+        sys.stdout = Logger.__old_stdout
 
         os.dup2(Logger.__saved_stderr_fd, Logger.__stderr_fd)
         os.close(Logger.__saved_stderr_fd)
+        sys.stderr = Logger.__old_stderr
+
+        Logger.__old_stdout = sys.stdout
+        Logger.__stdout_fd = Logger.__old_stdout.fileno()
+        Logger.__saved_stdout_fd = os.dup(Logger.__stdout_fd)
+
+        Logger.__old_stderr = sys.stderr
+        Logger.__stderr_fd = Logger.__old_stderr.fileno()
+        Logger.__saved_stderr_fd = os.dup(Logger.__stderr_fd)
 
     @staticmethod
     def __init_log_folder():
