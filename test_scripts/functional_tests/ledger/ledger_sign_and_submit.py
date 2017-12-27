@@ -54,8 +54,8 @@ class SignAndSubmitRequest(TestScenarioBase):
 
         # 7. Verify GET_NYM request
         self.steps.add_step("Verify GET_NYM request")
-        json_response = json.loads(nym_response)
-        did_response = json_response["result"]["dest"]
+        response = json.loads(nym_response)
+        did_response = response["result"]["dest"]
         if did_response == target_did:
             self.steps.get_last_step().set_status(Status.PASSED)
         else:

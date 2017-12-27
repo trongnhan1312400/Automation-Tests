@@ -9,7 +9,9 @@ import json
 
 from indy import signus, ledger
 
-from utilities import common, constant
+from utilities import common
+from utilities.constant import json_response, operation_fields, \
+                                seed_default_trustee
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
 
@@ -33,13 +35,12 @@ class BuildGetNymRequest(TestScenarioBase):
                           signus.create_and_store_my_did,
                           self.wallet_handle,
                           json.dumps({
-                              "seed": constant.seed_default_trustee}))
+                              "seed": seed_default_trustee}))
         (target_did, target_verkey) = \
             await perform(self.steps,
                           signus.create_and_store_my_did,
                           self.wallet_handle,
-                          json.dumps({
-                              "seed": seed_trustee_2}))
+                          json.dumps({"seed": seed_trustee_2}))
 
         # 3. build and send nym request
         self.steps.add_step("Prepare and send NYM transaction")
@@ -56,9 +57,8 @@ class BuildGetNymRequest(TestScenarioBase):
 
         # 5. Verifying get_nym_request json correctly.
         self.steps.add_step("Verifying get_nym_request json")
-        expected_response = json.loads(
-            constant.get_nym_response.format(submitter_did,
-                                             "105", target_did))
+        nym_operation = operation_fields.format("105", target_did)
+        expected_response = json_response(submitter_did, nym_operation)
         verify_json(self.steps, expected_response, get_nym_req)
 
 
