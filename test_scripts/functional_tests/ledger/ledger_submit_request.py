@@ -10,8 +10,10 @@ import json
 
 from indy import signus, ledger
 
-from utilities import common, constant
+from utilities import common
 from utilities.constant import message, json_template
+from utilities.constant import seed_default_trustee, submit_request,\
+    submit_response, JSON_INCORRECT
 from utilities.result import Status
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform
@@ -35,7 +37,7 @@ class SubmitRequest(TestScenarioBase):
                           signus.create_and_store_my_did,
                           self.wallet_handle,
                           json.dumps({
-                              "seed": constant.seed_default_trustee}))
+                              "seed": seed_default_trustee}))
 
         # 3. Create and store target did
         seed_trustee_2 = "000000000000000000000000Trustee2"
@@ -58,14 +60,9 @@ class SubmitRequest(TestScenarioBase):
         signed_msg = json.loads(response)
         signature = signed_msg['signature']
         type_request = "105"
-        request_json = constant.submit_request.format(1491566332010860,
-                                                      submitter_did,
-                                                      type_request,
-                                                      target_did, signature)
-        expected_response = json.loads(
-            constant.submit_response.format(
-                                            submitter_did, target_did,
-                                            "", type_request, "REPLY"))
+        request_json = submit_request.format(1491566332010860,
+                                             submitter_did, type_request,
+                                             target_did, signature)
 
         # 5. Submit request
         response = json.loads(
@@ -74,6 +71,9 @@ class SubmitRequest(TestScenarioBase):
 
         # 6. Verify json response is correct.
         self.steps.add_step("verify json response is correct.")
+        expected_response = json.loads(submit_response.format(
+                                            submitter_did, target_did,
+                                            "", type_request, "REPLY"))
         r1 = response["op"] == expected_response["op"]
         r2 = response["result"]["identifier"] == expected_response["result"][
             "identifier"]
@@ -82,8 +82,8 @@ class SubmitRequest(TestScenarioBase):
         if (r1 and r2 and r3 and r4) is True:
             self.steps.get_last_step().set_status(Status.PASSED)
         else:
-            self.steps.get_last_step().set_message(
-                constant.JSON_INCORRECT.format(""))
+            message_fail = JSON_INCORRECT.format("")
+            self.steps.get_last_step().set_status(Status.FAILED, message_fail)
 
 
 if __name__ == '__main__':
