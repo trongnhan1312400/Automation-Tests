@@ -52,13 +52,12 @@ class SignRequest(TestScenarioBase):
 
         # 3. sign request
         self.steps.add_step("sign the request")
-        json_response = \
-            await perform(self.steps, ledger.sign_request, self.wallet_handle,
-                          did, message)
+        sign_txn = await perform(self.steps, ledger.sign_request,
+                                 self.wallet_handle, did, message)
 
         # 4. verify the signature is correct.
         self.steps.add_step("verify the signature is correct.")
-        signed_msg = json.loads(json_response)
+        signed_msg = json.loads(sign_txn)
         actual_signature = signed_msg['signature']
         if actual_signature == expected_signature:
             self.steps.get_last_step().set_status(Status.PASSED)

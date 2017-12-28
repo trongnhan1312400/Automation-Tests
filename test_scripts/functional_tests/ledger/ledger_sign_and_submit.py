@@ -44,7 +44,7 @@ class SignAndSubmitRequest(TestScenarioBase):
                       self.wallet_handle, submitter_did, target_did, None,
                       None, None)
 
-        # 5. build nym request
+        # 5. build get nym request
         # 6. submit request
         self.steps.add_step("Prepare and send GET_NYM request")
         get_nym_req = await perform(self.steps, ledger.build_get_nym_request,
@@ -54,8 +54,8 @@ class SignAndSubmitRequest(TestScenarioBase):
 
         # 7. Verify GET_NYM request
         self.steps.add_step("Verify GET_NYM request")
-        json_response = json.loads(nym_response)
-        did_response = json_response["result"]["dest"]
+        response = json.loads(nym_response)
+        did_response = response["result"]["dest"]
         if did_response == target_did:
             self.steps.get_last_step().set_status(Status.PASSED)
         else:
