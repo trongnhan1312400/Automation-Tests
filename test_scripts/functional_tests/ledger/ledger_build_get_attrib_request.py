@@ -11,7 +11,7 @@ from indy import signus, ledger
 
 from utilities import common
 from utilities.constant import seed_default_trustee, attrib_response, \
-                                json_response
+                                json_template
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
 
@@ -58,10 +58,7 @@ class GetAttribRequest(TestScenarioBase):
         self.steps.add_step("Verify json get attrib request is correct.")
         attrib_operation = attrib_response.format("104", submitter_did,
                                                   json.dumps(raw_name))
-        expected_response = json_response(submitter_did, attrib_operation)
-#         expected_response = json.loads(
-#             get_attrib_response.format(submitter_did, "104",
-#                                        submitter_did, json.dumps(raw_name)))
+        expected_response = json_template(submitter_did, attrib_operation)
         verify_json(self.steps, expected_response, get_attrib_req)
 
 

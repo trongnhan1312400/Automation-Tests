@@ -66,10 +66,6 @@ class SignRequest(TestScenarioBase):
                        "but actual signature is [%s]"
                        % (expected_signature, actual_signature))
             self.steps.get_last_step().set_status(Status.FAILED, message)
-#             self.steps.get_last_step().set_message(
-#                 "Failed. Expected signature is [%s] "
-#                 "but actual signature is [%s]"
-#                 % (expected_signature, actual_signature))
 
 
 if __name__ == '__main__':

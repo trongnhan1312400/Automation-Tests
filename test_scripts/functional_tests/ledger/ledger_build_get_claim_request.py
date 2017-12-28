@@ -11,7 +11,7 @@ from indy import signus, ledger
 
 from utilities import common
 from utilities.constant import seed_default_trustee, signature_type, \
-    get_claim_response, json_response
+    get_claim_response, json_template
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
 
@@ -63,7 +63,7 @@ class GetClaimRequest(TestScenarioBase):
         self.steps.add_step("Verify json get_claim request is correct.")
         get_claim_op = get_claim_response.format("108", ref,
                                                  signature_type, origin)
-        expected_response = json_response(submitter_did, get_claim_op)
+        expected_response = json_template(submitter_did, get_claim_op)
         verify_json(self.steps, expected_response, claim_req)
 
 
