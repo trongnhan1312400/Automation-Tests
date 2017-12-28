@@ -12,9 +12,10 @@ import glob
 import sys
 import inspect
 import importlib
-import multiprocessing
+import threading
+import asyncio
 import argparse
-from utilities import utils, constant, logger
+from utilities import utils, constant, result
 from utilities.test_scenario_base import TestScenarioBase
 
 
@@ -25,7 +26,7 @@ class TestRunner:
 
     def __init__(self):
         self.__args = None
-        self.__test_process = None
+        self.__test_thread = None
         self.__current_scenario = None
         self.__continue = True
         self.__catch_arg()
@@ -44,12 +45,21 @@ class TestRunner:
 
         for test_scenario in list_test_scenarios:
             if self.__continue:
-                self.__execute_test_scenario(test_scenario)
-        logger.Logger.restore_stdout_stderr()
+                self.__execute_test_scenario_sequentially(test_scenario)
+
+        number_of_tests_pass = \
+            list(result.TestResult.result_of_all_tests.values()).count(
+                result.Status.PASSED)
+        number_of_tests_fail = \
+            list(result.TestResult.result_of_all_tests.values()).count(
+                result.Status.FAILED)
+
+        complete_message = constant.INFO_TEST_PASS_FAIL.format(
+            number_of_tests_pass, number_of_tests_fail)
+
+        print(complete_message)
 
         self.__execute_reporter()
-        utils.print_ok_green(
-            "\n{}\n".format(constant.INFO_ALL_TEST_HAVE_BEEN_EXECUTED))
 
     def __catch_arg(self):
         """
@@ -87,7 +97,7 @@ class TestRunner:
         cmd = "{} {}".format("python3", TestRunner.__reporter_dir)
         subprocess.call(cmd, shell=True)
 
-    def __execute_test_scenario(self, test_scenario):
+    def __execute_test_scenario_sequentially(self, test_scenario):
         """
         Execute test scenario.
         :param test_scenario: file that contain test scenarios.
@@ -95,12 +105,7 @@ class TestRunner:
         if not test_scenario:
             return
         self.__current_scenario = test_scenario()
-        process = multiprocessing. \
-            Process(target=self.__current_scenario.execute_scenario,
-                    kwargs={"time_out": self.__args.timeout})
-        self.__test_process = process
-        process.start()
-        process.join()
+        self.__current_scenario.execute_scenario()
 
     def __get_list_scenarios_in_folder(self):
         """

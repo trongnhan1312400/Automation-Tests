@@ -27,7 +27,7 @@ class TestScenarioBase:
     def __init__(self):
         """
         Init test data.
-        If the test case need some extra test date then
+        If the test case need some extra test data then
         just override this method.
         """
         self.test_name = os.path.splitext(
@@ -76,7 +76,6 @@ class TestScenarioBase:
         Execute the test scenario and control the
         work flow of this test scenario.
         """
-        self.__init__()
         utils.print_with_color(
             "\nTest case: {} ----> started\n".format(self.test_name),
             constant.Color.BOLD)

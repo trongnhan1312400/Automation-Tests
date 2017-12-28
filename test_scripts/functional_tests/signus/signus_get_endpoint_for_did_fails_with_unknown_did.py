@@ -29,11 +29,11 @@ class TestGetEndPointForDidWithUnknownDid(TestScenarioBase):
         self.steps.add_step("Get endpoint of an unknown did and "
                             "verify that endpoint cannot be gotten")
         error_code = ErrorCode.CommonInvalidState
-        unknown_did = utils.generate_random_string(size=20)
         await utils.perform_with_expected_code(self.steps,
                                                signus.get_endpoint_for_did,
                                                self.wallet_handle,
-                                               self.pool_handle, unknown_did,
+                                               self.pool_handle,
+                                               constant.did_my1,
                                                expected_code=error_code)
 
 

@@ -135,6 +135,7 @@ def run_async_method(method, time_out=None):
     """
     import asyncio
     loop = asyncio.get_event_loop()
+
     if not time_out:
         loop.run_until_complete(method())
     else:
