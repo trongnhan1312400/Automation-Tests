@@ -36,7 +36,7 @@ class SignRequest(TestScenarioBase):
         expected_signature = "65hzs4nsdQsTUqLCLy2qisbKLfwYKZSWoyh1C6CU59" \
                              "p5pfG3EHQXGAsjW4Qw4QdwkrvjSgQuyv8qyABcXRBznFKW"
 
-        # 1. Prepare pool and wallet. Get pool_hanlde, wallet_hanlde
+        # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
             await perform(self.steps, common.prepare_pool_and_wallet,
@@ -52,13 +52,12 @@ class SignRequest(TestScenarioBase):
 
         # 3. sign request
         self.steps.add_step("sign the request")
-        json_response = \
-            await perform(self.steps, ledger.sign_request, self.wallet_handle,
-                          did, message)
+        sign_txn = await perform(self.steps, ledger.sign_request,
+                                 self.wallet_handle, did, message)
 
         # 4. verify the signature is correct.
         self.steps.add_step("verify the signature is correct.")
-        signed_msg = json.loads(json_response)
+        signed_msg = json.loads(sign_txn)
         actual_signature = signed_msg['signature']
         if actual_signature == expected_signature:
             self.steps.get_last_step().set_status(Status.PASSED)
@@ -67,10 +66,6 @@ class SignRequest(TestScenarioBase):
                        "but actual signature is [%s]"
                        % (expected_signature, actual_signature))
             self.steps.get_last_step().set_status(Status.FAILED, message)
-#             self.steps.get_last_step().set_message(
-#                 "Failed. Expected signature is [%s] "
-#                 "but actual signature is [%s]"
-#                 % (expected_signature, actual_signature))
 
 
 if __name__ == '__main__':

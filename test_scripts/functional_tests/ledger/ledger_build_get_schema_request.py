@@ -9,14 +9,16 @@ import json
 
 from indy import signus, ledger
 
-from utilities import common, constant
+from utilities import common
+from utilities.constant import json_template, schema_response, \
+                                seed_default_trustee
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json, generate_random_string
 
 
 class GetSchemaRequest(TestScenarioBase):
     async def execute_test_steps(self):
-        # 1. Prepare pool and wallet. Get pool_hanlde, wallet_hanlde
+        # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
             await perform(self.steps,
@@ -33,7 +35,7 @@ class GetSchemaRequest(TestScenarioBase):
                           signus.create_and_store_my_did,
                           self.wallet_handle,
                           json.dumps({
-                              "seed": constant.seed_default_trustee}))
+                              "seed": seed_default_trustee}))
         (target_did, _) = await perform(self.steps,
                                         signus.create_and_store_my_did,
                                         self.wallet_handle,
@@ -57,9 +59,6 @@ class GetSchemaRequest(TestScenarioBase):
 
         # 5. Prepare data to check and build get schema request
         self.steps.add_step("build get schema request")
-        expected_response = json.loads(
-            constant.get_schema_response.format(submitter_did, "107",
-                                                target_did, data_response))
 
         get_schema_req = json.loads(
             await perform(self.steps, ledger.build_get_schema_request,
@@ -68,6 +67,9 @@ class GetSchemaRequest(TestScenarioBase):
 
         # 6. Verify json get schema request is correct.
         self.steps.add_step("Verify json get schema request is correct.")
+        schema_operation = schema_response.format("107", target_did,
+                                                  data_response)
+        expected_response = json_template(submitter_did, schema_operation)
         verify_json(self.steps, expected_response, get_schema_req)
 
 
