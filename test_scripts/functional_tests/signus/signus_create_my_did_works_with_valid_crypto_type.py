@@ -7,7 +7,8 @@ Created on Dec 12, 2017
 import json
 
 from indy import signus
-from utilities import common, constant, utils
+from utilities import utils
+from utilities import common, constant
 from test_scripts.functional_tests.signus.signus_test_base\
     import SignusTestBase
 
@@ -24,7 +25,7 @@ class TestCreateDidWithValidCryptoType(SignusTestBase):
         # 3. Create did and verkey with valid crypto type.
         self.steps.add_step("Create did and verkey with valid crypto type")
         did_json = json.dumps({"seed": constant.seed_my1,
-                               "crypto_type": constant.crypto_type})
+                               "crypto_type": "ed25519"})
         (my_did, my_verkey) = await \
             utils.perform(self.steps, signus.create_and_store_my_did,
                           self.wallet_handle, did_json)

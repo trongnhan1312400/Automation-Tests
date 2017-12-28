@@ -8,7 +8,8 @@ import json
 import base58
 
 from indy import signus
-from utilities import common, constant, utils
+from utilities import utils
+from utilities import common, constant
 from test_scripts.functional_tests.signus.signus_test_base\
     import SignusTestBase
 
@@ -32,14 +33,12 @@ class TestCreateDidWithValidSeed(SignusTestBase):
         # 4. Check created did.
         self.steps.add_step("Check created did")
         utils.check(self.steps, error_message="Created did is invalid",
-                    condition=lambda: len(base58.b58decode(my_did)) ==
-                    constant.decoded_did_length)
+                    condition=lambda: len(base58.b58decode(my_did)) == 16)
 
         # 5. Check created verkey.
         self.steps.add_step("Check created verkey")
         utils.check(self.steps, error_message="Created verkey is invalid",
-                    condition=lambda: len(base58.b58decode(my_verkey)) ==
-                    constant.decoded_verkey_length)
+                    condition=lambda: len(base58.b58decode(my_verkey)) == 32)
 
 
 if __name__ == "__main__":
