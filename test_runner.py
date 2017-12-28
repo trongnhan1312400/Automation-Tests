@@ -12,8 +12,6 @@ import glob
 import sys
 import inspect
 import importlib
-import threading
-import asyncio
 import argparse
 from utilities import utils, constant, result
 from utilities.test_scenario_base import TestScenarioBase
@@ -26,9 +24,6 @@ class TestRunner:
 
     def __init__(self):
         self.__args = None
-        self.__test_thread = None
-        self.__current_scenario = None
-        self.__continue = True
         self.__catch_arg()
         pass
 
@@ -44,8 +39,7 @@ class TestRunner:
             exit(1)
 
         for test_scenario in list_test_scenarios:
-            if self.__continue:
-                self.__execute_test_scenario_sequentially(test_scenario)
+            test_scenario().execute_scenario()
 
         number_of_tests_pass = \
             list(result.TestResult.result_of_all_tests.values()).count(
@@ -96,16 +90,6 @@ class TestRunner:
             return
         cmd = "{} {}".format("python3", TestRunner.__reporter_dir)
         subprocess.call(cmd, shell=True)
-
-    def __execute_test_scenario_sequentially(self, test_scenario):
-        """
-        Execute test scenario.
-        :param test_scenario: file that contain test scenarios.
-        """
-        if not test_scenario:
-            return
-        self.__current_scenario = test_scenario()
-        self.__current_scenario.execute_scenario()
 
     def __get_list_scenarios_in_folder(self):
         """
