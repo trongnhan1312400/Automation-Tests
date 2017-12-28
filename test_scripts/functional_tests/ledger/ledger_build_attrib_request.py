@@ -10,7 +10,7 @@ import json
 from indy import signus, ledger
 
 from utilities import common
-from utilities.constant import json_response, attrib_response, \
+from utilities.constant import json_template, attrib_response, \
                                 seed_default_trustee
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
@@ -42,11 +42,7 @@ class BuildAttribRequest(TestScenarioBase):
         self.steps.add_step("Verifying get_nym_request json")
         attrib_operation = attrib_response.format("100", submitter_did,
                                                   json.dumps(raw))
-        expected_response = json_response(submitter_did, attrib_operation)
-#         expected_response = json.loads(
-#             constant.attrib_response.format(submitter_did, "100",
-#                                                 submitter_did,
-#                                                 json.dumps(raw)))
+        expected_response = json_template(submitter_did, attrib_operation)
         verify_json(self.steps, expected_response, attrib_req)
 
 

@@ -10,7 +10,7 @@ import json
 from indy import signus, ledger
 
 from utilities import common
-from utilities.constant import json_response, operation_fields, \
+from utilities.constant import json_template, operation_fields, \
                                 seed_default_trustee
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
@@ -59,7 +59,7 @@ class BuildDDORequest(TestScenarioBase):
         # 6. Verifying get_nym_request json correctly.
         self.steps.add_step("Verifying get_ddo_request json")
         ddo_operation = operation_fields.format("120", target_did)
-        expected_response = json_response(submitter_did, ddo_operation)
+        expected_response = json_template(submitter_did, ddo_operation)
 
         verify_json(self.steps, expected_response, get_ddo_req)
 

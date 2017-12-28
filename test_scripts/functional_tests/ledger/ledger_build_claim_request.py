@@ -11,7 +11,7 @@ from indy import signus, ledger
 
 from utilities import common
 from utilities.constant import seed_default_trustee, signature_type,\
-    claim_response, json_response
+    claim_response, json_template
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
 
@@ -46,7 +46,7 @@ class ClaimRequest(TestScenarioBase):
         self.steps.add_step("Verify json claim request is correct.")
         data_response = '{"revocation": {},' + data + '}'
         claim_op = claim_response.format(data_response, "102", signature_type)
-        expected_response = json_response(submitter_did, claim_op)
+        expected_response = json_template(submitter_did, claim_op)
         verify_json(self.steps, expected_response, response)
 
 

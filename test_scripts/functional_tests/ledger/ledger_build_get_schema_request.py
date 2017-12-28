@@ -10,7 +10,7 @@ import json
 from indy import signus, ledger
 
 from utilities import common
-from utilities.constant import json_response, schema_response, \
+from utilities.constant import json_template, schema_response, \
                                 seed_default_trustee
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json, generate_random_string
@@ -69,7 +69,7 @@ class GetSchemaRequest(TestScenarioBase):
         self.steps.add_step("Verify json get schema request is correct.")
         schema_operation = schema_response.format("107", target_did,
                                                   data_response)
-        expected_response = json_response(submitter_did, schema_operation)
+        expected_response = json_template(submitter_did, schema_operation)
         verify_json(self.steps, expected_response, get_schema_req)
 
 

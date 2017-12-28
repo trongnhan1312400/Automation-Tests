@@ -9,7 +9,9 @@ Implementing test case SubmitRequest with valid value.
 import json
 
 from indy import signus, ledger
+
 from utilities import common, constant
+from utilities.constant import message, json_template
 from utilities.result import Status
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform
@@ -27,28 +29,30 @@ class SubmitRequest(TestScenarioBase):
                           self.pool_genesis_txn_file)
 
         # 2. Create and store did
-        seed_trustee_2 = "000000000000000000000000Trustee2"
-        self.steps.add_step("Create DID")
+        self.steps.add_step("Create submitter")
         (submitter_did, _) = \
             await perform(self.steps,
                           signus.create_and_store_my_did,
                           self.wallet_handle,
                           json.dumps({
                               "seed": constant.seed_default_trustee}))
-        (target_did, target_verkey) = \
-            await perform(self.steps,
-                          signus.create_and_store_my_did,
-                          self.wallet_handle,
-                          json.dumps({
-                              "seed": seed_trustee_2}))
 
-        # 3. Prepare the request.
+        # 3. Create and store target did
+        seed_trustee_2 = "000000000000000000000000Trustee2"
+        self.steps.add_step("Create target")
+        (target_did, target_verkey) = await perform(
+                                        self.steps,
+                                        signus.create_and_store_my_did,
+                                        self.wallet_handle,
+                                        json.dumps({"seed": seed_trustee_2}))
+
+        # 4. Prepare the request.
         self.steps.add_step("sign the message")
-        message = constant.message.format(1496822211362017764,
-                                          submitter_did, "1", target_did,
-                                          target_verkey)
+        message_op = message.format("1", target_did, target_verkey)
+        message_request = json_template(submitter_did, message_op, False)
         response = await perform(self.steps, ledger.sign_request,
-                                 self.wallet_handle, submitter_did, message)
+                                 self.wallet_handle, submitter_did,
+                                 message_request)
 
         # get signature
         signed_msg = json.loads(response)
@@ -58,18 +62,17 @@ class SubmitRequest(TestScenarioBase):
                                                       submitter_did,
                                                       type_request,
                                                       target_did, signature)
-        data = ""
         expected_response = json.loads(
-            constant.submit_response.format(1491566332010860,
+            constant.submit_response.format(
                                             submitter_did, target_did,
-                                            data, type_request, "REPLY"))
+                                            "", type_request, "REPLY"))
 
-        # 4. Submit request
+        # 5. Submit request
         response = json.loads(
             await perform(self.steps, ledger.submit_request, self.pool_handle,
                           request_json))
 
-        # 5. Verify json response is correct.
+        # 6. Verify json response is correct.
         self.steps.add_step("verify json response is correct.")
         r1 = response["op"] == expected_response["op"]
         r2 = response["result"]["identifier"] == expected_response["result"][

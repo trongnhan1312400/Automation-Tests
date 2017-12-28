@@ -99,40 +99,28 @@ JSON_INCORRECT = "Failed. Json response is incorrect. {}"
 # JSON template
 operation_fields = '"type":"{}","dest":"{}"'
 
-message = '{{"reqId": {:d}, "identifier": "{}",' \
-          '"operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
-
 submit_request = '{{"reqId": {:d}, "identifier": "{}", ' \
                  '"operation": {{ "type": "{}", "dest": "{}"}},' \
                  ' "signature": "{}"}}'
 
-submit_response = '{{"result": {{ "reqId": {:d}, ' \
+submit_response = '{{"result": {{ ' \
                   '"identifier": "{}", "dest": "{}", ' \
                   '"data": "{}","type": "{}" }}, "op": "{}"}}'
-# claim_response = '{{"identifier":"{}","operation":{{"ref":1,"data":{},' \
-#                      '"type":"{}","signature_type":"{}"}}}}'
-# 
-# get_claim_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
-#                 '"ref":{},"signature_type":"{}","origin":"{}"}}}}'
-# 
-# get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",'\
-#                       ' "dest":"{}","raw":{}}}}}'
-# 
-# get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
-#                       '"dest":"{}","data":{}}}}}'
 
+node_request = str(operation_fields + ', "data": {}')
+message = str(operation_fields + ', "verkey": "{}"')
 claim_response = '"ref":1,"data":{},"type":"{}","signature_type":"{}"'
 get_claim_response = '"type":"{}","ref":{},"signature_type":"{}","origin":"{}"'
 attrib_response = str(operation_fields + ',"raw":{}')
 schema_response = str(operation_fields + ',"data":{}')
 
-# get_nym_response = '{{"identifier":"{}",' \
-#                    '"operation":{{"type":"{}","dest":"{}"}}}}'
 
-
-def json_response(identifier, operation):
+def json_template(identifier, operation, json_loads=True):
     value = '{{"identifier":"{}","operation":{{{}}}}}'
-    return json.loads(value.format(identifier, operation))
+    if json_loads:
+        return json.loads(value.format(identifier, operation))
+    else:
+        return value.format(identifier, operation)
 
 
 class Color(str, Enum):

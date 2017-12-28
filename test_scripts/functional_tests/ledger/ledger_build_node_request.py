@@ -12,6 +12,7 @@ from indy import signus, ledger
 from utilities import common, constant
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
+from utilities.constant import node_request, json_template
 
 
 class BuildNodeRequest(TestScenarioBase):
@@ -58,10 +59,8 @@ class BuildNodeRequest(TestScenarioBase):
 
         # 5. Verifying json response correctly.
         self.steps.add_step("Verifying json response correctly")
-        build_node_response = '{{"identifier":"{}","operation":{{' \
-                              '"type":"{}","dest":"{}","data":{}}}}}'
-        expected_response = json.loads(build_node_response.format(
-                                        submitter_did, "0", target_did, data))
+        node_op = node_request.format("0", target_did, data)
+        expected_response = json_template(submitter_did, node_op)
 
         verify_json(self.steps, expected_response, response)
 
