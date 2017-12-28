@@ -7,6 +7,7 @@ Containing all constants that are necessary to execute test scenario.
 """
 
 import os
+import json
 import hashlib
 from enum import Enum
 
@@ -97,6 +98,9 @@ EXCEPTION = "Exception: {}"
 JSON_INCORRECT = "Failed. Json response is incorrect. {}"
 
 
+# JSON template
+operation_fields = '"type":"{}","dest":"{}"'
+
 message = '{{"reqId": {:d}, "identifier": "{}",' \
           '"operation": {{ "type": "{}", "dest": "{}", "verkey": "{}"}}}}'
 
@@ -107,20 +111,30 @@ submit_request = '{{"reqId": {:d}, "identifier": "{}", ' \
 submit_response = '{{"result": {{ "reqId": {:d}, ' \
                   '"identifier": "{}", "dest": "{}", ' \
                   '"data": "{}","type": "{}" }}, "op": "{}"}}'
-claim_response = '{{"identifier":"{}","operation":{{"ref":1,"data":{},' \
-                     '"type":"{}","signature_type":"{}"}}}}'
+# claim_response = '{{"identifier":"{}","operation":{{"ref":1,"data":{},' \
+#                      '"type":"{}","signature_type":"{}"}}}}'
+# 
+# get_claim_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
+#                 '"ref":{},"signature_type":"{}","origin":"{}"}}}}'
+# 
+# get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",'\
+#                       ' "dest":"{}","raw":{}}}}}'
+# 
+# get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
+#                       '"dest":"{}","data":{}}}}}'
 
-get_claim_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
-                '"ref":{},"signature_type":"{}","origin":"{}"}}}}'
+claim_response = '"ref":1,"data":{},"type":"{}","signature_type":"{}"'
+get_claim_response = '"type":"{}","ref":{},"signature_type":"{}","origin":"{}"'
+attrib_response = str(operation_fields + ',"raw":{}')
+schema_response = str(operation_fields + ',"data":{}')
 
-get_attrib_response = '{{"identifier":"{}","operation":{{"type":"{}",'\
-                      ' "dest":"{}","raw":{}}}}}'
+# get_nym_response = '{{"identifier":"{}",' \
+#                    '"operation":{{"type":"{}","dest":"{}"}}}}'
 
-get_schema_response = '{{"identifier":"{}","operation":{{"type":"{}",' \
-                      '"dest":"{}","data":{}}}}}'
 
-get_nym_response = '{{"identifier":"{}",' \
-                   '"operation":{{"type":"{}","dest":"{}"}}}}'
+def json_response(identifier, operation):
+    value = '{{"identifier":"{}","operation":{{{}}}}}'
+    return json.loads(value.format(identifier, operation))
 
 
 class Color(str, Enum):
