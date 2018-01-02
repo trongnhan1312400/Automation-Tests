@@ -1,8 +1,8 @@
-# Indy Python wrapper functional test
+ Indy Python wrapper functional test
 
 This is a Python wrapper functional test for Indy. The tests are not driven by any unit test framework but are standalone python scripts.
 
-This Python wrapper functional test currently requires python 3.6, base58.
+This Python wrapper functional test currently requires python 3.5, base58.
 
 ### How to run
 
@@ -10,7 +10,7 @@ After building successfully the Indy SDK for Python, you need to run the command
 
 - Install base58 dependency with pip install: 
 ```
-     python3.6 -m pip install base58
+     python3.5 -m pip install base58
 ```
 - Setup PYTHONPATH: 
 ```
@@ -20,15 +20,15 @@ After building successfully the Indy SDK for Python, you need to run the command
 #### Then run:
 - Run one test case:
 ```
-    python3.6 Automation-Tests/test_scripts/functional_tests/wallet/open_wallet.py
+    python3.5 Automation-Tests/test_scripts/functional_tests/wallet/open_wallet.py
 ```
 - Run a folder test case using test_runner.py:
 ```
-    python3.6 Automation-Tests/test_runner.py -d Automation-Tests/test_scripts/functional_tests/wallet
+    python3.5 Automation-Tests/test_runner.py -d Automation-Tests/test_scripts/functional_tests/wallet
 ```
 - Run all test cases in the project using test_runner.py:
 ```    
-    python3.6 Automation-Tests/test_runner.py -rd
+    python3.5 Automation-Tests/test_runner.py -rd
 ```
 
 ##### This is the usage of test_runner.py
@@ -51,15 +51,15 @@ optional arguments:
 #### Generate the htlm report:
 - Get the summary report for all the run
 ```
-    python3.6 your_repo_location/functional_tests/reporter.py
+    python3.5 your_repo_location/functional_tests/reporter.py
 ```
 - Get the summary report for a group of test cases.
 ```
-    python3.6 Automation-Tests/reporter.py -n *wallet*
+    python3.5 Automation-Tests/reporter.py -n *wallet*
 ```
 - Get the summary report on a giving date
 ```
-    python3.6 Automation-Tests/reporter.py -n *2017-12-14*
+    python3.5 Automation-Tests/reporter.py -n *2017-12-14*
 ``` 
 
 ##### This is the usage of reporter.py
