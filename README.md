@@ -10,7 +10,7 @@ After building successfully the Indy SDK for Python, you need to run the command
 
 - Install base58 dependency with pip install: 
 ```
-     python3.6 -m pip install base58
+     python3.5 -m pip install base58
 ```
 - Setup PYTHONPATH: 
 ```
