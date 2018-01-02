@@ -3,7 +3,7 @@ Created on Dec 28, 2017
 
 @author: khoi.ngo
 
-Implementing test case CryptoBoxWorks with valid value.
+Implementing test case CryptoCreateKey with invalid seed.
 """
 
 import json
@@ -15,7 +15,7 @@ from test_scripts.functional_tests.crypto.crypto_test_base \
 from utilities import common, utils
 
 
-class CryptoBoxWorks(CryptoTestBase):
+class CryptoCreateKeyWithInvalidSeed(CryptoTestBase):
 
     async def execute_test_steps(self):
         # 1. Create wallet.
@@ -34,4 +34,4 @@ class CryptoBoxWorks(CryptoTestBase):
 
 
 if __name__ == '__main__':
-    CryptoBoxWorks().execute_scenario()
+    CryptoCreateKeyWithInvalidSeed().execute_scenario()

@@ -3,7 +3,7 @@ Created on Dec 28, 2017
 
 @author: khoi.ngo
 
-Implementing test case CryptoBoxWorks with valid value.
+Implementing test case CryptoBoxWithUnknownVerkey with unknow verkey.
 """
 
 from indy import crypto
@@ -12,7 +12,7 @@ from test_scripts.functional_tests.crypto.crypto_test_base \
     import CryptoTestBase
 
 
-class CryptoBoxWorks(CryptoTestBase):
+class CryptoBoxWithUnknownVerkey(CryptoTestBase):
 
     async def execute_test_steps(self):
         # 1. Create wallet.
@@ -32,4 +32,4 @@ class CryptoBoxWorks(CryptoTestBase):
 
 
 if __name__ == '__main__':
-    CryptoBoxWorks().execute_scenario()
+    CryptoBoxWithUnknownVerkey().execute_scenario()
