@@ -30,11 +30,14 @@ class CryptoBoxWorks(CryptoTestBase):
         second_key = await utils.perform(self.steps, crypto.create_key,
                                          self.wallet_handle, "{}")
 
-        # 5. Create a crypto box".
-        self.steps.add_step("Create a crypto box")
+        # 5. Create a crypto box with Expected error = 200(WalletInvalidHanlde)
+        self.steps.add_step("Create a crypto box with Expected error = 200")
         msg = "Test crypto".encode("UTF-8")
-        await utils.perform(self.steps, crypto.crypto_box,
-                            self.wallet_handle, first_key, second_key, msg)
+        await utils.perform_with_expected_code(
+                                     self.steps, crypto.crypto_box,
+                                     self.wallet_handle + 9999,
+                                     first_key, second_key, msg,
+                                     expected_code=200)
 
 
 if __name__ == '__main__':
