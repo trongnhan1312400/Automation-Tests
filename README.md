@@ -1,4 +1,4 @@
- Indy Python wrapper functional test
+## Indy Python wrapper functional test
 
 This is a Python wrapper functional test for Indy. The tests are not driven by any unit test framework but are standalone python scripts.
 
