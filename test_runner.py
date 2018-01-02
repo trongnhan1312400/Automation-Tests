@@ -39,7 +39,7 @@ class TestRunner:
             exit(1)
 
         for test_scenario in list_test_scenarios:
-            test_scenario().execute_scenario()
+            test_scenario().execute_scenario(time_out=self.__args.timeout)
 
         number_of_tests_pass = \
             list(result.TestResult.result_of_all_tests.values()).count(
