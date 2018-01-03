@@ -5,6 +5,7 @@ Created on Dec 18, 2017
 """
 
 from indy import anoncreds
+from indy.error import ErrorCode
 from utilities import utils, common, constant
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
@@ -26,11 +27,15 @@ class TestProverCreateMasterSecret(AnoncredsTestBase):
                                      self.wallet_handle,
                                      constant.secret_name)
 
-        # 4. Verify that None is returned.
-        self.steps.add_step("Verify that None is returned")
-        error_msg = "Cannot create master secret"
-        utils.check(self.steps, error_msg,
-                    condition=lambda: result is None)
+        # 4. Create another master secret with the same secret name and verify
+        # that master secret cannot be created because of duplicating name.
+        self.steps.add_step("Create another master secret with the same secret"
+                            " name and verify that master secret cannot be "
+                            "created because of duplicating name")
+        error_code = ErrorCode.AnoncredsMasterSecretDuplicateNameError
+        await utils.perform_with_expected_code(
+            self.steps, anoncreds.prover_create_master_secret,
+            self.wallet_handle, constant.secret_name, expected_code=error_code)
 
 
 if __name__ == '__main__':
