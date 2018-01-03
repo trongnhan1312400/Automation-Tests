@@ -22,10 +22,8 @@ class TestProverCreateMasterSecret(AnoncredsTestBase):
 
         # 3. Create master secret.
         self.steps.add_step("Create master secret")
-        result = await utils.perform(self.steps,
-                                     anoncreds.prover_create_master_secret,
-                                     self.wallet_handle,
-                                     constant.secret_name)
+        await utils.perform(self.steps, anoncreds.prover_create_master_secret,
+                            self.wallet_handle, constant.secret_name)
 
         # 4. Create another master secret with the same secret name and verify
         # that master secret cannot be created because of duplicating name.
