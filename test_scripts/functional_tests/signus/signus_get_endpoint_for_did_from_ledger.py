@@ -60,9 +60,9 @@ class TestGetEndPointForDidFromLedger(TestScenarioBase):
         # 10. Check returned endpoint.
         self.steps.add_step("Check returned endpoint")
         error_msg = "Returned endpoint mismatches with endpoint that is set"
+        expected_ep = ep_json['endpoint']['ha']
         utils.check(self.steps, error_message=error_msg,
-                    condition=lambda: returned_endpoint ==
-                                      ep_json['endpoint']['ha'])
+                    condition=lambda: returned_endpoint == expected_ep)
 
 
 if __name__ == "__main__":
