@@ -13,6 +13,7 @@ import sys
 import inspect
 import importlib
 import argparse
+import multiprocessing
 from utilities import utils, constant, result
 from utilities.test_scenario_base import TestScenarioBase
 
@@ -38,18 +39,10 @@ class TestRunner:
                 "\n{}\n".format(constant.ERR_CANNOT_FIND_ANY_TEST_SCENARIOS))
             exit(1)
 
-        for test_scenario in list_test_scenarios:
-            test_scenario().execute_scenario(time_out=self.__args.timeout)
-
-        number_of_tests_pass = \
-            list(result.TestResult.result_of_all_tests.values()).count(
-                result.Status.PASSED)
-        number_of_tests_fail = \
-            list(result.TestResult.result_of_all_tests.values()).count(
-                result.Status.FAILED)
+        (tests_pass, tests_fail) = self.__execute_tests(list_test_scenarios)
 
         complete_message = constant.INFO_TEST_PASS_FAIL.format(
-            number_of_tests_pass, number_of_tests_fail)
+            tests_pass, tests_fail)
 
         print(complete_message)
 
@@ -81,6 +74,32 @@ class TestRunner:
         if self.__args.timeout <= 0.0:
             print("Invalid timeout!")
             exit(1)
+
+    def __execute_tests(self, lst_tests):
+        """
+        Execute all test case and collect the number of tests and pass.
+
+        :param lst_tests:
+        :return: number of tests pass and fail
+        """
+        tests_pass = tests_fail = 0
+        for test in lst_tests:
+            (parent_channel, child_channel) = multiprocessing.Pipe()
+            process = multiprocessing.Process(
+                target=TestRunner.__helper_execute_test,
+                kwargs={"test_cls": test,
+                        "time_out": self.__args.timeout,
+                        "channel": child_channel})
+            process.start()
+            temp_result = parent_channel.recv()
+            process.join()
+            if "status" in temp_result:
+                if temp_result["status"] == result.Status.PASSED:
+                    tests_pass += 1
+                else:
+                    tests_fail += 1
+
+        return tests_pass, tests_fail
 
     def __execute_reporter(self):
         """
@@ -148,6 +167,23 @@ class TestRunner:
                     list_test_scenarios.append(cls)
 
         return list_test_scenarios
+
+    @staticmethod
+    def __helper_execute_test(test_cls, channel, time_out):
+        """
+        Execute test case in a sub-process and send result to parent process
+
+        :param test_cls: the test class the will be executed.
+        :param channel: a side of pipe to communicate with parrent process.
+        :param time_out: time out of test case
+        """
+        test_case = test_cls()
+        test_case.execute_scenario(time_out=time_out)
+        temp = {}
+        if hasattr(test_case, "test_result"):
+            temp["status"] = test_case.test_result.get_test_status()
+
+        channel.send(temp)
 
 
 if __name__ == "__main__":

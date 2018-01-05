@@ -75,12 +75,10 @@ async def perform(steps, func, *args, ignore_exception=False):
         steps.get_last_step().set_status(Status.PASSED)
     except IndyError as E:
         print_error(constant.INDY_ERROR.format(str(E)))
-#         steps.get_last_step().set_message(str(E))
         steps.get_last_step().set_status(Status.FAILED, str(E))
         result = E
     except Exception as Ex:
         print_error(constant.EXCEPTION.format(str(Ex)))
-#         steps.get_last_step().set_message(str(Ex))
         steps.get_last_step().set_status(Status.FAILED, str(Ex))
         result = Ex
 
