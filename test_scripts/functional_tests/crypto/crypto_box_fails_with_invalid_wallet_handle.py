@@ -12,7 +12,7 @@ from test_scripts.functional_tests.crypto.crypto_test_base \
     import CryptoTestBase
 
 
-class CryptoBoxWithInvalidHanlde(CryptoTestBase):
+class CryptoBoxWithInvalidHandle(CryptoTestBase):
 
     async def execute_test_steps(self):
         # 1. Create wallet.
@@ -41,4 +41,4 @@ class CryptoBoxWithInvalidHanlde(CryptoTestBase):
 
 
 if __name__ == '__main__':
-    CryptoBoxWithInvalidHanlde().execute_scenario()
+    CryptoBoxWithInvalidHandle().execute_scenario()
