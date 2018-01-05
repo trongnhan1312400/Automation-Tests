@@ -261,15 +261,15 @@ async def close_and_delete_wallet(wallet_name, wallet_handle,
         try:
             utils.print_header("\nClose wallet\n")
             await wallet.close_wallet(wallet_handle)
-        except IndyError as ie:
-            utils.print_error(str(ie))
+        except Exception as e:
+            utils.print_error(str(e))
 
     if wallet_name:
         try:
             utils.print_header("\nDelete wallet\n")
             await wallet.delete_wallet(wallet_name, credentials)
-        except IndyError as ie:
-            utils.print_error(str(ie))
+        except Exception as e:
+            utils.print_error(str(e))
 
 
 def delete_pool_folder(pool_name: str):

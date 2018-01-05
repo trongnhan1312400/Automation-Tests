@@ -36,7 +36,7 @@ class TestDecryptSealedWithValidData(SignusTestBase):
         # 5. Encrypte message by 'signus.encrypt_sealed'
         self.steps.add_step("Encrypte message by 'signus.encrypt_sealed'")
         message = "Test signus".encode("utf-8")
-        encrypted_message = await utils.perform(
+        (encrypted_message, nonce) = await utils.perform(
             self.steps, signus.encrypt_sealed, self.wallet_handle, -1,
             their_did, message)
 
