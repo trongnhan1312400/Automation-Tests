@@ -450,7 +450,7 @@ class RemoveAndAddRole(TestScenarioBase):
                                                                 temp_msg)
             else:
                 if not RemoveAndAddRole.check_role_in_retrieved_nym(temp_msg,
-                                                                    Role.NONE):
+                                                                    None):
                     temp = False
                     message += "\nCannot remove {}'s role".format(target_name)
 
