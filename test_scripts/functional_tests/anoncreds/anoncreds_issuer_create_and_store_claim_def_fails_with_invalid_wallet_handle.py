@@ -28,10 +28,11 @@ class TestIssuerCreateAndStoreClaimDefWithInvalidWalletHandle\
                                               signus.create_and_store_my_did,
                                               self.wallet_handle, "{}")
 
-        # 4. Create and store claim definition and verify that
-        # a claim definition cannot be created.
-        self.steps.add_step("Create and store claim definition and verify that"
-                            " a claim definition cannot be created.")
+        # 4. Create and store claim definition with invalid wallet handle
+        # and verify that a claim definition cannot be created.
+        self.steps.add_step("Create and store claim definition with invalid "
+                            "wallet handle and verify that a "
+                            "claim definition cannot be created.")
         error_code = ErrorCode.WalletInvalidHandle
 
         await utils.perform_with_expected_code(
