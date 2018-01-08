@@ -14,30 +14,58 @@
       <file leaf-file-name="anoncreds_prove_store_claim_works_with_valid_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_store_claim_works_with_valid_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="66" column="52" lean-forward="false" selection-start-line="66" selection-start-column="52" selection-end-line="66" selection-end-column="52" />
-              <folding>
-                <element signature="e#53#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utilities/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+            <state relative-caret-position="901">
+              <caret line="59" column="26" lean-forward="true" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="remove_and_add_role.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
+      <file leaf-file-name="anoncreds_issuer_create_claim_with_valid_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_claim_with_valid_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="438" column="62" lean-forward="true" selection-start-line="438" selection-start-column="62" selection-end-line="438" selection-end-column="62" />
+            <state relative-caret-position="290">
+              <caret line="62" column="56" lean-forward="true" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="anoncreds_prover_create_and_store_claim_req_works_with_valid_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_and_store_claim_req_works_with_valid_data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-697">
+              <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="anoncreds_prove_get_claims_return_claims_with_correct_format.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_return_claims_with_correct_format.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="901">
+              <caret line="59" column="26" lean-forward="true" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="anoncreds_prove_get_claims_returns_all_claims_with_empty_filter_json.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_returns_all_claims_with_empty_filter_json.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="31" column="51" lean-forward="false" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="anoncreds_prove_get_claims_works_for_filtering_by_issuer_did.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_works_for_filtering_by_issuer_did.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -46,38 +74,8 @@
       <file leaf-file-name="constant.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utilities/constant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="744">
-              <caret line="150" column="4" lean-forward="false" selection-start-line="150" selection-start-column="4" selection-end-line="150" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="futures.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/asyncio/futures.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utilities/common.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-146">
-              <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pairwise_test_base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_test_base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="21" column="35" lean-forward="false" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+            <state relative-caret-position="194">
+              <caret line="42" column="1" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -86,28 +84,28 @@
       <file leaf-file-name="test_scenario_base.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utilities/test_scenario_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="94" column="55" lean-forward="false" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
+            <state relative-caret-position="211">
+              <caret line="87" column="12" lean-forward="true" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signus_create_my_did_fails_with_invalid_crypto_type.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_create_my_did_fails_with_invalid_crypto_type.py">
+      <file leaf-file-name="anoncreds_prover_create_master_secret_works_with_valid_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_master_secret_works_with_valid_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="24" column="46" lean-forward="false" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pairwise_set_pairwise_metadata_works_for_existing_pairwise.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_set_pairwise_metadata_works_for_existing_pairwise.py">
+      <file leaf-file-name="test_runner.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_runner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="-2101">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -145,8 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_set_pairwise_metadata_fails_for_not_exist_pairwise.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_set_pairwise_metadata_fails_with_invalid_wallet_handle.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_set_pairwise_metadata_works_for_existing_pairwise.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_reset_pairwise_metadata_for_existing_pairwise.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/crypto/crypto_test_base.py" />
@@ -182,20 +178,22 @@
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/test.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_master_secret_works_with_valid_data.py" />
         <option value="$PROJECT_DIR$/test_runner.py" />
-        <option value="$PROJECT_DIR$/utilities/constant.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_decrypt_sealed_works_with_valid_data.py" />
-        <option value="$PROJECT_DIR$/utilities/test_scenario_base.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_issuer_did.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claim_offers_works_for_filter_by_schema_no.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_and_store_claim_def_works_with_valid_data.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_and_store_claim_def_fails_with_invalid_wallet_handle.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_and_store_claim_req_works_with_valid_data.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_return_claims_with_correct_format.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_test_base.py" />
-        <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_store_claim_works_with_valid_data.py" />
         <option value="$PROJECT_DIR$/utilities/common.py" />
         <option value="$PROJECT_DIR$/utilities/utils.py" />
         <option value="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
+        <option value="$PROJECT_DIR$/utilities/test_scenario_base.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_store_claim_works_with_valid_data.py" />
+        <option value="$PROJECT_DIR$/utilities/constant.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_return_claims_with_correct_format.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_returns_all_claims_with_empty_filter_json.py" />
+        <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_works_for_filtering_by_issuer_did.py" />
       </list>
     </option>
   </component>
@@ -223,8 +221,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,27 +253,6 @@
               <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
               <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
               <item name="anoncreds" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
-              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="pairwise" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
-              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="signus" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Automation-Tests" type="462c0819:PsiDirectoryNode" />
-              <item name="test_scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="functional_tests" type="462c0819:PsiDirectoryNode" />
-              <item name="wallet" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Automation-Tests" type="b2602c69:ProjectViewProjectNode" />
@@ -337,18 +314,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46171874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="8" y="30" width="624" height="946" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24971098" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -395,20 +371,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/utilities/result.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="45" column="57" lean-forward="false" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/indy/error.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="76" column="27" lean-forward="false" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/signus/signus_set_endpoint_for_did_fails_with_invalid_wallet_handle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -490,7 +452,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="446">
           <caret line="438" column="9" lean-forward="true" selection-start-line="438" selection-start-column="9" selection-end-line="438" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -505,13 +466,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_master_secret_works_with_valid_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="46" lean-forward="false" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -571,13 +525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/test_anoncreds.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -624,7 +571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -632,7 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="28" column="34" lean-forward="false" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -640,7 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="52" column="60" lean-forward="false" selection-start-line="52" selection-start-column="60" selection-end-line="52" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -648,7 +592,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="28" column="53" lean-forward="false" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -656,31 +599,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="31" column="44" lean-forward="false" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_claim_with_valid_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="61" column="53" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_return_claims_with_correct_format.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_and_store_claim_req_works_with_valid_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -688,27 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="415">
           <caret line="44" column="35" lean-forward="false" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
-          <folding>
-            <element signature="e#103#138#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_store_claim_works_with_valid_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="66" column="52" lean-forward="false" selection-start-line="66" selection-start-column="52" selection-end-line="66" selection-end-column="52" />
-          <folding>
-            <element signature="e#53#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/test_scenario_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="94" column="55" lean-forward="false" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -730,7 +627,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/pairwise/pairwise_test_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="357">
           <caret line="21" column="35" lean-forward="false" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
           <folding />
         </state>
@@ -738,7 +635,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utilities/common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-146">
+        <state relative-caret-position="1394">
           <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding />
         </state>
@@ -746,7 +643,7 @@
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/asyncio/futures.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="238">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
@@ -760,18 +657,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/constant.py">
+    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="150" column="4" lean-forward="false" selection-start-line="150" selection-start-column="4" selection-end-line="150" selection-end-column="4" />
+        <state relative-caret-position="17">
+          <caret line="438" column="62" lean-forward="false" selection-start-line="438" selection-start-column="62" selection-end-line="438" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py">
+    <entry file="file://$PROJECT_DIR$/test_runner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="438" column="62" lean-forward="true" selection-start-line="438" selection-start-column="62" selection-end-line="438" selection-end-column="62" />
+        <state relative-caret-position="-2101">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_master_secret_works_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="24" column="46" lean-forward="false" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_issuer_create_claim_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="62" column="56" lean-forward="true" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilities/test_scenario_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="87" column="12" lean-forward="true" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilities/constant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="42" column="1" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_create_and_store_claim_req_works_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="13" column="35" lean-forward="false" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_return_claims_with_correct_format.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="59" column="26" lean-forward="true" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_store_claim_works_with_valid_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="59" column="26" lean-forward="true" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_works_for_filtering_by_issuer_did.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prove_get_claims_returns_all_claims_with_empty_filter_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="31" column="51" lean-forward="false" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
           <folding />
         </state>
       </provider>

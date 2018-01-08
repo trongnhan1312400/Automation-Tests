@@ -1,5 +1,5 @@
 """
-Created on Jan 4, 2018
+Created on Jan 8, 2018
 
 @author: nhan.nguyen
 """
@@ -12,7 +12,7 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
 
-class TestProverStoreClaim(AnoncredsTestBase):
+class TestProverGetAllClaimsWithEmptyFilterJson(AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -59,20 +59,26 @@ class TestProverStoreClaim(AnoncredsTestBase):
 
         # 8. Create claim.
         self.steps.add_step("Create claim")
-        (_, created_claim) = await \
+        (_, created_claim1) = await \
             utils.perform(self.steps, anoncreds.issuer_create_claim,
                           self.wallet_handle, claim_req,
                           json.dumps(constant.gvt_claim), -1)
 
-        # 9. Store claim into wallet and verify that
-        # there is no exception raised.
-        self.steps.add_step("Store claim into wallet and "
-                            "verify that there is no exception raised")
-        await utils.perform(self.steps, anoncreds.prover_store_claim,
-                            self.wallet_handle, created_claim,
-                            ignore_exception=False)
+        # 9. Create other claim.
+        self.steps.add_step("Create other claim")
+        (_, created_claim2) = await \
+            utils.perform(self.steps, anoncreds.issuer_create_claim,
+                          self.wallet_handle, claim_req,
+                          json.dumps(constant.gvt_other_claim), -1)
 
-        # 10. Get claims store in wallet.
+        # 10. Store claims into wallet.
+        self.steps.add_step("Store claims into wallet")
+        await utils.perform(self.steps, anoncreds.prover_store_claim,
+                            self.wallet_handle, created_claim1)
+        await utils.perform(self.steps, anoncreds.prover_store_claim,
+                            self.wallet_handle, created_claim2)
+
+        # 11. Get claims store in wallet.
         self.steps.add_step("Get claims store in wallet")
         lst_claims = await utils.perform(self.steps,
                                          anoncreds.prover_get_claims,
@@ -80,14 +86,13 @@ class TestProverStoreClaim(AnoncredsTestBase):
 
         lst_claims = json.loads(lst_claims)
 
-        # 11. Check lst_claims[0]['claim_uuid'].
-        # 12. Check lst_claims[0]['attrs'].
-        # 13. Check lst_claims[0]['issuer_did'].
-        # 14. Check lst_claims[0]['schema_seq_no'].
-        anoncreds_test_base.check_gotten_claim_is_valid(
-            self.steps, lst_claims[0], constant.gvt_claim,
-            issuer_did, constant.gvt_schema_seq)
+        # 12. Check returned claims.
+        self.steps.add_step("Check returned claims")
+        err_msg = "Returned claims is not a list with two elements"
+        utils.check(self.steps, error_message=err_msg,
+                    condition=lambda: isinstance(lst_claims, list) and
+                    len(lst_claims) == 2)
 
 
 if __name__ == '__main__':
-    TestProverStoreClaim().execute_scenario()
+    TestProverGetAllClaimsWithEmptyFilterJson().execute_scenario()
