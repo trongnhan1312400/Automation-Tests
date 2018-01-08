@@ -3,7 +3,7 @@ Created on Nov 22, 2017
 
 @author: nhan.nguyen
 
-Containing classes to catch the log on console and write it file.
+Containing classes to catch the log on console and write it to file.
 """
 
 import sys

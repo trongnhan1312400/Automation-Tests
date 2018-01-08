@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9674405d-1f2a-44ac-b3b3-2fb8beed3a3a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/utilities/logger.py" afterPath="$PROJECT_DIR$/utilities/logger.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,7 +33,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_runner.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_runner.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_runner.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
@@ -65,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="logger.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="logger.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utilities/logger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="636">
-              <caret line="90" column="41" lean-forward="false" selection-start-line="90" selection-start-column="41" selection-end-line="90" selection-end-column="41" />
+            <state relative-caret-position="221">
+              <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -195,11 +195,11 @@
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_for_filtering_by_issuer_did.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_for_filtering_by_schema_no.py" />
         <option value="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_for_filtering_by_schema_no_and_issuer_did.py" />
-        <option value="$PROJECT_DIR$/utilities/logger.py" />
         <option value="$PROJECT_DIR$/utilities/result.py" />
         <option value="$PROJECT_DIR$/reporter.py" />
         <option value="$PROJECT_DIR$/utilities/step.py" />
         <option value="$PROJECT_DIR$/test_runner.py" />
+        <option value="$PROJECT_DIR$/utilities/logger.py" />
       </list>
     </option>
   </component>
@@ -704,14 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities/logger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="636">
-          <caret line="90" column="41" lean-forward="false" selection-start-line="90" selection-start-column="41" selection-end-line="90" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -753,6 +745,14 @@
           <folding>
             <element signature="e#90#99#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilities/logger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
