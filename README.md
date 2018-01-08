@@ -1,8 +1,48 @@
-## Indy Python wrapper functional test
+## Indy Python wrapper test
 
-This is a Python wrapper functional test for Indy. The tests are not driven by any unit test framework but are standalone python scripts.
+This is a Python wrapper test for Indy. The tests are not driven by any unit test framework but are standalone python scripts.
+This Python wrapper test currently requires python 3.5 and base58 (required for testing signus only).
 
-This Python wrapper functional test currently requires python 3.5, base58.
+### Appication Under Test
+Python Wrapper - FFI based wrapper for native libindy that allows application development with python language.
+
+Specification to API calls for are present as comments in interface parts of source code:
+* https://github.com/hyperledger/indy-sdk/tree/master/libindy/include/ (libindy docs)
+* https://github.com/hyperledger/indy-sdk/tree/master/wrappers/python/indy/ (python wrapper docs)
+
+### Repository Structure
+Indy Python wrapper test contains the following parts:
+ 
+- test_scripts:
+     - acceptance_tests: The Acceptance test procedure consists of the following tests:
+          - check_connection.py
+          - keyrings_wallets.py 
+          - remove_and_add_role.py 
+          - special_case_trust_anchor_role.py 
+          - verify_messages_on_connection.py
+     - functional_tests: storing the tests checking the results of Python wrapper for Indy. Inclunding the specific functional folders:
+          - agent
+          - anoncreds
+          - crypto
+          - ledger
+          - misc (the miscellaneous tests that may not fit in a specific functional folder)
+          - pairwise
+          - pool
+          - signus
+          - wallet
+           
+- utilities:
+     - common.py: Containing all functions that is common among test scenarios.
+     - constant.py: Containing all constants that are necessary to execute test scenario.
+     - logger.py: Containing classes to catch the log on console and write it file.
+     - result.py: Containing classes to make the test result as a json.
+     - step.py: Containting the classes to manage the list of test step and the step's information ( step name, step status, steps message).
+     - test_scenario_base.py: Containing the test base class.
+     - utils.py: Containing all functions used by several test steps on test scenarios.
+     
+- test_runner.py: The test runner does all the work to run all test scripts, tracktime, kill dead tests. You are able to specify the directory and run all scripts in the sub directories as well as run all tests (master run) or a limited number of tests by specifying a single sub directory.
+
+- reporter.py: Generate an HTML report to show the summary all the tests run during the same timeframe (example: all test run on 2017-11-16 would be in one report with that date). This would include tests that were run multiple times in a single day. And the report is stored in the 'reporter summary report' folder.
 
 ### How to run
 
@@ -30,7 +70,6 @@ After building successfully the Indy SDK for Python, you need to run the command
 ```    
     python3.5 Automation-Tests/test_runner.py -rd
 ```
-
 ##### This is the usage of test_runner.py
 ```
 test_runner.py [-h] [-d [DIRECTORY]] [-rd [RECUR_DIRECTORY]]
