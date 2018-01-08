@@ -87,7 +87,7 @@ class TestProverGetClaimReturnCorrectFormat(AnoncredsTestBase):
         self.steps.add_step("Check lst_claims[0]")
         err_msg = "Length of lst_claim[0] is incorrect"
         utils.check(self.steps, error_message=err_msg,
-                    condition=lambda: len(lst_claims[0]))
+                    condition=lambda: len(lst_claims[0]) == 4)
 
         # 13. Check lst_claims[0]['claim_uuid'].
         # 14. Check lst_claims[0]['attrs'].

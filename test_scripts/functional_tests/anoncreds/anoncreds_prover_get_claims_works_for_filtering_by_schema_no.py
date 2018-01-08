@@ -12,7 +12,7 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
 
-class TestProverGetClaimByFilteringWithIssuerDid(AnoncredsTestBase):
+class TestProverGetClaimByFilteringWithSchemaNo(AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -109,10 +109,10 @@ class TestProverGetClaimByFilteringWithIssuerDid(AnoncredsTestBase):
         await utils.perform(self.steps, anoncreds.prover_store_claim,
                             self.wallet_handle, created_xyz_claim)
 
-        # 15. Get stored claims by filtering with 'issuer1_did'.
+        # 15. Get stored claims by filtering with gvt_schema_no.
         self.steps.add_step("Get stored claims by "
-                            "filtering with 'issuer1_did'")
-        filter_json = json.dumps({"issuer_did": issuer1_did})
+                            "filtering with gvt_schema_no")
+        filter_json = json.dumps({"schema_seq_no": constant.gvt_schema_seq})
         lst_claims = await utils.perform(self.steps,
                                          anoncreds.prover_get_claims,
                                          self.wallet_handle, filter_json)
@@ -135,4 +135,4 @@ class TestProverGetClaimByFilteringWithIssuerDid(AnoncredsTestBase):
 
 
 if __name__ == '__main__':
-    TestProverGetClaimByFilteringWithIssuerDid().execute_scenario()
+    TestProverGetClaimByFilteringWithSchemaNo().execute_scenario()
