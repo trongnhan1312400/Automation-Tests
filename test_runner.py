@@ -174,7 +174,7 @@ class TestRunner:
         Execute test case in a sub-process and send result to parent process
 
         :param test_cls: the test class the will be executed.
-        :param channel: a side of pipe to communicate with parrent process.
+        :param channel: a side of pipe to communicate with parent process.
         :param time_out: time out of test case
         """
         test_case = test_cls()
