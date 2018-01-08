@@ -6,7 +6,6 @@ Created on Nov 24, 2017
 Containing class for Test Runner.
 """
 
-import subprocess
 import os
 import glob
 import sys
@@ -14,6 +13,7 @@ import inspect
 import importlib
 import argparse
 import multiprocessing
+import reporter
 from utilities import utils, constant, result
 from utilities.test_scenario_base import TestScenarioBase
 
@@ -26,6 +26,8 @@ class TestRunner:
     def __init__(self):
         self.__args = None
         self.__catch_arg()
+        self.__lst_json_files = []
+        self.__lst_log_files = []
         pass
 
     def run(self):
@@ -99,6 +101,12 @@ class TestRunner:
                 else:
                     tests_fail += 1
 
+            if "json_path" in temp_result:
+                self.__lst_json_files.append(temp_result["json_path"])
+
+            if "log_path" in temp_result:
+                self.__lst_log_files.append(temp_result["log_path"])
+
         return tests_pass, tests_fail
 
     def __execute_reporter(self):
@@ -107,8 +115,8 @@ class TestRunner:
         """
         if not self.__args.report:
             return
-        cmd = "{} {}".format("python3", TestRunner.__reporter_dir)
-        subprocess.call(cmd, shell=True)
+        reporter.HTMLReporter().generate_report_from_file(
+            self.__lst_json_files)
 
     def __get_list_scenarios_in_folder(self):
         """
@@ -174,7 +182,7 @@ class TestRunner:
         Execute test case in a sub-process and send result to parent process
 
         :param test_cls: the test class the will be executed.
-        :param channel: a side of pipe to communicate with parrent process.
+        :param channel: a side of pipe to communicate with parent process.
         :param time_out: time out of test case
         """
         test_case = test_cls()
@@ -182,6 +190,8 @@ class TestRunner:
         temp = {}
         if hasattr(test_case, "test_result"):
             temp["status"] = test_case.test_result.get_test_status()
+            temp["json_path"] = test_case.test_result.get_json_file_path()
+            temp["log_path"] = test_case.logger.get_log_file_path()
 
         channel.send(temp)
 
