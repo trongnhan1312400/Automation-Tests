@@ -360,7 +360,7 @@ class RemoveAndAddRole(TestScenarioBase):
                            None, Role.TRUST_ANCHOR)
 
     async def add_nym(self, submitter_did, target_did, ver_key, alias, role,
-                      error_code=None, default_message: str = ""):
+                      error_code=None, default_message: str=""):
         """
         Build a send NYM request and submit it.
 
