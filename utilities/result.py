@@ -110,6 +110,9 @@ class TestResult:
                 "\nJson file has been written at: {}\n".format(
                     self.__json_file_path))
 
+    def get_json_file_path(self):
+        return self.__json_file_path
+
     def set_test_failed(self):
         """
         Set status of test to FAILED.

@@ -65,6 +65,9 @@ class Logger:
             print(Color.OKBLUE + "Log file has been kept at: {}\n".
                   format(self.__log_file_path) + Color.ENDC)
 
+    def get_log_file_path(self):
+        return self.__log_file_path
+
     @staticmethod
     def redirect_stdout_stderr(file):
         """
