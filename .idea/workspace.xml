@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9674405d-1f2a-44ac-b3b3-2fb8beed3a3a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_work_with_no_claim_matches_with_filter.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_with_no_claim_in_wallet.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" afterPath="$PROJECT_DIR$/test_scripts/acceptance_tests/remove_and_add_role.py" />
-      <change beforePath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_for_filtering_by_issuer_did.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_for_filtering_by_issuer_did.py" />
-      <change beforePath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_for_filtering_by_schema_no.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_for_filtering_by_schema_no.py" />
-      <change beforePath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_for_filtering_by_schema_no_and_issuer_did.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_get_claims_works_for_filtering_by_schema_no_and_issuer_did.py" />
-      <change beforePath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_store_claim_offer_fails_with_invalid_json.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/anoncreds_prover_store_claim_offer_fails_with_invalid_json.py" />
       <change beforePath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/test_anoncreds.py" afterPath="$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/test_anoncreds.py" />
-      <change beforePath="$PROJECT_DIR$/utilities/utils.py" afterPath="$PROJECT_DIR$/utilities/utils.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,9 +26,11 @@
       <file leaf-file-name="test_anoncreds.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/test_anoncreds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="81" column="59" lean-forward="true" selection-start-line="81" selection-start-column="59" selection-end-line="81" selection-end-column="59" />
-              <folding />
+            <state relative-caret-position="340">
+              <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -771,9 +764,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/functional_tests/anoncreds/test_anoncreds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="81" column="59" lean-forward="true" selection-start-line="81" selection-start-column="59" selection-end-line="81" selection-end-column="59" />
-          <folding />
+        <state relative-caret-position="340">
+          <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
