@@ -271,14 +271,21 @@ def check(steps: Steps, error_message: str, condition) -> bool:
     return False
 
 
-def create_claim_offer(issuer_did: str, schema_seq: int) -> dict:
+def create_claim_offer(issuer_did: str="", schema_seq: int=None) -> dict:
     """
     Return a claim offer.
     :param issuer_did: create by signus.create_and_store_did.
     :param schema_seq:
     :return: claim offer.
     """
-    return {"issuer_did": issuer_did, "schema_seq_no": schema_seq}
+    result = {}
+    if issuer_did:
+        result['issuer_did'] = issuer_did
+
+    if schema_seq:
+        result["schema_seq_no"] = schema_seq
+
+    return result
 
 
 def create_gotten_pairwise_json(my_did: str=None, metadata=None) -> dict:

@@ -1,5 +1,5 @@
 """
-Created on Jan 8, 2018
+Created on Jan 10, 2018
 
 @author: nhan.nguyen
 """
@@ -12,7 +12,7 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
 
-class TestProverGetAllClaimsWithEmptyFilterJson(AnoncredsTestBase):
+class TestProverGetClaimsWorksWithNoClaimMatchesWithFilter(AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -59,38 +59,32 @@ class TestProverGetAllClaimsWithEmptyFilterJson(AnoncredsTestBase):
 
         # 8. Create claim.
         self.steps.add_step("Create claim")
-        (_, created_claim1) = await \
+        (_, created_claim) = await \
             utils.perform(self.steps, anoncreds.issuer_create_claim,
                           self.wallet_handle, claim_req,
                           json.dumps(constant.gvt_claim), -1)
 
-        # 9. Create other claim.
-        self.steps.add_step("Create other claim")
-        (_, created_claim2) = await \
-            utils.perform(self.steps, anoncreds.issuer_create_claim,
-                          self.wallet_handle, claim_req,
-                          json.dumps(constant.gvt_other_claim), -1)
-
-        # 10. Store claims into wallet.
+        # 9. Store claims into wallet.
         self.steps.add_step("Store claims into wallet")
         await utils.perform(self.steps, anoncreds.prover_store_claim,
-                            self.wallet_handle, created_claim1)
-        await utils.perform(self.steps, anoncreds.prover_store_claim,
-                            self.wallet_handle, created_claim2)
+                            self.wallet_handle, created_claim)
 
-        # 12. Get claims for proof request.
-        self.steps.add_step("Get claims for proof request")
-        temp = await anoncreds.prover_get_claims_for_proof_req(
-            self.wallet_handle, json.dumps(
-                {'nonce': '1', 'name': 'proof_req_1',
-                 'version': '0.1',
-                 'requested_attrs': {},
-                 'requested_predicates': {
-                     'predicate1_referent': {'attr_name': 'age',
-                                             'p_type': 'GE', 'value': 25}}}))
+        # 10. Get claims store in wallet.
+        self.steps.add_step("Get claims store in wallet")
+        filter_json = json.dumps({"schema_seq_no":
+                                  constant.gvt_schema_seq + 1})
+        lst_claims = await utils.perform(self.steps,
+                                         anoncreds.prover_get_claims,
+                                         self.wallet_handle, filter_json)
 
-        print(temp)
+        lst_claims = json.loads(lst_claims)
+
+        # 11. Check returned claims.
+        self.steps.add_step("Check returned claims")
+        err_msg = "Returned claims is not an empty list"
+        utils.check(self.steps, error_message=err_msg,
+                    condition=lambda: not lst_claims)
 
 
 if __name__ == '__main__':
-    TestProverGetAllClaimsWithEmptyFilterJson().execute_scenario()
+    TestProverGetClaimsWorksWithNoClaimMatchesWithFilter().execute_scenario()

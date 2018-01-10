@@ -119,8 +119,8 @@ class TestProverGetClaimByFilteringWithSchemaNo(AnoncredsTestBase):
 
         lst_claims = json.loads(lst_claims)
 
-        # 16. Check lst_claims.
-        self.steps.add_step("Check lst_claims[0]")
+        # 16. Check returned list claims.
+        self.steps.add_step("Check returned list claims")
         err_msg = "Cannot get claims from wallet"
         utils.check(self.steps, error_message=err_msg,
                     condition=lambda: len(lst_claims) == 1)
