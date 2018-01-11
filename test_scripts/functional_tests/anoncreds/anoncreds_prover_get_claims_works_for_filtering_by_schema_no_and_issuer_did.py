@@ -43,9 +43,10 @@ class TestProverGetClaimByFilteringWithSchemaNoAndIssuerDid(AnoncredsTestBase):
         await utils.perform(self.steps, anoncreds.prover_create_master_secret,
                             self.wallet_handle, constant.secret_name)
 
-        # 7. Create and store claim definition with 'issuer1_did'.
+        # 7. Create and store claim definition
+        # with 'issuer1_did' and 'gvt_schema'.
         self.steps.add_step("Create and store claim definition "
-                            "with 'issuer1_did'")
+                            "with 'issuer1_did' and 'gvt_schema'")
         gvt_claim_def1 = await \
             utils.perform(self.steps,
                           anoncreds.issuer_create_and_store_claim_def,
@@ -53,9 +54,10 @@ class TestProverGetClaimByFilteringWithSchemaNoAndIssuerDid(AnoncredsTestBase):
                           json.dumps(constant.gvt_schema),
                           constant.signature_type, False)
 
-        # 8. Create and store other claim definition with 'issuer2_did'.
+        # 8. Create and store other claim definition
+        # with 'issuer2_did' with 'xyz_schema'.
         self.steps.add_step("Create and store other claim definition "
-                            "with 'issuer2_did'")
+                            "with 'issuer2_did' with 'xyz_schema'")
         xyz_claim_def = await \
             utils.perform(self.steps,
                           anoncreds.issuer_create_and_store_claim_def,
@@ -64,9 +66,9 @@ class TestProverGetClaimByFilteringWithSchemaNoAndIssuerDid(AnoncredsTestBase):
                           constant.signature_type, False)
 
         # 9. Create and store other claim definition
-        # with 'issuer2_did' with 'gvt_schema'.
+        # with 'issuer2_did' and 'gvt_schema'.
         self.steps.add_step("Create and store other claim definition "
-                            "with 'issuer2_did' with 'gvt_schema'")
+                            "with 'issuer2_did' and 'gvt_schema'")
         gvt_claim_def2 = await \
             utils.perform(self.steps,
                           anoncreds.issuer_create_and_store_claim_def,
@@ -74,8 +76,9 @@ class TestProverGetClaimByFilteringWithSchemaNoAndIssuerDid(AnoncredsTestBase):
                           json.dumps(constant.gvt_schema),
                           constant.signature_type, False)
 
-        # 10. Create claim request with 'issuer1_did'.
-        self.steps.add_step("Create claim request with 'issuer1_did'")
+        # 10. Create claim request with 'issuer1_did' and 'gvt_schema'.
+        self.steps.add_step("Create claim request with "
+                            "'issuer1_did' and 'gvt_schema'")
         claim_offer = utils.create_claim_offer(issuer1_did,
                                                constant.gvt_schema_seq)
         gvt_claim_req1 = await \
@@ -85,20 +88,21 @@ class TestProverGetClaimByFilteringWithSchemaNoAndIssuerDid(AnoncredsTestBase):
                           json.dumps(claim_offer), gvt_claim_def1,
                           constant.secret_name)
 
-        # 11. Create claim.
-        self.steps.add_step("Create claim")
+        # 11. Create claim with 'gvt_schema'.
+        self.steps.add_step("Create claim with 'gvt_schema'")
         (_, created_gvt_claim1) = await \
             utils.perform(self.steps, anoncreds.issuer_create_claim,
                           self.wallet_handle, gvt_claim_req1,
                           json.dumps(constant.gvt_claim), -1)
 
-        # 12. Store claim into wallet.
-        self.steps.add_step("Store claim into wallet")
+        # 12. Store created claim into wallet.
+        self.steps.add_step("Store created claim into wallet")
         await utils.perform(self.steps, anoncreds.prover_store_claim,
                             self.wallet_handle, created_gvt_claim1)
 
-        # 13. Create other claim request with 'issuer2_did'.
-        self.steps.add_step("Create other claim request with 'issuer2_did'")
+        # 13. Create other claim request with 'issuer2_did' and 'xyz_schema'.
+        self.steps.add_step("Create other claim request with "
+                            "'issuer2_did' and 'xyz_schema'")
         claim_offer = utils.create_claim_offer(issuer2_did,
                                                constant.xyz_schema_seq)
         xyz_claim_req = await \
@@ -108,20 +112,21 @@ class TestProverGetClaimByFilteringWithSchemaNoAndIssuerDid(AnoncredsTestBase):
                           json.dumps(claim_offer), xyz_claim_def,
                           constant.secret_name)
 
-        # 14. Create other claim.
-        self.steps.add_step("Create claim")
+        # 14. Create other claim with 'xyz_schema'.
+        self.steps.add_step("Create other claim with 'xyz_schema'")
         (_, created_xyz_claim) = await \
             utils.perform(self.steps, anoncreds.issuer_create_claim,
                           self.wallet_handle, xyz_claim_req,
                           json.dumps(constant.xyz_claim), -1)
 
-        # 15. Store claim into wallet.
-        self.steps.add_step("Store claim into wallet")
+        # 15. Store created claim into wallet.
+        self.steps.add_step("Store created claim into wallet")
         await utils.perform(self.steps, anoncreds.prover_store_claim,
                             self.wallet_handle, created_xyz_claim)
 
-        # 16. Create another claim request with 'issuer2_did'.
-        self.steps.add_step("Create another claim request with 'issuer2_did'")
+        # 16. Create another claim request with 'issuer2_did' and 'gvt_schema'.
+        self.steps.add_step("Create another claim request with "
+                            "'issuer2_did' and 'gvt_schema'")
         claim_offer = utils.create_claim_offer(issuer2_did,
                                                constant.gvt_schema_seq)
         gvt_claim_req2 = await \
@@ -131,15 +136,15 @@ class TestProverGetClaimByFilteringWithSchemaNoAndIssuerDid(AnoncredsTestBase):
                           json.dumps(claim_offer), gvt_claim_def2,
                           constant.secret_name)
 
-        # 17. Create another claim.
-        self.steps.add_step("Create claim")
+        # 17. Create claim with 'gvt_schema'.
+        self.steps.add_step("Create claim with 'gvt_schema'")
         (_, created_gvt_claim2) = await \
             utils.perform(self.steps, anoncreds.issuer_create_claim,
                           self.wallet_handle, gvt_claim_req2,
                           json.dumps(constant.gvt_other_claim), -1)
 
-        # 18. Store claim into wallet.
-        self.steps.add_step("Store claim into wallet")
+        # 18. Store created claim into wallet.
+        self.steps.add_step("Store created claim into wallet")
         await utils.perform(self.steps, anoncreds.prover_store_claim,
                             self.wallet_handle, created_gvt_claim2)
 
