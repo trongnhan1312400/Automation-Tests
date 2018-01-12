@@ -10,6 +10,7 @@ import inspect
 import os
 import time
 
+from asyncio import TimeoutError
 from utilities import utils
 from utilities import common, constant
 from utilities.logger import Logger
@@ -89,8 +90,9 @@ class TestScenarioBase:
                                    self.time_out)
         except TimeoutError:
             utils.print_error("\n{}\n".format(constant.ERR_TIME_LIMITATION))
-            self.steps.get_last_step().set_status(Status.FAILED,
-                                                  constant.ERR_TIME_LIMITATION)
+            self.steps.get_last_step().set_status(Status.FAILED)
+            self.steps.get_last_step().set_message(
+                constant.ERR_TIME_LIMITATION)
         except Exception as e:
             message = constant.EXCEPTION.format(str(e))
             utils.print_error("\n{}\n".format(message))

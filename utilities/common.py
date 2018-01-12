@@ -119,40 +119,6 @@ async def create_and_open_wallet(pool_name, wallet_name):
     return wallet_handle
 
 
-async def close_pool_and_wallet(pool_handle, wallet_handle):
-    """
-    Close the pool and wallet with the pool and wallet handle.
-
-    :param pool_handle: pool handle returned by indy_open_pool_ledger.
-    :param wallet_handle: wallet handle returned by indy_open_wallet.
-    :raise Exception if the method has error.
-    """
-    if pool_handle:
-        utils.print_header("\nClose pool\n")
-        await pool.close_pool_ledger(pool_handle)
-
-    if wallet_handle:
-        utils.print_header("\nClose wallet\n")
-        await wallet.close_wallet(wallet_handle)
-
-
-async def delete_pool_and_wallet(pool_name, wallet_name):
-    """
-    Delete the pool and wallet with the pool and wallet name.
-
-    :param pool_name: Name of the pool that corresponds to this wallet.
-    :param wallet_name: Name of the wallet to delete.
-    :raise Exception if the method has error.
-    """
-    if pool_name:
-        utils.print_header("\nDelete pool\n")
-        await pool.delete_pool_ledger_config(pool_name)
-
-    if wallet_name:
-        utils.print_header("\nDelete wallet\n")
-        await wallet.delete_wallet(wallet_name, None)
-
-
 async def create_and_open_pool_ledger_for_steps(steps, pool_name,
                                                 pool_genesis_txn_file,
                                                 pool_config=None):
@@ -261,15 +227,15 @@ async def close_and_delete_wallet(wallet_name, wallet_handle,
         try:
             utils.print_header("\nClose wallet\n")
             await wallet.close_wallet(wallet_handle)
-        except Exception as e:
-            utils.print_error(str(e))
+        except IndyError as ie:
+            utils.print_error(str(ie))
 
     if wallet_name:
         try:
             utils.print_header("\nDelete wallet\n")
             await wallet.delete_wallet(wallet_name, credentials)
-        except Exception as e:
-            utils.print_error(str(e))
+        except IndyError as ie:
+            utils.print_error(str(ie))
 
 
 def delete_pool_folder(pool_name: str):

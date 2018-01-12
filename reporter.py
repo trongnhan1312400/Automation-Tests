@@ -348,18 +348,17 @@ class HTMLReporter:
     def __init__(self):
         HTMLReporter.__init_report_folder()
 
-    def generate_report(self, file_filter):
+    def generate_report_from_file(self, json_files: list):
+        """
+        Generate report from an list of json files.
+
+        :param json_files:
+        """
         print("Generating a html report...")
         report_file_name = HTMLReporter.__make_report_name()
-        file_filter = "*" if not file_filter else file_filter
-        list_file_name = glob.glob(self.__json_dir + file_filter + ".json")
-        if not list_file_name:
-            print("Cannot find any json at {}".format(HTMLReporter.__json_dir))
-            return
-
         self.make_suite_name(report_file_name)
         self.make_configurate_table()
-        self.make_report_content_by_list(list_file_name, report_file_name)
+        self.make_report_content_by_list(json_files, report_file_name)
 
         # Write to file.
         print(("Refer to " + self.__report_dir + "{}.html").
@@ -410,6 +409,21 @@ class HTMLReporter:
         summary_json.writelines(list_data)
         summary_json.close()
 
+    def generate_report_from_filter(self, file_filter):
+        """
+        Generate report form filter.
+
+        :param file_filter:
+        :return:
+        """
+        file_filter = "*" if not file_filter else file_filter
+        list_file_name = glob.glob(self.__json_dir + file_filter + ".json")
+        if not list_file_name:
+            print("Cannot find any json at {}".format(HTMLReporter.__json_dir))
+            return
+
+        self.generate_report_from_file(list_file_name)
+
     @staticmethod
     def __make_report_name() -> str:
         """
@@ -440,7 +454,7 @@ if __name__ == "__main__":
     arg_parser.add_argument("-n", "--name", dest="name", nargs="?",
                             default=None, help="filter json file by name")
     args = arg_parser.parse_args()
-    json_name = args.name
+    json_filter = args.name
 
     # Generate a html report
-    reporter.generate_report(json_name)
+    reporter.generate_report_from_filter(json_filter)

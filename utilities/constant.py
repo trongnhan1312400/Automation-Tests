@@ -11,7 +11,6 @@ import json
 import hashlib
 from enum import Enum
 
-
 user_home = os.path.expanduser('~') + os.sep
 work_dir = user_home + ".indy_client"
 seed_default_trustee = "000000000000000000000000Trustee1"
@@ -34,40 +33,50 @@ verkey_my2 = "kqa2HyagzfMAq42H5f9u3UMwnSBPQx2QfrSyXbUPxMn"
 # Constant for anoncreds testing.
 gvt_schema_seq = 1
 gvt_schema = {
-        "seqNo": gvt_schema_seq,
-        "data": {
-            "name": "gvt",
-            "version": "1.0",
-            "attr_names": ["age", "sex", "height", "name"],
-            "keys": ["age", "sex", "height", "name"]
-        }
+    "seqNo": gvt_schema_seq,
+    "data": {
+        "name": "gvt",
+        "version": "1.0",
+        "attr_names": ["age", "sex", "height", "name"],
+        "keys": ["age", "sex", "height", "name"]
     }
+}
 
 gvt_claim = {
-        "sex": ["male", str(int(hashlib.md5("male".encode()).
-                                hexdigest(), 16))],
-        "name": ["Alex", str(int(hashlib.md5("Alex".encode()).
-                                 hexdigest(), 16))],
-        "height": ["175", str(int(hashlib.md5("175".encode()).
-                                  hexdigest(), 16))],
-        "age": ["28", str(int(hashlib.md5("28".encode()).hexdigest(), 16))]
-    }
+    "sex": ["male", str(int(hashlib.md5("male".encode()).
+                            hexdigest(), 16))],
+    "name": ["Alex", str(int(hashlib.md5("Alex".encode()).
+                             hexdigest(), 16))],
+    "height": ["175", str(int(hashlib.md5("175".encode()).
+                              hexdigest(), 16))],
+    "age": ["28", str(int(hashlib.md5("28".encode()).hexdigest(), 16))]
+}
+
+gvt_other_claim = {
+    "sex": ["female", str(int(hashlib.md5("female".encode()).
+                              hexdigest(), 16))],
+    "name": ["Anna", str(int(hashlib.md5("Anna".encode()).
+                             hexdigest(), 16))],
+    "height": ["160", str(int(hashlib.md5("160".encode()).
+                              hexdigest(), 16))],
+    "age": ["20", str(int(hashlib.md5("20".encode()).hexdigest(), 16))]
+}
 
 xyz_schema_seq = 2
 xyz_schema = {
-        "seqNo": xyz_schema_seq,
-        "data": {
-            "name": "xyz",
-            "version": "1.0",
-            "attr_names": ["period", "status"]
-        }
+    "seqNo": xyz_schema_seq,
+    "data": {
+        "name": "xyz",
+        "version": "1.0",
+        "attr_names": ["period", "status"]
     }
+}
 
 xyz_claim = {
-        "status": ["partial", str(int(hashlib.md5("partial".encode()).
+    "status": ["partial", str(int(hashlib.md5("partial".encode()).
                                   hexdigest(), 16))],
-        "period": ["8", str(int(hashlib.md5("8".encode()).hexdigest(), 16))]
-    }
+    "period": ["8", str(int(hashlib.md5("8".encode()).hexdigest(), 16))]
+}
 
 signature_type = "CL"
 secret_name = "Master secret"
@@ -96,7 +105,6 @@ INFO_TEST_PASS_FAIL = "\033[1m" + "Result:\n" + \
 INDY_ERROR = "IndyError: {}"
 EXCEPTION = "Exception: {}"
 JSON_INCORRECT = "Failed. Json response is incorrect. {}"
-
 
 # JSON template
 operation_fields = '"type":"{}","dest":"{}"'
@@ -149,3 +157,17 @@ class Role(str, Enum):
     TRUST_ANCHOR = "TRUST_ANCHOR"
     TGB = "TGB"  # obsolete.
     NONE = ""
+
+
+class KeysForRevocation(str, Enum):
+    G = "g"
+    G_DASH = "g_dash"
+    H = "h"
+    H0 = "h0"
+    H1 = "h1"
+    H2 = "h2"
+    H_TILDE = "htilde"
+    H_CAP = "h_cap"
+    U = "u"
+    PK = "pk"
+    Y = "y"

@@ -11,6 +11,7 @@ import time
 import os
 import errno
 from enum import Enum
+from utilities import utils
 
 
 class Status(str, Enum):
@@ -101,14 +102,16 @@ class TestResult:
         """
         Write the result as json.
         """
-        from utilities.utils import print_ok_blue
         self.__test_result[TestResult.__RUN] = self.__run
         with open(self.__json_file_path, "w+") as outfile:
             json.dump(self.__test_result, outfile,
                       ensure_ascii=False, indent=2)
-            print_ok_blue(
+            utils.print_ok_blue(
                 "\nJson file has been written at: {}\n".format(
                     self.__json_file_path))
+
+    def get_json_file_path(self):
+        return self.__json_file_path
 
     def set_test_failed(self):
         """

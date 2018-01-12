@@ -3,7 +3,7 @@ Created on Nov 22, 2017
 
 @author: nhan.nguyen
 
-Containing classes to catch the log on console and write it file.
+Containing classes to catch the log on console and write it to file.
 """
 
 import sys
@@ -64,6 +64,9 @@ class Logger:
            and os.path.isfile(self.__log_file_path):
             print(Color.OKBLUE + "Log file has been kept at: {}\n".
                   format(self.__log_file_path) + Color.ENDC)
+
+    def get_log_file_path(self):
+        return self.__log_file_path
 
     @staticmethod
     def redirect_stdout_stderr(file):

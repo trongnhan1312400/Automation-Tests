@@ -39,7 +39,7 @@ class TestProverStoreClaimOfferWithInvalidJson(AnoncredsTestBase):
         # verify that claim offer cannot be stored.
         self.steps.add_step("Store claim offer with invalid json and "
                             "verify that claim offer cannot be stored")
-        offer_json = {"issuer_did": issuer_did}
+        offer_json = utils.create_claim_offer(issuer_did)
         error_code = ErrorCode.CommonInvalidStructure
         await utils.perform_with_expected_code(
             self.steps, anoncreds.prover_store_claim_offer, self.wallet_handle,
