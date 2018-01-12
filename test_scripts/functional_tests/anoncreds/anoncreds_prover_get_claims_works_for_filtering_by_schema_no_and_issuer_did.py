@@ -7,7 +7,6 @@ import json
 
 from indy import anoncreds, signus
 from utilities import utils, common, constant
-from test_scripts.functional_tests.anoncreds import anoncreds_test_base
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
@@ -170,7 +169,7 @@ class TestProverGetClaimByFilteringWithSchemaNoAndIssuerDid(AnoncredsTestBase):
         # 22. Check lst_claims[0]['attrs'].
         # 23. Check lst_claims[0]['issuer_did'].
         # 24. Check lst_claims[0]['schema_seq_no'].
-        anoncreds_test_base.check_gotten_claim_is_valid(
+        utils.check_gotten_claim_is_valid(
             self.steps, lst_claims[0], constant.gvt_other_claim,
             issuer2_did, constant.gvt_schema_seq)
 

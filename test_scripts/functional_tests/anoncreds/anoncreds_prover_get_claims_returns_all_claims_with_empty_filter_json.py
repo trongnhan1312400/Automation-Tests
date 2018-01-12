@@ -7,7 +7,6 @@ import json
 
 from indy import anoncreds, signus
 from utilities import utils, common, constant
-from test_scripts.functional_tests.anoncreds import anoncreds_test_base
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 

@@ -80,6 +80,7 @@ xyz_claim = {
 
 signature_type = "CL"
 secret_name = "Master secret"
+claim_uuid_key = "claim_uuid"   # Change to "referent" in next build
 
 # The path to the genesis transaction file is configurable.
 # The default directory is "/var/lib/indy/sandbox/".

@@ -7,7 +7,6 @@ import json
 
 from indy import anoncreds, signus
 from utilities import utils, common, constant
-from test_scripts.functional_tests.anoncreds import anoncreds_test_base
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
@@ -93,7 +92,7 @@ class TestProverGetClaimReturnCorrectFormat(AnoncredsTestBase):
         # 14. Check lst_claims[0]['attrs'].
         # 15. Check lst_claims[0]['issuer_did'].
         # 16. Check lst_claims[0]['schema_seq_no'].
-        anoncreds_test_base.check_gotten_claim_is_valid(
+        utils.check_gotten_claim_is_valid(
             self.steps, lst_claims[0], constant.gvt_claim,
             issuer_did, constant.gvt_schema_seq)
 

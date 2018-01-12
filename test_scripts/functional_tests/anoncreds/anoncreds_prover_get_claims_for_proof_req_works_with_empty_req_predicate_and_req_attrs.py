@@ -1,5 +1,5 @@
 """
-Created on Jan 10, 2018
+Created on Jan 12, 2018
 
 @author: nhan.nguyen
 """
@@ -11,7 +11,8 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
 
-class TestProverGetClaimsWorksWithNoClaimMatchesWithFilter(AnoncredsTestBase):
+class TestProverGetClaimsForProofReqWithEmptyReqPredicateAndReqAttrs \
+            (AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -68,22 +69,35 @@ class TestProverGetClaimsWorksWithNoClaimMatchesWithFilter(AnoncredsTestBase):
         await utils.perform(self.steps, anoncreds.prover_store_claim,
                             self.wallet_handle, created_claim)
 
-        # 10. Get claims store in wallet.
-        self.steps.add_step("Get claims store in wallet")
-        filter_json = json.dumps({"schema_seq_no":
-                                  constant.gvt_schema_seq + 1})
-        lst_claims = await utils.perform(self.steps,
-                                         anoncreds.prover_get_claims,
-                                         self.wallet_handle, filter_json)
+        # 10. Get stored claims with proof request that
+        # contains empty requested predicates and empty
+        # requested attrs and store result into 'returned_claims'.
+        self.steps.add_step(
+            "Get stored claims with proof request that contains "
+            "empty requested predicates and empty requested attrs "
+            "and store result into 'returned_claims'")
+        proof_req = utils.create_proof_req("1", "proof_req_1", "1.0",
+                                           requested_attrs={},
+                                           requested_predicates={})
+        returned_claims = await utils.perform(
+            self.steps, anoncreds.prover_get_claims_for_proof_req,
+            self.wallet_handle, proof_req)
 
-        lst_claims = json.loads(lst_claims)
+        returned_claims = json.loads(returned_claims)
 
-        # 11. Check returned claims.
-        self.steps.add_step("Check returned claims")
-        err_msg = "Returned claims is not an empty list"
+        # 11. Check returned_claims['attrs'].
+        self.steps.add_step("Check returned_claims['attrs']")
+        err_msg = "returned_claims['attrs'] is not empty"
         utils.check(self.steps, error_message=err_msg,
-                    condition=lambda: not lst_claims)
+                    condition=lambda: not returned_claims['attrs'])
+
+        # 11. Check returned_claims['predicates'].
+        self.steps.add_step("Check returned_claims['predicates']")
+        err_msg = "returned_claims['predicates'] is not empty"
+        utils.check(self.steps, error_message=err_msg,
+                    condition=lambda: not returned_claims['predicates'])
 
 
 if __name__ == '__main__':
-    TestProverGetClaimsWorksWithNoClaimMatchesWithFilter().execute_scenario()
+    TestProverGetClaimsForProofReqWithEmptyReqPredicateAndReqAttrs() \
+        .execute_scenario()
