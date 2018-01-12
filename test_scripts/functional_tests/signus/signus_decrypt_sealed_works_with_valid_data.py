@@ -12,7 +12,7 @@ from test_scripts.functional_tests.signus.signus_test_base \
     import SignusTestBase
 
 
-class TestEncryptSealedWithPkInWallet(SignusTestBase):
+class TestDecryptSealedWithValidData(SignusTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -33,33 +33,21 @@ class TestEncryptSealedWithPkInWallet(SignusTestBase):
         await utils.perform(self.steps, signus.store_their_did,
                             self.wallet_handle, their_did_json)
 
-        # 5. Encrypt message by 'signus.encrypt_sealed'
-        self.steps.add_step("Encrypt message by 'signus.encrypt_sealed' -> "
+        # 5. Encrypte message by 'signus.encrypt_sealed'
+        self.steps.add_step("Encrypte message by 'signus.encrypt_sealed' -> "
                             "Bug: https://jira.hyperledger.org/browse/IS-508")
         message = "Test signus".encode("utf-8")
         (encrypted_message, nonce) = await utils.perform(
             self.steps, signus.encrypt_sealed, self.wallet_handle, -1,
             their_did, message)
 
-        # 6. Check returned nonce.
-        self.steps.add_step("Check returned nonce")
-        error_message = "Returned nonce is not a binary string"
-        utils.check(self.steps, error_message,
-                    condition=lambda: isinstance(nonce, bytes))
-
-        # 7. Check encrypted message.
-        self.steps.add_step("Check encrypted message")
-        error_message = "Encrypted message is not a binary string"
-        utils.check(self.steps, error_message,
-                    condition=lambda: isinstance(encrypted_message, bytes))
-
-        # 8. Decrypt message by 'signus.decrypt_sealed'.
+        # 6. Decrypt message by 'signus.decrypt_sealed'.
         self.steps.add_step("Decrypt message by 'signus.decrypt_sealed'")
         decrypted_msg = await utils.perform(self.steps, signus.decrypt_sealed,
                                             self.wallet_handle, their_did,
                                             encrypted_message)
 
-        # 9. Check decrypted message.
+        # 7. Check decrypted message.
         self.steps.add_step("Check decrypted message")
         error_msg = "Decrypted message is incorrect"
         utils.check(self.steps, error_message=error_msg,
@@ -67,4 +55,4 @@ class TestEncryptSealedWithPkInWallet(SignusTestBase):
 
 
 if __name__ == "__main__":
-    TestEncryptSealedWithPkInWallet().execute_scenario()
+    TestDecryptSealedWithValidData().execute_scenario()
