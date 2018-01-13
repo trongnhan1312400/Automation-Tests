@@ -383,7 +383,7 @@ class HTMLReporter:
 
         f.close()
         summary_json_file = self.__report_dir + report_file_name + ".json"
-        self.__generate_json_summary(list_file_name, summary_json_file)
+        self.__generate_json_summary(json_files, summary_json_file)
 
     def __generate_json_summary(self, list_json, summary_json_file):
         list_data = []

@@ -46,30 +46,20 @@ class TestProverStoreClaim(AnoncredsTestBase):
                           constant.signature_type, False)
 
         # 7. Create claim request.
-        self.steps.add_step("Create claim request")
+        # 8. Create claim.
+        # 9. Store created claim into wallet and verify that
+        # there is no exception raised.
         claim_offer = utils.create_claim_offer(issuer_did,
                                                constant.gvt_schema_seq)
-        claim_req = await \
-            utils.perform(self.steps,
-                          anoncreds.prover_create_and_store_claim_req,
-                          self.wallet_handle, prover_did,
-                          json.dumps(claim_offer), claim_def,
-                          constant.secret_name)
-
-        # 8. Create claim.
-        self.steps.add_step("Create claim")
-        (_, created_claim) = await \
-            utils.perform(self.steps, anoncreds.issuer_create_claim,
-                          self.wallet_handle, claim_req,
-                          json.dumps(constant.gvt_claim), -1)
-
-        # 9. Store claim into wallet and verify that
-        # there is no exception raised.
-        self.steps.add_step("Store claim into wallet and "
-                            "verify that there is no exception raised")
-        await utils.perform(self.steps, anoncreds.prover_store_claim,
-                            self.wallet_handle, created_claim,
-                            ignore_exception=False)
+        step_descriptions = ["", "",
+                             "Store claim created into wallet and "
+                             "verify that there is no exception raised"]
+        await common.create_and_store_claim(
+            self.steps, self.wallet_handle, prover_did,
+            json.dumps(claim_offer), claim_def, constant.secret_name,
+            json.dumps(constant.gvt_claim), -1, ignore_exception=False,
+            step_descriptions=step_descriptions
+        )
 
         # 10. Get claims store in wallet.
         self.steps.add_step("Get claims store in wallet")

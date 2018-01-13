@@ -9,10 +9,9 @@ Containing all functions that is common among test scenarios.
 import json
 import os
 import shutil
-from indy import wallet, pool, ledger
+from indy import wallet, pool, ledger, anoncreds
 from indy.error import IndyError
-from utilities import constant
-from utilities import utils
+from utilities import constant, utils, step
 
 
 async def prepare_pool_and_wallet(pool_name, wallet_name,
@@ -272,3 +271,66 @@ def delete_wallet_folder(wallet_name: str):
             shutil.rmtree(work_dir + "/wallet/" + wallet_name)
         except IOError as E:
             utils.print_error(str(E))
+
+
+async def create_and_store_claim(steps: step.Steps, wallet_handle: int,
+                                 prover_did: str, claim_offer: str,
+                                 claim_def: str, secret_name: str,
+                                 claim_json: str, user_index_revoc: int,
+                                 store_in_wallet: bool = True,
+                                 step_descriptions: list = None,
+                                 ignore_exception: bool=False)-> (str, str):
+    """
+    Create and store claim into wallet.
+
+    :param steps: list steps of test case.
+    :param wallet_handle: returned by 'wallet.open_wallet'.
+    :param prover_did: prover did, returned by 'signus.create_and_store_my_did'
+    :param claim_offer: a claim offer. Example: {"issuer_did": <did>,
+                                                 "schema_seq_no": <schema_no>}
+    :param claim_def: claim definition, returned by
+                     'anoncreds.issuer_create_and_store_claim_def'.
+    :param secret_name: a master secret name.
+    :param claim_json: sample claim json.
+    :param user_index_revoc: index of revocation registry.
+    :param store_in_wallet: (optional) you want to store created
+                            claim into wallet or not.
+    :param step_descriptions: (optional) descriptions of test case
+                              (in case you want to modify it yourself).
+    :param ignore_exception: (optional) ignore exception or not.
+    :return: created claim request and claim.
+    """
+
+    # Create claim request.
+    step_des = "Create claim request"
+    if step_descriptions and step_descriptions[0]:
+        step_des = step_descriptions[0]
+    steps.add_step(step_des)
+    claim_req = await utils.perform(
+        steps, anoncreds.prover_create_and_store_claim_req, wallet_handle,
+        prover_did, claim_offer, claim_def, secret_name,
+        ignore_exception=ignore_exception)
+
+    # Create claim.
+    step_des = "Create claim"
+    if step_descriptions and len(step_descriptions) > 1 \
+            and step_descriptions[1]:
+        step_des = step_descriptions[1]
+    steps.add_step(step_des)
+    created_claim = await utils.perform(steps, anoncreds.issuer_create_claim,
+                                        wallet_handle, claim_req, claim_json,
+                                        user_index_revoc,
+                                        ignore_exception=ignore_exception)
+
+    if store_in_wallet:
+        # Store created claim into wallet.
+        step_des = "Create claim"
+        if step_descriptions and len(step_descriptions) > 2 \
+                and step_descriptions[2]:
+            step_des = step_descriptions[2]
+        steps.add_step(step_des)
+        await utils.perform(steps, anoncreds.prover_store_claim,
+                            wallet_handle, created_claim,
+                            ignore_exception=ignore_exception)
+
+    return claim_req, created_claim
