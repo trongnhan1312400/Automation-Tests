@@ -279,7 +279,8 @@ async def create_and_store_claim(steps: step.Steps, wallet_handle: int,
                                  claim_json: str, user_index_revoc: int,
                                  store_in_wallet: bool = True,
                                  step_descriptions: list = None,
-                                 ignore_exception: bool=False)-> (str, str):
+                                 ignore_exception: bool = False) -> \
+        (str, str, str):
     """
     Create and store claim into wallet.
 
@@ -298,7 +299,7 @@ async def create_and_store_claim(steps: step.Steps, wallet_handle: int,
     :param step_descriptions: (optional) descriptions of test case
                               (in case you want to modify it yourself).
     :param ignore_exception: (optional) ignore exception or not.
-    :return: created claim request and claim.
+    :return: created claim request, updated revocation registry json and claim.
     """
 
     # Create claim request.
@@ -317,10 +318,11 @@ async def create_and_store_claim(steps: step.Steps, wallet_handle: int,
             and step_descriptions[1]:
         step_des = step_descriptions[1]
     steps.add_step(step_des)
-    created_claim = await utils.perform(steps, anoncreds.issuer_create_claim,
-                                        wallet_handle, claim_req, claim_json,
-                                        user_index_revoc,
-                                        ignore_exception=ignore_exception)
+    revoc_update_json, created_claim = await \
+        utils.perform(steps, anoncreds.issuer_create_claim,
+                      wallet_handle, claim_req, claim_json,
+                      user_index_revoc,
+                      ignore_exception=ignore_exception)
 
     if store_in_wallet:
         # Store created claim into wallet.
@@ -333,4 +335,4 @@ async def create_and_store_claim(steps: step.Steps, wallet_handle: int,
                             wallet_handle, created_claim,
                             ignore_exception=ignore_exception)
 
-    return claim_req, created_claim
+    return claim_req, revoc_update_json, created_claim

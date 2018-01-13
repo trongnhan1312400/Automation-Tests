@@ -31,7 +31,8 @@ def get_version(program: str) -> str:
     version = result.split()
 
     if len(version) >= 3:
-        return version[2]
+        if version[1] == program:
+            return version[2]
     return "Cannot find version for '{}'".format(program)
 
 
