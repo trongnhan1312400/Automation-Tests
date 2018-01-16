@@ -87,11 +87,11 @@ class HTMLReporter:
                 }
 
                 .passedodd td {
-                    background-color: #3F3
+                    background-color: #77FF77
                 }
 
                 .passedeven td {
-                    background-color: #0A0
+                    background-color: #98FB98
                 }
 
                 .skippedodd td {
@@ -103,11 +103,11 @@ class HTMLReporter:
                 }
 
                 .failedodd td, .attn {
-                    background-color: #F33
+                    background-color: #F0A0A0
                 }
 
                 .failedeven td, .stripe .attn {
-                    background-color: #D00
+                    background-color: #F08080
                 }
 
                 .stacktrace {
@@ -179,12 +179,27 @@ class HTMLReporter:
                                            <td rowspan="1">{}</td>
                                        </tr>"""
 
+    __passedodd_testcase_template = """<tr class="passedodd">
+                                               <td rowspan="1">{}</td>
+                                               <td>Passed</td>
+                                               <td rowspan="1">{}</td>
+                                               <td rowspan="1">{}</td>
+                                           </tr>"""
+
     __failed_testcase_template = """<tr class="failedeven">
                                             <td rowspan="1">{}</td>
-                                            <td><a href='#{}'>Failed</a></td>
+                                            <td><a href='#{}'s>Failed</a></td>
                                             <td rowspan="1">{}</td>
                                             <td rowspan="1">{}</td>
                                         </tr>"""
+
+    __failedodd_testcase_template = """<tr class="failedodd">
+                                                <td rowspan="1">{}</td>
+                                                <td><a href='#{}'>Failed</a>
+                                                </td>
+                                                <td rowspan="1">{}</td>
+                                                <td rowspan="1">{}</td>
+                                            </tr>"""
 
     __summary_head = """<h2>Test Summary</h2>
             <table id="summary" border='1' width='800'>
@@ -291,8 +306,10 @@ class HTMLReporter:
                 self.time_duration = self.time_duration + int(duration)
                 if result == "Passed":
                     self.passed = self.passed + 1
-
-                    temp_testcase = self.__passed_testcase_template
+                    if self.passed % 2 == 0:
+                        temp_testcase = self.__passed_testcase_template
+                    else:
+                        temp_testcase = self.__passedodd_testcase_template
                     temp_testcase = temp_testcase.format(testcase, starttime,
                                                          str(duration))
 
@@ -302,8 +319,10 @@ class HTMLReporter:
 
                 elif result == "Failed":
                     self.failed = self.failed + 1
-
-                    temp_testcase = self.__failed_testcase_template
+                    if self.passed % 2 == 0:
+                        temp_testcase = self.__failed_testcase_template
+                    else:
+                        temp_testcase = self.__failedodd_testcase_template
                     temp_testcase = \
                         temp_testcase.format(testcase,
                                              testcase.replace(" ", ""),
@@ -337,14 +356,14 @@ class HTMLReporter:
                             self.__table_test_log_content + temp
 
                     self.__table_test_log_content = \
-                        self.__table_test_log_content + self.__end_table +\
+                        self.__table_test_log_content + self.__end_table + \
                         self.__go_to_summary
 
         self.__statictics_table = self.__statictics_table.format(
-                                                    suite_name,
-                                                    str(self.passed),
-                                                    str(self.failed),
-                                                    str(self.time_duration))
+            suite_name,
+            str(self.passed),
+            str(self.failed),
+            str(self.time_duration))
 
     def __init__(self):
         HTMLReporter.__init_report_folder()
