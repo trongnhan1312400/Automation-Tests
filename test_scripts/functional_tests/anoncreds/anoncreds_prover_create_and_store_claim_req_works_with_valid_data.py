@@ -5,7 +5,7 @@ Created on Jan 4, 2018
 """
 import json
 
-from indy import anoncreds, signus
+from indy import anoncreds
 from utilities import utils, common, constant
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
@@ -15,21 +15,15 @@ class TestProverCreateClaimReq(AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
-        self.wallet_handle = await \
-            common.create_and_open_wallet_for_steps(self.steps,
-                                                    self.wallet_name,
-                                                    self.pool_name)
-        # 3. Create 'issuer_did'.
-        self.steps.add_step("Create 'issuer_did'")
-        (issuer_did, _) = await utils.perform(self.steps,
-                                              signus.create_and_store_my_did,
-                                              self.wallet_handle, "{}")
+        self.wallet_handle = await common.create_and_open_wallet_for_steps(
+            self.steps, self.wallet_name, self.pool_name)
 
+        # 3. Create 'issuer_did'.
         # 4. Create 'prover_did'.
-        self.steps.add_step("Create 'prover_did'")
-        (prover_did, _) = await utils.perform(self.steps,
-                                              signus.create_and_store_my_did,
-                                              self.wallet_handle, '{}')
+        ((issuer_did, _),
+         (prover_did, _)) = await common.create_and_store_dids_and_verkeys(
+            self.steps, self.wallet_handle, number=2,
+            step_descriptions=["Create 'issuer_did'", "Create 'prover_did'"])
 
         # 5. Create master secret.
         self.steps.add_step("Create master secret")
@@ -38,23 +32,19 @@ class TestProverCreateClaimReq(AnoncredsTestBase):
 
         # 6. Create and store claim definition.
         self.steps.add_step("Create and store claim definition")
-        claim_def = await \
-            utils.perform(self.steps,
-                          anoncreds.issuer_create_and_store_claim_def,
-                          self.wallet_handle, issuer_did,
-                          json.dumps(constant.gvt_schema),
-                          constant.signature_type, False)
+        claim_def = await utils.perform(
+            self.steps, anoncreds.issuer_create_and_store_claim_def,
+            self.wallet_handle, issuer_did, json.dumps(constant.gvt_schema),
+            constant.signature_type, False)
 
         # 7. Create claim request.
         self.steps.add_step("Create claim request")
         claim_offer = utils.create_claim_offer(issuer_did,
                                                constant.gvt_schema_seq)
-        claim_req = await \
-            utils.perform(self.steps,
-                          anoncreds.prover_create_and_store_claim_req,
-                          self.wallet_handle, prover_did,
-                          json.dumps(claim_offer), claim_def,
-                          constant.secret_name)
+        claim_req = await utils.perform(
+            self.steps, anoncreds.prover_create_and_store_claim_req,
+            self.wallet_handle, prover_did, json.dumps(claim_offer), claim_def,
+            constant.secret_name)
 
         claim_req = json.loads(claim_req)
 
@@ -64,7 +54,7 @@ class TestProverCreateClaimReq(AnoncredsTestBase):
         blinded_ms = claim_req["blinded_ms"]
         utils.check(self.steps, error_message=err_msg,
                     condition=lambda: "prover_did" in blinded_ms and
-                    "u" in blinded_ms and "ur" in blinded_ms)
+                                      "u" in blinded_ms and "ur" in blinded_ms)
 
         # 9. Check claim_req['blinded_ms']['prover_did'].
         self.steps.add_step("Check claim_req['blinded_ms']['prover_did']")
@@ -95,7 +85,7 @@ class TestProverCreateClaimReq(AnoncredsTestBase):
         err_msg = "Schema sequence number in claim request mismatches"
         utils.check(self.steps, error_message=err_msg,
                     condition=lambda: claim_req["schema_seq_no"] ==
-                    constant.gvt_schema_seq)
+                                      constant.gvt_schema_seq)
 
 
 if __name__ == '__main__':
