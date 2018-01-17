@@ -72,14 +72,7 @@ class ProverGetsClaimWithReqPredicateAndReqAttrs(AnoncredsTestBase):
         await utils.perform(self.steps, anoncreds.prover_store_claim,
                             self.wallet_handle, created_claim)
 
-        # 10. Get claim
-        self.steps.add_step("Get claims")
-        lst_claims = json.loads(await utils.perform(
-                                                self.steps,
-                                                anoncreds.prover_get_claims,
-                                                self.wallet_handle, "{}"))
-
-        # 11. Get stored claims with proof request that
+        # 10. Get stored claims with proof request that
         # contains empty requested attrs and
         # store result into 'returned_claims'.
         self.steps.add_step(
@@ -93,6 +86,13 @@ class ProverGetsClaimWithReqPredicateAndReqAttrs(AnoncredsTestBase):
         returned_claims = json.loads(await utils.perform(
             self.steps, anoncreds.prover_get_claims_for_proof_req,
             self.wallet_handle, proof_req))
+
+        # 11. Get claim
+        self.steps.add_step("Get claims")
+        lst_claims = json.loads(await utils.perform(
+                                                self.steps,
+                                                anoncreds.prover_get_claims,
+                                                self.wallet_handle, "{}"))
 
         # 12. Check returned_claims['attrs'].
         self.steps.add_step("Check returned_claims['attrs'] is correct")
