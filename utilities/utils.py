@@ -356,8 +356,7 @@ def check_gotten_claim_is_valid(steps, gotten_claim, expected_claim_json,
     steps.add_step("Check lst_claims[0]['issuer_did']")
     err_msg = "Issuer's did mismatches"
     check(steps, error_message=err_msg,
-          condition=lambda: gotten_claim["schema_seq_no"] ==
-                            schema_no)
+          condition=lambda: gotten_claim["schema_seq_no"] == schema_no)
 
 
 def create_proof_req(nonce: str, name: str, version: str,
@@ -365,13 +364,13 @@ def create_proof_req(nonce: str, name: str, version: str,
                      requested_predicates: dict=None) -> str:
     """
     Create a proof request.
-    
+
     :param nonce: a number that unique within wallet.
     :param name: name of proof request (unique).
     :param version: version of proof request.
-    :param requested_attrs: 
+    :param requested_attrs:
             example: {"attr1_referent": {"name": <attr_name>}}
-    :param requested_predicates: 
+    :param requested_predicates:
             example: {"predicate1_referent": {"attr_name": <attr_name>,
                                               "p_type": <operator>,
                                               "value": "expected_value"}}
