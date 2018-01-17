@@ -87,11 +87,11 @@ class HTMLReporter:
                 }
 
                 .passedodd td {
-                    background-color: #77FF77
+                    background-color: #0A0
                 }
 
                 .passedeven td {
-                    background-color: #98FB98
+                    background-color: #0A0
                 }
 
                 .skippedodd td {
@@ -103,11 +103,11 @@ class HTMLReporter:
                 }
 
                 .failedodd td, .attn {
-                    background-color: #F0A0A0
+                    background-color: #D00
                 }
 
                 .failedeven td, .stripe .attn {
-                    background-color: #F08080
+                    background-color: #D00
                 }
 
                 .stacktrace {
