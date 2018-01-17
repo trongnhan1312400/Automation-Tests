@@ -76,14 +76,14 @@ class IssuerCreateClaimDefsWith2DIDsAndTheSameSchema(AnoncredsTestBase):
 
         # 10. Check gvt_claim_req1['issuer_did'].
         self.steps.add_step("gvt_claim_req1['issuer_did']")
-        err_msg = "gvt_claim_req1['issuer_did'] doesn't equal issuer1_did"
+        err_msg = "gvt_claim_req1['issuer_did'] isn't equal issuer1_did"
         utils.check(
             self.steps, error_message=err_msg,
             condition=lambda: gvt_claim_req1['issuer_did'] == issuer1_did)
 
         # 11. Check gvt_claim_req1['schema_seq_no'].
         self.steps.add_step("gvt_claim_req1['schema_seq_no']")
-        err_msg = "gvt_claim_req1['schema_seq_no'] doesn't equal" + \
+        err_msg = "gvt_claim_req1['schema_seq_no'] isn't equal" + \
             str(constant.gvt_schema['seqNo'])
         utils.check(
             self.steps, error_message=err_msg,
@@ -104,14 +104,14 @@ class IssuerCreateClaimDefsWith2DIDsAndTheSameSchema(AnoncredsTestBase):
 
         # 13. Check gvt_claim_req2['issuer_did'].
         self.steps.add_step("gvt_claim_req2['issuer_did']")
-        err_msg = "gvt_claim_req2['issuer_did'] doesn't equal issuer2_did"
+        err_msg = "gvt_claim_req2['issuer_did'] isn't equal issuer2_did"
         utils.check(
             self.steps, error_message=err_msg,
             condition=lambda: gvt_claim_req2['issuer_did'] == issuer2_did)
 
         # 14. Check gvt_claim_req2['schema_seq_no'].
         self.steps.add_step("gvt_claim_req2['schema_seq_no']")
-        err_msg = "gvt_claim_req2['schema_seq_no'] doesn't equal" + \
+        err_msg = "gvt_claim_req2['schema_seq_no'] isn't equal" + \
             str(constant.gvt_schema['seqNo'])
         utils.check(
             self.steps, error_message=err_msg,
