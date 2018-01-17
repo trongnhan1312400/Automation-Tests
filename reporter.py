@@ -202,7 +202,7 @@ class HTMLReporter:
                                             </tr>"""
 
     __summary_head = """<h2>Test Summary</h2>
-            <table id="summary" border='1' width='800'>
+            <table id="summary" border="1">
             <thead>
             <tr>
                 <th>Test Case</th>
