@@ -9,7 +9,7 @@ Containing all functions that is common among test scenarios.
 import json
 import os
 import shutil
-from indy import wallet, pool, ledger, anoncreds
+from indy import wallet, pool, ledger, anoncreds, signus
 from indy.error import IndyError
 from utilities import constant, utils, step
 
@@ -336,3 +336,36 @@ async def create_and_store_claim(steps: step.Steps, wallet_handle: int,
                             ignore_exception=ignore_exception)
 
     return claim_req, revoc_update_json, created_claim
+
+
+async def create_and_store_dids_and_verkeys(
+        steps: step.Steps, wallet_handle: int, number: int,
+        did_jsons: list = None,
+        step_descriptions: list = None,
+        ignore_exception: bool = False) -> (str, str):
+    """
+    Create two did.
+    :param steps: steps of test case.
+    :param wallet_handle: return by 'wallet.open_wallet'.
+    :param number: amount of dids and verkeys you want to create.
+    :param did_jsons: all json to create did
+    :param step_descriptions: step descriptions in case you want to modify.
+    :param ignore_exception: ignore raised exception of not.
+    :return: a tuple contains all created verkey and did.
+    """
+    result = []
+    for i in range(0, number):
+        description = "Create did and verkey"
+        did_json = "{}"
+        if did_jsons and len(did_jsons) > i and did_jsons[i]:
+            did_json = did_jsons[i]
+        if (step_descriptions and len(step_descriptions) > i and
+                step_descriptions[i]):
+            description = step_descriptions[i]
+        steps.add_step(description)
+        temp = await utils.perform(steps, signus.create_and_store_my_did,
+                                   wallet_handle, did_json,
+                                   ignore_exception=ignore_exception)
+        result.append(temp)
+
+    return tuple(result)

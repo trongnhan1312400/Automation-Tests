@@ -1,5 +1,5 @@
 """
-Created on Jan 4, 2018
+Created on Jan 10, 2018
 
 @author: nhan.nguyen
 """
@@ -11,12 +11,13 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
 
-class TestProverStoreClaim(AnoncredsTestBase):
+class TestProverGetClaimsWorksWithNoClaimMatchesWithFilter(AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
         self.wallet_handle = await common.create_and_open_wallet_for_steps(
             self.steps, self.wallet_name, self.pool_name)
+
         # 3. Create 'issuer_did'.
         # 4. Create 'prover_did'.
         ((issuer_did, _),
@@ -38,36 +39,32 @@ class TestProverStoreClaim(AnoncredsTestBase):
 
         # 7. Create claim request.
         # 8. Create claim.
-        # 9. Store created claim into wallet and verify that
-        # there is no exception raised.
+        # 9. Store claim into wallet.
         claim_offer = utils.create_claim_offer(issuer_did,
                                                constant.gvt_schema_seq)
-        step_descriptions = ["", "",
-                             "Store claim created into wallet and "
-                             "verify that there is no exception raised"]
+        description = ["Create claim request", "Create claim",
+                       "Store claim into wallet"]
         await common.create_and_store_claim(
             self.steps, self.wallet_handle, prover_did,
             json.dumps(claim_offer), claim_def, constant.secret_name,
-            json.dumps(constant.gvt_claim), -1, ignore_exception=False,
-            step_descriptions=step_descriptions
-        )
+            json.dumps(constant.gvt_claim), -1, step_descriptions=description)
 
         # 10. Get claims store in wallet.
         self.steps.add_step("Get claims store in wallet")
+        filter_json = json.dumps({"schema_seq_no":
+                                      constant.gvt_schema_seq + 1})
         lst_claims = await utils.perform(self.steps,
                                          anoncreds.prover_get_claims,
-                                         self.wallet_handle, "{}")
+                                         self.wallet_handle, filter_json)
 
         lst_claims = json.loads(lst_claims)
 
-        # 11. Check lst_claims[0]['claim_uuid'].
-        # 12. Check lst_claims[0]['attrs'].
-        # 13. Check lst_claims[0]['issuer_did'].
-        # 14. Check lst_claims[0]['schema_seq_no'].
-        utils.check_gotten_claim_is_valid(
-            self.steps, lst_claims[0], constant.gvt_claim,
-            issuer_did, constant.gvt_schema_seq)
+        # 11. Check returned claims.
+        self.steps.add_step("Check returned claims")
+        err_msg = "Returned claims is not an empty list"
+        utils.check(self.steps, error_message=err_msg,
+                    condition=lambda: not lst_claims)
 
 
 if __name__ == '__main__':
-    TestProverStoreClaim().execute_scenario()
+    TestProverGetClaimsWorksWithNoClaimMatchesWithFilter().execute_scenario()

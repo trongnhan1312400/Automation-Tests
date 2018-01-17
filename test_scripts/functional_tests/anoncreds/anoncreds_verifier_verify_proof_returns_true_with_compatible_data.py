@@ -1,5 +1,5 @@
 """
-Created on Jan 12, 2018
+Created on Jan 16, 2018
 
 @author: nhan.nguyen
 """
@@ -11,8 +11,7 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
 
-class TestProverGetClaimsForProofReqWithEmptyReqPredicateAndReqAttrs \
-            (AnoncredsTestBase):
+class TestVerifierVerifyProofWithCompatibleData(AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -33,7 +32,7 @@ class TestProverGetClaimsForProofReqWithEmptyReqPredicateAndReqAttrs \
 
         # 6. Create and store claim definition.
         self.steps.add_step("Create and store claim definition")
-        claim_def = await utils.perform(
+        gvt_claim_def = await utils.perform(
             self.steps, anoncreds.issuer_create_and_store_claim_def,
             self.wallet_handle, issuer_did, json.dumps(constant.gvt_schema),
             constant.signature_type, False)
@@ -45,38 +44,51 @@ class TestProverGetClaimsForProofReqWithEmptyReqPredicateAndReqAttrs \
                                                constant.gvt_schema_seq)
         await common.create_and_store_claim(
             self.steps, self.wallet_handle, prover_did,
-            json.dumps(claim_offer), claim_def, constant.secret_name,
+            json.dumps(claim_offer), gvt_claim_def, constant.secret_name,
             json.dumps(constant.gvt_claim), -1)
 
-        # 10. Get stored claims with proof request that
-        # contains empty requested predicates and empty
-        # requested attrs and store result into 'returned_claims'.
+        # 10. Get stored claims with proof and
+        # store result into 'returned_claims'.
         self.steps.add_step(
-            "Get stored claims with proof request that contains "
-            "empty requested predicates and empty requested attrs "
+            "Get stored claims with proof request "
             "and store result into 'returned_claims'")
-        proof_req = utils.create_proof_req("1", "proof_req_1", "1.0",
-                                           requested_attrs={},
-                                           requested_predicates={})
+        proof_req = utils.create_proof_req(
+            "1", "proof_req_1", "1.0",
+            requested_attrs={'attr1_referent': {'name': 'name'}},
+            requested_predicates={})
         returned_claims = await utils.perform(
             self.steps, anoncreds.prover_get_claims_for_proof_req,
             self.wallet_handle, proof_req)
 
         returned_claims = json.loads(returned_claims)
 
-        # 11. Check returned_claims['attrs'].
-        self.steps.add_step("Check returned_claims['attrs']")
-        err_msg = "returned_claims['attrs'] is not empty"
-        utils.check(self.steps, error_message=err_msg,
-                    condition=lambda: not returned_claims['attrs'])
+        # 11. Create proof for proof request and
+        # store result as "created_proof".
+        self.steps.add_step("Create proof for proof request and "
+                            "store result as 'created_proof'")
+        referent = returned_claims["attrs"]["attr1_referent"][0][
+            constant.claim_uuid_key]
+        requested_claims_json = json.dumps({
+            'self_attested_attributes': {},
+            'requested_attrs': {'attr1_referent': [referent, True]},
+            'requested_predicates': {}})
+        schemas_json = json.dumps({referent: constant.gvt_schema})
+        claims_defs_json = json.dumps({referent: json.loads(gvt_claim_def)})
+        created_proof = await utils.perform(
+            self.steps, anoncreds.prover_create_proof, self.wallet_handle,
+            proof_req, requested_claims_json, schemas_json,
+            constant.secret_name, claims_defs_json, '{}')
 
-        # 11. Check returned_claims['predicates'].
-        self.steps.add_step("Check returned_claims['predicates']")
-        err_msg = "returned_claims['predicates'] is not empty"
+        # 12. Verify created proof.
+        self.steps.add_step("Verify created proof")
+        incompatible_schemas_json = json.dumps({referent: constant.xyz_schema})
+        result = await utils.perform(
+            self.steps, anoncreds.verifier_verify_proof, proof_req,
+            created_proof, schemas_json, claims_defs_json, '{}')
+        err_msg = "False is returned instead"
         utils.check(self.steps, error_message=err_msg,
-                    condition=lambda: not returned_claims['predicates'])
+                    condition=lambda: result is True)
 
 
 if __name__ == '__main__':
-    TestProverGetClaimsForProofReqWithEmptyReqPredicateAndReqAttrs() \
-        .execute_scenario()
+    TestVerifierVerifyProofWithCompatibleData().execute_scenario()

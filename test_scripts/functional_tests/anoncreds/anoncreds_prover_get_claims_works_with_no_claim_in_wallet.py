@@ -15,10 +15,8 @@ class TestProverGetClaimWithNoClaimInWallet(AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
-        self.wallet_handle = await \
-            common.create_and_open_wallet_for_steps(self.steps,
-                                                    self.wallet_name,
-                                                    self.pool_name)
+        self.wallet_handle = await common.create_and_open_wallet_for_steps(
+            self.steps, self.wallet_name, self.pool_name)
 
         # 3. Get stored claims in wallet.
         self.steps.add_step("Get stored claims in wallet")
