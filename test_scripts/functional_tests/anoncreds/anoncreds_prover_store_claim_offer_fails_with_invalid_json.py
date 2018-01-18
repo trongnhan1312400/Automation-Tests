@@ -12,7 +12,7 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
     import AnoncredsTestBase
 
 
-class TestProverStoreClaimOfferWithInvalidWalletHandle(AnoncredsTestBase):
+class TestProverStoreClaimOfferWithInvalidJson(AnoncredsTestBase):
     async def execute_test_steps(self):
         # 1. Create wallet.
         # 2. Open wallet.
@@ -37,14 +37,12 @@ class TestProverStoreClaimOfferWithInvalidWalletHandle(AnoncredsTestBase):
         # verify that claim offer cannot be stored.
         self.steps.add_step("Store claim offer with invalid json and "
                             "verify that claim offer cannot be stored")
-        offer_json = utils.create_claim_offer(issuer_did,
-                                              constant.gvt_schema_seq)
-        error_code = ErrorCode.WalletInvalidHandle
+        offer_json = utils.create_claim_offer(issuer_did)
+        error_code = ErrorCode.CommonInvalidStructure
         await utils.perform_with_expected_code(
-            self.steps, anoncreds.prover_store_claim_offer,
-            self.wallet_handle + 1, json.dumps(offer_json),
-            expected_code=error_code)
+            self.steps, anoncreds.prover_store_claim_offer, self.wallet_handle,
+            json.dumps(offer_json), expected_code=error_code)
 
 
 if __name__ == '__main__':
-    TestProverStoreClaimOfferWithInvalidWalletHandle().execute_scenario()
+    TestProverStoreClaimOfferWithInvalidJson().execute_scenario()
