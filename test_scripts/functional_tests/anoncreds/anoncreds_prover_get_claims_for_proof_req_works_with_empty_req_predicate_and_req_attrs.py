@@ -70,7 +70,7 @@ class TestProverGetClaimsForProofReqWithEmptyReqPredicateAndReqAttrs \
         utils.check(self.steps, error_message=err_msg,
                     condition=lambda: not returned_claims['attrs'])
 
-        # 11. Check returned_claims['predicates'].
+        # 12. Check returned_claims['predicates'].
         self.steps.add_step("Check returned_claims['predicates']")
         err_msg = "returned_claims['predicates'] is not empty"
         utils.check(self.steps, error_message=err_msg,
