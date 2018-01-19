@@ -25,4 +25,3 @@ class AnoncredsTestBase(TestScenarioBase):
     def execute_scenario(self, time_out=None):
         if self.__class__ is not AnoncredsTestBase:
             super().execute_scenario(time_out)
-

@@ -78,7 +78,7 @@ class TestProverGetAllClaimsWithEmptyFilterJson(AnoncredsTestBase):
         err_msg = "Returned claims is not a list with two elements"
         utils.check(self.steps, error_message=err_msg,
                     condition=lambda: isinstance(lst_claims, list) and
-                                      len(lst_claims) == 2)
+                    len(lst_claims) == 2)
 
 
 if __name__ == '__main__':

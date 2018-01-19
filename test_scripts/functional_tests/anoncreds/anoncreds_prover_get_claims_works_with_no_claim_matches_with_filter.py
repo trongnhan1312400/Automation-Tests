@@ -52,7 +52,7 @@ class TestProverGetClaimsWorksWithNoClaimMatchesWithFilter(AnoncredsTestBase):
         # 10. Get claims store in wallet.
         self.steps.add_step("Get claims store in wallet")
         filter_json = json.dumps({"schema_seq_no":
-                                      constant.gvt_schema_seq + 1})
+                                  constant.gvt_schema_seq + 1})
         lst_claims = await utils.perform(self.steps,
                                          anoncreds.prover_get_claims,
                                          self.wallet_handle, filter_json)

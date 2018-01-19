@@ -85,7 +85,7 @@ class TestProverCreateClaimReq(AnoncredsTestBase):
         err_msg = "Schema sequence number in claim request mismatches"
         utils.check(self.steps, error_message=err_msg,
                     condition=lambda: claim_req["schema_seq_no"] ==
-                                      constant.gvt_schema_seq)
+                    constant.gvt_schema_seq)
 
 
 if __name__ == '__main__':
