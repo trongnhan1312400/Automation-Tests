@@ -12,7 +12,8 @@ from utilities.result import Status
 
 
 class OpenWallet(TestScenarioBase):
-    async def execute_test_steps(self):
+
+    async def test_execute_test_steps(self):
         print("OpenWallet test started")
         # 1. Create and open a pool
         self.steps.add_step("Create and open a pool")
@@ -39,5 +40,5 @@ class OpenWallet(TestScenarioBase):
         print("OpenWallet test completed")
 
 
-if __name__ == '__main__':
-    OpenWallet().execute_scenario()
+# if __name__ == '__main__':
+#     OpenWallet().execute_scenario()

@@ -46,5 +46,5 @@ class BuildAttribRequest(TestScenarioBase):
         verify_json(self.steps, expected_response, attrib_req)
 
 
-if __name__ == '__main__':
-    BuildAttribRequest().execute_scenario()
+# if __name__ == '__main__':
+#     BuildAttribRequest().execute_scenario()

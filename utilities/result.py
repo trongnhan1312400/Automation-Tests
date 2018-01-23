@@ -19,7 +19,7 @@ class Status(str, Enum):
     FAILED = "Failed"
 
 
-class TestResult:
+class Result:
     __TEST_CASE = "testcase"
     __RESULT = "result"
     __START_TIME = "starttime"
@@ -36,22 +36,22 @@ class TestResult:
 
     def __init__(self, test_case_name):
         """
-        Constructor of a TestResult instance.
+        Constructor of a Result instance.
 
         :param test_case_name: (optional) name of test case.
         """
-        TestResult.__init_output_folder()
+        Result.__init_output_folder()
         self.__test_result = {}  # Store information of a test case
         self.__run = []  # Store information of steps in test case
-        self.__test_result[TestResult.__TEST_CASE] = test_case_name
-        TestResult.result_of_all_tests[test_case_name] = Status.PASSED
-        self.__test_result[TestResult.__RESULT] = Status.PASSED
-        self.__test_result[TestResult.__START_TIME] = \
+        self.__test_result[Result.__TEST_CASE] = test_case_name
+        Result.result_of_all_tests[test_case_name] = Status.PASSED
+        self.__test_result[Result.__RESULT] = Status.PASSED
+        self.__test_result[Result.__START_TIME] = \
             str(time.strftime("%Y-%m-%d_%H-%M-%S"))
         self.__json_file_path = \
-            "{}{}_{}.json".format(TestResult.__json_dir,
-                                  self.__test_result[TestResult.__TEST_CASE],
-                                  self.__test_result[TestResult.__START_TIME])
+            "{}{}_{}.json".format(Result.__json_dir,
+                                  self.__test_result[Result.__TEST_CASE],
+                                  self.__test_result[Result.__START_TIME])
 
     def set_result(self, result):
         """
@@ -59,10 +59,10 @@ class TestResult:
 
         :param result: (optional) result of test.
         """
-        TestResult.result_of_all_tests[
-            self.__test_result[TestResult.__TEST_CASE]] = result
+        Result.result_of_all_tests[
+            self.__test_result[Result.__TEST_CASE]] = result
 
-        self.__test_result[TestResult.__RESULT] = result
+        self.__test_result[Result.__RESULT] = result
 
     def set_duration(self, duration):
         """
@@ -70,7 +70,7 @@ class TestResult:
 
         :param duration: (second).
         """
-        self.__test_result[TestResult.__DURATION] = round(duration * 1000)
+        self.__test_result[Result.__DURATION] = round(duration * 1000)
 
     def set_step_status(self, step_summary: str, status: str = Status.PASSED,
                         message: str = None):
@@ -81,8 +81,8 @@ class TestResult:
         :param status: (optional) PASSED or FAILED.
         :param message: anything that involve to step like Exception, Log,...
         """
-        temp = {TestResult.__STEP: step_summary, TestResult.__STATUS: status,
-                TestResult.__MESSAGE: message}
+        temp = {Result.__STEP: step_summary, Result.__STATUS: status,
+                Result.__MESSAGE: message}
         self.__run.append(temp)
 
     def add_step(self, step):
@@ -93,16 +93,16 @@ class TestResult:
         """
         if not step:
             return
-        temp = {TestResult.__STEP: step.get_name(),
-                TestResult.__STATUS: step.get_status(),
-                TestResult.__MESSAGE: step.get_message()}
+        temp = {Result.__STEP: step.get_name(),
+                Result.__STATUS: step.get_status(),
+                Result.__MESSAGE: step.get_message()}
         self.__run.append(temp)
 
     def write_result_to_file(self):
         """
         Write the result as json.
         """
-        self.__test_result[TestResult.__RUN] = self.__run
+        self.__test_result[Result.__RUN] = self.__run
         with open(self.__json_file_path, "w+") as outfile:
             json.dump(self.__test_result, outfile,
                       ensure_ascii=False, indent=2)
@@ -131,7 +131,7 @@ class TestResult:
 
         :return: test status.
         """
-        return self.__test_result[TestResult.__RESULT]
+        return self.__test_result[Result.__RESULT]
 
     @staticmethod
     def __init_output_folder():
@@ -141,7 +141,7 @@ class TestResult:
         :raise OSError.
         """
         try:
-            os.makedirs(TestResult.__json_dir)
+            os.makedirs(Result.__json_dir)
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise e

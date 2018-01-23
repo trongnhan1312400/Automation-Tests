@@ -14,27 +14,55 @@ from asyncio import TimeoutError
 from utilities import utils
 from utilities import common, constant
 from utilities.logger import Logger
-from utilities.result import TestResult, Status
+from utilities.result import Result, Status
 from utilities.step import Steps
+import unittest
 
 
-class TestScenarioBase:
+class TestScenarioBase(unittest.TestCase):
     """
     Test base....
     All test scenario should inherit from this class.
     This class controls the work flow and hold some general test data for test
     scenarios that inherit it.
     """
-    def __init__(self):
+#     def __init__(self):
+#         """
+#         Init test data.
+#         If the test case need some extra test data then
+#         just override this method.
+#         """
+#         self.test_name = os.path.splitext(
+#             os.path.basename(inspect.getfile(self.__class__)))[0]
+# 
+#         self.test_result = Result(self.test_name)
+#         self.steps = Steps()
+#         self.logger = Logger(self.test_name)
+#         self.pool_name = utils.generate_random_string("test_pool")
+#         self.wallet_name = utils.generate_random_string("test_wallet")
+#         self.pool_handle = None
+#         self.wallet_handle = None
+#         self.pool_genesis_txn_file = constant.pool_genesis_txn_file
+#         self.time_out = 300
+    begin_time = 0
+
+    def setUp(self):
+        self.execute_precondition_steps()
+
+    def tearDown(self):
+        utils.run_async_method(self.execute_postcondition_steps,
+                               self.time_out)
+
+    def execute_precondition_steps(self):
         """
-        Init test data.
-        If the test case need some extra test data then
-        just override this method.
+         Execute pre-condition of test scenario.
+         If the test case need some extra step in pre-condition
+         then just override this method.
         """
         self.test_name = os.path.splitext(
             os.path.basename(inspect.getfile(self.__class__)))[0]
 
-        self.test_result = TestResult(self.test_name)
+        self.test_result = Result(self.test_name)
         self.steps = Steps()
         self.logger = Logger(self.test_name)
         self.pool_name = utils.generate_random_string("test_pool")
@@ -43,13 +71,7 @@ class TestScenarioBase:
         self.wallet_handle = None
         self.pool_genesis_txn_file = constant.pool_genesis_txn_file
         self.time_out = 300
-
-    async def execute_precondition_steps(self):
-        """
-         Execute pre-condition of test scenario.
-         If the test case need some extra step in pre-condition
-         then just override this method.
-        """
+        self.begin_time = time.time()
         common.clean_up_pool_and_wallet_folder(self.pool_name,
                                                self.wallet_name)
 
@@ -59,61 +81,66 @@ class TestScenarioBase:
         If the test case need some extra step in post-condition then
         just override this method.
         """
+        utils.make_final_result(self.test_result,
+                                self.steps.get_list_step(),
+                                self.begin_time, self.logger)
+        test_result_status = self.test_result.get_test_status()
+        utils.print_test_result(self.test_name, test_result_status)
         await common.clean_up_pool_and_wallet(self.pool_name,
                                               self.pool_handle,
                                               self.wallet_name,
                                               self.wallet_handle)
 
-    async def execute_test_steps(self):
-        """
-        The method where contain all main script of a test scenario.
-        All test scenario inherit TestScenarioBase have
-        to override this method.
-        """
-        pass
-
-    def execute_scenario(self, time_out=None):
-        """
-        Execute the test scenario and control the
-        work flow of this test scenario.
-        """
-        utils.print_with_color(
-            "\nTest case: {} ----> started\n".format(self.test_name),
-            constant.Color.BOLD)
-
-        begin_time = time.time()
-        if time_out:
-            self.time_out = time_out
-
-        try:
-            utils.run_async_method(self.__execute_precondition_and_steps,
-                                   self.time_out)
-        except TimeoutError:
-            utils.print_error("\n{}\n".format(constant.ERR_TIME_LIMITATION))
-            self.steps.get_last_step().set_status(Status.FAILED)
-            self.steps.get_last_step().set_message(
-                constant.ERR_TIME_LIMITATION)
-        except Exception as e:
-            message = constant.EXCEPTION.format(str(e))
-            utils.print_error("\n{}\n".format(message))
-            self.steps.get_last_step().set_status(Status.FAILED)
-            self.steps.get_last_step().set_message(str(e))
-        finally:
-            try:
-                utils.run_async_method(self.execute_postcondition_steps)
-            except Exception as e:
-                utils.print_error("\n{}\n".format(str(type(e))))
-                pass
-
-            utils.make_final_result(self.test_result,
-                                    self.steps.get_list_step(),
-                                    begin_time, self.logger)
-            test_result_status = self.test_result.get_test_status()
-            utils.print_test_result(self.test_name, test_result_status)
-
-    async def __execute_precondition_and_steps(self):
-        """
-        Execute precondition and test steps.
-        """
-        await self.execute_precondition_steps()
-        await self.execute_test_steps()
+#     async def execute_test_steps(self):
+#         """
+#         The method where contain all main script of a test scenario.
+#         All test scenario inherit TestScenarioBase have
+#         to override this method.
+#         """
+#         pass
+# 
+#     def execute_scenario(self, time_out=None):
+#         """
+#         Execute the test scenario and control the
+#         work flow of this test scenario.
+#         """
+#         utils.print_with_color(
+#             "\nTest case: {} ----> started\n".format(self.test_name),
+#             constant.Color.BOLD)
+# 
+#         begin_time = time.time()
+#         if time_out:
+#             self.time_out = time_out
+# 
+#         try:
+#             utils.run_async_method(self.__execute_precondition_and_steps,
+#                                    self.time_out)
+#         except TimeoutError:
+#             utils.print_error("\n{}\n".format(constant.ERR_TIME_LIMITATION))
+#             self.steps.get_last_step().set_status(Status.FAILED)
+#             self.steps.get_last_step().set_message(
+#                 constant.ERR_TIME_LIMITATION)
+#         except Exception as e:
+#             message = constant.EXCEPTION.format(str(e))
+#             utils.print_error("\n{}\n".format(message))
+#             self.steps.get_last_step().set_status(Status.FAILED)
+#             self.steps.get_last_step().set_message(str(e))
+#         finally:
+#             try:
+#                 utils.run_async_method(self.execute_postcondition_steps)
+#             except Exception as e:
+#                 utils.print_error("\n{}\n".format(str(type(e))))
+#                 pass
+# 
+#             utils.make_final_result(self.test_result,
+#                                     self.steps.get_list_step(),
+#                                     begin_time, self.logger)
+#             test_result_status = self.test_result.get_test_status()
+#             utils.print_test_result(self.test_name, test_result_status)
+# 
+#     async def __execute_precondition_and_steps(self):
+#         """
+#         Execute precondition and test steps.
+#         """
+#         await self.execute_precondition_steps()
+#         await self.execute_test_steps()
