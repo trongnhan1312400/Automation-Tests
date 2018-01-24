@@ -8,10 +8,13 @@ from indy import pool
 from utilities import utils
 from utilities import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
+import pytest
 
 
 class TestDeletePoolLedgerConfig(PoolTestBase):
-    async def execute_test_steps(self):
+
+    @pytest.mark.asyncio
+    async def test_execute_test_steps(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
         await utils.perform(self.steps, common.create_pool_ledger_config,
@@ -31,7 +34,3 @@ class TestDeletePoolLedgerConfig(PoolTestBase):
                        not utils.check_pool_exist(self.pool_name)):
             # prevent post-condition clean up the pool again.
             self.pool_name = None
-
-
-if __name__ == "__main__":
-    TestDeletePoolLedgerConfig().execute_scenario()

@@ -9,10 +9,13 @@ from indy import pool
 from utilities import utils
 from utilities import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
+import pytest
 
 
 class TestRefreshPoolLedgerConfig(PoolTestBase):
-    async def execute_test_steps(self):
+
+    @pytest.mark.asyncio
+    async def test_execute_test_steps(self):
         # 1. Create pool ledger config.
         # 2. Open pool ledger.
         self.pool_handle = await \
@@ -30,7 +33,3 @@ class TestRefreshPoolLedgerConfig(PoolTestBase):
         self.steps.add_step("Verify that opened pool ledger can be refreshed")
         utils.check(self.steps, error_message="Cannot refresh pool ledger",
                     condition=lambda: result is None)
-
-
-if __name__ == "__main__":
-    TestRefreshPoolLedgerConfig().execute_scenario()

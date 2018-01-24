@@ -8,11 +8,14 @@ from indy import pool
 from utilities import utils
 from utilities import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
+import pytest
 
 
 class TestClosePoolLedgerConfig(PoolTestBase):
-    async def execute_test_steps(self):
-        # 1. Create pool ledger config.
+
+    @pytest.mark.asyncio
+    async def test_execute_test_steps(self):
+        # 1. Create pool ledger configure.
         # 2. Open pool ledger.
         self.pool_handle = await \
             common.create_and_open_pool_ledger_for_steps(self.steps,
@@ -32,7 +35,3 @@ class TestClosePoolLedgerConfig(PoolTestBase):
                        condition=lambda: result is None):
             # prevent post-condition close pool ledger again.
             self.pool_handle = None
-
-
-if __name__ == "__main__":
-    TestClosePoolLedgerConfig().execute_scenario()

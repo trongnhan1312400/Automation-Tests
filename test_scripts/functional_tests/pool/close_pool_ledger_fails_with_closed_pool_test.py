@@ -9,10 +9,13 @@ from indy.error import ErrorCode
 from utilities import utils
 from utilities import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
+import pytest
 
 
 class TestCloseAClosedPoolLedger(PoolTestBase):
-    async def execute_test_steps(self):
+
+    @pytest.mark.asyncio
+    async def test_execute_test_steps(self):
         # 1. Create pool ledger config.
         # 2. Open pool ledger.
         self.pool_handle = await \
@@ -36,7 +39,3 @@ class TestCloseAClosedPoolLedger(PoolTestBase):
                                                self.pool_handle,
                                                expected_code=error_code)
         self.pool_handle = None  # prevent post-condition close pool again.
-
-
-if __name__ == "__main__":
-    TestCloseAClosedPoolLedger().execute_scenario()

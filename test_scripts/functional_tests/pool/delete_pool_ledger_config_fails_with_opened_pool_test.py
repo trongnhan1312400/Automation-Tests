@@ -9,10 +9,13 @@ from indy.error import ErrorCode
 from utilities import utils
 from utilities import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
+import pytest
 
 
 class TestOpenPoolLedgerConfig(PoolTestBase):
-    async def execute_test_steps(self):
+
+    @pytest.mark.asyncio
+    async def test_execute_test_steps(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
         await utils.perform(self.steps, common.create_pool_ledger_config,
@@ -36,7 +39,3 @@ class TestOpenPoolLedgerConfig(PoolTestBase):
         error_message = "Pool config folder does not exists"
         utils.check(self.steps, error_message,
                     condition=lambda: utils.check_pool_exist(self.pool_name))
-
-
-if __name__ == "__main__":
-    TestOpenPoolLedgerConfig().execute_scenario()

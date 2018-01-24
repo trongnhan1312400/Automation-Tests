@@ -9,10 +9,13 @@ from indy import pool
 from utilities import utils
 from utilities import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
+import pytest
 
 
 class TestOpenPoolLedgerConfig(PoolTestBase):
-    async def execute_test_steps(self):
+
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
         await utils.perform(self.steps, common.create_pool_ledger_config,
@@ -29,7 +32,3 @@ class TestOpenPoolLedgerConfig(PoolTestBase):
         utils.check(self.steps, error_message="Cannot open pool ledger",
                     condition=lambda: isinstance(self.pool_handle, int) and
                     self.pool_handle >= 0)
-
-
-if __name__ == "__main__":
-    TestOpenPoolLedgerConfig().execute_scenario()

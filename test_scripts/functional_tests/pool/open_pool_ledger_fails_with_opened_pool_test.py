@@ -9,10 +9,13 @@ from indy.error import ErrorCode
 from utilities import utils
 from utilities import common, constant
 from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
+import pytest
 
 
 class TestOpenAOpenedPoolLedger(PoolTestBase):
-    async def execute_test_steps(self):
+
+    @pytest.mark.asyncio
+    async def test_execute_test_steps(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
         await utils.perform(self.steps, common.create_pool_ledger_config,
@@ -32,7 +35,3 @@ class TestOpenAOpenedPoolLedger(PoolTestBase):
                                                pool.open_pool_ledger,
                                                self.pool_name, None,
                                                expected_code=error_code)
-
-
-if __name__ == "__main__":
-    TestOpenAOpenedPoolLedger().execute_scenario()
