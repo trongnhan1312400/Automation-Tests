@@ -20,7 +20,6 @@ class TestCreatePoolLedgerConfig(PoolTestBase):
             utils.perform(self.steps, common.create_pool_ledger_config,
                           self.pool_name, constant.pool_genesis_txn_file,
                           ignore_exception=True)
-        assert False
         # 2. Verify that pool ledger config is created.
         self.steps.add_step("Verify that pool ledger config is created")
         error_message = "Cannot create a pool ledger config"

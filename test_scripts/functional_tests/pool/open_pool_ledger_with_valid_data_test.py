@@ -12,7 +12,7 @@ from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
 import pytest
 
 
-class OpenPoolLedgerConfig(PoolTestBase):
+class TestOpenPoolLedgerConfig(PoolTestBase):
 
     @pytest.mark.asyncio
     async def test(self):
