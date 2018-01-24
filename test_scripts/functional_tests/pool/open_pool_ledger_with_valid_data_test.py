@@ -2,6 +2,7 @@
 Created on Dec 8, 2017
 
 @author: nhan.nguyen
+Verify that user can open a pool ledger with valid data.
 """
 
 from indy import pool

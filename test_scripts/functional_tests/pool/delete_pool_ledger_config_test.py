@@ -2,6 +2,7 @@
 Created on Dec 8, 2017
 
 @author: nhan.nguyen
+Verify that user can delete an existing pool config.
 """
 
 from indy import pool

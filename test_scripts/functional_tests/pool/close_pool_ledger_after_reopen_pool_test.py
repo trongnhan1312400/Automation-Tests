@@ -2,6 +2,7 @@
 Created on Dec 8, 2017
 
 @author: nhan.nguyen
+Verify that user can close a reopened pool ledger.
 """
 
 from indy import pool

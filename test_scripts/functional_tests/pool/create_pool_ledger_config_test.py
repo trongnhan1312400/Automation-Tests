@@ -2,6 +2,7 @@
 Created on Dec 8, 2017
 
 @author: nhan.nguyen
+Verify that user can create a pool ledger configuration with valid data.
 """
 
 from utilities import utils

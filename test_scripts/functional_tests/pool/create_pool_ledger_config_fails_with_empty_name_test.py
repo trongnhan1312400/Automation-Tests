@@ -2,6 +2,8 @@
 Created on Dec 12, 2017
 
 @author: nhan.nguyen
+Verify that user cannot create a pool ledger configuration with
+empty "pool_name".
 """
 
 from indy.error import ErrorCode

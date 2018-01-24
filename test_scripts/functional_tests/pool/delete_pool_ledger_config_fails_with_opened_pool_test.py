@@ -2,6 +2,7 @@
 Created on Dec 12, 2017
 
 @author: nhan.nguyen
+Verify that user cannot delete an opened pool ledger.
 """
 
 from indy import pool
