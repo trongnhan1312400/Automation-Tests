@@ -14,7 +14,7 @@ import pytest
 class TestCreatePoolConfigFailsWithEmptyName(PoolTestBase):
 
     @pytest.mark.asyncio
-    async def test_execute_test_steps(self):
+    async def test(self):
         self.pool_name = ""
         # 1. Create a pool ledger config and verify that
         # cannot create a pool ledger config with empty pool name.

@@ -14,7 +14,7 @@ import pytest
 class TestCloseReopenedPoolLedgerConfig(PoolTestBase):
 
     @pytest.mark.asyncio
-    async def test_execute_test_steps(self):
+    async def test(self):
         # 1. Create pool ledger config.
         # 2. Open pool ledger.
         self.pool_handle = await \

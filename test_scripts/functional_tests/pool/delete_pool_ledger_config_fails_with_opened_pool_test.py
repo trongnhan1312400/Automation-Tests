@@ -15,7 +15,7 @@ import pytest
 class TestOpenPoolLedgerConfig(PoolTestBase):
 
     @pytest.mark.asyncio
-    async def test_execute_test_steps(self):
+    async def test(self):
         # 1. Create pool ledger config.
         self.steps.add_step("Create pool ledger config")
         await utils.perform(self.steps, common.create_pool_ledger_config,

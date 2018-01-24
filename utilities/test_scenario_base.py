@@ -37,49 +37,32 @@ class TestScenarioBase():
         self.pool_genesis_txn_file = constant.pool_genesis_txn_file
         self.time_out = 300
         self.begin_time = time.time()
-        self.execute_precondition_steps()
+        utils.run_async_method(self.setup_steps, self.time_out)
 
     def teardown_method(self):
-        utils.run_async_method(self.execute_postcondition_steps,
-                               self.time_out)
+        utils.run_async_method(self.teardown_steps, self.time_out)
         utils.make_final_result(self.test_result,
                                 self.steps.get_list_step(),
                                 self.begin_time, self.logger)
+        test_result_status = self.test_result.get_test_status()
+        utils.print_test_result(self.test_name, test_result_status)
 
-    def execute_precondition_steps(self):
+    async def setup_steps(self):
         """
          Execute pre-condition of test scenario.
          If the test case need some extra step in pre-condition
          then just override this method.
         """
-        self.test_name = os.path.splitext(
-            os.path.basename(inspect.getfile(self.__class__)))[0]
-
-        self.test_result = Result(self.test_name)
-        self.steps = Steps()
-        self.logger = Logger(self.test_name)
-        self.pool_name = utils.generate_random_string("test_pool")
-        self.wallet_name = utils.generate_random_string("test_wallet")
-        self.pool_handle = None
-        self.wallet_handle = None
-        self.pool_genesis_txn_file = constant.pool_genesis_txn_file
-        self.time_out = 300
-        self.begin_time = time.time()
         common.clean_up_pool_and_wallet_folder(self.pool_name,
                                                self.wallet_name)
 
-    async def execute_postcondition_steps(self):
+    async def teardown_steps(self):
         """
         Execute post-condition of test scenario.
         If the test case need some extra step in post-condition then
         just override this method.
         """
-        utils.make_final_result(self.test_result,
-                                self.steps.get_list_step(),
-                                self.begin_time, self.logger)
-        test_result_status = self.test_result.get_test_status()
         await common.clean_up_pool_and_wallet(self.pool_name,
                                               self.pool_handle,
                                               self.wallet_name,
                                               self.wallet_handle)
-        utils.print_test_result(self.test_name, test_result_status)

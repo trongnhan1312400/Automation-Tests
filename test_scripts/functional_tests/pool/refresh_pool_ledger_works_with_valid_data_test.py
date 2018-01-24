@@ -12,10 +12,10 @@ from test_scripts.functional_tests.pool.pool_test_base import PoolTestBase
 import pytest
 
 
-class TestRefreshPoolLedgerConfig(PoolTestBase):
+class RefreshPoolLedgerConfig(PoolTestBase):
 
     @pytest.mark.asyncio
-    async def test_execute_test_steps(self):
+    async def test(self):
         # 1. Create pool ledger config.
         # 2. Open pool ledger.
         self.pool_handle = await \
