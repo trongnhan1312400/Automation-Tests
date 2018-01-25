@@ -2,9 +2,17 @@ import os
 import sys
 import errno
 import time
+import pytest
+import reporter
+from utilities import result
 
 
 def pytest_runtest_logreport(report):
+    """
+    Catch and save the log if test failed of option keep log (-l) exist.
+
+    :param report: report of pytest that contains log.
+    """
     if report.failed or '-l' in sys.argv:
         def init_folder(folder):
             try:
@@ -33,3 +41,19 @@ def pytest_runtest_logreport(report):
 
         with open(log_path, "w") as log_file:
             log_file.write(log)
+
+
+@pytest.fixture(scope="session", autouse=True)
+def make_json_summary(request):
+    """
+    Make json summary report after session if there is a option to generate
+    html report.
+
+    :param request:
+    """
+    yield
+    if request.config.getoption("htmlpath") is not None:
+        with open("abc.txt", "w") as f:
+            f.write(str(result.Result.result_of_all_tests))
+        reporter.JsonSummaryReport().generate_report_from_file(
+            result.Result.result_of_all_tests)

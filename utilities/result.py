@@ -11,7 +11,6 @@ import time
 import os
 import errno
 from enum import Enum
-from utilities import utils
 
 
 class Status(str, Enum):
@@ -24,7 +23,7 @@ class Result:
     __RESULT = "result"
     __START_TIME = "starttime"
     __DURATION = "duration"
-    __RUN = "run"
+    __RUN = "teststeps"
     __STEP = "step"
     __STATUS = "status"
     __MESSAGE = "message"
@@ -32,7 +31,7 @@ class Result:
     __json_dir = (os.path.join(os.path.dirname(__file__), "..", ) +
                   "/test_output/test_results/")
 
-    result_of_all_tests = {}
+    result_of_all_tests = []
 
     def __init__(self, test_case_name):
         """
@@ -44,7 +43,6 @@ class Result:
         self.__test_result = {}  # Store information of a test case
         self.__run = []  # Store information of steps in test case
         self.__test_result[Result.__TEST_CASE] = test_case_name
-        Result.result_of_all_tests[test_case_name] = Status.PASSED
         self.__test_result[Result.__RESULT] = Status.PASSED
         self.__test_result[Result.__START_TIME] = \
             str(time.strftime("%Y-%m-%d_%H-%M-%S"))
@@ -52,6 +50,7 @@ class Result:
             "{}{}_{}.json".format(Result.__json_dir,
                                   self.__test_result[Result.__TEST_CASE],
                                   self.__test_result[Result.__START_TIME])
+        Result.result_of_all_tests.append(self.__json_file_path)
 
     def set_result(self, result):
         """
@@ -59,9 +58,6 @@ class Result:
 
         :param result: (optional) result of test.
         """
-        Result.result_of_all_tests[
-            self.__test_result[Result.__TEST_CASE]] = result
-
         self.__test_result[Result.__RESULT] = result
 
     def set_duration(self, duration):
@@ -106,9 +102,6 @@ class Result:
         with open(self.__json_file_path, "w+") as outfile:
             json.dump(self.__test_result, outfile,
                       ensure_ascii=False, indent=2)
-            utils.print_ok_blue(
-                "\nJson file has been written at: {}\n".format(
-                    self.__json_file_path))
 
     def get_json_file_path(self):
         return self.__json_file_path
