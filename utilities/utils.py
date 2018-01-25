@@ -388,3 +388,38 @@ def create_proof_req(nonce: str, name: str, version: str,
     return json.dumps({"nonce": nonce, "name": name, "version": version,
                        "requested_attrs": requested_attrs,
                        "requested_predicates": requested_predicates})
+
+
+def get_version(program: str) -> str:
+    """
+    Return version of a program.
+
+    :param program: program's name.
+    :return: version.
+    """
+    import subprocess
+    cmd = "dpkg -l | grep '{}'".format(program)
+    process = subprocess.Popen([cmd], shell=True, stdout=subprocess.PIPE,
+                               stdin=subprocess.PIPE)
+    (out, _) = process.communicate()
+    result = out.decode()
+    version = result.split()
+
+    if len(version) >= 3:
+        if version[1] == program:
+            return version[2]
+    return "Cannot find version for '{}'".format(program)
+
+
+def create_folder(folder):
+    """
+    Create folder if it is not exist.
+    :param folder: folder need to create.
+    :return:
+    """
+    import errno
+    try:
+        os.makedirs(folder)
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise e
