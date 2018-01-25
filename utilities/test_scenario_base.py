@@ -11,25 +11,24 @@ import os
 import time
 from utilities import utils
 from utilities import common, constant
-from utilities.logger import Logger
 from utilities.result import Result
 from utilities.step import Steps
 
 
-class TestScenarioBase():
+class TestScenarioBase:
     """
     Test base....
     All test scenario should inherit from this class.
     This class controls the work flow and hold some general test data for test
     scenarios that inherit it.
     """
+
     def setup_method(self):
         self.test_name = os.path.splitext(
             os.path.basename(inspect.getfile(self.__class__)))[0]
 
         self.test_result = Result(self.test_name)
         self.steps = Steps()
-        self.logger = Logger(self.test_name)
         self.pool_name = utils.generate_random_string("test_pool")
         self.wallet_name = utils.generate_random_string("test_wallet")
         self.pool_handle = None
@@ -43,7 +42,7 @@ class TestScenarioBase():
         utils.run_async_method(self.teardown_steps, self.time_out)
         utils.make_final_result(self.test_result,
                                 self.steps.get_list_step(),
-                                self.begin_time, self.logger)
+                                self.begin_time)
         test_result_status = self.test_result.get_test_status()
         utils.print_test_result(self.test_name, test_result_status)
 

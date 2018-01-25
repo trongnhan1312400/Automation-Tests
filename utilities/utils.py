@@ -147,14 +147,13 @@ def run_async_method(method, time_out=None):
         loop.run_until_complete(asyncio.wait_for(method(), time_out))
 
 
-def make_final_result(test_result, steps, begin_time, logger):
+def make_final_result(test_result, steps, begin_time):
     """
     Making a test result.
 
     :param test_result: the object result was collected into test case.
     :param steps: list of steps.
     :param begin_time: time that the test begin.
-    :param logger: The object captures screen log.
     """
     import time
     for step in steps:
@@ -167,7 +166,6 @@ def make_final_result(test_result, steps, begin_time, logger):
 
     test_result.set_duration(time.time() - begin_time)
     test_result.write_result_to_file()
-    logger.save_log(test_result.get_test_status())
 
 
 def verify_json(steps, expected_response, response):
@@ -205,7 +203,8 @@ def print_with_color(message: str, color: str):
     :param message:
     :param color:
     """
-    print(color + message + constant.Color.ENDC)
+    import sys
+    print(color + message + constant.Color.ENDC, file=sys.stderr)
 
 
 def print_error(message: str):
