@@ -14,6 +14,7 @@ def pytest_runtest_logreport(report):
     :param report: report of pytest that contains log.
     """
     if report.failed or '-l' in sys.argv:
+
         def init_folder(folder):
             try:
                 os.makedirs(folder)
@@ -35,6 +36,10 @@ def pytest_runtest_logreport(report):
         log_path = log_dir + test_name
 
         log = ""
+        if report.longrepr:
+            for line in report.longreprtext.splitlines():
+                log += "\n" + line
+
         for header, content in report.sections:
             log += "\n" + (' {0} '.format(header).center(80, '-'))
             log += "\n" + content
