@@ -1,10 +1,12 @@
+import errno
 import os
 import sys
-import errno
 import time
+
 import pytest
+
 import reporter
-from utilities import result
+from utilities import result, utils
 
 
 def pytest_runtest_logreport(report):
@@ -21,8 +23,7 @@ def pytest_runtest_logreport(report):
                 if e.errno != errno.EEXIST:
                     raise e
 
-        log_dir = os.path.join(os.path.dirname(
-            __file__), "..") + "/test_output/log_files/"
+        log_dir = utils.get_project_path() + "/test_output/log_files/"
 
         init_folder(log_dir)
 

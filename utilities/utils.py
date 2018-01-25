@@ -43,7 +43,7 @@ def get_project_path():
     """
     file_path = os.path.abspath(__file__)
     root_dir = os.path.join(os.path.dirname(file_path), "..")
-    return os.path._getfullpathname(root_dir)
+    return os.path.abspath(root_dir)
 
 
 def exit_if_exception(result):
