@@ -37,6 +37,15 @@ def generate_random_string(prefix="", suffix="", size=20):
     return result
 
 
+def get_project_path():
+    """
+    return the path of the project directory.
+    """
+    file_path = os.path.abspath(__file__)
+    root_dir = os.path.join(os.path.dirname(file_path), "..")
+    return os.path._getfullpathname(root_dir)
+
+
 def exit_if_exception(result):
     """
     If "result" is an exception then raise the "result".

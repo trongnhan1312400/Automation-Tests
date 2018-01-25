@@ -17,7 +17,7 @@ class TestRefreshPoolLedgerConfig(PoolTestBase):
 
     @pytest.mark.asyncio
     async def test(self):
-        # 1. Create pool ledger config.
+        # 1. Create pool ledger configuration.
         # 2. Open pool ledger.
         self.pool_handle = await \
             common.create_and_open_pool_ledger_for_steps(self.steps,
