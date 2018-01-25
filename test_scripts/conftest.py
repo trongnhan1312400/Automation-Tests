@@ -70,7 +70,5 @@ def make_json_summary(request):
     """
     yield
     if request.config.getoption("htmlpath") is not None:
-        with open("abc.txt", "w") as f:
-            f.write(str(result.Result.result_of_all_tests))
         reporter.JsonSummaryReport().generate_report_from_file(
             result.Result.result_of_all_tests)
