@@ -8,17 +8,19 @@ Implementing test case BuildDDORequest with valid value.
 import json
 
 from indy import signus, ledger
+import pytest
 
 from utilities import common
 from utilities.constant import json_template, operation_fields, \
-                                seed_default_trustee
+    seed_default_trustee
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
 
 
-class BuildDDORequest(TestScenarioBase):
+class TestBuildDDORequest(TestScenarioBase):
 
-    async def execute_test_steps(self):
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
@@ -62,7 +64,3 @@ class BuildDDORequest(TestScenarioBase):
         expected_response = json_template(submitter_did, ddo_operation)
 
         verify_json(self.steps, expected_response, get_ddo_req)
-
-
-if __name__ == '__main__':
-    BuildDDORequest().execute_scenario()

@@ -8,6 +8,7 @@ Implementing test case SignRequest with valid value.
 import json
 
 from indy import signus, ledger
+import pytest
 
 from utilities import common, constant
 from utilities.result import Status
@@ -15,11 +16,10 @@ from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform
 
 
-class SignRequest(TestScenarioBase):
-    async def execute_postcondition_steps(self):
-        pass
+class TestSignRequest(TestScenarioBase):
 
-    async def execute_test_steps(self):
+    @pytest.mark.asyncio
+    async def test(self):
         # Prepare data to test.
         message = json.dumps(
             {
@@ -66,7 +66,3 @@ class SignRequest(TestScenarioBase):
                        "but actual signature is [%s]"
                        % (expected_signature, actual_signature))
             self.steps.get_last_step().set_status(Status.FAILED, message)
-
-
-if __name__ == '__main__':
-    SignRequest().execute_scenario()

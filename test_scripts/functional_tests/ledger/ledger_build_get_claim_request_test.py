@@ -8,6 +8,7 @@ Implementing test case GetClaimRequest with valid value.
 import json
 
 from indy import signus, ledger
+import pytest
 
 from utilities import common
 from utilities.constant import seed_default_trustee, signature_type, \
@@ -16,9 +17,10 @@ from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
 
 
-class GetClaimRequest(TestScenarioBase):
+class TestGetClaimRequest(TestScenarioBase):
 
-    async def execute_test_steps(self):
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = await perform(
@@ -65,7 +67,3 @@ class GetClaimRequest(TestScenarioBase):
                                                  signature_type, origin)
         expected_response = json_template(submitter_did, get_claim_op)
         verify_json(self.steps, expected_response, claim_req)
-
-
-if __name__ == '__main__':
-    GetClaimRequest().execute_scenario()
