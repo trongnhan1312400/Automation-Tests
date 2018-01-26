@@ -43,7 +43,7 @@ class Result:
         self.__test_result = {}  # Store information of a test case
         self.__run = []  # Store information of steps in test case
         self.__test_result[Result.__TEST_CASE] = test_case_name
-        self.__test_result[Result.__RESULT] = Status.PASSED
+        self.__test_result[Result.__RESULT] = Status.FAILED
         self.__test_result[Result.__START_TIME] = \
             str(time.strftime("%Y-%m-%d_%H-%M-%S"))
         self.__json_file_path = \
