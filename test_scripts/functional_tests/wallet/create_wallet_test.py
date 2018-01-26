@@ -5,22 +5,25 @@ Created on Dec 08, 2017
 Implementing test case create_wallet with valid value.
 """
 import os
+
 from indy import wallet
 from indy.error import IndyError
-from utilities.constant import Color
+import pytest
+
 from utilities import common, constant
-from utilities.utils import perform
+from utilities.constant import Color
 from utilities.result import Status
 from utilities.test_scenario_base import TestScenarioBase
+from utilities.utils import perform
 
 
-class CreateWallet(TestScenarioBase):
-    async def execute_postcondition_steps(self):
+class TestCreateWallet(TestScenarioBase):
+    async def teardown_steps(self):
         common.clean_up_pool_and_wallet_folder(self.pool_name,
                                                self.wallet_name)
 
-    async def execute_test_steps(self):
-        print("CreateWallet test started")
+    @pytest.mark.asyncio
+    async def test(self):
         try:
             # 1. Create and open a pool
             self.steps.add_step("Create pool Ledger")
@@ -46,8 +49,3 @@ class CreateWallet(TestScenarioBase):
                     "Failed. Cannot find the wallet which was created.")
         except Exception as e:
             print(Color.FAIL + "\n\t{}\n".format(str(e)) + Color.ENDC)
-        print("CreateWallet test completed")
-
-
-if __name__ == '__main__':
-    CreateWallet().execute_scenario()

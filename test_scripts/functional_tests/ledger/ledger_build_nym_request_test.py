@@ -8,15 +8,18 @@ Implementing test case BuildNymRequest with valid value.
 import json
 
 from indy import signus, ledger
+import pytest
 
 from utilities import common, constant
+from utilities.constant import message, json_template
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
-from utilities.constant import message, json_template
 
 
-class BuildNymRequest(TestScenarioBase):
-    async def execute_test_steps(self):
+class TestBuildNymRequest(TestScenarioBase):
+
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
@@ -54,7 +57,3 @@ class BuildNymRequest(TestScenarioBase):
         message_op = message.format("1", target_did, target_verkey)
         expected_response = json_template(submitter_did, message_op)
         verify_json(self.steps, expected_response, nym_req_txn)
-
-
-if __name__ == '__main__':
-    BuildNymRequest().execute_scenario()

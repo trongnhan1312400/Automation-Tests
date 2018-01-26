@@ -1,6 +1,5 @@
 import os
 import sys
-import errno
 import time
 import pytest
 import reporter
@@ -20,8 +19,7 @@ def pytest_runtest_logreport(report):
     :param report: report of pytest that contains log.
     """
     if report.failed or '--keeplog' in sys.argv:
-        log_dir = (os.path.join(os.path.dirname(__file__), "..", ) +
-                   "/test_output/log_files/")
+        log_dir = utils.get_project_path() + "/test_output/log_files/"
         utils.create_folder(log_dir)
 
         # Get test's name.

@@ -3,25 +3,26 @@ Created on Dec 8, 2017
 
 @author: khoi.ngo
 
-Implementing test case CloseWallet with valid value.
+Implementing test case DeleteWallet with valid value.
 """
-from indy import wallet, signus
+from indy import wallet
 from indy.error import ErrorCode
+import pytest
+
+from utilities import common
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, perform_with_expected_code
-from utilities import common
 
 
-class CloseWallet(TestScenarioBase):
-    async def execute_postcondition_steps(self):
-        await perform(self.steps, wallet.delete_wallet, self.wallet_name, None)
+class TestDeleteWallet(TestScenarioBase):
+    async def teardown_steps(self):
         common.clean_up_pool_and_wallet_folder(self.pool_name,
                                                self.wallet_name)
 
-    async def execute_test_steps(self):
-        print("CloseWallet test started")
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Create and open a pool
-        self.steps.add_step("Create pool Ledger")
+        self.steps.add_step("Create and open a pool Ledger")
         self.pool_handle = await perform(self.steps,
                                          common.create_and_open_pool,
                                          self.pool_name,
@@ -37,18 +38,15 @@ class CloseWallet(TestScenarioBase):
         self.steps.add_step("Close wallet.")
         await perform(self.steps, wallet.close_wallet, self.wallet_handle)
 
-        # 4. Verify close wallet successfully by
-        # creating and storing did in that wallet
-        # expected code is WalletInvalidHandle.
-        self.steps.add_step("Verify close wallet successfully by "
-                            "creating and storing did in that wallet.")
+        # 4. Delete wallet
+        self.steps.add_step("Delete wallet.")
+        await perform(self.steps, wallet.delete_wallet, self.wallet_name, None)
+
+        # 5. Verify that user is able
+        # to delete a wallet by opening that wallet.
+        # expected code is CommonIOError
+        self.steps.add_step("Verify that user is able to "
+                            "delete a wallet by opening that wallet.")
         assert await perform_with_expected_code(
-            self.steps, signus.create_and_store_my_did,
-            self.wallet_handle, "{}",
-            expected_code=ErrorCode.WalletInvalidHandle)
-
-        print("CloseWallet test completed")
-
-
-if __name__ == '__main__':
-    CloseWallet().execute_scenario()
+            self.steps, wallet.open_wallet, self.wallet_name, None, None,
+            expected_code=ErrorCode.CommonIOError)

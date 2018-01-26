@@ -8,6 +8,7 @@ Implementing test case GetTxnRequest with valid value.
 import json
 
 from indy import signus, ledger
+import pytest
 
 from utilities import common
 from utilities.constant import seed_default_trustee, json_template
@@ -15,9 +16,10 @@ from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
 
 
-class GetTxnRequest(TestScenarioBase):
+class TestGetTxnRequest(TestScenarioBase):
 
-    async def execute_test_steps(self):
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = await perform(
@@ -45,7 +47,3 @@ class GetTxnRequest(TestScenarioBase):
         operation_template = '"type": "{}", "data": {}'.format(3, data)
         expected_response = json_template(submitter_did, operation_template)
         verify_json(self.steps, expected_response, get_txn_req)
-
-
-if __name__ == '__main__':
-    GetTxnRequest().execute_scenario()

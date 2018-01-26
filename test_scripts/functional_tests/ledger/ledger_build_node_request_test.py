@@ -8,16 +8,18 @@ Implementing test case BuildNodeRequest with valid value.
 import json
 
 from indy import signus, ledger
+import pytest
 
 from utilities import common, constant
+from utilities.constant import node_request, json_template
 from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform, verify_json
-from utilities.constant import node_request, json_template
 
 
-class BuildNodeRequest(TestScenarioBase):
+class TestBuildNodeRequest(TestScenarioBase):
 
-    async def execute_test_steps(self):
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
@@ -63,7 +65,3 @@ class BuildNodeRequest(TestScenarioBase):
         expected_response = json_template(submitter_did, node_op)
 
         verify_json(self.steps, expected_response, response)
-
-
-if __name__ == '__main__':
-    BuildNodeRequest().execute_scenario()

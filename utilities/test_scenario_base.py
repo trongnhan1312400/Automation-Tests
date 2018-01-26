@@ -35,12 +35,14 @@ class TestScenarioBase:
         self.pool_handle = None
         self.wallet_handle = None
         self.pool_genesis_txn_file = constant.pool_genesis_txn_file
-        self.time_out = 300
         self.begin_time = time.time()
-        utils.run_async_method(self.setup_steps, self.time_out)
+        utils.run_async_method(self.setup_steps)
 
     def teardown_method(self):
-        utils.run_async_method(self.teardown_steps, self.time_out)
+        utils.run_async_method(self.teardown_steps)
+        # catch pytest.timeout_exception
+        # self.steps.get_last_step().set_status = Failed
+        # set message time out
         utils.make_final_result(self.test_result,
                                 self.steps.get_list_step(),
                                 self.begin_time)
