@@ -5,16 +5,18 @@ Created on Dec 08, 2017
 Implementing test case open_wallet with valid value.
 """
 from indy.error import IndyError
-from utilities.test_scenario_base import TestScenarioBase
-from utilities.utils import perform
+import pytest
+
 from utilities import common
 from utilities.result import Status
+from utilities.test_scenario_base import TestScenarioBase
+from utilities.utils import perform
 
 
-class OpenWallet(TestScenarioBase):
+class TestOpenWallet(TestScenarioBase):
 
-    async def execute_test_steps(self):
-        print("OpenWallet test started")
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Create and open a pool
         self.steps.add_step("Create and open a pool")
         self.pool_handle = await perform(self.steps,
@@ -36,9 +38,3 @@ class OpenWallet(TestScenarioBase):
         else:
             self.steps.get_last_step().set_message(
                 "Failed. Cannot open the wallet which was created.")
-
-        print("OpenWallet test completed")
-
-
-# if __name__ == '__main__':
-#     OpenWallet().execute_scenario()
