@@ -2,15 +2,20 @@
 Created on Dec 20, 2017
 
 @author: nhan.nguyen
+Verify that user can prepare a message that associates with a created did.
 """
 
 from indy import agent, signus
-from utilities import utils, common
+import pytest
+
 from test_scripts.functional_tests.agent.agent_test_base import AgentTestBase
+from utilities import utils, common
 
 
-class TestAgentParseAuthMessage(AgentTestBase):
-    async def execute_test_steps(self):
+class TestAgentPrepMessageWithCreatedDid(AgentTestBase):
+
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Created wallet.
         # 2. Open wallet.
         self.wallet_handle = await common.create_and_open_wallet_for_steps(
@@ -21,7 +26,7 @@ class TestAgentParseAuthMessage(AgentTestBase):
             "Create 'sender_verkey' with 'signus.created_and_store_my_did'")
         (_, self.sender_verkey) = await utils.perform(
             self.steps, signus.create_and_store_my_did, self.wallet_handle,
-            "{}",  ignore_exception=False)
+            "{}", ignore_exception=False)
 
         # 4. Create "recipient_verkey" with "signus.created_and_store_my_did".
         self.steps.add_step(
@@ -43,7 +48,3 @@ class TestAgentParseAuthMessage(AgentTestBase):
         # 7. Check 'parsed_message'
         # 8. Check 'parsed_verkey'
         await super()._parsed_and_check_encrypted_msg()
-
-
-if __name__ == "__main__":
-    TestAgentParseAuthMessage().execute_scenario()

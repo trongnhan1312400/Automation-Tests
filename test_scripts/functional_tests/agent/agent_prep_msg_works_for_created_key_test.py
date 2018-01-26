@@ -2,15 +2,20 @@
 Created on Dec 20, 2017
 
 @author: nhan.nguyen
+Verify that user can prepare a message that associates with a created verkey.
 """
 
 from indy import agent, signus
-from utilities import utils, common
+import pytest
+
 from test_scripts.functional_tests.agent.agent_test_base import AgentTestBase
+from utilities import utils, common
 
 
 class TestAgentPrepMessageWithCreatedVerkey(AgentTestBase):
-    async def execute_test_steps(self):
+
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Created wallet.
         # 2. Open wallet.
         self.wallet_handle = await common.create_and_open_wallet_for_steps(
@@ -41,7 +46,3 @@ class TestAgentPrepMessageWithCreatedVerkey(AgentTestBase):
         # 7. Check 'parsed_message'
         # 8. Check 'parsed_verkey'
         await super()._parsed_and_check_encrypted_msg()
-
-
-if __name__ == "__main__":
-    TestAgentPrepMessageWithCreatedVerkey().execute_scenario()

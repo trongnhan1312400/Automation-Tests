@@ -2,15 +2,20 @@
 Created on Dec 20, 2017
 
 @author: nhan.nguyen
+Verify that user can prepare an anonymous message that associates with a verkey
 """
 
 from indy import agent, signus
-from utilities import utils, common
+import pytest
+
 from test_scripts.functional_tests.agent.agent_test_base import AgentTestBase
+from utilities import utils, common
 
 
-class TestAgentParseAnonymousMessage(AgentTestBase):
-    async def execute_test_steps(self):
+class TestAgentPrepAnonymousMessage(AgentTestBase):
+
+    @pytest.mark.asyncio
+    async def test(self):
         # 1. Created wallet.
         # 2. Open wallet.
         self.wallet_handle = await common.create_and_open_wallet_for_steps(
@@ -23,8 +28,8 @@ class TestAgentParseAnonymousMessage(AgentTestBase):
             self.steps, signus.create_and_store_my_did, self.wallet_handle,
             "{}", ignore_exception=False)
 
-        # 4. Prepare message.
-        self.steps.add_step("Prepare encrypted message")
+        # 4. Prepare anonymous message.
+        self.steps.add_step("Prepare anonymous message")
         self.encrypted_msg = await utils.perform(self.steps,
                                                  agent.prep_anonymous_msg,
                                                  self.recipient_verkey,
@@ -35,7 +40,3 @@ class TestAgentParseAnonymousMessage(AgentTestBase):
         # 6. Check 'parsed_message'
         # 7. Check 'parsed_verkey'
         await super()._parsed_and_check_encrypted_msg()
-
-
-if __name__ == "__main__":
-    TestAgentParseAnonymousMessage().execute_scenario()
