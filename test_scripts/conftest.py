@@ -12,6 +12,10 @@ def pytest_addoption(parser):
                     help="keep all log no matter what test's status")
 
 
+def pytest_namespace():
+    return {"current_exception": None}
+
+
 def pytest_runtest_logreport(report):
     """
     Catch and save the log if test failed of option keep log (-l) exist.
@@ -70,3 +74,35 @@ def make_json_summary(request):
     if request.config.getoption("htmlpath") is not None:
         reporter.JsonSummaryReport().generate_report_from_file(
             result.Result.result_of_all_tests)
+
+
+@pytest.fixture(scope="function", autouse=True)
+def reset_global_variables():
+    """
+    Reset some global variables in pytest namespace.
+    """
+    pytest.current_exception = None
+
+
+# @pytest.hookimpl(hookwrapper=True)
+# def pytest_runtest_call(item):
+#     from _pytest import runner
+#     runner._update_current_test_var(item, 'call')
+#     try:
+#         item.runtest()
+#         pytest.exit("A")
+#     except Exception or BaseException as e:
+#         # Store trace info to allow postmortem debugging
+#         type_t, value, tb = sys.exc_info()
+#         tb = tb.tb_next  # Skip *this* frame
+#         sys.last_type = type_t
+#         sys.last_value = value
+#         sys.last_traceback = tb
+#         del tb  # Get rid of it in this namespace
+#         pytest.current_exception = e
+#         raise e
+#     yield
+
+
+
+
