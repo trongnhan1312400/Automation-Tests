@@ -9,8 +9,8 @@ Containing the test base class.
 import inspect
 import os
 import time
-from utilities import utils
-from utilities import common, constant
+import pytest
+from utilities import utils, constant, common, result
 from utilities.result import Result
 from utilities.step import Steps
 
@@ -42,6 +42,13 @@ class TestScenarioBase:
         # catch pytest.timeout_exception
         # self.steps.get_last_step().set_status = Failed
         # set message time out
+
+        exception = pytest.current_exception
+        if isinstance(exception, BaseException or Exception):
+            utils.print_error(constant.EXCEPTION.format(str(exception)))
+            self.steps.get_last_step().set_status(result.Status.FAILED,
+                                                  str(exception))
+
         utils.make_final_result(self.test_result,
                                 self.steps.get_list_step(),
                                 self.begin_time)

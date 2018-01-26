@@ -1,8 +1,6 @@
 """
 Created on Nov 9, 2017
-
 @author: khoi.ngo
-
 Containing all functions used by several test steps on test scenarios.
 """
 import os
@@ -16,7 +14,6 @@ from utilities.step import Steps
 def generate_random_string(prefix="", suffix="", size=20):
     """
     Generate random string .
-
     :param prefix:  (optional) Prefix of a string.
     :param suffix:  (optional) Suffix of a string.
     :param size: (optional) Max length of a string (include prefix and suffix)
@@ -73,7 +70,6 @@ async def perform(steps, func, *args, ignore_exception=False):
     """
     Execute an function and set status, message for the last test step depend
     on the result of the function.
-
     :param steps: list of test steps.
     :param func: executed function.
     :param args: argument of function.
@@ -102,7 +98,6 @@ async def perform_with_expected_code(steps, func, *args, expected_code=0):
     """
     Execute the "func" with expectation that the "func" raise an IndyError that
     IndyError.error_code = "expected_code".
-
     :param steps: list of test steps.
     :param func: executed function.
     :param args: arguments of "func".
@@ -134,10 +129,8 @@ async def perform_with_expected_code(steps, func, *args, expected_code=0):
 def run_async_method(method, time_out=None):
     """
     Run async method until it complete or until the time is over.
-
     :param method: The method want to run with event loop.
     :param time_out:
-
     @note: We can customize this method to adapt different situations
            in the future.
     """
@@ -153,12 +146,12 @@ def run_async_method(method, time_out=None):
 def make_final_result(test_result, steps, begin_time):
     """
     Making a test result.
-
     :param test_result: the object result was collected into test case.
     :param steps: list of steps.
     :param begin_time: time that the test begin.
     """
     import time
+    test_failed = False
     for step in steps:
         test_result.add_step(step)
         if step.get_status() == Status.FAILED:
@@ -166,6 +159,10 @@ def make_final_result(test_result, steps, begin_time):
                   'failed\nMessage: ' + step.get_message() +
                   constant.Color.ENDC)
             test_result.set_test_failed()
+            test_failed = True
+
+    if not test_failed:
+        test_result.set_test_passed()
 
     test_result.set_duration(time.time() - begin_time)
     test_result.write_result_to_file()
@@ -174,7 +171,6 @@ def make_final_result(test_result, steps, begin_time):
 def verify_json(steps, expected_response, response):
     """
     Verify two json are equal.
-
     :param steps: list step of test case.
     :param expected_response: expected json.
     :param response: actual json.
@@ -190,7 +186,6 @@ def verify_json(steps, expected_response, response):
 def check_pool_exist(pool_name: str) -> bool:
     """
     Check whether pool config exist or not.
-
     :param pool_name:
     :return: bool
     """
@@ -202,7 +197,6 @@ def check_pool_exist(pool_name: str) -> bool:
 def print_with_color(message: str, color: str):
     """
     Print a message with specified color onto console.
-
     :param message:
     :param color:
     """
@@ -213,7 +207,6 @@ def print_with_color(message: str, color: str):
 def print_error(message: str):
     """
     Print message onto console with "Fail" color.
-
     :param message:
     """
     print_with_color(message, constant.Color.FAIL)
@@ -222,7 +215,6 @@ def print_error(message: str):
 def print_header(message: str):
     """
     Print message onto console with "Header" color.
-
     :param message:
     """
     print_with_color(message, constant.Color.HEADER)
@@ -231,7 +223,6 @@ def print_header(message: str):
 def print_ok_green(message: str):
     """
     Print message onto console with "OK_GREEN" color.
-
     :param message:
     """
     print_with_color(message, constant.Color.OKGREEN)
@@ -240,7 +231,6 @@ def print_ok_green(message: str):
 def print_ok_blue(message: str):
     """
     Print message onto console with "OK_BLUE" color.
-
     :param message:
     """
     print_with_color(message, constant.Color.OKBLUE)
@@ -259,7 +249,6 @@ def check(steps: Steps, error_message: str, condition) -> bool:
     """
     Check if the condition are return True.
     Set message into last step if the condition return False.
-
     :param steps: list step of test case.
     :param error_message: message to set if condition return False.
     :param condition: a callable.
@@ -317,7 +306,6 @@ def create_gotten_pairwise_json(my_did: str = None, metadata=None) -> dict:
 def check_claim_attrs(claim_attrs, expected_claim):
     """
     Check if field 'attrs' in gotten claim matches with expected claim json.
-
     :param claim_attrs: value of field 'attrs' in gotten claim.
     :param expected_claim:
     :return: True of False.
@@ -332,7 +320,6 @@ def check_gotten_claim_is_valid(steps, gotten_claim, expected_claim_json,
                                 issuer_did, schema_no):
     """
     Check if a gotten claim is valid.
-
     :param steps: steps of test case.
     :param gotten_claim: return by 'anoncreds.prover_get_claims'.
     :param expected_claim_json: claim json that match with claim in wallet.
@@ -372,7 +359,6 @@ def create_proof_req(nonce: str, name: str, version: str,
                      requested_predicates: dict=None) -> str:
     """
     Create a proof request.
-
     :param nonce: a number that unique within wallet.
     :param name: name of proof request (unique).
     :param version: version of proof request.
@@ -393,7 +379,6 @@ def create_proof_req(nonce: str, name: str, version: str,
 def get_version(program: str) -> str:
     """
     Return version of a program.
-
     :param program: program's name.
     :return: version.
     """
