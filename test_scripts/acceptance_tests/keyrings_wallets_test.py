@@ -4,7 +4,11 @@ Created on Nov 8, 2017
 @author: khoi.ngo
 
 Containing test script of test scenario 04: keyrings wallets.
+
+Verify that the wallet is created at the correct place and work well.
 """
+
+import pytest
 import json
 import os.path
 
@@ -17,8 +21,8 @@ from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform
 
 
-class KeyringsWallets(TestScenarioBase):
-
+class TestKeyringsWallets(TestScenarioBase):
+    @pytest.mark.asyncio
     async def test(self):
         # 1. Create and open pool Ledger
         self.steps.add_step("Create and open pool Ledger")
@@ -44,7 +48,3 @@ class KeyringsWallets(TestScenarioBase):
         await perform(self.steps, signus.create_and_store_my_did,
                       self.wallet_handle,
                       json.dumps({"seed": seed_default_trustee}))
-
-
-if __name__ == '__main__':
-    KeyringsWallets().execute_scenario()

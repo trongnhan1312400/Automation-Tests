@@ -4,8 +4,10 @@ Created on Nov 10, 2017
 @author: nhan.nguyen
 
 Containing test script of test scenario 03: check connection.
+Verify that user can connect to the pool ledger.
 """
 
+import pytest
 import json
 
 from indy import signus, wallet, pool
@@ -15,9 +17,10 @@ from utilities.test_scenario_base import TestScenarioBase
 from utilities.utils import perform
 
 
-class CheckConnection(TestScenarioBase):
+class TestCheckConnection(TestScenarioBase):
     seed_steward01 = "000000000000000000000000Steward1"
 
+    @pytest.mark.asyncio
     async def test(self):
         pool_config = json.dumps(
             {"genesis_txn": str(pool_genesis_txn_file)})
@@ -56,7 +59,3 @@ class CheckConnection(TestScenarioBase):
         self.steps.add_step("Reconnect to pool")
         self.pool_handle = await perform(self.steps, pool.open_pool_ledger,
                                          self.pool_name, None)
-
-
-if __name__ == '__main__':
-    CheckConnection().execute_scenario()

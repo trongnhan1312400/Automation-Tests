@@ -14,7 +14,7 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
 from utilities import utils, common, constant
 
 
-class IssuerCreateAndStoreClaimDefsWithCreateNoneRevoc(AnoncredsTestBase):
+class TestIssuerCreateAndStoreClaimDefsWithCreateNoneRevoc(AnoncredsTestBase):
 
     @pytest.mark.asyncio
     async def test(self):

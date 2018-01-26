@@ -4,8 +4,11 @@ Created on Nov 8, 2017
 @author: khoi.ngo
 
 Containing test scripts of test scenario 11: special case for TrustAnchor role.
+
+Verify that user can use 'TrustAnchor' role to do some special cases.
 """
 
+import pytest
 import json
 
 from indy import ledger, signus
@@ -17,8 +20,8 @@ from utilities.constant import seed_default_trustee, Role
 from utilities.test_scenario_base import TestScenarioBase
 
 
-class SpecialCaseTrustAnchorRole(TestScenarioBase):
-
+class TestSpecialCaseTrustAnchorRole(TestScenarioBase):
+    @pytest.mark.asyncio
     async def test(self):
         # Declare all values use in the test
         seed_trustee1 = generate_random_string(prefix="Trustee1", size=32)
@@ -202,7 +205,3 @@ class SpecialCaseTrustAnchorRole(TestScenarioBase):
                 self.pool_handle, self.wallet_handle, trustanchor1_did,
                 trustanchor2_did, trustanchor2_verkey, None, Role.NONE,
                 expected_code=304)
-
-
-if __name__ == '__main__':
-    SpecialCaseTrustAnchorRole().execute_scenario()

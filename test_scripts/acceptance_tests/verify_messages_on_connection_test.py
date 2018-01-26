@@ -4,7 +4,11 @@ Created on Nov 8, 2017
 @author: khoi.ngo
 
 Containing test script of test scenario 02: verify messages on connection.
+
+Verify that displayed message on connection is correct.
 """
+
+import pytest
 import json
 import os
 
@@ -26,17 +30,18 @@ restore_pool_genesis_file = 'sudo cp ' + \
 create_empty_pool_genesis_file = 'sudo touch ' + pool_genesis_txn_file
 
 
-class VerifyMessagesOnConnection(TestScenarioBase):
+class TestMessagesOnConnection(TestScenarioBase):
 
-    async def execute_precondition_steps(self):
+    async def setup_steps(self):
         os.system(back_up_pool_genesis_file)
         os.system(remove_pool_genesis_file)
         os.system(create_empty_pool_genesis_file)
 
-    async def execute_postcondition_steps(self):
+    async def teardown_steps(self):
         os.system(remove_pool_genesis_file)
         os.system(restore_pool_genesis_file)
 
+    @pytest.mark.asyncio
     async def test(self):
         # 1. Create ledger config from genesis txn file
         self.steps.add_step("Create Ledger -> "
@@ -57,7 +62,3 @@ class VerifyMessagesOnConnection(TestScenarioBase):
         self.steps.add_step("verifying the message")
         message_3 = "TODO after fix IS-332"
         self.steps.get_last_step().set_status(Status.FAILED, message_3)
-
-
-if __name__ == '__main__':
-    VerifyMessagesOnConnection().execute_scenario()

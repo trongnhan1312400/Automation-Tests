@@ -15,12 +15,6 @@ from utilities.test_scenario_base import TestScenarioBase
 
 class TestCryptoBoxSealWithInvalidKey(TestScenarioBase):
     @pytest.mark.asyncio
-    async def execute_postcondition_steps(self):
-        pass
-
-    async def execute_precondition_steps(self):
-        pass
-
     async def test(self):
         # 1. Create sealed crypto box with invalid verkey and
         # verify that sealed crypto box cannot be created.

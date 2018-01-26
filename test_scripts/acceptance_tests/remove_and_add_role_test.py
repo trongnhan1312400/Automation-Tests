@@ -4,7 +4,11 @@ Created on Nov 8, 2017
 @author: nhan.nguyen
 
 Containing test script of test scenario 09: remove and add role.
+
+Verify that user can remove and add role.
 """
+
+import pytest
 import json
 
 from indy import ledger, signus
@@ -17,7 +21,8 @@ from utilities.result import Status
 from utilities.test_scenario_base import TestScenarioBase
 
 
-class RemoveAndAddRole(TestScenarioBase):
+class TestRemoveAndAddRole(TestScenarioBase):
+    @pytest.mark.asyncio
     async def test(self):
         """
         This function is the main part of test script.
@@ -449,8 +454,8 @@ class RemoveAndAddRole(TestScenarioBase):
                 message += "\nCannot get NYM for{} - {}".format(target_name,
                                                                 temp_msg)
             else:
-                if not RemoveAndAddRole.check_role_in_retrieved_nym(temp_msg,
-                                                                    None):
+                if not TestRemoveAndAddRole.check_role_in_retrieved_nym(
+                        temp_msg, None):
                     temp = False
                     message += "\nCannot remove {}'s role".format(target_name)
 
@@ -498,7 +503,3 @@ class RemoveAndAddRole(TestScenarioBase):
                 else:
                     return True
         return False
-
-
-if __name__ == '__main__':
-    RemoveAndAddRole().execute_scenario()
