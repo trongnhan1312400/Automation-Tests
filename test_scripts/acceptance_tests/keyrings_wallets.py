@@ -19,7 +19,7 @@ from utilities.utils import perform
 
 class KeyringsWallets(TestScenarioBase):
 
-    async def execute_test_steps(self):
+    async def test(self):
         # 1. Create and open pool Ledger
         self.steps.add_step("Create and open pool Ledger")
         self.pool_handle, self.wallet_handle = await perform(

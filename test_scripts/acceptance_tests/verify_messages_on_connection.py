@@ -37,7 +37,7 @@ class VerifyMessagesOnConnection(TestScenarioBase):
         os.system(remove_pool_genesis_file)
         os.system(restore_pool_genesis_file)
 
-    async def execute_test_steps(self):
+    async def test(self):
         # 1. Create ledger config from genesis txn file
         self.steps.add_step("Create Ledger -> "
                             "Bug: https://jira.hyperledger.org/browse/IS-332")

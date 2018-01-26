@@ -11,7 +11,7 @@ from test_scripts.functional_tests.crypto.crypto_test_base \
 
 
 class CryptoSetKeyMetadataWithEmptyMetadata(CryptoTestBase):
-    async def execute_test_steps(self):
+    async def test(self):
         # 1. Create wallet.
         # 2. Open wallet.
         self.wallet_handle = await common.create_and_open_wallet_for_steps(

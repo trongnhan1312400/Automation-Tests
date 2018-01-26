@@ -6,7 +6,7 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
 
 
 class ReproduceIssue(AnoncredsTestBase):
-    async def execute_test_steps(self):
+    async def test(self):
         logging.basicConfig(level=logging.DEBUG)
         # 1. Create wallet.
         # 2. Open wallet.

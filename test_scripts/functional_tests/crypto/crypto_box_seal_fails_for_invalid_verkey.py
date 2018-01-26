@@ -17,7 +17,7 @@ class CryptoBoxSealWithInvalidKey(TestScenarioBase):
     async def execute_precondition_steps(self):
         pass
 
-    async def execute_test_steps(self):
+    async def test(self):
         # 1. Create sealed crypto box with invalid verkey and
         # verify that sealed crypto box cannot be created.
         self.steps.add_step("Create sealed crypto box with invalid verkey and "

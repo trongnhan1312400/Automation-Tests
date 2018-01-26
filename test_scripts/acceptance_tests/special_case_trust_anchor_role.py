@@ -19,7 +19,7 @@ from utilities.test_scenario_base import TestScenarioBase
 
 class SpecialCaseTrustAnchorRole(TestScenarioBase):
 
-    async def execute_test_steps(self):
+    async def test(self):
         # Declare all values use in the test
         seed_trustee1 = generate_random_string(prefix="Trustee1", size=32)
         seed_trustee2 = generate_random_string(prefix="Trustee2", size=32)

@@ -18,7 +18,7 @@ from utilities.utils import perform
 class CheckConnection(TestScenarioBase):
     seed_steward01 = "000000000000000000000000Steward1"
 
-    async def execute_test_steps(self):
+    async def test(self):
         pool_config = json.dumps(
             {"genesis_txn": str(pool_genesis_txn_file)})
         # 1. Create pool ledger

@@ -18,7 +18,7 @@ from utilities.test_scenario_base import TestScenarioBase
 
 
 class RemoveAndAddRole(TestScenarioBase):
-    async def execute_test_steps(self):
+    async def test(self):
         """
         This function is the main part of test script.
         All steps that involve to role TGB(9, 10, a half of 24) will be skipped
