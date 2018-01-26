@@ -2,6 +2,8 @@
 Created on Jan 16, 2018
 
 @author: nhan.nguyen
+Verify that 'anoncreds.verifier_verify_proof' return false
+if argument 'claim_defs_json' is incompatiple.
 """
 import json
 

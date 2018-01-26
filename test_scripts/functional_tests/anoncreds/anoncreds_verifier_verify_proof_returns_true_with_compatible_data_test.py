@@ -2,6 +2,8 @@
 Created on Jan 16, 2018
 
 @author: nhan.nguyen
+Verify that 'anoncreds.verifier_verify_proof' return True
+if all arguments are compatible with each other.
 """
 import json
 

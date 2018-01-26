@@ -2,6 +2,7 @@
 Created on Dec 19, 2017
 
 @author: nhan.nguyen
+Verify that user cannot create claim with invalid wallet handle.
 """
 import json
 

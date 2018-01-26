@@ -2,6 +2,8 @@
 Created on Dec 15, 2017
 
 @author: nhan.nguyen
+Verify that user cannot create and store a claim definition with invalid
+wallet handle.
 """
 
 import json

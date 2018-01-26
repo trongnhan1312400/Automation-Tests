@@ -2,6 +2,7 @@
 Created on Dec 19, 2017
 
 @author: nhan.nguyen
+Verify that user cannot create a master secret with invalid wallet handle.
 """
 
 from indy import anoncreds

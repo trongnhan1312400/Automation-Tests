@@ -9,7 +9,6 @@ Containing the test base class.
 import inspect
 import os
 import time
-import pytest
 from utilities import utils
 from utilities import common, constant
 from utilities.result import Result

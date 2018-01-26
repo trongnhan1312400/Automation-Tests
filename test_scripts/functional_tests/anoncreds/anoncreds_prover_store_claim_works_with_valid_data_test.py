@@ -2,6 +2,7 @@
 Created on Jan 4, 2018
 
 @author: nhan.nguyen
+Verify that user can store created claim with valid data.
 """
 import json
 

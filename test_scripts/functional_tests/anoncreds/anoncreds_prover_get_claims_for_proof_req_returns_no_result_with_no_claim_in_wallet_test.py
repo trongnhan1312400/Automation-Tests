@@ -2,6 +2,7 @@
 Created on Jan 17, 2018
 
 @author: nhan.nguyen
+Verify that system returns no claim if there is no claim in wallet.
 """
 import json
 

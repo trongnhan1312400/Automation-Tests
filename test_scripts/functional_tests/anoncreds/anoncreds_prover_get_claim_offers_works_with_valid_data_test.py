@@ -2,6 +2,7 @@
 Created on Dec 15, 2017
 
 @author: nhan.nguyen
+Verify that user can get all claim offers from wallet.
 """
 
 import json

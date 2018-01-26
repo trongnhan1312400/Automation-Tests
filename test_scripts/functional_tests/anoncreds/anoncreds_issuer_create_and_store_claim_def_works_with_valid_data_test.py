@@ -2,6 +2,8 @@
 Created on Dec 15, 2017
 
 @author: nhan.nguyen
+Verify that user can use an issuer to create and store a claim definition
+with valid data.
 """
 
 import json

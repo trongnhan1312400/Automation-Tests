@@ -2,6 +2,8 @@
 Created on Jan 10, 2018
 
 @author: nhan.nguyen
+Verify that 'anoncreds.prover_get_claims' returns an empty list claims with
+no claim in wallet.
 """
 import json
 

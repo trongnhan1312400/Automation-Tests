@@ -2,6 +2,7 @@
 Created on Jan 17, 2018
 
 @author: nhan.nguyen
+Verify that user can create proof with valid data.
 """
 import json
 

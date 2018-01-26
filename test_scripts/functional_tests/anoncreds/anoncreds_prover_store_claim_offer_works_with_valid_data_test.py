@@ -2,6 +2,7 @@
 Created on Dec 15, 2017
 
 @author: nhan.nguyen
+Verify that a claim offer can be stored by anoncreds.prover_store_claim_offer
 """
 
 import json

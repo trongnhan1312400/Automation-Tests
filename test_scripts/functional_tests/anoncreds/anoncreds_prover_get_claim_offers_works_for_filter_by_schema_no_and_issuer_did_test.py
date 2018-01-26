@@ -2,6 +2,8 @@
 Created on Dec 19, 2017
 
 @author: nhan.nguyen
+Verify that user can get claim offers for filtering by schema sequence and
+issuer's did.
 """
 
 import json

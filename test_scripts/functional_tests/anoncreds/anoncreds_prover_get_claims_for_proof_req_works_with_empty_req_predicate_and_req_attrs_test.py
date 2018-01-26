@@ -2,6 +2,8 @@
 Created on Jan 12, 2018
 
 @author: nhan.nguyen
+Verify that system returns no claim when getting claim with proof request
+that contains empty requested predicates and empty requested attrs.
 """
 import json
 

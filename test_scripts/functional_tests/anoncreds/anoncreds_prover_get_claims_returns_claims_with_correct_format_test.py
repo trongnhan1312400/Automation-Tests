@@ -2,6 +2,8 @@
 Created on Jan 8, 2018
 
 @author: nhan.nguyen
+Verify that 'anoncreds.prover_get_claims' returns a list of stored claims
+with correct format.
 """
 import json
 

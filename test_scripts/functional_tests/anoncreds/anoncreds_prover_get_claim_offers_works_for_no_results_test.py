@@ -2,6 +2,8 @@
 Created on Dec 19, 2017
 
 @author: nhan.nguyen
+Verify that 'anoncreds.prover_get_claim_offers' return empty list if there
+is no result that satisfy filter json.
 """
 
 import json

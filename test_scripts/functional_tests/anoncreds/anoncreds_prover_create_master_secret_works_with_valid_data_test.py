@@ -2,6 +2,7 @@
 Created on Dec 18, 2017
 
 @author: nhan.nguyen
+Verify that user can create a master secret.
 """
 
 from indy import anoncreds

@@ -2,6 +2,7 @@
 Created on Jan 8, 2018
 
 @author: nhan.nguyen
+Verify that user can get stored claims by filtering by issuer did.
 """
 import json
 
