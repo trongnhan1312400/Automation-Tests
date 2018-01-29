@@ -84,25 +84,11 @@ def reset_global_variables():
     pytest.current_exception = None
 
 
-# @pytest.hookimpl(hookwrapper=True)
-# def pytest_runtest_call(item):
-#     from _pytest import runner
-#     runner._update_current_test_var(item, 'call')
-#     try:
-#         item.runtest()
-#         pytest.exit("A")
-#     except Exception or BaseException as e:
-#         # Store trace info to allow postmortem debugging
-#         type_t, value, tb = sys.exc_info()
-#         tb = tb.tb_next  # Skip *this* frame
-#         sys.last_type = type_t
-#         sys.last_value = value
-#         sys.last_traceback = tb
-#         del tb  # Get rid of it in this namespace
-#         pytest.current_exception = e
-#         raise e
-#     yield
-
-
-
-
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_call(item):
+    from _pytest import outcomes
+    outcome = yield
+    exinfo = outcome._excinfo
+    if issubclass(exinfo[0], outcomes.OutcomeException or Exception):
+        pytest.current_exception = "{}: {}".format(exinfo[0].__name__,
+                                                   exinfo[1])

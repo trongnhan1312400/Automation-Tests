@@ -151,6 +151,9 @@ def make_final_result(test_result, steps, begin_time):
     :param begin_time: time that the test begin.
     """
     import time
+    import pytest
+    if pytest.current_exception:
+        steps[-1].set_status(Status.FAILED, pytest.current_exception)
     test_failed = False
     for step in steps:
         test_result.add_step(step)
