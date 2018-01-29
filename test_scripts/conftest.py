@@ -89,6 +89,7 @@ def pytest_runtest_call(item):
     from _pytest import outcomes
     outcome = yield
     exinfo = outcome._excinfo
-    if issubclass(exinfo[0], outcomes.OutcomeException or Exception):
+    if exinfo and issubclass(exinfo[0],
+                             outcomes.OutcomeException or Exception):
         pytest.current_exception = "{}: {}".format(exinfo[0].__name__,
                                                    exinfo[1])
