@@ -4,6 +4,7 @@ Created on Nov 10, 2017
 @author: nhan.nguyen
 
 Containing test script of test scenario 03: check connection.
+
 Verify that user can connect to the pool ledger.
 """
 
