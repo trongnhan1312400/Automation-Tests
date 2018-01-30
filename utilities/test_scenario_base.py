@@ -10,6 +10,7 @@ import inspect
 import os
 import time
 import pytest
+from _pytest import outcomes
 from utilities import utils, constant, common, result
 from utilities.result import Result
 from utilities.step import Steps
@@ -39,16 +40,6 @@ class TestScenarioBase:
 
     def teardown_method(self):
         utils.run_async_method(self.teardown_steps)
-        # catch pytest.timeout_exception
-        # self.steps.get_last_step().set_status = Failed
-        # set message time out
-
-        exception = pytest.current_exception
-        if isinstance(exception, BaseException or Exception):
-            utils.print_error(constant.EXCEPTION.format(str(exception)))
-            self.steps.get_last_step().set_status(result.Status.FAILED,
-                                                  str(exception))
-
         utils.make_final_result(self.test_result,
                                 self.steps.get_list_step(),
                                 self.begin_time)

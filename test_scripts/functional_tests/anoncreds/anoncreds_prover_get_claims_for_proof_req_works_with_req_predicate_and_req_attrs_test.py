@@ -16,7 +16,7 @@ from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
 from utilities import utils, common, constant
 
 
-class ProverGetsClaimWithReqPredicateAndReqAttrs(AnoncredsTestBase):
+class TestProverGetsClaimWithReqPredicateAndReqAttrs(AnoncredsTestBase):
 
     @pytest.mark.asyncio
     async def test(self):

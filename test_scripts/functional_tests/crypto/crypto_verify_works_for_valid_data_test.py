@@ -6,6 +6,7 @@ Created on Dec 27, 2017
 Verify that system return 'True' when verifying signature with valid data.
 """
 
+import pytest
 from indy import crypto
 from utilities import common, utils
 from test_scripts.functional_tests.crypto.crypto_test_base \
@@ -13,6 +14,7 @@ from test_scripts.functional_tests.crypto.crypto_test_base \
 
 
 class TestCryptoSignWithValidData(CryptoTestBase):
+    @pytest.mark.asyncio
     async def test(self):
         # 1. Create wallet.
         # 2. Open wallet.
