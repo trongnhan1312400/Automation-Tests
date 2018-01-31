@@ -277,9 +277,9 @@ async def create_and_store_claim(steps: step.Steps, wallet_handle: int,
                                  prover_did: str, claim_offer: str,
                                  claim_def: str, secret_name: str,
                                  claim_json: str, user_index_revoc: int,
-                                 store_in_wallet: bool = True,
-                                 step_descriptions: list = None,
-                                 ignore_exception: bool = False) -> \
+                                 store_in_wallet: bool=True,
+                                 step_descriptions: list=None,
+                                 ignore_exception: bool=False) -> \
         (str, str, str):
     """
     Create and store claim into wallet.
@@ -340,9 +340,9 @@ async def create_and_store_claim(steps: step.Steps, wallet_handle: int,
 
 async def create_and_store_dids_and_verkeys(
         steps: step.Steps, wallet_handle: int, number: int,
-        did_jsons: list = None,
-        step_descriptions: list = None,
-        ignore_exception: bool = False) -> (str, str):
+        did_jsons: list=None,
+        step_descriptions: list=None,
+        ignore_exception: bool=False) -> (str, str):
     """
     Create two did.
     :param steps: steps of test case.
