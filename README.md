@@ -64,6 +64,10 @@ After building successfully the Indy SDK for Python, you need to run the command
 ```
     python3.5 -m pip install -U pytest
 ```
+- Install pytest-html (a plugin for pytest that generates a HTML report for the test results):
+```
+    python3.5 -m pip install -U pytest-html
+```
 
 #### Then run:
 - Run one test case:
@@ -72,7 +76,7 @@ After building successfully the Indy SDK for Python, you need to run the command
 ```
 - Run all test cases in a folder:
 ```
-    pytest <your_repo_location>/test_scripts/functional_tests/pool --html=reportalltest.html --self-contained-html
+    pytest <your_repo_location>/test_scripts/functional_tests/pool --html=report.html --self-contained-html
 ```
 - Run all test cases in the project:
 ``` 
