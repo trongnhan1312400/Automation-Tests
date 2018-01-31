@@ -76,18 +76,11 @@ def make_json_summary(request):
             result.Result.result_of_all_tests)
 
 
-@pytest.fixture(scope="function", autouse=True)
-def reset_global_variables():
-    """
-    Reset some global variables in pytest namespace.
-    """
-    yield
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_setup(item):
     pytest.current_exception = None
     pytest.current_id = None
 
-
-@pytest.hookimpl(hookwrapper=True, tryfirst=True)
-def pytest_runtest_setup(item):
     def get_id(item_name: str):
         if "[" and "]" in item_name:
             begin = item_name.index("[")
@@ -100,10 +93,8 @@ def pytest_runtest_setup(item):
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_call():
-    from _pytest import outcomes
     outcome = yield
     exinfo = outcome._excinfo
-    if exinfo and issubclass(exinfo[0],
-                             outcomes.OutcomeException or BaseException):
+    if exinfo:
         pytest.current_exception = "{}: {}".format(exinfo[0].__name__,
-                                                   exinfo[1])
+                                                   str(exinfo[1]))
