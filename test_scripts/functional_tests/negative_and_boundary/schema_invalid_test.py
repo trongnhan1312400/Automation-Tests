@@ -33,34 +33,34 @@ def generate_invalid_transaction_schemas():
     data = list()
     ids = list()
 
-    ids.append("schema_build_schema_req_fails_with_schema_name_too_long")
+    ids.append("schema_submit_schema_req_fails_with_schema_name_too_long")
     data.append({'data': schema()})
     temp = data[-1]
     temp['data']['name'] = utils.generate_random_string(size=257)
     temp['err'] = ErrorCode.LedgerInvalidTransaction
 
-    ids.append("schema_build_schema_req_fails"
+    ids.append("schema_submit_schema_req_fails"
                "_with_schema_name_is_empty_string")
     data.append({'data': schema()})
     temp = data[-1]
     temp['data']['name'] = ""
     temp['err'] = ErrorCode.LedgerInvalidTransaction
 
-    ids.append("schema_build_schema_req_fails_"
+    ids.append("schema_submit_schema_req_fails_"
                "with_schema_version_is_empty_string")
     data.append({'data': schema()})
     temp = data[-1]
     temp['data']['version'] = ""
     temp['err'] = ErrorCode.LedgerInvalidTransaction
 
-    ids.append("schema_build_schema_req_fails_with_"
+    ids.append("schema_submit_schema_req_fails_with_"
                "schema_version_not_contain_only_digit")
     data.append({'data': schema()})
     temp = data[-1]
     temp['data']['version'] = "v1.0.1"
     temp['err'] = ErrorCode.LedgerInvalidTransaction
 
-    ids.append("schema_build_schema_req_fails_with_schema_version_too_long")
+    ids.append("schema_submit_schema_req_fails_with_schema_version_too_long")
     data.append({'data': schema()})
     temp = data[-1]
     temp['data']['version'] = utils.generate_random_string(size=129)

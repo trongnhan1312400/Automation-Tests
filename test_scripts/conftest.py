@@ -30,6 +30,8 @@ def pytest_runtest_logreport(report):
         cur_time = str(time.strftime("%Y-%m-%d_%H-%M-%S"))
         path_to_test = report.nodeid.split("::")[0]
         test_name = os.path.basename(path_to_test)
+        if pytest.current_id:
+            test_name = pytest.current_id
 
         log_path = "{}{}_{}.log".format(log_dir, test_name, cur_time)
 
