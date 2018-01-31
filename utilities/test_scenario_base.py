@@ -27,6 +27,8 @@ class TestScenarioBase:
     def setup_method(self):
         self.test_name = os.path.splitext(
             os.path.basename(inspect.getfile(self.__class__)))[0]
+        if pytest.current_id:
+            self.test_name = pytest.current_id
 
         self.test_result = Result(self.test_name)
         self.steps = Steps()

@@ -13,7 +13,7 @@ def pytest_addoption(parser):
 
 
 def pytest_namespace():
-    return {"current_exception": None}
+    return {"current_exception": None, 'current_id': None}
 
 
 def pytest_runtest_logreport(report):
@@ -81,15 +81,29 @@ def reset_global_variables():
     """
     Reset some global variables in pytest namespace.
     """
+    yield
     pytest.current_exception = None
+    pytest.current_id = None
+
+
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_setup(item):
+    def get_id(item_name: str):
+        if "[" and "]" in item_name:
+            begin = item_name.index("[")
+            end = item_name.index("]")
+            return item_name[begin + 1: end]
+        return None
+    pytest.current_id = get_id(item.name)
+    yield
 
 
 @pytest.hookimpl(hookwrapper=True)
-def pytest_runtest_call(item):
+def pytest_runtest_call():
     from _pytest import outcomes
     outcome = yield
     exinfo = outcome._excinfo
     if exinfo and issubclass(exinfo[0],
-                             outcomes.OutcomeException or Exception):
+                             outcomes.OutcomeException or BaseException):
         pytest.current_exception = "{}: {}".format(exinfo[0].__name__,
                                                    exinfo[1])
