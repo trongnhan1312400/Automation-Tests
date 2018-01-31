@@ -85,7 +85,7 @@ def generate_common_invalid_structure_schemas():
     del temp['data']['version']
     temp['err'] = ErrorCode.CommonInvalidStructure
 
-    ids.append("ledger_build_schema_req_fails_with_missing_schema_attr_names")
+    ids.append("schema_build_schema_req_fails_with_missing_schema_attr_names")
     data.append({'data': schema()})
     temp = data[-1]
     del temp['data']['attr_names']
@@ -120,7 +120,7 @@ class TestInvalidSchema(TestScenarioBase):
 
     @pytest.mark.parametrize("schema_data",
                              invalid_common_structure_data[0],
-                             invalid_common_structure_data[1])
+                             ids=invalid_common_structure_data[1])
     @pytest.mark.asyncio
     async def test_cannot_build_req_with_invalid_schema(self, schema_data):
         """
