@@ -20,7 +20,7 @@ from utilities.utils import perform, verify_json, generate_random_string
 class TestGetSchemaRequest(TestScenarioBase):
 
     @pytest.mark.asyncio
-    async def _test_(self):
+    async def test_valid_data(self):
         # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
@@ -76,7 +76,7 @@ class TestGetSchemaRequest(TestScenarioBase):
         verify_json(self.steps, expected_response, get_schema_req)
 
     @pytest.mark.asyncio
-    async def test_wrong_data(self):
+    async def test_send_wrong_data(self):
         # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
@@ -93,16 +93,17 @@ class TestGetSchemaRequest(TestScenarioBase):
             await perform(self.steps,
                           signus.create_and_store_my_did,
                           self.wallet_handle,
-                          json.dumps({
-                              "seed": seed_default_trustee}))
-        (target_did, _) = await perform(self.steps,
+                          json.dumps({"seed": seed_trustee_2}))
+        (schema_did, _) = await perform(self.steps,
                                         signus.create_and_store_my_did,
                                         self.wallet_handle,
-                                        json.dumps({"seed": seed_trustee_2}))
+                                        json.dumps({
+                                            "seed": seed_default_trustee}))
         # 3. build schema request
         self.steps.add_step("Build schema request")
         name = generate_random_string(size=4)
         version = "1.1.1"
+        print("name request: " + name)
         data_request = (
             '{"name":"%s", "version":"%s", "attr_names":["name","male"]}' % (
                 name, version))
@@ -112,27 +113,24 @@ class TestGetSchemaRequest(TestScenarioBase):
         # 4. send schema request
         self.steps.add_step("send schema request")
         await perform(self.steps, ledger.sign_and_submit_request,
-                      self.pool_handle,
-                      self.wallet_handle, submitter_did, schema_req)
+                      self.pool_handle, self.wallet_handle,
+                      submitter_did, schema_req)
 
         # 5. Prepare data to check and build get schema request
         self.steps.add_step("build get schema request")
-        wrong_name = "wrong name"
-        data_response = ('{"name":"%s", "version":"%s"}' %
-                         (wrong_name, version))
-        get_schema_req = await perform(
-                                        self.steps,
-                                        ledger.build_get_schema_request,
-                                        submitter_did,
-                                        target_did, data_response)
+        data_response = ('{"name":"%s", "version":"%s"}' % (name, version))
+        get_schema_req = await perform(self.steps,
+                                       ledger.build_get_schema_request,
+                                       submitter_did, schema_did,
+                                       data_response)
 
         # 6. send get_schema request
         self.steps.add_step("send get schema request")
-        a = await perform(self.steps, ledger.sign_and_submit_request,
-                          self.pool_handle,
-                          self.wallet_handle, submitter_did, get_schema_req)
+        result = await perform(self.steps, ledger.sign_and_submit_request,
+                               self.pool_handle, self.wallet_handle,
+                               submitter_did, get_schema_req)
 
-        print("a: " + str(a))
+        print("\n: " + str(result) + "\n")
 
 #         # 6. Verify json get schema request is correct.
 #         self.steps.add_step("Verify json get schema request is correct.")
