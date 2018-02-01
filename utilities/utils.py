@@ -161,11 +161,12 @@ def make_final_result(test_result, steps, begin_time):
             print('%s: ' % str(step.get_id()) + constant.Color.FAIL +
                   'failed\nMessage: ' + step.get_message() +
                   constant.Color.ENDC)
-            test_result.set_test_failed()
             test_failed = True
 
     if not test_failed:
         test_result.set_test_passed()
+    else:
+        test_result.set_test_failed()
 
     test_result.set_duration(time.time() - begin_time)
     test_result.write_result_to_file()

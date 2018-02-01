@@ -1,4 +1,5 @@
-import json, logging
+import json
+import logging
 from indy import anoncreds, signus
 from utilities import utils, common, constant
 from test_scripts.functional_tests.anoncreds.anoncreds_test_base \
