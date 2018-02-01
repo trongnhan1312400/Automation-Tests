@@ -86,7 +86,7 @@ After building successfully the Indy SDK for Python, you need to run the command
 ``` 
     pytest <your_repo_location>/test_scripts --html=reportalltest.html --self-contained-html
 ```
-- Run all test cases in the project with timeout in second:
+- Run all test cases in the project with test timeout in second:
 ```
     pytest <your_repo_location>/test_scripts --html=timeouttest.html --self-contained-html --timeout=100
 ```
