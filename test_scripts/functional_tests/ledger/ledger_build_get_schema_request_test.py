@@ -20,7 +20,7 @@ from utilities.result import Status
 
 class TestGetSchemaRequest(TestScenarioBase):
     @pytest.mark.asyncio
-    async def _test_valid_data(self):
+    async def test_valid_data(self):
         # 1. Prepare pool and wallet. Get pool_handle, wallet_handle
         self.steps.add_step("Prepare pool and wallet")
         self.pool_handle, self.wallet_handle = \
@@ -43,35 +43,21 @@ class TestGetSchemaRequest(TestScenarioBase):
                                         signus.create_and_store_my_did,
                                         self.wallet_handle,
                                         json.dumps({"seed": seed_trustee_2}))
-        # 3. build schema request
-        self.steps.add_step("Build schema request")
+
+        # 3. Prepare data to check and build get schema request
+        self.steps.add_step("build get schema request")
         name = generate_random_string(size=4)
         version = "1.1.1"
-        data_request = (
-            '{"name":"%s", "version":"%s", "attr_names":["name","male"]}' % (
-                name, version))
-        data_response = ('{"name":"%s", "version":"%s"}' % (name, version))
-        schema_req = await perform(self.steps, ledger.build_schema_request,
-                                   submitter_did, data_request)
-
-        # 4. send schema request
-        self.steps.add_step("send schema request")
-        await perform(self.steps, ledger.sign_and_submit_request,
-                      self.pool_handle,
-                      self.wallet_handle, submitter_did, schema_req)
-
-        # 5. Prepare data to check and build get schema request
-        self.steps.add_step("build get schema request")
-
+        data = ('{"name":"%s", "version":"%s"}' % (name, version))
         get_schema_req = json.loads(
             await perform(self.steps, ledger.build_get_schema_request,
                           submitter_did,
-                          target_did, data_response))
+                          target_did, data))
 
-        # 6. Verify json get schema request is correct.
+        # 4. Verify json get schema request is correct.
         self.steps.add_step("Verify json get schema request is correct.")
         schema_operation = schema_response.format("107", target_did,
-                                                  data_response)
+                                                  data)
         expected_response = json_template(submitter_did, schema_operation)
         verify_json(self.steps, expected_response, get_schema_req)
 
@@ -118,11 +104,11 @@ class TestGetSchemaRequest(TestScenarioBase):
 
         # 5. Prepare data to check and build get schema request
         self.steps.add_step("build get schema request")
-        data_response = ('{"name":"%s", "version":"%s"}' % (name, version))
+        data_get_schema = ('{"name":"%s", "version":"%s"}' % (name, version))
         get_schema_req = await perform(self.steps,
                                        ledger.build_get_schema_request,
                                        submitter_did, schema_did,
-                                       data_response)
+                                       data_get_schema)
 
         # 6. send get_schema request
         self.steps.add_step("send get schema request")
