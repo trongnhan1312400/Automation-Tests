@@ -1,4 +1,4 @@
-## Indy Python wrapper test
+# Indy Python wrapper test
 
 This is a Python wrapper test for Indy, using pytest, a framework that makes building simple and scalable tests easy.
 This Python wrapper test currently requires python 3.5 and base58 (required for testing signus only).
@@ -18,8 +18,7 @@ Indy Python wrapper test contains the following parts:
           - check_connection_test.py
           - keyrings_wallets_test.py 
           - remove_and_add_role_test.py 
-
-- special_case_trust_anchor_role_test.py 
+          - special_case_trust_anchor_role_test.py 
           - verify_messages_on_connection_test.py
      - functional_tests: storing the tests that located in the specific functional folders:
           - agent

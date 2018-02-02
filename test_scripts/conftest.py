@@ -88,6 +88,8 @@ def pytest_runtest_setup(item):
             begin = item_name.index("[")
             end = item_name.index("]")
             return item_name[begin + 1: end]
+        elif not item_name == "test":
+            return item_name
         return None
     pytest.current_id = get_id(item.name)
     yield
