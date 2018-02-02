@@ -9,9 +9,10 @@ Containing the test base class.
 import inspect
 import os
 import time
+
 import pytest
-from _pytest import outcomes
-from utilities import utils, constant, common, result
+
+from utilities import utils, constant, common
 from utilities.result import Result
 from utilities.step import Steps
 

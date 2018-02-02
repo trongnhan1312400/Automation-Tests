@@ -23,7 +23,6 @@ def generate_argvalues_and_ids():
     argvalues = []
     ids = list()
     err = ErrorCode.CommonInvalidStructure
-    non_type = "'NoneType' object has no attribute 'encode'"
 
     ids.append("build_get_schema_fail_due_to_invalid_version")
     argvalues.append(("", "", '{"name":"valid_name", "version":"1ab.0"}', err))

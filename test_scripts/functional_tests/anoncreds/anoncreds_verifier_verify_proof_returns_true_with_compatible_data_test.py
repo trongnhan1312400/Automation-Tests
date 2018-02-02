@@ -87,7 +87,6 @@ class TestVerifierVerifyProofWithCompatibleData(AnoncredsTestBase):
 
         # 12. Verify created proof.
         self.steps.add_step("Verify created proof")
-        incompatible_schemas_json = json.dumps({referent: constant.xyz_schema})
         result = await utils.perform(
             self.steps, anoncreds.verifier_verify_proof, proof_req,
             created_proof, schemas_json, claims_defs_json, '{}')
