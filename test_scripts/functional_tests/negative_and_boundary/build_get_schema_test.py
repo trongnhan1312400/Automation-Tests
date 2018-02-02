@@ -8,19 +8,21 @@ Implementing negative test cases of get_schema.
 import json
 
 from indy import signus, ledger
+from indy.error import ErrorCode
 import pytest
 
 from utilities import common
 from utilities.constant import seed_default_trustee
 from utilities.result import Status
 from utilities.test_scenario_base import TestScenarioBase
-from utilities.utils import perform, generate_random_string
+from utilities.utils import perform, generate_random_string,\
+    perform_with_expected_code
 
 
 def generate_argvalues_and_ids():
     argvalues = []
     ids = list()
-    err = "ErrorCode.CommonInvalidStructure"
+    err = ErrorCode.CommonInvalidStructure
     non_type = "'NoneType' object has no attribute 'encode'"
 
     ids.append("build_get_schema_fail_due_to_invalid_version")
@@ -40,11 +42,13 @@ def generate_argvalues_and_ids():
     argvalues.append(("", "", '{"name":"valid", "name":"other_name", \
                     "version":"1.1"}', err))
 
-    ids.append("build_get_schema_fail_since_schema_did_is_none")
-    argvalues.append(("", None, '{"name":"name", "version":"1.1"}', non_type))
+    ids.append("build_get_schema_fail_since_schema_did_is_incorrect")
+    argvalues.append(("", "DFSD@#@$@#$", '{"name":"name", "version":"1.1"}',
+                      err))
 
-    ids.append("build_get_schema_fail_since_submitter_did_is_none")
-    argvalues.append((None, "", '{"name":"name", "version":"1.1"}', non_type))
+    ids.append("build_get_schema_fail_since_submitter_did_is_incorrect")
+    argvalues.append(("DFSD@#@$@#$", "", '{"name":"name", "version":"1.1"}',
+                      err))
 
     ids.append("build_get_schema_fail_since_data_is_none")
     argvalues.append(("", "", '{}', err))
@@ -148,13 +152,13 @@ class TestNegativeGetSchemaRequest(TestScenarioBase):
 
         # 2. Create and store did
         self.steps.add_step("Create DIDs")
-        if(submitter_did is not None):
+        if(not submitter_did):
             (submitter_did, _) = await perform(self.steps,
                                                signus.create_and_store_my_did,
                                                self.wallet_handle,
                                                json.dumps({
                                                 "seed": seed_default_trustee}))
-        if(schema_did is not None):
+        if(not schema_did):
             seed_trustee_2 = "000000000000000000000000Trustee2"
             (schema_did, _) = await perform(self.steps,
                                             signus.create_and_store_my_did,
@@ -164,15 +168,11 @@ class TestNegativeGetSchemaRequest(TestScenarioBase):
 
         # 3. build get schema request
         self.steps.add_step("Build schema request")
-        result = await perform(self.steps, ledger.build_get_schema_request,
-                               submitter_did, schema_did, data,
-                               ignore_exception=True)
+        result = await perform_with_expected_code(
+                                self.steps, ledger.build_get_schema_request,
+                                submitter_did, schema_did, data,
+                                expected_code=expected_result)
 
-        # 4. Verify result
-        self.steps.add_step("Verify expected result: " + str(expected_result))
-        if str(result) == expected_result:
-            self.steps.get_last_step().set_status(Status.PASSED)
-        else:
-            err_msg = "%s doesn't equal %s" % (result, expected_result)
-            self.steps.get_last_step().set_status(Status.FAILED, err_msg)
+        # add result for pytest
+        if (not result):
             assert False

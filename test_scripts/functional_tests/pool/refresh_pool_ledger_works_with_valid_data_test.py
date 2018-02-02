@@ -5,8 +5,6 @@ Created on Dec 8, 2017
 Verify that user can refresh an opened pool ledger.
 """
 
-import time
-
 from indy import pool
 
 from utilities import utils
