@@ -33,9 +33,8 @@ def generate_argvalues_and_ids():
     ids.append("build_get_schema_fail_since_miss_required_fields")
     argvalues.append(("", "", '{"version":"1.1.0"}', err))
 
-    ids.append("build_get_schema_fail_due_to_extra_fields")
-    argvalues.append(("", "", '{"name":"valid", "version":"1.1", \
-                    "extra_field":"extra field"}', err))
+    ids.append("build_get_schema_fail_due_to_the_empty_values")
+    argvalues.append(("", "", '{"name":"", "version":"1.1"}', err))
 
     ids.append("build_get_schema_fail_due_to_duplicate_field")
     argvalues.append(("", "", '{"name":"valid", "name":"other_name", \
