@@ -15,7 +15,7 @@ from utilities import common
 from utilities.constant import seed_default_trustee
 from utilities.result import Status
 from utilities.test_scenario_base import TestScenarioBase
-from utilities.utils import perform, generate_random_string,\
+from utilities.utils import perform, generate_random_string, \
     perform_with_expected_code
 
 
@@ -93,9 +93,9 @@ class TestNegativeGetSchemaRequest(TestScenarioBase):
         name = generate_random_string(size=4)
         version = "1.1.1"
         print("name request: " + name)
-        data_request = (
-            '{"name":"%s", "version":"%s", "attr_names":["name","male"]}' % (
-                name, version))
+        data_request = \
+            ('{"name":"%s", "version":"%s", "attr_names":["name","male"]}' % (
+              name, version))
         schema_req = await perform(self.steps, ledger.build_schema_request,
                                    submitter_did, data_request)
 
@@ -151,13 +151,11 @@ class TestNegativeGetSchemaRequest(TestScenarioBase):
 
         # 2. Create and store did
         self.steps.add_step("Create DIDs")
-        if(not submitter_did):
-            (submitter_did, _) = await perform(self.steps,
-                                               signus.create_and_store_my_did,
-                                               self.wallet_handle,
-                                               json.dumps({
-                                                "seed": seed_default_trustee}))
-        if(not schema_did):
+        if not submitter_did:
+            (submitter_did, _) = await perform(
+                self.steps, signus.create_and_store_my_did, self.wallet_handle,
+                json.dumps({"seed": seed_default_trustee}))
+        if not schema_did:
             seed_trustee_2 = "000000000000000000000000Trustee2"
             (schema_did, _) = await perform(self.steps,
                                             signus.create_and_store_my_did,
@@ -167,11 +165,7 @@ class TestNegativeGetSchemaRequest(TestScenarioBase):
 
         # 3. build get schema request
         self.steps.add_step("Build schema request")
-        result = await perform_with_expected_code(
-                                self.steps, ledger.build_get_schema_request,
-                                submitter_did, schema_did, data,
-                                expected_code=expected_result)
-
-        # add result for pytest
-        if (not result):
-            assert False
+        await perform_with_expected_code(
+            self.steps, ledger.build_get_schema_request,
+            submitter_did, schema_did, data,
+            expected_code=expected_result)

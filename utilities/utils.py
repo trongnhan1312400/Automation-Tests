@@ -94,7 +94,8 @@ async def perform(steps, func, *args, ignore_exception=False):
     return result
 
 
-async def perform_with_expected_code(steps, func, *args, expected_code=0):
+async def perform_with_expected_code(steps, func, *args, expected_code=0,
+                                     ignore_exception=False):
     """
     Execute the "func" with expectation that the "func" raise an IndyError that
     IndyError.error_code = "expected_code".
@@ -103,6 +104,7 @@ async def perform_with_expected_code(steps, func, *args, expected_code=0):
     :param args: arguments of "func".
     :param expected_code: (optional) the error code that you expect
                           in IndyError.
+    :param ignore_exception: (optional) raise exception or not.
     :return: exception if the "func" raise it without "expected_code".
              'None' if the "func" run without any exception of the exception
              contain "expected_code".
@@ -111,19 +113,28 @@ async def perform_with_expected_code(steps, func, *args, expected_code=0):
         await func(*args)
         message = "Expected exception %s but not." % str(expected_code)
         steps.get_last_step().set_status(Status.FAILED, message)
-        return None
+
+        if not ignore_exception:
+            result = ValueError(message)
+        else:
+            result = None
+
     except IndyError as E:
         if E.error_code == expected_code:
             steps.get_last_step().set_status(Status.PASSED)
-            return True
+            result = True
         else:
             print_error(constant.INDY_ERROR.format(str(E)))
             steps.get_last_step().set_status(Status.FAILED, str(E))
-            return E
+            result = E
     except Exception as Ex:
         print_error(constant.EXCEPTION.format(str(Ex)))
         steps.get_last_step().set_status(Status.FAILED, str(Ex))
-        return Ex
+        result = Ex
+
+    if isinstance(result, BaseException) and not ignore_exception:
+        raise result
+    return result
 
 
 def run_async_method(method, time_out=None):
