@@ -24,16 +24,16 @@ def generate_argvalues_and_ids():
     ids = list()
     err = ErrorCode.CommonInvalidStructure
 
-    ids.append("build_get_schema_fail_due_to_invalid_version")
+    ids.append("IS_549_build_get_schema_fail_due_to_invalid_version")
     argvalues.append(("", "", '{"name":"valid_name", "version":"1ab.0"}', err))
 
-    ids.append("build_get_schema_fail_due_to_special_character")
+    ids.append("IS_550_build_get_schema_fail_due_to_special_character")
     argvalues.append(("", "", '{"name":"name!@##$%", "version":"1.1"}', err))
 
     ids.append("build_get_schema_fail_since_miss_required_fields")
     argvalues.append(("", "", '{"version":"1.1.0"}', err))
 
-    ids.append("build_get_schema_fail_due_to_the_empty_values")
+    ids.append("IS_551_build_get_schema_fail_due_to_the_empty_values")
     argvalues.append(("", "", '{"name":"", "version":"1.1"}', err))
 
     ids.append("build_get_schema_fail_due_to_duplicate_field")
