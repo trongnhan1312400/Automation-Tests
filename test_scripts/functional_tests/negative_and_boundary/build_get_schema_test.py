@@ -148,13 +148,13 @@ class TestNegativeGetSchemaRequest(TestScenarioBase):
 
         # 2. Create and store did
         self.steps.add_step("Create DIDs")
-        if(submitter_did is not None):
+        if submitter_did is not None:
             (submitter_did, _) = await perform(self.steps,
                                                signus.create_and_store_my_did,
                                                self.wallet_handle,
                                                json.dumps({
                                                 "seed": seed_default_trustee}))
-        if(schema_did is not None):
+        if schema_did is not None:
             seed_trustee_2 = "000000000000000000000000Trustee2"
             (schema_did, _) = await perform(self.steps,
                                             signus.create_and_store_my_did,
