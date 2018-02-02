@@ -43,19 +43,6 @@ def get_project_path():
     return os.path.abspath(root_dir)
 
 
-def exit_if_exception(result):
-    """
-    If "result" is an exception then raise the "result".
-    Unless "result" is an exception then return the "result".
-    :param result: the value that you want to check.
-    :return: "result" if it is not an exception.
-    """
-    if isinstance(result, IndyError) or (isinstance(result, Exception)):
-        exit(1)
-    else:
-        return result
-
-
 def compare_json(js1, js2):
     """
     Check whether js1 contain js2.
